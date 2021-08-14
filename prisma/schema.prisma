@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum RoleEnum {
+  ADMIN
+  MONITOR
+  USER
+}
+
+enum StatusEnum {
+  PAID
+  UNPAID
+  NOTAPPLICABLE
+  NOTYETPAYABLE
+}
+
+model Users {
+  id              Int        @id @default(autoincrement())
+  email           String     @unique
+  name            String
+  first_name      String
+  password        String
+  phone_number    String
+  secondary_email String?
+  verfifed_at     DateTime?
+  deleted_at      DateTime?
+  create_at       DateTime   @default(now())
+  role            RoleEnum   @default(USER)
+  children        Children[]
+  orders          Orders[]
+}
+
+model Children {
+  id         Int       @id @default(autoincrement())
+  name       String
+  first_name String
+  birth_date DateTime  @db.Date
+  tutor      Users     @relation(fields: [tutor_id], references: [id])
+  tutor_id   Int
+  courses    Courses[]
+}
+
+model Courses {
+  id            Int             @id @default(autoincrement())
+  day_of_week   Int             @db.SmallInt
+  start_time    DateTime        @db.Time
+  end_time      DateTime        @db.Time
+  places        Int
+  cancellations Cancellations[]
+  children      Children[]
+}
+
+model Cancellations {
+  id         Int       @id @default(autoincrement())
+  date       DateTime
+  course     Courses   @relation(fields: [course_id], references: [id])
+  course_id  Int
+  created_at DateTime  @default(now())
+  deleted_at DateTime?
+}
+
+model Options {
+  id         Int           @id @default(autoincrement())
+  name       String
+  created_at DateTime      @default(now())
+  orders     Options_set[]
+  Prices     Prices[]
+}
+
+model Prices {
+  id          Int           @id @default(autoincrement())
+  price       Int
+  created_at  DateTime      @default(now())
+  options_set Options_set[]
+  option      Options       @relation(fields: [options_id], references: [id])
+  options_id  Int
+}
+
+model Orders {
+  id           Int           @id @default(autoincrement())
+  created_at   DateTime      @default(now())
+  cancelled_at DateTime?
+  options_set  Options_set[]
+  users        Users         @relation(fields: [users_id], references: [id])
+  users_id     Int
+}
+
+model Options_set {
+  id           Int        @id @default(autoincrement())
+  status       StatusEnum @default(UNPAID)
+  paid_at      DateTime?
+  cancelled_at DateTime?
+  option       Options    @relation(fields: [options_id], references: [id])
+  options_id   Int
+  order        Orders     @relation(fields: [orders_id], references: [id])
+  orders_id    Int
+  price        Prices     @relation(fields: [prices_id], references: [id])
+  prices_id    Int
+}
