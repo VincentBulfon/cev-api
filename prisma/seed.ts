@@ -3,8 +3,8 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.children.deleteMany();
-  await prisma.prices.deleteMany();
   await prisma.options_set.deleteMany();
+  await prisma.prices.deleteMany();
   await prisma.orders.deleteMany();
   await prisma.options.deleteMany();
   await prisma.users.deleteMany();
