@@ -34,7 +34,7 @@ model Users {
   secondary_email String?
   verfifed_at     DateTime?
   deleted_at      DateTime?
-  create_at       DateTime   @default(now())
+  created_at      DateTime   @default(now())
   role            RoleEnum   @default(USER)
   children        Children[]
   orders          Orders[]
