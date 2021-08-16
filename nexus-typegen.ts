@@ -34,10 +34,100 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CancellationsCreateInput: { // input type
+    course: NexusGenInputs['CoursesCreateNestedOneWithoutCancellationsInput']; // CoursesCreateNestedOneWithoutCancellationsInput!
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    date: NexusGenScalars['DateTime']; // DateTime!
+    deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  CancellationsCreateManyCourseInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    date: NexusGenScalars['DateTime']; // DateTime!
+    deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+  }
+  CancellationsCreateManyCourseInputEnvelope: { // input type
+    data?: NexusGenInputs['CancellationsCreateManyCourseInput'][] | null; // [CancellationsCreateManyCourseInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  CancellationsCreateNestedManyWithoutCourseInput: { // input type
+    connect?: NexusGenInputs['CancellationsWhereUniqueInput'][] | null; // [CancellationsWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['CancellationsCreateOrConnectWithoutCourseInput'][] | null; // [CancellationsCreateOrConnectWithoutCourseInput!]
+    create?: NexusGenInputs['CancellationsCreateWithoutCourseInput'][] | null; // [CancellationsCreateWithoutCourseInput!]
+    createMany?: NexusGenInputs['CancellationsCreateManyCourseInputEnvelope'] | null; // CancellationsCreateManyCourseInputEnvelope
+  }
+  CancellationsCreateOrConnectWithoutCourseInput: { // input type
+    create: NexusGenInputs['CancellationsCreateWithoutCourseInput']; // CancellationsCreateWithoutCourseInput!
+    where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
+  }
+  CancellationsCreateWithoutCourseInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    date: NexusGenScalars['DateTime']; // DateTime!
+    deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
   CancellationsListRelationFilter: { // input type
     every?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
     none?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
     some?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
+  }
+  CancellationsOrderByInput: { // input type
+    course_id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    date?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    deleted_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CancellationsScalarWhereInput: { // input type
+    AND?: NexusGenInputs['CancellationsScalarWhereInput'][] | null; // [CancellationsScalarWhereInput!]
+    NOT?: NexusGenInputs['CancellationsScalarWhereInput'][] | null; // [CancellationsScalarWhereInput!]
+    OR?: NexusGenInputs['CancellationsScalarWhereInput'][] | null; // [CancellationsScalarWhereInput!]
+    course_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    date?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    deleted_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  CancellationsUpdateInput: { // input type
+    course?: NexusGenInputs['CoursesUpdateOneRequiredWithoutCancellationsInput'] | null; // CoursesUpdateOneRequiredWithoutCancellationsInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  CancellationsUpdateManyMutationInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  CancellationsUpdateManyWithWhereWithoutCourseInput: { // input type
+    data: NexusGenInputs['CancellationsUpdateManyMutationInput']; // CancellationsUpdateManyMutationInput!
+    where: NexusGenInputs['CancellationsScalarWhereInput']; // CancellationsScalarWhereInput!
+  }
+  CancellationsUpdateManyWithoutCourseInput: { // input type
+    connect?: NexusGenInputs['CancellationsWhereUniqueInput'][] | null; // [CancellationsWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['CancellationsCreateOrConnectWithoutCourseInput'][] | null; // [CancellationsCreateOrConnectWithoutCourseInput!]
+    create?: NexusGenInputs['CancellationsCreateWithoutCourseInput'][] | null; // [CancellationsCreateWithoutCourseInput!]
+    createMany?: NexusGenInputs['CancellationsCreateManyCourseInputEnvelope'] | null; // CancellationsCreateManyCourseInputEnvelope
+    delete?: NexusGenInputs['CancellationsWhereUniqueInput'][] | null; // [CancellationsWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['CancellationsScalarWhereInput'][] | null; // [CancellationsScalarWhereInput!]
+    disconnect?: NexusGenInputs['CancellationsWhereUniqueInput'][] | null; // [CancellationsWhereUniqueInput!]
+    set?: NexusGenInputs['CancellationsWhereUniqueInput'][] | null; // [CancellationsWhereUniqueInput!]
+    update?: NexusGenInputs['CancellationsUpdateWithWhereUniqueWithoutCourseInput'][] | null; // [CancellationsUpdateWithWhereUniqueWithoutCourseInput!]
+    updateMany?: NexusGenInputs['CancellationsUpdateManyWithWhereWithoutCourseInput'][] | null; // [CancellationsUpdateManyWithWhereWithoutCourseInput!]
+    upsert?: NexusGenInputs['CancellationsUpsertWithWhereUniqueWithoutCourseInput'][] | null; // [CancellationsUpsertWithWhereUniqueWithoutCourseInput!]
+  }
+  CancellationsUpdateWithWhereUniqueWithoutCourseInput: { // input type
+    data: NexusGenInputs['CancellationsUpdateWithoutCourseInput']; // CancellationsUpdateWithoutCourseInput!
+    where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
+  }
+  CancellationsUpdateWithoutCourseInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  CancellationsUpsertWithWhereUniqueWithoutCourseInput: { // input type
+    create: NexusGenInputs['CancellationsCreateWithoutCourseInput']; // CancellationsCreateWithoutCourseInput!
+    update: NexusGenInputs['CancellationsUpdateWithoutCourseInput']; // CancellationsUpdateWithoutCourseInput!
+    where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
   }
   CancellationsWhereInput: { // input type
     AND?: NexusGenInputs['CancellationsWhereInput'][] | null; // [CancellationsWhereInput!]
@@ -50,10 +140,146 @@ export interface NexusGenInputs {
     deleted_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
+  CancellationsWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  ChildrenCreateInput: { // input type
+    birth_date: NexusGenScalars['DateTime']; // DateTime!
+    courses?: NexusGenInputs['CoursesCreateNestedManyWithoutChildrenInput'] | null; // CoursesCreateNestedManyWithoutChildrenInput
+    first_name: string; // String!
+    name: string; // String!
+    tutor: NexusGenInputs['UsersCreateNestedOneWithoutChildrenInput']; // UsersCreateNestedOneWithoutChildrenInput!
+  }
+  ChildrenCreateManyTutorInput: { // input type
+    birth_date: NexusGenScalars['DateTime']; // DateTime!
+    first_name: string; // String!
+    id?: number | null; // Int
+    name: string; // String!
+  }
+  ChildrenCreateManyTutorInputEnvelope: { // input type
+    data?: NexusGenInputs['ChildrenCreateManyTutorInput'][] | null; // [ChildrenCreateManyTutorInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ChildrenCreateNestedManyWithoutCoursesInput: { // input type
+    connect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutCoursesInput'][] | null; // [ChildrenCreateOrConnectWithoutCoursesInput!]
+    create?: NexusGenInputs['ChildrenCreateWithoutCoursesInput'][] | null; // [ChildrenCreateWithoutCoursesInput!]
+  }
+  ChildrenCreateNestedManyWithoutTutorInput: { // input type
+    connect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutTutorInput'][] | null; // [ChildrenCreateOrConnectWithoutTutorInput!]
+    create?: NexusGenInputs['ChildrenCreateWithoutTutorInput'][] | null; // [ChildrenCreateWithoutTutorInput!]
+    createMany?: NexusGenInputs['ChildrenCreateManyTutorInputEnvelope'] | null; // ChildrenCreateManyTutorInputEnvelope
+  }
+  ChildrenCreateOrConnectWithoutCoursesInput: { // input type
+    create: NexusGenInputs['ChildrenCreateWithoutCoursesInput']; // ChildrenCreateWithoutCoursesInput!
+    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+  }
+  ChildrenCreateOrConnectWithoutTutorInput: { // input type
+    create: NexusGenInputs['ChildrenCreateWithoutTutorInput']; // ChildrenCreateWithoutTutorInput!
+    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+  }
+  ChildrenCreateWithoutCoursesInput: { // input type
+    birth_date: NexusGenScalars['DateTime']; // DateTime!
+    first_name: string; // String!
+    name: string; // String!
+    tutor: NexusGenInputs['UsersCreateNestedOneWithoutChildrenInput']; // UsersCreateNestedOneWithoutChildrenInput!
+  }
+  ChildrenCreateWithoutTutorInput: { // input type
+    birth_date: NexusGenScalars['DateTime']; // DateTime!
+    courses?: NexusGenInputs['CoursesCreateNestedManyWithoutChildrenInput'] | null; // CoursesCreateNestedManyWithoutChildrenInput
+    first_name: string; // String!
+    name: string; // String!
+  }
   ChildrenListRelationFilter: { // input type
     every?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
     none?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
     some?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
+  }
+  ChildrenScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
+    NOT?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
+    OR?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
+    birth_date?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    first_name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    tutor_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  ChildrenUpdateInput: { // input type
+    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    courses?: NexusGenInputs['CoursesUpdateManyWithoutChildrenInput'] | null; // CoursesUpdateManyWithoutChildrenInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
+  }
+  ChildrenUpdateManyMutationInput: { // input type
+    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  ChildrenUpdateManyWithWhereWithoutCoursesInput: { // input type
+    data: NexusGenInputs['ChildrenUpdateManyMutationInput']; // ChildrenUpdateManyMutationInput!
+    where: NexusGenInputs['ChildrenScalarWhereInput']; // ChildrenScalarWhereInput!
+  }
+  ChildrenUpdateManyWithWhereWithoutTutorInput: { // input type
+    data: NexusGenInputs['ChildrenUpdateManyMutationInput']; // ChildrenUpdateManyMutationInput!
+    where: NexusGenInputs['ChildrenScalarWhereInput']; // ChildrenScalarWhereInput!
+  }
+  ChildrenUpdateManyWithoutCoursesInput: { // input type
+    connect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutCoursesInput'][] | null; // [ChildrenCreateOrConnectWithoutCoursesInput!]
+    create?: NexusGenInputs['ChildrenCreateWithoutCoursesInput'][] | null; // [ChildrenCreateWithoutCoursesInput!]
+    delete?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
+    disconnect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    set?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    update?: NexusGenInputs['ChildrenUpdateWithWhereUniqueWithoutCoursesInput'][] | null; // [ChildrenUpdateWithWhereUniqueWithoutCoursesInput!]
+    updateMany?: NexusGenInputs['ChildrenUpdateManyWithWhereWithoutCoursesInput'][] | null; // [ChildrenUpdateManyWithWhereWithoutCoursesInput!]
+    upsert?: NexusGenInputs['ChildrenUpsertWithWhereUniqueWithoutCoursesInput'][] | null; // [ChildrenUpsertWithWhereUniqueWithoutCoursesInput!]
+  }
+  ChildrenUpdateManyWithoutTutorInput: { // input type
+    connect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutTutorInput'][] | null; // [ChildrenCreateOrConnectWithoutTutorInput!]
+    create?: NexusGenInputs['ChildrenCreateWithoutTutorInput'][] | null; // [ChildrenCreateWithoutTutorInput!]
+    createMany?: NexusGenInputs['ChildrenCreateManyTutorInputEnvelope'] | null; // ChildrenCreateManyTutorInputEnvelope
+    delete?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
+    disconnect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    set?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
+    update?: NexusGenInputs['ChildrenUpdateWithWhereUniqueWithoutTutorInput'][] | null; // [ChildrenUpdateWithWhereUniqueWithoutTutorInput!]
+    updateMany?: NexusGenInputs['ChildrenUpdateManyWithWhereWithoutTutorInput'][] | null; // [ChildrenUpdateManyWithWhereWithoutTutorInput!]
+    upsert?: NexusGenInputs['ChildrenUpsertWithWhereUniqueWithoutTutorInput'][] | null; // [ChildrenUpsertWithWhereUniqueWithoutTutorInput!]
+  }
+  ChildrenUpdateWithWhereUniqueWithoutCoursesInput: { // input type
+    data: NexusGenInputs['ChildrenUpdateWithoutCoursesInput']; // ChildrenUpdateWithoutCoursesInput!
+    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+  }
+  ChildrenUpdateWithWhereUniqueWithoutTutorInput: { // input type
+    data: NexusGenInputs['ChildrenUpdateWithoutTutorInput']; // ChildrenUpdateWithoutTutorInput!
+    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+  }
+  ChildrenUpdateWithoutCoursesInput: { // input type
+    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
+  }
+  ChildrenUpdateWithoutTutorInput: { // input type
+    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    courses?: NexusGenInputs['CoursesUpdateManyWithoutChildrenInput'] | null; // CoursesUpdateManyWithoutChildrenInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  ChildrenUpsertWithWhereUniqueWithoutCoursesInput: { // input type
+    create: NexusGenInputs['ChildrenCreateWithoutCoursesInput']; // ChildrenCreateWithoutCoursesInput!
+    update: NexusGenInputs['ChildrenUpdateWithoutCoursesInput']; // ChildrenUpdateWithoutCoursesInput!
+    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+  }
+  ChildrenUpsertWithWhereUniqueWithoutTutorInput: { // input type
+    create: NexusGenInputs['ChildrenCreateWithoutTutorInput']; // ChildrenCreateWithoutTutorInput!
+    update: NexusGenInputs['ChildrenUpdateWithoutTutorInput']; // ChildrenUpdateWithoutTutorInput!
+    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
   }
   ChildrenWhereInput: { // input type
     AND?: NexusGenInputs['ChildrenWhereInput'][] | null; // [ChildrenWhereInput!]
@@ -67,10 +293,134 @@ export interface NexusGenInputs {
     tutor?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
     tutor_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
+  ChildrenWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  CoursesCreateInput: { // input type
+    cancellations?: NexusGenInputs['CancellationsCreateNestedManyWithoutCourseInput'] | null; // CancellationsCreateNestedManyWithoutCourseInput
+    children?: NexusGenInputs['ChildrenCreateNestedManyWithoutCoursesInput'] | null; // ChildrenCreateNestedManyWithoutCoursesInput
+    day_of_week: number; // Int!
+    end_time: NexusGenScalars['DateTime']; // DateTime!
+    places: number; // Int!
+    start_time: NexusGenScalars['DateTime']; // DateTime!
+  }
+  CoursesCreateNestedManyWithoutChildrenInput: { // input type
+    connect?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutChildrenInput'][] | null; // [CoursesCreateOrConnectWithoutChildrenInput!]
+    create?: NexusGenInputs['CoursesCreateWithoutChildrenInput'][] | null; // [CoursesCreateWithoutChildrenInput!]
+  }
+  CoursesCreateNestedOneWithoutCancellationsInput: { // input type
+    connect?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutCancellationsInput'] | null; // CoursesCreateOrConnectWithoutCancellationsInput
+    create?: NexusGenInputs['CoursesCreateWithoutCancellationsInput'] | null; // CoursesCreateWithoutCancellationsInput
+  }
+  CoursesCreateOrConnectWithoutCancellationsInput: { // input type
+    create: NexusGenInputs['CoursesCreateWithoutCancellationsInput']; // CoursesCreateWithoutCancellationsInput!
+    where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+  }
+  CoursesCreateOrConnectWithoutChildrenInput: { // input type
+    create: NexusGenInputs['CoursesCreateWithoutChildrenInput']; // CoursesCreateWithoutChildrenInput!
+    where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+  }
+  CoursesCreateWithoutCancellationsInput: { // input type
+    children?: NexusGenInputs['ChildrenCreateNestedManyWithoutCoursesInput'] | null; // ChildrenCreateNestedManyWithoutCoursesInput
+    day_of_week: number; // Int!
+    end_time: NexusGenScalars['DateTime']; // DateTime!
+    places: number; // Int!
+    start_time: NexusGenScalars['DateTime']; // DateTime!
+  }
+  CoursesCreateWithoutChildrenInput: { // input type
+    cancellations?: NexusGenInputs['CancellationsCreateNestedManyWithoutCourseInput'] | null; // CancellationsCreateNestedManyWithoutCourseInput
+    day_of_week: number; // Int!
+    end_time: NexusGenScalars['DateTime']; // DateTime!
+    places: number; // Int!
+    start_time: NexusGenScalars['DateTime']; // DateTime!
+  }
   CoursesListRelationFilter: { // input type
     every?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
     none?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
     some?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
+  }
+  CoursesOrderByInput: { // input type
+    day_of_week?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    end_time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    places?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    start_time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CoursesScalarWhereInput: { // input type
+    AND?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
+    NOT?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
+    OR?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
+    day_of_week?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    end_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    places?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    start_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  CoursesUpdateInput: { // input type
+    cancellations?: NexusGenInputs['CancellationsUpdateManyWithoutCourseInput'] | null; // CancellationsUpdateManyWithoutCourseInput
+    children?: NexusGenInputs['ChildrenUpdateManyWithoutCoursesInput'] | null; // ChildrenUpdateManyWithoutCoursesInput
+    day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  CoursesUpdateManyMutationInput: { // input type
+    day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  CoursesUpdateManyWithWhereWithoutChildrenInput: { // input type
+    data: NexusGenInputs['CoursesUpdateManyMutationInput']; // CoursesUpdateManyMutationInput!
+    where: NexusGenInputs['CoursesScalarWhereInput']; // CoursesScalarWhereInput!
+  }
+  CoursesUpdateManyWithoutChildrenInput: { // input type
+    connect?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutChildrenInput'][] | null; // [CoursesCreateOrConnectWithoutChildrenInput!]
+    create?: NexusGenInputs['CoursesCreateWithoutChildrenInput'][] | null; // [CoursesCreateWithoutChildrenInput!]
+    delete?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
+    disconnect?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
+    set?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
+    update?: NexusGenInputs['CoursesUpdateWithWhereUniqueWithoutChildrenInput'][] | null; // [CoursesUpdateWithWhereUniqueWithoutChildrenInput!]
+    updateMany?: NexusGenInputs['CoursesUpdateManyWithWhereWithoutChildrenInput'][] | null; // [CoursesUpdateManyWithWhereWithoutChildrenInput!]
+    upsert?: NexusGenInputs['CoursesUpsertWithWhereUniqueWithoutChildrenInput'][] | null; // [CoursesUpsertWithWhereUniqueWithoutChildrenInput!]
+  }
+  CoursesUpdateOneRequiredWithoutCancellationsInput: { // input type
+    connect?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutCancellationsInput'] | null; // CoursesCreateOrConnectWithoutCancellationsInput
+    create?: NexusGenInputs['CoursesCreateWithoutCancellationsInput'] | null; // CoursesCreateWithoutCancellationsInput
+    update?: NexusGenInputs['CoursesUpdateWithoutCancellationsInput'] | null; // CoursesUpdateWithoutCancellationsInput
+    upsert?: NexusGenInputs['CoursesUpsertWithoutCancellationsInput'] | null; // CoursesUpsertWithoutCancellationsInput
+  }
+  CoursesUpdateWithWhereUniqueWithoutChildrenInput: { // input type
+    data: NexusGenInputs['CoursesUpdateWithoutChildrenInput']; // CoursesUpdateWithoutChildrenInput!
+    where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+  }
+  CoursesUpdateWithoutCancellationsInput: { // input type
+    children?: NexusGenInputs['ChildrenUpdateManyWithoutCoursesInput'] | null; // ChildrenUpdateManyWithoutCoursesInput
+    day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  CoursesUpdateWithoutChildrenInput: { // input type
+    cancellations?: NexusGenInputs['CancellationsUpdateManyWithoutCourseInput'] | null; // CancellationsUpdateManyWithoutCourseInput
+    day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  CoursesUpsertWithWhereUniqueWithoutChildrenInput: { // input type
+    create: NexusGenInputs['CoursesCreateWithoutChildrenInput']; // CoursesCreateWithoutChildrenInput!
+    update: NexusGenInputs['CoursesUpdateWithoutChildrenInput']; // CoursesUpdateWithoutChildrenInput!
+    where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+  }
+  CoursesUpsertWithoutCancellationsInput: { // input type
+    create: NexusGenInputs['CoursesCreateWithoutCancellationsInput']; // CoursesCreateWithoutCancellationsInput!
+    update: NexusGenInputs['CoursesUpdateWithoutCancellationsInput']; // CoursesUpdateWithoutCancellationsInput!
   }
   CoursesWhereInput: { // input type
     AND?: NexusGenInputs['CoursesWhereInput'][] | null; // [CoursesWhereInput!]
@@ -83,6 +433,12 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     places?: NexusGenInputs['IntFilter'] | null; // IntFilter
     start_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  CoursesWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  DateTimeFieldUpdateOperationsInput: { // input type
+    set?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   DateTimeFilter: { // input type
     equals?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -104,17 +460,30 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
   }
+  EnumRoleEnumFieldUpdateOperationsInput: { // input type
+    set?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
+  }
   EnumRoleEnumFilter: { // input type
     equals?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
     in?: NexusGenEnums['RoleEnum'][] | null; // [RoleEnum!]
     not?: NexusGenInputs['NestedEnumRoleEnumFilter'] | null; // NestedEnumRoleEnumFilter
     notIn?: NexusGenEnums['RoleEnum'][] | null; // [RoleEnum!]
   }
+  EnumStatusEnumFieldUpdateOperationsInput: { // input type
+    set?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
   EnumStatusEnumFilter: { // input type
     equals?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
     in?: NexusGenEnums['StatusEnum'][] | null; // [StatusEnum!]
     not?: NexusGenInputs['NestedEnumStatusEnumFilter'] | null; // NestedEnumStatusEnumFilter
     notIn?: NexusGenEnums['StatusEnum'][] | null; // [StatusEnum!]
+  }
+  IntFieldUpdateOperationsInput: { // input type
+    decrement?: number | null; // Int
+    divide?: number | null; // Int
+    increment?: number | null; // Int
+    multiply?: number | null; // Int
+    set?: number | null; // Int
   }
   IntFilter: { // input type
     equals?: number | null; // Int
@@ -194,6 +563,78 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  NullableDateTimeFieldUpdateOperationsInput: { // input type
+    set?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  NullableStringFieldUpdateOperationsInput: { // input type
+    set?: string | null; // String
+  }
+  OptionsCreateInput: { // input type
+    Prices?: NexusGenInputs['PricesCreateNestedManyWithoutOptionInput'] | null; // PricesCreateNestedManyWithoutOptionInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    name: string; // String!
+    orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
+  }
+  OptionsCreateNestedOneWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['OptionsCreateOrConnectWithoutOrdersInput'] | null; // OptionsCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['OptionsCreateWithoutOrdersInput'] | null; // OptionsCreateWithoutOrdersInput
+  }
+  OptionsCreateNestedOneWithoutPricesInput: { // input type
+    connect?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['OptionsCreateOrConnectWithoutPricesInput'] | null; // OptionsCreateOrConnectWithoutPricesInput
+    create?: NexusGenInputs['OptionsCreateWithoutPricesInput'] | null; // OptionsCreateWithoutPricesInput
+  }
+  OptionsCreateOrConnectWithoutOrdersInput: { // input type
+    create: NexusGenInputs['OptionsCreateWithoutOrdersInput']; // OptionsCreateWithoutOrdersInput!
+    where: NexusGenInputs['OptionsWhereUniqueInput']; // OptionsWhereUniqueInput!
+  }
+  OptionsCreateOrConnectWithoutPricesInput: { // input type
+    create: NexusGenInputs['OptionsCreateWithoutPricesInput']; // OptionsCreateWithoutPricesInput!
+    where: NexusGenInputs['OptionsWhereUniqueInput']; // OptionsWhereUniqueInput!
+  }
+  OptionsCreateWithoutOrdersInput: { // input type
+    Prices?: NexusGenInputs['PricesCreateNestedManyWithoutOptionInput'] | null; // PricesCreateNestedManyWithoutOptionInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    name: string; // String!
+  }
+  OptionsCreateWithoutPricesInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    name: string; // String!
+    orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
+  }
+  OptionsUpdateOneRequiredWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['OptionsCreateOrConnectWithoutOrdersInput'] | null; // OptionsCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['OptionsCreateWithoutOrdersInput'] | null; // OptionsCreateWithoutOrdersInput
+    update?: NexusGenInputs['OptionsUpdateWithoutOrdersInput'] | null; // OptionsUpdateWithoutOrdersInput
+    upsert?: NexusGenInputs['OptionsUpsertWithoutOrdersInput'] | null; // OptionsUpsertWithoutOrdersInput
+  }
+  OptionsUpdateOneRequiredWithoutPricesInput: { // input type
+    connect?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['OptionsCreateOrConnectWithoutPricesInput'] | null; // OptionsCreateOrConnectWithoutPricesInput
+    create?: NexusGenInputs['OptionsCreateWithoutPricesInput'] | null; // OptionsCreateWithoutPricesInput
+    update?: NexusGenInputs['OptionsUpdateWithoutPricesInput'] | null; // OptionsUpdateWithoutPricesInput
+    upsert?: NexusGenInputs['OptionsUpsertWithoutPricesInput'] | null; // OptionsUpsertWithoutPricesInput
+  }
+  OptionsUpdateWithoutOrdersInput: { // input type
+    Prices?: NexusGenInputs['PricesUpdateManyWithoutOptionInput'] | null; // PricesUpdateManyWithoutOptionInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  OptionsUpdateWithoutPricesInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['Options_setUpdateManyWithoutOptionInput'] | null; // Options_setUpdateManyWithoutOptionInput
+  }
+  OptionsUpsertWithoutOrdersInput: { // input type
+    create: NexusGenInputs['OptionsCreateWithoutOrdersInput']; // OptionsCreateWithoutOrdersInput!
+    update: NexusGenInputs['OptionsUpdateWithoutOrdersInput']; // OptionsUpdateWithoutOrdersInput!
+  }
+  OptionsUpsertWithoutPricesInput: { // input type
+    create: NexusGenInputs['OptionsCreateWithoutPricesInput']; // OptionsCreateWithoutPricesInput!
+    update: NexusGenInputs['OptionsUpdateWithoutPricesInput']; // OptionsUpdateWithoutPricesInput!
+  }
   OptionsWhereInput: { // input type
     AND?: NexusGenInputs['OptionsWhereInput'][] | null; // [OptionsWhereInput!]
     NOT?: NexusGenInputs['OptionsWhereInput'][] | null; // [OptionsWhereInput!]
@@ -204,10 +645,216 @@ export interface NexusGenInputs {
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     orders?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
   }
+  OptionsWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  Options_setCreateManyOptionInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    orders_id: number; // Int!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    prices_id: number; // Int!
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
+  Options_setCreateManyOptionInputEnvelope: { // input type
+    data?: NexusGenInputs['Options_setCreateManyOptionInput'][] | null; // [Options_setCreateManyOptionInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  Options_setCreateManyOrderInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    options_id: number; // Int!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    prices_id: number; // Int!
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
+  Options_setCreateManyOrderInputEnvelope: { // input type
+    data?: NexusGenInputs['Options_setCreateManyOrderInput'][] | null; // [Options_setCreateManyOrderInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  Options_setCreateManyPriceInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    options_id: number; // Int!
+    orders_id: number; // Int!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
+  Options_setCreateManyPriceInputEnvelope: { // input type
+    data?: NexusGenInputs['Options_setCreateManyPriceInput'][] | null; // [Options_setCreateManyPriceInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  Options_setCreateNestedManyWithoutOptionInput: { // input type
+    connect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['Options_setCreateOrConnectWithoutOptionInput'][] | null; // [Options_setCreateOrConnectWithoutOptionInput!]
+    create?: NexusGenInputs['Options_setCreateWithoutOptionInput'][] | null; // [Options_setCreateWithoutOptionInput!]
+    createMany?: NexusGenInputs['Options_setCreateManyOptionInputEnvelope'] | null; // Options_setCreateManyOptionInputEnvelope
+  }
+  Options_setCreateNestedManyWithoutOrderInput: { // input type
+    connect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['Options_setCreateOrConnectWithoutOrderInput'][] | null; // [Options_setCreateOrConnectWithoutOrderInput!]
+    create?: NexusGenInputs['Options_setCreateWithoutOrderInput'][] | null; // [Options_setCreateWithoutOrderInput!]
+    createMany?: NexusGenInputs['Options_setCreateManyOrderInputEnvelope'] | null; // Options_setCreateManyOrderInputEnvelope
+  }
+  Options_setCreateNestedManyWithoutPriceInput: { // input type
+    connect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['Options_setCreateOrConnectWithoutPriceInput'][] | null; // [Options_setCreateOrConnectWithoutPriceInput!]
+    create?: NexusGenInputs['Options_setCreateWithoutPriceInput'][] | null; // [Options_setCreateWithoutPriceInput!]
+    createMany?: NexusGenInputs['Options_setCreateManyPriceInputEnvelope'] | null; // Options_setCreateManyPriceInputEnvelope
+  }
+  Options_setCreateOrConnectWithoutOptionInput: { // input type
+    create: NexusGenInputs['Options_setCreateWithoutOptionInput']; // Options_setCreateWithoutOptionInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setCreateOrConnectWithoutOrderInput: { // input type
+    create: NexusGenInputs['Options_setCreateWithoutOrderInput']; // Options_setCreateWithoutOrderInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setCreateOrConnectWithoutPriceInput: { // input type
+    create: NexusGenInputs['Options_setCreateWithoutPriceInput']; // Options_setCreateWithoutPriceInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setCreateWithoutOptionInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    order: NexusGenInputs['OrdersCreateNestedOneWithoutOptions_setInput']; // OrdersCreateNestedOneWithoutOptions_setInput!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    price: NexusGenInputs['PricesCreateNestedOneWithoutOptions_setInput']; // PricesCreateNestedOneWithoutOptions_setInput!
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
+  Options_setCreateWithoutOrderInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    option: NexusGenInputs['OptionsCreateNestedOneWithoutOrdersInput']; // OptionsCreateNestedOneWithoutOrdersInput!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    price: NexusGenInputs['PricesCreateNestedOneWithoutOptions_setInput']; // PricesCreateNestedOneWithoutOptions_setInput!
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
+  Options_setCreateWithoutPriceInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    option: NexusGenInputs['OptionsCreateNestedOneWithoutOrdersInput']; // OptionsCreateNestedOneWithoutOrdersInput!
+    order: NexusGenInputs['OrdersCreateNestedOneWithoutOptions_setInput']; // OrdersCreateNestedOneWithoutOptions_setInput!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
   Options_setListRelationFilter: { // input type
     every?: NexusGenInputs['Options_setWhereInput'] | null; // Options_setWhereInput
     none?: NexusGenInputs['Options_setWhereInput'] | null; // Options_setWhereInput
     some?: NexusGenInputs['Options_setWhereInput'] | null; // Options_setWhereInput
+  }
+  Options_setScalarWhereInput: { // input type
+    AND?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
+    NOT?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
+    OR?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
+    cancelled_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    orders_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    paid_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+    prices_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    status?: NexusGenInputs['EnumStatusEnumFilter'] | null; // EnumStatusEnumFilter
+  }
+  Options_setUpdateManyMutationInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    paid_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    status?: NexusGenInputs['EnumStatusEnumFieldUpdateOperationsInput'] | null; // EnumStatusEnumFieldUpdateOperationsInput
+  }
+  Options_setUpdateManyWithWhereWithoutOptionInput: { // input type
+    data: NexusGenInputs['Options_setUpdateManyMutationInput']; // Options_setUpdateManyMutationInput!
+    where: NexusGenInputs['Options_setScalarWhereInput']; // Options_setScalarWhereInput!
+  }
+  Options_setUpdateManyWithWhereWithoutOrderInput: { // input type
+    data: NexusGenInputs['Options_setUpdateManyMutationInput']; // Options_setUpdateManyMutationInput!
+    where: NexusGenInputs['Options_setScalarWhereInput']; // Options_setScalarWhereInput!
+  }
+  Options_setUpdateManyWithWhereWithoutPriceInput: { // input type
+    data: NexusGenInputs['Options_setUpdateManyMutationInput']; // Options_setUpdateManyMutationInput!
+    where: NexusGenInputs['Options_setScalarWhereInput']; // Options_setScalarWhereInput!
+  }
+  Options_setUpdateManyWithoutOptionInput: { // input type
+    connect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['Options_setCreateOrConnectWithoutOptionInput'][] | null; // [Options_setCreateOrConnectWithoutOptionInput!]
+    create?: NexusGenInputs['Options_setCreateWithoutOptionInput'][] | null; // [Options_setCreateWithoutOptionInput!]
+    createMany?: NexusGenInputs['Options_setCreateManyOptionInputEnvelope'] | null; // Options_setCreateManyOptionInputEnvelope
+    delete?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
+    disconnect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    set?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    update?: NexusGenInputs['Options_setUpdateWithWhereUniqueWithoutOptionInput'][] | null; // [Options_setUpdateWithWhereUniqueWithoutOptionInput!]
+    updateMany?: NexusGenInputs['Options_setUpdateManyWithWhereWithoutOptionInput'][] | null; // [Options_setUpdateManyWithWhereWithoutOptionInput!]
+    upsert?: NexusGenInputs['Options_setUpsertWithWhereUniqueWithoutOptionInput'][] | null; // [Options_setUpsertWithWhereUniqueWithoutOptionInput!]
+  }
+  Options_setUpdateManyWithoutOrderInput: { // input type
+    connect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['Options_setCreateOrConnectWithoutOrderInput'][] | null; // [Options_setCreateOrConnectWithoutOrderInput!]
+    create?: NexusGenInputs['Options_setCreateWithoutOrderInput'][] | null; // [Options_setCreateWithoutOrderInput!]
+    createMany?: NexusGenInputs['Options_setCreateManyOrderInputEnvelope'] | null; // Options_setCreateManyOrderInputEnvelope
+    delete?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
+    disconnect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    set?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    update?: NexusGenInputs['Options_setUpdateWithWhereUniqueWithoutOrderInput'][] | null; // [Options_setUpdateWithWhereUniqueWithoutOrderInput!]
+    updateMany?: NexusGenInputs['Options_setUpdateManyWithWhereWithoutOrderInput'][] | null; // [Options_setUpdateManyWithWhereWithoutOrderInput!]
+    upsert?: NexusGenInputs['Options_setUpsertWithWhereUniqueWithoutOrderInput'][] | null; // [Options_setUpsertWithWhereUniqueWithoutOrderInput!]
+  }
+  Options_setUpdateManyWithoutPriceInput: { // input type
+    connect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['Options_setCreateOrConnectWithoutPriceInput'][] | null; // [Options_setCreateOrConnectWithoutPriceInput!]
+    create?: NexusGenInputs['Options_setCreateWithoutPriceInput'][] | null; // [Options_setCreateWithoutPriceInput!]
+    createMany?: NexusGenInputs['Options_setCreateManyPriceInputEnvelope'] | null; // Options_setCreateManyPriceInputEnvelope
+    delete?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
+    disconnect?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    set?: NexusGenInputs['Options_setWhereUniqueInput'][] | null; // [Options_setWhereUniqueInput!]
+    update?: NexusGenInputs['Options_setUpdateWithWhereUniqueWithoutPriceInput'][] | null; // [Options_setUpdateWithWhereUniqueWithoutPriceInput!]
+    updateMany?: NexusGenInputs['Options_setUpdateManyWithWhereWithoutPriceInput'][] | null; // [Options_setUpdateManyWithWhereWithoutPriceInput!]
+    upsert?: NexusGenInputs['Options_setUpsertWithWhereUniqueWithoutPriceInput'][] | null; // [Options_setUpsertWithWhereUniqueWithoutPriceInput!]
+  }
+  Options_setUpdateWithWhereUniqueWithoutOptionInput: { // input type
+    data: NexusGenInputs['Options_setUpdateWithoutOptionInput']; // Options_setUpdateWithoutOptionInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setUpdateWithWhereUniqueWithoutOrderInput: { // input type
+    data: NexusGenInputs['Options_setUpdateWithoutOrderInput']; // Options_setUpdateWithoutOrderInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setUpdateWithWhereUniqueWithoutPriceInput: { // input type
+    data: NexusGenInputs['Options_setUpdateWithoutPriceInput']; // Options_setUpdateWithoutPriceInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setUpdateWithoutOptionInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    order?: NexusGenInputs['OrdersUpdateOneRequiredWithoutOptions_setInput'] | null; // OrdersUpdateOneRequiredWithoutOptions_setInput
+    paid_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    price?: NexusGenInputs['PricesUpdateOneRequiredWithoutOptions_setInput'] | null; // PricesUpdateOneRequiredWithoutOptions_setInput
+    status?: NexusGenInputs['EnumStatusEnumFieldUpdateOperationsInput'] | null; // EnumStatusEnumFieldUpdateOperationsInput
+  }
+  Options_setUpdateWithoutOrderInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    option?: NexusGenInputs['OptionsUpdateOneRequiredWithoutOrdersInput'] | null; // OptionsUpdateOneRequiredWithoutOrdersInput
+    paid_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    price?: NexusGenInputs['PricesUpdateOneRequiredWithoutOptions_setInput'] | null; // PricesUpdateOneRequiredWithoutOptions_setInput
+    status?: NexusGenInputs['EnumStatusEnumFieldUpdateOperationsInput'] | null; // EnumStatusEnumFieldUpdateOperationsInput
+  }
+  Options_setUpdateWithoutPriceInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    option?: NexusGenInputs['OptionsUpdateOneRequiredWithoutOrdersInput'] | null; // OptionsUpdateOneRequiredWithoutOrdersInput
+    order?: NexusGenInputs['OrdersUpdateOneRequiredWithoutOptions_setInput'] | null; // OrdersUpdateOneRequiredWithoutOptions_setInput
+    paid_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    status?: NexusGenInputs['EnumStatusEnumFieldUpdateOperationsInput'] | null; // EnumStatusEnumFieldUpdateOperationsInput
+  }
+  Options_setUpsertWithWhereUniqueWithoutOptionInput: { // input type
+    create: NexusGenInputs['Options_setCreateWithoutOptionInput']; // Options_setCreateWithoutOptionInput!
+    update: NexusGenInputs['Options_setUpdateWithoutOptionInput']; // Options_setUpdateWithoutOptionInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setUpsertWithWhereUniqueWithoutOrderInput: { // input type
+    create: NexusGenInputs['Options_setCreateWithoutOrderInput']; // Options_setCreateWithoutOrderInput!
+    update: NexusGenInputs['Options_setUpdateWithoutOrderInput']; // Options_setUpdateWithoutOrderInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
+  }
+  Options_setUpsertWithWhereUniqueWithoutPriceInput: { // input type
+    create: NexusGenInputs['Options_setCreateWithoutPriceInput']; // Options_setCreateWithoutPriceInput!
+    update: NexusGenInputs['Options_setUpdateWithoutPriceInput']; // Options_setUpdateWithoutPriceInput!
+    where: NexusGenInputs['Options_setWhereUniqueInput']; // Options_setWhereUniqueInput!
   }
   Options_setWhereInput: { // input type
     AND?: NexusGenInputs['Options_setWhereInput'][] | null; // [Options_setWhereInput!]
@@ -224,10 +871,123 @@ export interface NexusGenInputs {
     prices_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     status?: NexusGenInputs['EnumStatusEnumFilter'] | null; // EnumStatusEnumFilter
   }
+  Options_setWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  OrdersCreateInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutOrderInput'] | null; // Options_setCreateNestedManyWithoutOrderInput
+    users: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
+  }
+  OrdersCreateManyUsersInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+  }
+  OrdersCreateManyUsersInputEnvelope: { // input type
+    data?: NexusGenInputs['OrdersCreateManyUsersInput'][] | null; // [OrdersCreateManyUsersInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  OrdersCreateNestedManyWithoutUsersInput: { // input type
+    connect?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutUsersInput'][] | null; // [OrdersCreateOrConnectWithoutUsersInput!]
+    create?: NexusGenInputs['OrdersCreateWithoutUsersInput'][] | null; // [OrdersCreateWithoutUsersInput!]
+    createMany?: NexusGenInputs['OrdersCreateManyUsersInputEnvelope'] | null; // OrdersCreateManyUsersInputEnvelope
+  }
+  OrdersCreateNestedOneWithoutOptions_setInput: { // input type
+    connect?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutOptions_setInput'] | null; // OrdersCreateOrConnectWithoutOptions_setInput
+    create?: NexusGenInputs['OrdersCreateWithoutOptions_setInput'] | null; // OrdersCreateWithoutOptions_setInput
+  }
+  OrdersCreateOrConnectWithoutOptions_setInput: { // input type
+    create: NexusGenInputs['OrdersCreateWithoutOptions_setInput']; // OrdersCreateWithoutOptions_setInput!
+    where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
+  }
+  OrdersCreateOrConnectWithoutUsersInput: { // input type
+    create: NexusGenInputs['OrdersCreateWithoutUsersInput']; // OrdersCreateWithoutUsersInput!
+    where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
+  }
+  OrdersCreateWithoutOptions_setInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    users: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
+  }
+  OrdersCreateWithoutUsersInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutOrderInput'] | null; // Options_setCreateNestedManyWithoutOrderInput
+  }
   OrdersListRelationFilter: { // input type
     every?: NexusGenInputs['OrdersWhereInput'] | null; // OrdersWhereInput
     none?: NexusGenInputs['OrdersWhereInput'] | null; // OrdersWhereInput
     some?: NexusGenInputs['OrdersWhereInput'] | null; // OrdersWhereInput
+  }
+  OrdersScalarWhereInput: { // input type
+    AND?: NexusGenInputs['OrdersScalarWhereInput'][] | null; // [OrdersScalarWhereInput!]
+    NOT?: NexusGenInputs['OrdersScalarWhereInput'][] | null; // [OrdersScalarWhereInput!]
+    OR?: NexusGenInputs['OrdersScalarWhereInput'][] | null; // [OrdersScalarWhereInput!]
+    cancelled_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+    created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    users_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  OrdersUpdateInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    options_set?: NexusGenInputs['Options_setUpdateManyWithoutOrderInput'] | null; // Options_setUpdateManyWithoutOrderInput
+    users?: NexusGenInputs['UsersUpdateOneRequiredWithoutOrdersInput'] | null; // UsersUpdateOneRequiredWithoutOrdersInput
+  }
+  OrdersUpdateManyMutationInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  OrdersUpdateManyWithWhereWithoutUsersInput: { // input type
+    data: NexusGenInputs['OrdersUpdateManyMutationInput']; // OrdersUpdateManyMutationInput!
+    where: NexusGenInputs['OrdersScalarWhereInput']; // OrdersScalarWhereInput!
+  }
+  OrdersUpdateManyWithoutUsersInput: { // input type
+    connect?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutUsersInput'][] | null; // [OrdersCreateOrConnectWithoutUsersInput!]
+    create?: NexusGenInputs['OrdersCreateWithoutUsersInput'][] | null; // [OrdersCreateWithoutUsersInput!]
+    createMany?: NexusGenInputs['OrdersCreateManyUsersInputEnvelope'] | null; // OrdersCreateManyUsersInputEnvelope
+    delete?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['OrdersScalarWhereInput'][] | null; // [OrdersScalarWhereInput!]
+    disconnect?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
+    set?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
+    update?: NexusGenInputs['OrdersUpdateWithWhereUniqueWithoutUsersInput'][] | null; // [OrdersUpdateWithWhereUniqueWithoutUsersInput!]
+    updateMany?: NexusGenInputs['OrdersUpdateManyWithWhereWithoutUsersInput'][] | null; // [OrdersUpdateManyWithWhereWithoutUsersInput!]
+    upsert?: NexusGenInputs['OrdersUpsertWithWhereUniqueWithoutUsersInput'][] | null; // [OrdersUpsertWithWhereUniqueWithoutUsersInput!]
+  }
+  OrdersUpdateOneRequiredWithoutOptions_setInput: { // input type
+    connect?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutOptions_setInput'] | null; // OrdersCreateOrConnectWithoutOptions_setInput
+    create?: NexusGenInputs['OrdersCreateWithoutOptions_setInput'] | null; // OrdersCreateWithoutOptions_setInput
+    update?: NexusGenInputs['OrdersUpdateWithoutOptions_setInput'] | null; // OrdersUpdateWithoutOptions_setInput
+    upsert?: NexusGenInputs['OrdersUpsertWithoutOptions_setInput'] | null; // OrdersUpsertWithoutOptions_setInput
+  }
+  OrdersUpdateWithWhereUniqueWithoutUsersInput: { // input type
+    data: NexusGenInputs['OrdersUpdateWithoutUsersInput']; // OrdersUpdateWithoutUsersInput!
+    where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
+  }
+  OrdersUpdateWithoutOptions_setInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    users?: NexusGenInputs['UsersUpdateOneRequiredWithoutOrdersInput'] | null; // UsersUpdateOneRequiredWithoutOrdersInput
+  }
+  OrdersUpdateWithoutUsersInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    options_set?: NexusGenInputs['Options_setUpdateManyWithoutOrderInput'] | null; // Options_setUpdateManyWithoutOrderInput
+  }
+  OrdersUpsertWithWhereUniqueWithoutUsersInput: { // input type
+    create: NexusGenInputs['OrdersCreateWithoutUsersInput']; // OrdersCreateWithoutUsersInput!
+    update: NexusGenInputs['OrdersUpdateWithoutUsersInput']; // OrdersUpdateWithoutUsersInput!
+    where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
+  }
+  OrdersUpsertWithoutOptions_setInput: { // input type
+    create: NexusGenInputs['OrdersCreateWithoutOptions_setInput']; // OrdersCreateWithoutOptions_setInput!
+    update: NexusGenInputs['OrdersUpdateWithoutOptions_setInput']; // OrdersUpdateWithoutOptions_setInput!
   }
   OrdersWhereInput: { // input type
     AND?: NexusGenInputs['OrdersWhereInput'][] | null; // [OrdersWhereInput!]
@@ -240,10 +1000,117 @@ export interface NexusGenInputs {
     users?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
     users_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
+  OrdersWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  PricesCreateInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    option: NexusGenInputs['OptionsCreateNestedOneWithoutPricesInput']; // OptionsCreateNestedOneWithoutPricesInput!
+    options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutPriceInput'] | null; // Options_setCreateNestedManyWithoutPriceInput
+    price: number; // Int!
+  }
+  PricesCreateManyOptionInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    price: number; // Int!
+  }
+  PricesCreateManyOptionInputEnvelope: { // input type
+    data?: NexusGenInputs['PricesCreateManyOptionInput'][] | null; // [PricesCreateManyOptionInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  PricesCreateNestedManyWithoutOptionInput: { // input type
+    connect?: NexusGenInputs['PricesWhereUniqueInput'][] | null; // [PricesWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['PricesCreateOrConnectWithoutOptionInput'][] | null; // [PricesCreateOrConnectWithoutOptionInput!]
+    create?: NexusGenInputs['PricesCreateWithoutOptionInput'][] | null; // [PricesCreateWithoutOptionInput!]
+    createMany?: NexusGenInputs['PricesCreateManyOptionInputEnvelope'] | null; // PricesCreateManyOptionInputEnvelope
+  }
+  PricesCreateNestedOneWithoutOptions_setInput: { // input type
+    connect?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['PricesCreateOrConnectWithoutOptions_setInput'] | null; // PricesCreateOrConnectWithoutOptions_setInput
+    create?: NexusGenInputs['PricesCreateWithoutOptions_setInput'] | null; // PricesCreateWithoutOptions_setInput
+  }
+  PricesCreateOrConnectWithoutOptionInput: { // input type
+    create: NexusGenInputs['PricesCreateWithoutOptionInput']; // PricesCreateWithoutOptionInput!
+    where: NexusGenInputs['PricesWhereUniqueInput']; // PricesWhereUniqueInput!
+  }
+  PricesCreateOrConnectWithoutOptions_setInput: { // input type
+    create: NexusGenInputs['PricesCreateWithoutOptions_setInput']; // PricesCreateWithoutOptions_setInput!
+    where: NexusGenInputs['PricesWhereUniqueInput']; // PricesWhereUniqueInput!
+  }
+  PricesCreateWithoutOptionInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutPriceInput'] | null; // Options_setCreateNestedManyWithoutPriceInput
+    price: number; // Int!
+  }
+  PricesCreateWithoutOptions_setInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    option: NexusGenInputs['OptionsCreateNestedOneWithoutPricesInput']; // OptionsCreateNestedOneWithoutPricesInput!
+    price: number; // Int!
+  }
   PricesListRelationFilter: { // input type
     every?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
     none?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
     some?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
+  }
+  PricesScalarWhereInput: { // input type
+    AND?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
+    NOT?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
+    OR?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
+    created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    price?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  PricesUpdateManyMutationInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    price?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  PricesUpdateManyWithWhereWithoutOptionInput: { // input type
+    data: NexusGenInputs['PricesUpdateManyMutationInput']; // PricesUpdateManyMutationInput!
+    where: NexusGenInputs['PricesScalarWhereInput']; // PricesScalarWhereInput!
+  }
+  PricesUpdateManyWithoutOptionInput: { // input type
+    connect?: NexusGenInputs['PricesWhereUniqueInput'][] | null; // [PricesWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['PricesCreateOrConnectWithoutOptionInput'][] | null; // [PricesCreateOrConnectWithoutOptionInput!]
+    create?: NexusGenInputs['PricesCreateWithoutOptionInput'][] | null; // [PricesCreateWithoutOptionInput!]
+    createMany?: NexusGenInputs['PricesCreateManyOptionInputEnvelope'] | null; // PricesCreateManyOptionInputEnvelope
+    delete?: NexusGenInputs['PricesWhereUniqueInput'][] | null; // [PricesWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
+    disconnect?: NexusGenInputs['PricesWhereUniqueInput'][] | null; // [PricesWhereUniqueInput!]
+    set?: NexusGenInputs['PricesWhereUniqueInput'][] | null; // [PricesWhereUniqueInput!]
+    update?: NexusGenInputs['PricesUpdateWithWhereUniqueWithoutOptionInput'][] | null; // [PricesUpdateWithWhereUniqueWithoutOptionInput!]
+    updateMany?: NexusGenInputs['PricesUpdateManyWithWhereWithoutOptionInput'][] | null; // [PricesUpdateManyWithWhereWithoutOptionInput!]
+    upsert?: NexusGenInputs['PricesUpsertWithWhereUniqueWithoutOptionInput'][] | null; // [PricesUpsertWithWhereUniqueWithoutOptionInput!]
+  }
+  PricesUpdateOneRequiredWithoutOptions_setInput: { // input type
+    connect?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['PricesCreateOrConnectWithoutOptions_setInput'] | null; // PricesCreateOrConnectWithoutOptions_setInput
+    create?: NexusGenInputs['PricesCreateWithoutOptions_setInput'] | null; // PricesCreateWithoutOptions_setInput
+    update?: NexusGenInputs['PricesUpdateWithoutOptions_setInput'] | null; // PricesUpdateWithoutOptions_setInput
+    upsert?: NexusGenInputs['PricesUpsertWithoutOptions_setInput'] | null; // PricesUpsertWithoutOptions_setInput
+  }
+  PricesUpdateWithWhereUniqueWithoutOptionInput: { // input type
+    data: NexusGenInputs['PricesUpdateWithoutOptionInput']; // PricesUpdateWithoutOptionInput!
+    where: NexusGenInputs['PricesWhereUniqueInput']; // PricesWhereUniqueInput!
+  }
+  PricesUpdateWithoutOptionInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    options_set?: NexusGenInputs['Options_setUpdateManyWithoutPriceInput'] | null; // Options_setUpdateManyWithoutPriceInput
+    price?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  PricesUpdateWithoutOptions_setInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    option?: NexusGenInputs['OptionsUpdateOneRequiredWithoutPricesInput'] | null; // OptionsUpdateOneRequiredWithoutPricesInput
+    price?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  PricesUpsertWithWhereUniqueWithoutOptionInput: { // input type
+    create: NexusGenInputs['PricesCreateWithoutOptionInput']; // PricesCreateWithoutOptionInput!
+    update: NexusGenInputs['PricesUpdateWithoutOptionInput']; // PricesUpdateWithoutOptionInput!
+    where: NexusGenInputs['PricesWhereUniqueInput']; // PricesWhereUniqueInput!
+  }
+  PricesUpsertWithoutOptions_setInput: { // input type
+    create: NexusGenInputs['PricesCreateWithoutOptions_setInput']; // PricesCreateWithoutOptions_setInput!
+    update: NexusGenInputs['PricesUpdateWithoutOptions_setInput']; // PricesUpdateWithoutOptions_setInput!
   }
   PricesWhereInput: { // input type
     AND?: NexusGenInputs['PricesWhereInput'][] | null; // [PricesWhereInput!]
@@ -255,6 +1122,12 @@ export interface NexusGenInputs {
     options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     options_set?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
     price?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  PricesWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  StringFieldUpdateOperationsInput: { // input type
+    set?: string | null; // String
   }
   StringFilter: { // input type
     contains?: string | null; // String
@@ -284,6 +1157,64 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  UsersCreateInput: { // input type
+    children?: NexusGenInputs['ChildrenCreateNestedManyWithoutTutorInput'] | null; // ChildrenCreateNestedManyWithoutTutorInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    first_name: string; // String!
+    name: string; // String!
+    orders?: NexusGenInputs['OrdersCreateNestedManyWithoutUsersInput'] | null; // OrdersCreateNestedManyWithoutUsersInput
+    password: string; // String!
+    phone_number: string; // String!
+    role?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
+    secondary_email?: string | null; // String
+    verfifed_at?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UsersCreateNestedOneWithoutChildrenInput: { // input type
+    connect?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UsersCreateOrConnectWithoutChildrenInput'] | null; // UsersCreateOrConnectWithoutChildrenInput
+    create?: NexusGenInputs['UsersCreateWithoutChildrenInput'] | null; // UsersCreateWithoutChildrenInput
+  }
+  UsersCreateNestedOneWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UsersCreateOrConnectWithoutOrdersInput'] | null; // UsersCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['UsersCreateWithoutOrdersInput'] | null; // UsersCreateWithoutOrdersInput
+  }
+  UsersCreateOrConnectWithoutChildrenInput: { // input type
+    create: NexusGenInputs['UsersCreateWithoutChildrenInput']; // UsersCreateWithoutChildrenInput!
+    where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
+  }
+  UsersCreateOrConnectWithoutOrdersInput: { // input type
+    create: NexusGenInputs['UsersCreateWithoutOrdersInput']; // UsersCreateWithoutOrdersInput!
+    where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
+  }
+  UsersCreateWithoutChildrenInput: { // input type
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    first_name: string; // String!
+    name: string; // String!
+    orders?: NexusGenInputs['OrdersCreateNestedManyWithoutUsersInput'] | null; // OrdersCreateNestedManyWithoutUsersInput
+    password: string; // String!
+    phone_number: string; // String!
+    role?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
+    secondary_email?: string | null; // String
+    verfifed_at?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UsersCreateWithoutOrdersInput: { // input type
+    children?: NexusGenInputs['ChildrenCreateNestedManyWithoutTutorInput'] | null; // ChildrenCreateNestedManyWithoutTutorInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    first_name: string; // String!
+    name: string; // String!
+    password: string; // String!
+    phone_number: string; // String!
+    role?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
+    secondary_email?: string | null; // String
+    verfifed_at?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
   UsersOrderByInput: { // input type
     created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
     deleted_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -296,6 +1227,68 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['SortOrder'] | null; // SortOrder
     secondary_email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     verfifed_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  UsersUpdateInput: { // input type
+    children?: NexusGenInputs['ChildrenUpdateManyWithoutTutorInput'] | null; // ChildrenUpdateManyWithoutTutorInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrdersUpdateManyWithoutUsersInput'] | null; // OrdersUpdateManyWithoutUsersInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    phone_number?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    role?: NexusGenInputs['EnumRoleEnumFieldUpdateOperationsInput'] | null; // EnumRoleEnumFieldUpdateOperationsInput
+    secondary_email?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    verfifed_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  UsersUpdateOneRequiredWithoutChildrenInput: { // input type
+    connect?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UsersCreateOrConnectWithoutChildrenInput'] | null; // UsersCreateOrConnectWithoutChildrenInput
+    create?: NexusGenInputs['UsersCreateWithoutChildrenInput'] | null; // UsersCreateWithoutChildrenInput
+    update?: NexusGenInputs['UsersUpdateWithoutChildrenInput'] | null; // UsersUpdateWithoutChildrenInput
+    upsert?: NexusGenInputs['UsersUpsertWithoutChildrenInput'] | null; // UsersUpsertWithoutChildrenInput
+  }
+  UsersUpdateOneRequiredWithoutOrdersInput: { // input type
+    connect?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UsersCreateOrConnectWithoutOrdersInput'] | null; // UsersCreateOrConnectWithoutOrdersInput
+    create?: NexusGenInputs['UsersCreateWithoutOrdersInput'] | null; // UsersCreateWithoutOrdersInput
+    update?: NexusGenInputs['UsersUpdateWithoutOrdersInput'] | null; // UsersUpdateWithoutOrdersInput
+    upsert?: NexusGenInputs['UsersUpsertWithoutOrdersInput'] | null; // UsersUpsertWithoutOrdersInput
+  }
+  UsersUpdateWithoutChildrenInput: { // input type
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrdersUpdateManyWithoutUsersInput'] | null; // OrdersUpdateManyWithoutUsersInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    phone_number?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    role?: NexusGenInputs['EnumRoleEnumFieldUpdateOperationsInput'] | null; // EnumRoleEnumFieldUpdateOperationsInput
+    secondary_email?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    verfifed_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  UsersUpdateWithoutOrdersInput: { // input type
+    children?: NexusGenInputs['ChildrenUpdateManyWithoutTutorInput'] | null; // ChildrenUpdateManyWithoutTutorInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    phone_number?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    role?: NexusGenInputs['EnumRoleEnumFieldUpdateOperationsInput'] | null; // EnumRoleEnumFieldUpdateOperationsInput
+    secondary_email?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    verfifed_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  UsersUpsertWithoutChildrenInput: { // input type
+    create: NexusGenInputs['UsersCreateWithoutChildrenInput']; // UsersCreateWithoutChildrenInput!
+    update: NexusGenInputs['UsersUpdateWithoutChildrenInput']; // UsersUpdateWithoutChildrenInput!
+  }
+  UsersUpsertWithoutOrdersInput: { // input type
+    create: NexusGenInputs['UsersCreateWithoutOrdersInput']; // UsersCreateWithoutOrdersInput!
+    update: NexusGenInputs['UsersUpdateWithoutOrdersInput']; // UsersUpdateWithoutOrdersInput!
   }
   UsersWhereInput: { // input type
     AND?: NexusGenInputs['UsersWhereInput'][] | null; // [UsersWhereInput!]
@@ -339,6 +1332,41 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Cancellation: { // root type
+    created_at?: NexusGenScalars['Date'] | null; // Date
+    date?: NexusGenScalars['Date'] | null; // Date
+    deleted_at?: NexusGenScalars['Date'] | null; // Date
+    id?: number | null; // Int
+  }
+  Child: { // root type
+    birth_date?: NexusGenScalars['Date'] | null; // Date
+    first_name?: string | null; // String
+    id?: number | null; // Int
+    name?: string | null; // String
+  }
+  Course: { // root type
+    day_of_week?: number | null; // Int
+    end_time?: NexusGenScalars['Date'] | null; // Date
+    id?: number | null; // Int
+    places?: number | null; // Int
+    start_time?: NexusGenScalars['Date'] | null; // Date
+  }
+  Mutation: {};
+  Option: { // root type
+    created_at?: NexusGenScalars['Date'] | null; // Date
+    id?: number | null; // Int
+    name?: string | null; // String
+  }
+  Order: { // root type
+    cancelled_at?: NexusGenScalars['Date'] | null; // Date
+    created_at?: NexusGenScalars['Date'] | null; // Date
+    id?: number | null; // Int
+  }
+  Price: { // root type
+    created_at?: NexusGenScalars['Date'] | null; // Date
+    id?: number | null; // Int
+    price?: number | null; // Int
+  }
   Query: {};
   User: { // root type
     created_at?: NexusGenScalars['Date'] | null; // Date
@@ -364,7 +1392,66 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
+  Cancellation: { // field return type
+    created_at: NexusGenScalars['Date'] | null; // Date
+    date: NexusGenScalars['Date'] | null; // Date
+    deleted_at: NexusGenScalars['Date'] | null; // Date
+    id: number | null; // Int
+  }
+  Child: { // field return type
+    birth_date: NexusGenScalars['Date'] | null; // Date
+    first_name: string | null; // String
+    id: number | null; // Int
+    name: string | null; // String
+  }
+  Course: { // field return type
+    day_of_week: number | null; // Int
+    end_time: NexusGenScalars['Date'] | null; // Date
+    id: number | null; // Int
+    places: number | null; // Int
+    start_time: NexusGenScalars['Date'] | null; // Date
+  }
+  Mutation: { // field return type
+    createOneCancellations: NexusGenRootTypes['Cancellation']; // Cancellation!
+    createOneChildren: NexusGenRootTypes['Child']; // Child!
+    createOneCourses: NexusGenRootTypes['Course']; // Course!
+    createOneOptions: NexusGenRootTypes['Option']; // Option!
+    createOneOrders: NexusGenRootTypes['Order']; // Order!
+    createOnePrices: NexusGenRootTypes['Price']; // Price!
+    createOneUsers: NexusGenRootTypes['User']; // User!
+    deleteOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
+    deleteOneChildren: NexusGenRootTypes['Child'] | null; // Child
+    deleteOneCourses: NexusGenRootTypes['Course'] | null; // Course
+    deleteOneOptions: NexusGenRootTypes['Option'] | null; // Option
+    deleteOneUsers: NexusGenRootTypes['User'] | null; // User
+    updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
+    updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
+    updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
+    updateOneOrders: NexusGenRootTypes['Order'] | null; // Order
+    updateOneUsers: NexusGenRootTypes['User'] | null; // User
+  }
+  Option: { // field return type
+    created_at: NexusGenScalars['Date'] | null; // Date
+    id: number | null; // Int
+    name: string | null; // String
+  }
+  Order: { // field return type
+    cancelled_at: NexusGenScalars['Date'] | null; // Date
+    created_at: NexusGenScalars['Date'] | null; // Date
+    id: number | null; // Int
+  }
+  Price: { // field return type
+    created_at: NexusGenScalars['Date'] | null; // Date
+    id: number | null; // Int
+    price: number | null; // Int
+  }
   Query: { // field return type
+    cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
+    children: NexusGenRootTypes['Child'][]; // [Child!]!
+    courses: NexusGenRootTypes['Course'][]; // [Course!]!
+    options: NexusGenRootTypes['Option'][]; // [Option!]!
+    orders: NexusGenRootTypes['Order'][]; // [Order!]!
+    prices: NexusGenRootTypes['Price'][]; // [Price!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
@@ -381,7 +1468,66 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Cancellation: { // field return type name
+    created_at: 'Date'
+    date: 'Date'
+    deleted_at: 'Date'
+    id: 'Int'
+  }
+  Child: { // field return type name
+    birth_date: 'Date'
+    first_name: 'String'
+    id: 'Int'
+    name: 'String'
+  }
+  Course: { // field return type name
+    day_of_week: 'Int'
+    end_time: 'Date'
+    id: 'Int'
+    places: 'Int'
+    start_time: 'Date'
+  }
+  Mutation: { // field return type name
+    createOneCancellations: 'Cancellation'
+    createOneChildren: 'Child'
+    createOneCourses: 'Course'
+    createOneOptions: 'Option'
+    createOneOrders: 'Order'
+    createOnePrices: 'Price'
+    createOneUsers: 'User'
+    deleteOneCancellations: 'Cancellation'
+    deleteOneChildren: 'Child'
+    deleteOneCourses: 'Course'
+    deleteOneOptions: 'Option'
+    deleteOneUsers: 'User'
+    updateOneCancellations: 'Cancellation'
+    updateOneChildren: 'Child'
+    updateOneCourses: 'Course'
+    updateOneOrders: 'Order'
+    updateOneUsers: 'User'
+  }
+  Option: { // field return type name
+    created_at: 'Date'
+    id: 'Int'
+    name: 'String'
+  }
+  Order: { // field return type name
+    cancelled_at: 'Date'
+    created_at: 'Date'
+    id: 'Int'
+  }
+  Price: { // field return type name
+    created_at: 'Date'
+    id: 'Int'
+    price: 'Int'
+  }
   Query: { // field return type name
+    cancellations: 'Cancellation'
+    children: 'Child'
+    courses: 'Course'
+    options: 'Option'
+    orders: 'Order'
+    prices: 'Price'
     users: 'User'
   }
   User: { // field return type name
@@ -398,7 +1544,107 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createOneCancellations: { // args
+      data: NexusGenInputs['CancellationsCreateInput']; // CancellationsCreateInput!
+    }
+    createOneChildren: { // args
+      data: NexusGenInputs['ChildrenCreateInput']; // ChildrenCreateInput!
+    }
+    createOneCourses: { // args
+      data: NexusGenInputs['CoursesCreateInput']; // CoursesCreateInput!
+    }
+    createOneOptions: { // args
+      data: NexusGenInputs['OptionsCreateInput']; // OptionsCreateInput!
+    }
+    createOneOrders: { // args
+      data: NexusGenInputs['OrdersCreateInput']; // OrdersCreateInput!
+    }
+    createOnePrices: { // args
+      data: NexusGenInputs['PricesCreateInput']; // PricesCreateInput!
+    }
+    createOneUsers: { // args
+      data: NexusGenInputs['UsersCreateInput']; // UsersCreateInput!
+    }
+    deleteOneCancellations: { // args
+      where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
+    }
+    deleteOneChildren: { // args
+      where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+    }
+    deleteOneCourses: { // args
+      where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+    }
+    deleteOneOptions: { // args
+      where: NexusGenInputs['OptionsWhereUniqueInput']; // OptionsWhereUniqueInput!
+    }
+    deleteOneUsers: { // args
+      where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
+    }
+    updateOneCancellations: { // args
+      data: NexusGenInputs['CancellationsUpdateInput']; // CancellationsUpdateInput!
+      where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
+    }
+    updateOneChildren: { // args
+      data: NexusGenInputs['ChildrenUpdateInput']; // ChildrenUpdateInput!
+      where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+    }
+    updateOneCourses: { // args
+      data: NexusGenInputs['CoursesUpdateInput']; // CoursesUpdateInput!
+      where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+    }
+    updateOneOrders: { // args
+      data: NexusGenInputs['OrdersUpdateInput']; // OrdersUpdateInput!
+      where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
+    }
+    updateOneUsers: { // args
+      data: NexusGenInputs['UsersUpdateInput']; // UsersUpdateInput!
+      where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
+    }
+  }
   Query: {
+    cancellations: { // args
+      after?: NexusGenInputs['CancellationsWhereUniqueInput'] | null; // CancellationsWhereUniqueInput
+      before?: NexusGenInputs['CancellationsWhereUniqueInput'] | null; // CancellationsWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['CancellationsOrderByInput'][] | null; // [CancellationsOrderByInput!]
+      where?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
+    }
+    children: { // args
+      after?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
+      before?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    courses: { // args
+      after?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
+      before?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['CoursesOrderByInput'][] | null; // [CoursesOrderByInput!]
+      where?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
+    }
+    options: { // args
+      after?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
+      before?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['OptionsWhereInput'] | null; // OptionsWhereInput
+    }
+    orders: { // args
+      after?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
+      before?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    prices: { // args
+      after?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput
+      before?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      where?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
+    }
     users: { // args
       after?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
       before?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput

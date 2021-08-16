@@ -2,10 +2,122 @@
 ### Do not make changes to this file directly
 
 
+type Cancellation {
+  created_at: Date
+  date: Date
+  deleted_at: Date
+  id: Int
+}
+
+input CancellationsCreateInput {
+  course: CoursesCreateNestedOneWithoutCancellationsInput!
+  created_at: DateTime
+  date: DateTime!
+  deleted_at: DateTime
+}
+
+input CancellationsCreateManyCourseInput {
+  created_at: DateTime
+  date: DateTime!
+  deleted_at: DateTime
+  id: Int
+}
+
+input CancellationsCreateManyCourseInputEnvelope {
+  data: [CancellationsCreateManyCourseInput!]
+  skipDuplicates: Boolean
+}
+
+input CancellationsCreateNestedManyWithoutCourseInput {
+  connect: [CancellationsWhereUniqueInput!]
+  connectOrCreate: [CancellationsCreateOrConnectWithoutCourseInput!]
+  create: [CancellationsCreateWithoutCourseInput!]
+  createMany: CancellationsCreateManyCourseInputEnvelope
+}
+
+input CancellationsCreateOrConnectWithoutCourseInput {
+  create: CancellationsCreateWithoutCourseInput!
+  where: CancellationsWhereUniqueInput!
+}
+
+input CancellationsCreateWithoutCourseInput {
+  created_at: DateTime
+  date: DateTime!
+  deleted_at: DateTime
+}
+
 input CancellationsListRelationFilter {
   every: CancellationsWhereInput
   none: CancellationsWhereInput
   some: CancellationsWhereInput
+}
+
+input CancellationsOrderByInput {
+  course_id: SortOrder
+  created_at: SortOrder
+  date: SortOrder
+  deleted_at: SortOrder
+  id: SortOrder
+}
+
+input CancellationsScalarWhereInput {
+  AND: [CancellationsScalarWhereInput!]
+  NOT: [CancellationsScalarWhereInput!]
+  OR: [CancellationsScalarWhereInput!]
+  course_id: IntFilter
+  created_at: DateTimeFilter
+  date: DateTimeFilter
+  deleted_at: DateTimeNullableFilter
+  id: IntFilter
+}
+
+input CancellationsUpdateInput {
+  course: CoursesUpdateOneRequiredWithoutCancellationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  date: DateTimeFieldUpdateOperationsInput
+  deleted_at: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input CancellationsUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  date: DateTimeFieldUpdateOperationsInput
+  deleted_at: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input CancellationsUpdateManyWithWhereWithoutCourseInput {
+  data: CancellationsUpdateManyMutationInput!
+  where: CancellationsScalarWhereInput!
+}
+
+input CancellationsUpdateManyWithoutCourseInput {
+  connect: [CancellationsWhereUniqueInput!]
+  connectOrCreate: [CancellationsCreateOrConnectWithoutCourseInput!]
+  create: [CancellationsCreateWithoutCourseInput!]
+  createMany: CancellationsCreateManyCourseInputEnvelope
+  delete: [CancellationsWhereUniqueInput!]
+  deleteMany: [CancellationsScalarWhereInput!]
+  disconnect: [CancellationsWhereUniqueInput!]
+  set: [CancellationsWhereUniqueInput!]
+  update: [CancellationsUpdateWithWhereUniqueWithoutCourseInput!]
+  updateMany: [CancellationsUpdateManyWithWhereWithoutCourseInput!]
+  upsert: [CancellationsUpsertWithWhereUniqueWithoutCourseInput!]
+}
+
+input CancellationsUpdateWithWhereUniqueWithoutCourseInput {
+  data: CancellationsUpdateWithoutCourseInput!
+  where: CancellationsWhereUniqueInput!
+}
+
+input CancellationsUpdateWithoutCourseInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  date: DateTimeFieldUpdateOperationsInput
+  deleted_at: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input CancellationsUpsertWithWhereUniqueWithoutCourseInput {
+  create: CancellationsCreateWithoutCourseInput!
+  update: CancellationsUpdateWithoutCourseInput!
+  where: CancellationsWhereUniqueInput!
 }
 
 input CancellationsWhereInput {
@@ -20,10 +132,176 @@ input CancellationsWhereInput {
   id: IntFilter
 }
 
+input CancellationsWhereUniqueInput {
+  id: Int
+}
+
+type Child {
+  birth_date: Date
+  first_name: String
+  id: Int
+  name: String
+}
+
+input ChildrenCreateInput {
+  birth_date: DateTime!
+  courses: CoursesCreateNestedManyWithoutChildrenInput
+  first_name: String!
+  name: String!
+  tutor: UsersCreateNestedOneWithoutChildrenInput!
+}
+
+input ChildrenCreateManyTutorInput {
+  birth_date: DateTime!
+  first_name: String!
+  id: Int
+  name: String!
+}
+
+input ChildrenCreateManyTutorInputEnvelope {
+  data: [ChildrenCreateManyTutorInput!]
+  skipDuplicates: Boolean
+}
+
+input ChildrenCreateNestedManyWithoutCoursesInput {
+  connect: [ChildrenWhereUniqueInput!]
+  connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
+  create: [ChildrenCreateWithoutCoursesInput!]
+}
+
+input ChildrenCreateNestedManyWithoutTutorInput {
+  connect: [ChildrenWhereUniqueInput!]
+  connectOrCreate: [ChildrenCreateOrConnectWithoutTutorInput!]
+  create: [ChildrenCreateWithoutTutorInput!]
+  createMany: ChildrenCreateManyTutorInputEnvelope
+}
+
+input ChildrenCreateOrConnectWithoutCoursesInput {
+  create: ChildrenCreateWithoutCoursesInput!
+  where: ChildrenWhereUniqueInput!
+}
+
+input ChildrenCreateOrConnectWithoutTutorInput {
+  create: ChildrenCreateWithoutTutorInput!
+  where: ChildrenWhereUniqueInput!
+}
+
+input ChildrenCreateWithoutCoursesInput {
+  birth_date: DateTime!
+  first_name: String!
+  name: String!
+  tutor: UsersCreateNestedOneWithoutChildrenInput!
+}
+
+input ChildrenCreateWithoutTutorInput {
+  birth_date: DateTime!
+  courses: CoursesCreateNestedManyWithoutChildrenInput
+  first_name: String!
+  name: String!
+}
+
 input ChildrenListRelationFilter {
   every: ChildrenWhereInput
   none: ChildrenWhereInput
   some: ChildrenWhereInput
+}
+
+input ChildrenScalarWhereInput {
+  AND: [ChildrenScalarWhereInput!]
+  NOT: [ChildrenScalarWhereInput!]
+  OR: [ChildrenScalarWhereInput!]
+  birth_date: DateTimeFilter
+  first_name: StringFilter
+  id: IntFilter
+  name: StringFilter
+  tutor_id: IntFilter
+}
+
+input ChildrenUpdateInput {
+  birth_date: DateTimeFieldUpdateOperationsInput
+  courses: CoursesUpdateManyWithoutChildrenInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  tutor: UsersUpdateOneRequiredWithoutChildrenInput
+}
+
+input ChildrenUpdateManyMutationInput {
+  birth_date: DateTimeFieldUpdateOperationsInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ChildrenUpdateManyWithWhereWithoutCoursesInput {
+  data: ChildrenUpdateManyMutationInput!
+  where: ChildrenScalarWhereInput!
+}
+
+input ChildrenUpdateManyWithWhereWithoutTutorInput {
+  data: ChildrenUpdateManyMutationInput!
+  where: ChildrenScalarWhereInput!
+}
+
+input ChildrenUpdateManyWithoutCoursesInput {
+  connect: [ChildrenWhereUniqueInput!]
+  connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
+  create: [ChildrenCreateWithoutCoursesInput!]
+  delete: [ChildrenWhereUniqueInput!]
+  deleteMany: [ChildrenScalarWhereInput!]
+  disconnect: [ChildrenWhereUniqueInput!]
+  set: [ChildrenWhereUniqueInput!]
+  update: [ChildrenUpdateWithWhereUniqueWithoutCoursesInput!]
+  updateMany: [ChildrenUpdateManyWithWhereWithoutCoursesInput!]
+  upsert: [ChildrenUpsertWithWhereUniqueWithoutCoursesInput!]
+}
+
+input ChildrenUpdateManyWithoutTutorInput {
+  connect: [ChildrenWhereUniqueInput!]
+  connectOrCreate: [ChildrenCreateOrConnectWithoutTutorInput!]
+  create: [ChildrenCreateWithoutTutorInput!]
+  createMany: ChildrenCreateManyTutorInputEnvelope
+  delete: [ChildrenWhereUniqueInput!]
+  deleteMany: [ChildrenScalarWhereInput!]
+  disconnect: [ChildrenWhereUniqueInput!]
+  set: [ChildrenWhereUniqueInput!]
+  update: [ChildrenUpdateWithWhereUniqueWithoutTutorInput!]
+  updateMany: [ChildrenUpdateManyWithWhereWithoutTutorInput!]
+  upsert: [ChildrenUpsertWithWhereUniqueWithoutTutorInput!]
+}
+
+input ChildrenUpdateWithWhereUniqueWithoutCoursesInput {
+  data: ChildrenUpdateWithoutCoursesInput!
+  where: ChildrenWhereUniqueInput!
+}
+
+input ChildrenUpdateWithWhereUniqueWithoutTutorInput {
+  data: ChildrenUpdateWithoutTutorInput!
+  where: ChildrenWhereUniqueInput!
+}
+
+input ChildrenUpdateWithoutCoursesInput {
+  birth_date: DateTimeFieldUpdateOperationsInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  tutor: UsersUpdateOneRequiredWithoutChildrenInput
+}
+
+input ChildrenUpdateWithoutTutorInput {
+  birth_date: DateTimeFieldUpdateOperationsInput
+  courses: CoursesUpdateManyWithoutChildrenInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ChildrenUpsertWithWhereUniqueWithoutCoursesInput {
+  create: ChildrenCreateWithoutCoursesInput!
+  update: ChildrenUpdateWithoutCoursesInput!
+  where: ChildrenWhereUniqueInput!
+}
+
+input ChildrenUpsertWithWhereUniqueWithoutTutorInput {
+  create: ChildrenCreateWithoutTutorInput!
+  update: ChildrenUpdateWithoutTutorInput!
+  where: ChildrenWhereUniqueInput!
 }
 
 input ChildrenWhereInput {
@@ -39,10 +317,162 @@ input ChildrenWhereInput {
   tutor_id: IntFilter
 }
 
+input ChildrenWhereUniqueInput {
+  id: Int
+}
+
+type Course {
+  day_of_week: Int
+  end_time: Date
+  id: Int
+  places: Int
+  start_time: Date
+}
+
+input CoursesCreateInput {
+  cancellations: CancellationsCreateNestedManyWithoutCourseInput
+  children: ChildrenCreateNestedManyWithoutCoursesInput
+  day_of_week: Int!
+  end_time: DateTime!
+  places: Int!
+  start_time: DateTime!
+}
+
+input CoursesCreateNestedManyWithoutChildrenInput {
+  connect: [CoursesWhereUniqueInput!]
+  connectOrCreate: [CoursesCreateOrConnectWithoutChildrenInput!]
+  create: [CoursesCreateWithoutChildrenInput!]
+}
+
+input CoursesCreateNestedOneWithoutCancellationsInput {
+  connect: CoursesWhereUniqueInput
+  connectOrCreate: CoursesCreateOrConnectWithoutCancellationsInput
+  create: CoursesCreateWithoutCancellationsInput
+}
+
+input CoursesCreateOrConnectWithoutCancellationsInput {
+  create: CoursesCreateWithoutCancellationsInput!
+  where: CoursesWhereUniqueInput!
+}
+
+input CoursesCreateOrConnectWithoutChildrenInput {
+  create: CoursesCreateWithoutChildrenInput!
+  where: CoursesWhereUniqueInput!
+}
+
+input CoursesCreateWithoutCancellationsInput {
+  children: ChildrenCreateNestedManyWithoutCoursesInput
+  day_of_week: Int!
+  end_time: DateTime!
+  places: Int!
+  start_time: DateTime!
+}
+
+input CoursesCreateWithoutChildrenInput {
+  cancellations: CancellationsCreateNestedManyWithoutCourseInput
+  day_of_week: Int!
+  end_time: DateTime!
+  places: Int!
+  start_time: DateTime!
+}
+
 input CoursesListRelationFilter {
   every: CoursesWhereInput
   none: CoursesWhereInput
   some: CoursesWhereInput
+}
+
+input CoursesOrderByInput {
+  day_of_week: SortOrder
+  end_time: SortOrder
+  id: SortOrder
+  places: SortOrder
+  start_time: SortOrder
+}
+
+input CoursesScalarWhereInput {
+  AND: [CoursesScalarWhereInput!]
+  NOT: [CoursesScalarWhereInput!]
+  OR: [CoursesScalarWhereInput!]
+  day_of_week: IntFilter
+  end_time: DateTimeFilter
+  id: IntFilter
+  places: IntFilter
+  start_time: DateTimeFilter
+}
+
+input CoursesUpdateInput {
+  cancellations: CancellationsUpdateManyWithoutCourseInput
+  children: ChildrenUpdateManyWithoutCoursesInput
+  day_of_week: IntFieldUpdateOperationsInput
+  end_time: DateTimeFieldUpdateOperationsInput
+  places: IntFieldUpdateOperationsInput
+  start_time: DateTimeFieldUpdateOperationsInput
+}
+
+input CoursesUpdateManyMutationInput {
+  day_of_week: IntFieldUpdateOperationsInput
+  end_time: DateTimeFieldUpdateOperationsInput
+  places: IntFieldUpdateOperationsInput
+  start_time: DateTimeFieldUpdateOperationsInput
+}
+
+input CoursesUpdateManyWithWhereWithoutChildrenInput {
+  data: CoursesUpdateManyMutationInput!
+  where: CoursesScalarWhereInput!
+}
+
+input CoursesUpdateManyWithoutChildrenInput {
+  connect: [CoursesWhereUniqueInput!]
+  connectOrCreate: [CoursesCreateOrConnectWithoutChildrenInput!]
+  create: [CoursesCreateWithoutChildrenInput!]
+  delete: [CoursesWhereUniqueInput!]
+  deleteMany: [CoursesScalarWhereInput!]
+  disconnect: [CoursesWhereUniqueInput!]
+  set: [CoursesWhereUniqueInput!]
+  update: [CoursesUpdateWithWhereUniqueWithoutChildrenInput!]
+  updateMany: [CoursesUpdateManyWithWhereWithoutChildrenInput!]
+  upsert: [CoursesUpsertWithWhereUniqueWithoutChildrenInput!]
+}
+
+input CoursesUpdateOneRequiredWithoutCancellationsInput {
+  connect: CoursesWhereUniqueInput
+  connectOrCreate: CoursesCreateOrConnectWithoutCancellationsInput
+  create: CoursesCreateWithoutCancellationsInput
+  update: CoursesUpdateWithoutCancellationsInput
+  upsert: CoursesUpsertWithoutCancellationsInput
+}
+
+input CoursesUpdateWithWhereUniqueWithoutChildrenInput {
+  data: CoursesUpdateWithoutChildrenInput!
+  where: CoursesWhereUniqueInput!
+}
+
+input CoursesUpdateWithoutCancellationsInput {
+  children: ChildrenUpdateManyWithoutCoursesInput
+  day_of_week: IntFieldUpdateOperationsInput
+  end_time: DateTimeFieldUpdateOperationsInput
+  places: IntFieldUpdateOperationsInput
+  start_time: DateTimeFieldUpdateOperationsInput
+}
+
+input CoursesUpdateWithoutChildrenInput {
+  cancellations: CancellationsUpdateManyWithoutCourseInput
+  day_of_week: IntFieldUpdateOperationsInput
+  end_time: DateTimeFieldUpdateOperationsInput
+  places: IntFieldUpdateOperationsInput
+  start_time: DateTimeFieldUpdateOperationsInput
+}
+
+input CoursesUpsertWithWhereUniqueWithoutChildrenInput {
+  create: CoursesCreateWithoutChildrenInput!
+  update: CoursesUpdateWithoutChildrenInput!
+  where: CoursesWhereUniqueInput!
+}
+
+input CoursesUpsertWithoutCancellationsInput {
+  create: CoursesCreateWithoutCancellationsInput!
+  update: CoursesUpdateWithoutCancellationsInput!
 }
 
 input CoursesWhereInput {
@@ -58,10 +488,18 @@ input CoursesWhereInput {
   start_time: DateTimeFilter
 }
 
+input CoursesWhereUniqueInput {
+  id: Int
+}
+
 """Date custom scalar type"""
 scalar Date
 
 scalar DateTime
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
 
 input DateTimeFilter {
   equals: DateTime
@@ -85,6 +523,10 @@ input DateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
+input EnumRoleEnumFieldUpdateOperationsInput {
+  set: RoleEnum
+}
+
 input EnumRoleEnumFilter {
   equals: RoleEnum
   in: [RoleEnum!]
@@ -92,11 +534,23 @@ input EnumRoleEnumFilter {
   notIn: [RoleEnum!]
 }
 
+input EnumStatusEnumFieldUpdateOperationsInput {
+  set: StatusEnum
+}
+
 input EnumStatusEnumFilter {
   equals: StatusEnum
   in: [StatusEnum!]
   not: NestedEnumStatusEnumFilter
   notIn: [StatusEnum!]
+}
+
+input IntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
 }
 
 input IntFilter {
@@ -108,6 +562,59 @@ input IntFilter {
   lte: Int
   not: NestedIntFilter
   notIn: [Int!]
+}
+
+type Mutation {
+  """create one cancellation"""
+  createOneCancellations(data: CancellationsCreateInput!): Cancellation!
+
+  """create on child"""
+  createOneChildren(data: ChildrenCreateInput!): Child!
+
+  """create on course"""
+  createOneCourses(data: CoursesCreateInput!): Course!
+
+  """create one option"""
+  createOneOptions(data: OptionsCreateInput!): Option!
+
+  """create one order"""
+  createOneOrders(data: OrdersCreateInput!): Order!
+
+  """create one price"""
+  createOnePrices(data: PricesCreateInput!): Price!
+
+  """create on user"""
+  createOneUsers(data: UsersCreateInput!): User!
+
+  """delete on cancellations"""
+  deleteOneCancellations(where: CancellationsWhereUniqueInput!): Cancellation
+
+  """delete one user"""
+  deleteOneChildren(where: ChildrenWhereUniqueInput!): Child
+
+  """delete one course"""
+  deleteOneCourses(where: CoursesWhereUniqueInput!): Course
+
+  """delete one option"""
+  deleteOneOptions(where: OptionsWhereUniqueInput!): Option
+
+  """delete on user"""
+  deleteOneUsers(where: UsersWhereUniqueInput!): User
+
+  """update on cancellation"""
+  updateOneCancellations(data: CancellationsUpdateInput!, where: CancellationsWhereUniqueInput!): Cancellation
+
+  """Update on child"""
+  updateOneChildren(data: ChildrenUpdateInput!, where: ChildrenWhereUniqueInput!): Child
+
+  """update one course"""
+  updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
+
+  """update one order"""
+  updateOneOrders(data: OrdersUpdateInput!, where: OrdersWhereUniqueInput!): Order
+
+  """update one user"""
+  updateOneUsers(data: UsersUpdateInput!, where: UsersWhereUniqueInput!): User
 }
 
 input NestedDateTimeFilter {
@@ -185,6 +692,99 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
+input NullableDateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+type Option {
+  created_at: Date
+  id: Int
+  name: String
+}
+
+input OptionsCreateInput {
+  Prices: PricesCreateNestedManyWithoutOptionInput
+  created_at: DateTime
+  name: String!
+  orders: Options_setCreateNestedManyWithoutOptionInput
+}
+
+input OptionsCreateNestedOneWithoutOrdersInput {
+  connect: OptionsWhereUniqueInput
+  connectOrCreate: OptionsCreateOrConnectWithoutOrdersInput
+  create: OptionsCreateWithoutOrdersInput
+}
+
+input OptionsCreateNestedOneWithoutPricesInput {
+  connect: OptionsWhereUniqueInput
+  connectOrCreate: OptionsCreateOrConnectWithoutPricesInput
+  create: OptionsCreateWithoutPricesInput
+}
+
+input OptionsCreateOrConnectWithoutOrdersInput {
+  create: OptionsCreateWithoutOrdersInput!
+  where: OptionsWhereUniqueInput!
+}
+
+input OptionsCreateOrConnectWithoutPricesInput {
+  create: OptionsCreateWithoutPricesInput!
+  where: OptionsWhereUniqueInput!
+}
+
+input OptionsCreateWithoutOrdersInput {
+  Prices: PricesCreateNestedManyWithoutOptionInput
+  created_at: DateTime
+  name: String!
+}
+
+input OptionsCreateWithoutPricesInput {
+  created_at: DateTime
+  name: String!
+  orders: Options_setCreateNestedManyWithoutOptionInput
+}
+
+input OptionsUpdateOneRequiredWithoutOrdersInput {
+  connect: OptionsWhereUniqueInput
+  connectOrCreate: OptionsCreateOrConnectWithoutOrdersInput
+  create: OptionsCreateWithoutOrdersInput
+  update: OptionsUpdateWithoutOrdersInput
+  upsert: OptionsUpsertWithoutOrdersInput
+}
+
+input OptionsUpdateOneRequiredWithoutPricesInput {
+  connect: OptionsWhereUniqueInput
+  connectOrCreate: OptionsCreateOrConnectWithoutPricesInput
+  create: OptionsCreateWithoutPricesInput
+  update: OptionsUpdateWithoutPricesInput
+  upsert: OptionsUpsertWithoutPricesInput
+}
+
+input OptionsUpdateWithoutOrdersInput {
+  Prices: PricesUpdateManyWithoutOptionInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input OptionsUpdateWithoutPricesInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  orders: Options_setUpdateManyWithoutOptionInput
+}
+
+input OptionsUpsertWithoutOrdersInput {
+  create: OptionsCreateWithoutOrdersInput!
+  update: OptionsUpdateWithoutOrdersInput!
+}
+
+input OptionsUpsertWithoutPricesInput {
+  create: OptionsCreateWithoutPricesInput!
+  update: OptionsUpdateWithoutPricesInput!
+}
+
 input OptionsWhereInput {
   AND: [OptionsWhereInput!]
   NOT: [OptionsWhereInput!]
@@ -196,10 +796,249 @@ input OptionsWhereInput {
   orders: Options_setListRelationFilter
 }
 
+input OptionsWhereUniqueInput {
+  id: Int
+}
+
+input Options_setCreateManyOptionInput {
+  cancelled_at: DateTime
+  id: Int
+  orders_id: Int!
+  paid_at: DateTime
+  prices_id: Int!
+  status: StatusEnum
+}
+
+input Options_setCreateManyOptionInputEnvelope {
+  data: [Options_setCreateManyOptionInput!]
+  skipDuplicates: Boolean
+}
+
+input Options_setCreateManyOrderInput {
+  cancelled_at: DateTime
+  id: Int
+  options_id: Int!
+  paid_at: DateTime
+  prices_id: Int!
+  status: StatusEnum
+}
+
+input Options_setCreateManyOrderInputEnvelope {
+  data: [Options_setCreateManyOrderInput!]
+  skipDuplicates: Boolean
+}
+
+input Options_setCreateManyPriceInput {
+  cancelled_at: DateTime
+  id: Int
+  options_id: Int!
+  orders_id: Int!
+  paid_at: DateTime
+  status: StatusEnum
+}
+
+input Options_setCreateManyPriceInputEnvelope {
+  data: [Options_setCreateManyPriceInput!]
+  skipDuplicates: Boolean
+}
+
+input Options_setCreateNestedManyWithoutOptionInput {
+  connect: [Options_setWhereUniqueInput!]
+  connectOrCreate: [Options_setCreateOrConnectWithoutOptionInput!]
+  create: [Options_setCreateWithoutOptionInput!]
+  createMany: Options_setCreateManyOptionInputEnvelope
+}
+
+input Options_setCreateNestedManyWithoutOrderInput {
+  connect: [Options_setWhereUniqueInput!]
+  connectOrCreate: [Options_setCreateOrConnectWithoutOrderInput!]
+  create: [Options_setCreateWithoutOrderInput!]
+  createMany: Options_setCreateManyOrderInputEnvelope
+}
+
+input Options_setCreateNestedManyWithoutPriceInput {
+  connect: [Options_setWhereUniqueInput!]
+  connectOrCreate: [Options_setCreateOrConnectWithoutPriceInput!]
+  create: [Options_setCreateWithoutPriceInput!]
+  createMany: Options_setCreateManyPriceInputEnvelope
+}
+
+input Options_setCreateOrConnectWithoutOptionInput {
+  create: Options_setCreateWithoutOptionInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setCreateOrConnectWithoutOrderInput {
+  create: Options_setCreateWithoutOrderInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setCreateOrConnectWithoutPriceInput {
+  create: Options_setCreateWithoutPriceInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setCreateWithoutOptionInput {
+  cancelled_at: DateTime
+  order: OrdersCreateNestedOneWithoutOptions_setInput!
+  paid_at: DateTime
+  price: PricesCreateNestedOneWithoutOptions_setInput!
+  status: StatusEnum
+}
+
+input Options_setCreateWithoutOrderInput {
+  cancelled_at: DateTime
+  option: OptionsCreateNestedOneWithoutOrdersInput!
+  paid_at: DateTime
+  price: PricesCreateNestedOneWithoutOptions_setInput!
+  status: StatusEnum
+}
+
+input Options_setCreateWithoutPriceInput {
+  cancelled_at: DateTime
+  option: OptionsCreateNestedOneWithoutOrdersInput!
+  order: OrdersCreateNestedOneWithoutOptions_setInput!
+  paid_at: DateTime
+  status: StatusEnum
+}
+
 input Options_setListRelationFilter {
   every: Options_setWhereInput
   none: Options_setWhereInput
   some: Options_setWhereInput
+}
+
+input Options_setScalarWhereInput {
+  AND: [Options_setScalarWhereInput!]
+  NOT: [Options_setScalarWhereInput!]
+  OR: [Options_setScalarWhereInput!]
+  cancelled_at: DateTimeNullableFilter
+  id: IntFilter
+  options_id: IntFilter
+  orders_id: IntFilter
+  paid_at: DateTimeNullableFilter
+  prices_id: IntFilter
+  status: EnumStatusEnumFilter
+}
+
+input Options_setUpdateManyMutationInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  paid_at: NullableDateTimeFieldUpdateOperationsInput
+  status: EnumStatusEnumFieldUpdateOperationsInput
+}
+
+input Options_setUpdateManyWithWhereWithoutOptionInput {
+  data: Options_setUpdateManyMutationInput!
+  where: Options_setScalarWhereInput!
+}
+
+input Options_setUpdateManyWithWhereWithoutOrderInput {
+  data: Options_setUpdateManyMutationInput!
+  where: Options_setScalarWhereInput!
+}
+
+input Options_setUpdateManyWithWhereWithoutPriceInput {
+  data: Options_setUpdateManyMutationInput!
+  where: Options_setScalarWhereInput!
+}
+
+input Options_setUpdateManyWithoutOptionInput {
+  connect: [Options_setWhereUniqueInput!]
+  connectOrCreate: [Options_setCreateOrConnectWithoutOptionInput!]
+  create: [Options_setCreateWithoutOptionInput!]
+  createMany: Options_setCreateManyOptionInputEnvelope
+  delete: [Options_setWhereUniqueInput!]
+  deleteMany: [Options_setScalarWhereInput!]
+  disconnect: [Options_setWhereUniqueInput!]
+  set: [Options_setWhereUniqueInput!]
+  update: [Options_setUpdateWithWhereUniqueWithoutOptionInput!]
+  updateMany: [Options_setUpdateManyWithWhereWithoutOptionInput!]
+  upsert: [Options_setUpsertWithWhereUniqueWithoutOptionInput!]
+}
+
+input Options_setUpdateManyWithoutOrderInput {
+  connect: [Options_setWhereUniqueInput!]
+  connectOrCreate: [Options_setCreateOrConnectWithoutOrderInput!]
+  create: [Options_setCreateWithoutOrderInput!]
+  createMany: Options_setCreateManyOrderInputEnvelope
+  delete: [Options_setWhereUniqueInput!]
+  deleteMany: [Options_setScalarWhereInput!]
+  disconnect: [Options_setWhereUniqueInput!]
+  set: [Options_setWhereUniqueInput!]
+  update: [Options_setUpdateWithWhereUniqueWithoutOrderInput!]
+  updateMany: [Options_setUpdateManyWithWhereWithoutOrderInput!]
+  upsert: [Options_setUpsertWithWhereUniqueWithoutOrderInput!]
+}
+
+input Options_setUpdateManyWithoutPriceInput {
+  connect: [Options_setWhereUniqueInput!]
+  connectOrCreate: [Options_setCreateOrConnectWithoutPriceInput!]
+  create: [Options_setCreateWithoutPriceInput!]
+  createMany: Options_setCreateManyPriceInputEnvelope
+  delete: [Options_setWhereUniqueInput!]
+  deleteMany: [Options_setScalarWhereInput!]
+  disconnect: [Options_setWhereUniqueInput!]
+  set: [Options_setWhereUniqueInput!]
+  update: [Options_setUpdateWithWhereUniqueWithoutPriceInput!]
+  updateMany: [Options_setUpdateManyWithWhereWithoutPriceInput!]
+  upsert: [Options_setUpsertWithWhereUniqueWithoutPriceInput!]
+}
+
+input Options_setUpdateWithWhereUniqueWithoutOptionInput {
+  data: Options_setUpdateWithoutOptionInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setUpdateWithWhereUniqueWithoutOrderInput {
+  data: Options_setUpdateWithoutOrderInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setUpdateWithWhereUniqueWithoutPriceInput {
+  data: Options_setUpdateWithoutPriceInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setUpdateWithoutOptionInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  order: OrdersUpdateOneRequiredWithoutOptions_setInput
+  paid_at: NullableDateTimeFieldUpdateOperationsInput
+  price: PricesUpdateOneRequiredWithoutOptions_setInput
+  status: EnumStatusEnumFieldUpdateOperationsInput
+}
+
+input Options_setUpdateWithoutOrderInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  option: OptionsUpdateOneRequiredWithoutOrdersInput
+  paid_at: NullableDateTimeFieldUpdateOperationsInput
+  price: PricesUpdateOneRequiredWithoutOptions_setInput
+  status: EnumStatusEnumFieldUpdateOperationsInput
+}
+
+input Options_setUpdateWithoutPriceInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  option: OptionsUpdateOneRequiredWithoutOrdersInput
+  order: OrdersUpdateOneRequiredWithoutOptions_setInput
+  paid_at: NullableDateTimeFieldUpdateOperationsInput
+  status: EnumStatusEnumFieldUpdateOperationsInput
+}
+
+input Options_setUpsertWithWhereUniqueWithoutOptionInput {
+  create: Options_setCreateWithoutOptionInput!
+  update: Options_setUpdateWithoutOptionInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setUpsertWithWhereUniqueWithoutOrderInput {
+  create: Options_setCreateWithoutOrderInput!
+  update: Options_setUpdateWithoutOrderInput!
+  where: Options_setWhereUniqueInput!
+}
+
+input Options_setUpsertWithWhereUniqueWithoutPriceInput {
+  create: Options_setCreateWithoutPriceInput!
+  update: Options_setUpdateWithoutPriceInput!
+  where: Options_setWhereUniqueInput!
 }
 
 input Options_setWhereInput {
@@ -218,10 +1057,150 @@ input Options_setWhereInput {
   status: EnumStatusEnumFilter
 }
 
+input Options_setWhereUniqueInput {
+  id: Int
+}
+
+type Order {
+  cancelled_at: Date
+  created_at: Date
+  id: Int
+}
+
+input OrdersCreateInput {
+  cancelled_at: DateTime
+  created_at: DateTime
+  options_set: Options_setCreateNestedManyWithoutOrderInput
+  users: UsersCreateNestedOneWithoutOrdersInput!
+}
+
+input OrdersCreateManyUsersInput {
+  cancelled_at: DateTime
+  created_at: DateTime
+  id: Int
+}
+
+input OrdersCreateManyUsersInputEnvelope {
+  data: [OrdersCreateManyUsersInput!]
+  skipDuplicates: Boolean
+}
+
+input OrdersCreateNestedManyWithoutUsersInput {
+  connect: [OrdersWhereUniqueInput!]
+  connectOrCreate: [OrdersCreateOrConnectWithoutUsersInput!]
+  create: [OrdersCreateWithoutUsersInput!]
+  createMany: OrdersCreateManyUsersInputEnvelope
+}
+
+input OrdersCreateNestedOneWithoutOptions_setInput {
+  connect: OrdersWhereUniqueInput
+  connectOrCreate: OrdersCreateOrConnectWithoutOptions_setInput
+  create: OrdersCreateWithoutOptions_setInput
+}
+
+input OrdersCreateOrConnectWithoutOptions_setInput {
+  create: OrdersCreateWithoutOptions_setInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersCreateOrConnectWithoutUsersInput {
+  create: OrdersCreateWithoutUsersInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersCreateWithoutOptions_setInput {
+  cancelled_at: DateTime
+  created_at: DateTime
+  users: UsersCreateNestedOneWithoutOrdersInput!
+}
+
+input OrdersCreateWithoutUsersInput {
+  cancelled_at: DateTime
+  created_at: DateTime
+  options_set: Options_setCreateNestedManyWithoutOrderInput
+}
+
 input OrdersListRelationFilter {
   every: OrdersWhereInput
   none: OrdersWhereInput
   some: OrdersWhereInput
+}
+
+input OrdersScalarWhereInput {
+  AND: [OrdersScalarWhereInput!]
+  NOT: [OrdersScalarWhereInput!]
+  OR: [OrdersScalarWhereInput!]
+  cancelled_at: DateTimeNullableFilter
+  created_at: DateTimeFilter
+  id: IntFilter
+  users_id: IntFilter
+}
+
+input OrdersUpdateInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  options_set: Options_setUpdateManyWithoutOrderInput
+  users: UsersUpdateOneRequiredWithoutOrdersInput
+}
+
+input OrdersUpdateManyMutationInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+}
+
+input OrdersUpdateManyWithWhereWithoutUsersInput {
+  data: OrdersUpdateManyMutationInput!
+  where: OrdersScalarWhereInput!
+}
+
+input OrdersUpdateManyWithoutUsersInput {
+  connect: [OrdersWhereUniqueInput!]
+  connectOrCreate: [OrdersCreateOrConnectWithoutUsersInput!]
+  create: [OrdersCreateWithoutUsersInput!]
+  createMany: OrdersCreateManyUsersInputEnvelope
+  delete: [OrdersWhereUniqueInput!]
+  deleteMany: [OrdersScalarWhereInput!]
+  disconnect: [OrdersWhereUniqueInput!]
+  set: [OrdersWhereUniqueInput!]
+  update: [OrdersUpdateWithWhereUniqueWithoutUsersInput!]
+  updateMany: [OrdersUpdateManyWithWhereWithoutUsersInput!]
+  upsert: [OrdersUpsertWithWhereUniqueWithoutUsersInput!]
+}
+
+input OrdersUpdateOneRequiredWithoutOptions_setInput {
+  connect: OrdersWhereUniqueInput
+  connectOrCreate: OrdersCreateOrConnectWithoutOptions_setInput
+  create: OrdersCreateWithoutOptions_setInput
+  update: OrdersUpdateWithoutOptions_setInput
+  upsert: OrdersUpsertWithoutOptions_setInput
+}
+
+input OrdersUpdateWithWhereUniqueWithoutUsersInput {
+  data: OrdersUpdateWithoutUsersInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpdateWithoutOptions_setInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  users: UsersUpdateOneRequiredWithoutOrdersInput
+}
+
+input OrdersUpdateWithoutUsersInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  options_set: Options_setUpdateManyWithoutOrderInput
+}
+
+input OrdersUpsertWithWhereUniqueWithoutUsersInput {
+  create: OrdersCreateWithoutUsersInput!
+  update: OrdersUpdateWithoutUsersInput!
+  where: OrdersWhereUniqueInput!
+}
+
+input OrdersUpsertWithoutOptions_setInput {
+  create: OrdersCreateWithoutOptions_setInput!
+  update: OrdersUpdateWithoutOptions_setInput!
 }
 
 input OrdersWhereInput {
@@ -236,10 +1215,143 @@ input OrdersWhereInput {
   users_id: IntFilter
 }
 
+input OrdersWhereUniqueInput {
+  id: Int
+}
+
+type Price {
+  created_at: Date
+  id: Int
+  price: Int
+}
+
+input PricesCreateInput {
+  created_at: DateTime
+  option: OptionsCreateNestedOneWithoutPricesInput!
+  options_set: Options_setCreateNestedManyWithoutPriceInput
+  price: Int!
+}
+
+input PricesCreateManyOptionInput {
+  created_at: DateTime
+  id: Int
+  price: Int!
+}
+
+input PricesCreateManyOptionInputEnvelope {
+  data: [PricesCreateManyOptionInput!]
+  skipDuplicates: Boolean
+}
+
+input PricesCreateNestedManyWithoutOptionInput {
+  connect: [PricesWhereUniqueInput!]
+  connectOrCreate: [PricesCreateOrConnectWithoutOptionInput!]
+  create: [PricesCreateWithoutOptionInput!]
+  createMany: PricesCreateManyOptionInputEnvelope
+}
+
+input PricesCreateNestedOneWithoutOptions_setInput {
+  connect: PricesWhereUniqueInput
+  connectOrCreate: PricesCreateOrConnectWithoutOptions_setInput
+  create: PricesCreateWithoutOptions_setInput
+}
+
+input PricesCreateOrConnectWithoutOptionInput {
+  create: PricesCreateWithoutOptionInput!
+  where: PricesWhereUniqueInput!
+}
+
+input PricesCreateOrConnectWithoutOptions_setInput {
+  create: PricesCreateWithoutOptions_setInput!
+  where: PricesWhereUniqueInput!
+}
+
+input PricesCreateWithoutOptionInput {
+  created_at: DateTime
+  options_set: Options_setCreateNestedManyWithoutPriceInput
+  price: Int!
+}
+
+input PricesCreateWithoutOptions_setInput {
+  created_at: DateTime
+  option: OptionsCreateNestedOneWithoutPricesInput!
+  price: Int!
+}
+
 input PricesListRelationFilter {
   every: PricesWhereInput
   none: PricesWhereInput
   some: PricesWhereInput
+}
+
+input PricesScalarWhereInput {
+  AND: [PricesScalarWhereInput!]
+  NOT: [PricesScalarWhereInput!]
+  OR: [PricesScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: IntFilter
+  options_id: IntFilter
+  price: IntFilter
+}
+
+input PricesUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  price: IntFieldUpdateOperationsInput
+}
+
+input PricesUpdateManyWithWhereWithoutOptionInput {
+  data: PricesUpdateManyMutationInput!
+  where: PricesScalarWhereInput!
+}
+
+input PricesUpdateManyWithoutOptionInput {
+  connect: [PricesWhereUniqueInput!]
+  connectOrCreate: [PricesCreateOrConnectWithoutOptionInput!]
+  create: [PricesCreateWithoutOptionInput!]
+  createMany: PricesCreateManyOptionInputEnvelope
+  delete: [PricesWhereUniqueInput!]
+  deleteMany: [PricesScalarWhereInput!]
+  disconnect: [PricesWhereUniqueInput!]
+  set: [PricesWhereUniqueInput!]
+  update: [PricesUpdateWithWhereUniqueWithoutOptionInput!]
+  updateMany: [PricesUpdateManyWithWhereWithoutOptionInput!]
+  upsert: [PricesUpsertWithWhereUniqueWithoutOptionInput!]
+}
+
+input PricesUpdateOneRequiredWithoutOptions_setInput {
+  connect: PricesWhereUniqueInput
+  connectOrCreate: PricesCreateOrConnectWithoutOptions_setInput
+  create: PricesCreateWithoutOptions_setInput
+  update: PricesUpdateWithoutOptions_setInput
+  upsert: PricesUpsertWithoutOptions_setInput
+}
+
+input PricesUpdateWithWhereUniqueWithoutOptionInput {
+  data: PricesUpdateWithoutOptionInput!
+  where: PricesWhereUniqueInput!
+}
+
+input PricesUpdateWithoutOptionInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  options_set: Options_setUpdateManyWithoutPriceInput
+  price: IntFieldUpdateOperationsInput
+}
+
+input PricesUpdateWithoutOptions_setInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  option: OptionsUpdateOneRequiredWithoutPricesInput
+  price: IntFieldUpdateOperationsInput
+}
+
+input PricesUpsertWithWhereUniqueWithoutOptionInput {
+  create: PricesCreateWithoutOptionInput!
+  update: PricesUpdateWithoutOptionInput!
+  where: PricesWhereUniqueInput!
+}
+
+input PricesUpsertWithoutOptions_setInput {
+  create: PricesCreateWithoutOptions_setInput!
+  update: PricesUpdateWithoutOptions_setInput!
 }
 
 input PricesWhereInput {
@@ -254,7 +1366,22 @@ input PricesWhereInput {
   price: IntFilter
 }
 
+input PricesWhereUniqueInput {
+  id: Int
+}
+
 type Query {
+  """get cancellations"""
+  cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!
+  children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int): [Child!]!
+  courses(after: CoursesWhereUniqueInput, before: CoursesWhereUniqueInput, first: Int, last: Int, orderBy: [CoursesOrderByInput!], where: CoursesWhereInput): [Course!]!
+
+  """get options"""
+  options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!
+
+  """get orders"""
+  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int): [Order!]!
+  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, where: PricesWhereInput): [Price!]!
   users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByInput!], where: UsersWhereInput): [User!]!
 }
 
@@ -279,6 +1406,10 @@ enum StatusEnum {
   NOTYETPAYABLE
   PAID
   UNPAID
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
 }
 
 input StringFilter {
@@ -323,6 +1454,71 @@ type User {
   vertified_at: Date
 }
 
+input UsersCreateInput {
+  children: ChildrenCreateNestedManyWithoutTutorInput
+  created_at: DateTime
+  deleted_at: DateTime
+  email: String!
+  first_name: String!
+  name: String!
+  orders: OrdersCreateNestedManyWithoutUsersInput
+  password: String!
+  phone_number: String!
+  role: RoleEnum
+  secondary_email: String
+  verfifed_at: DateTime
+}
+
+input UsersCreateNestedOneWithoutChildrenInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutChildrenInput
+  create: UsersCreateWithoutChildrenInput
+}
+
+input UsersCreateNestedOneWithoutOrdersInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutOrdersInput
+  create: UsersCreateWithoutOrdersInput
+}
+
+input UsersCreateOrConnectWithoutChildrenInput {
+  create: UsersCreateWithoutChildrenInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersCreateOrConnectWithoutOrdersInput {
+  create: UsersCreateWithoutOrdersInput!
+  where: UsersWhereUniqueInput!
+}
+
+input UsersCreateWithoutChildrenInput {
+  created_at: DateTime
+  deleted_at: DateTime
+  email: String!
+  first_name: String!
+  name: String!
+  orders: OrdersCreateNestedManyWithoutUsersInput
+  password: String!
+  phone_number: String!
+  role: RoleEnum
+  secondary_email: String
+  verfifed_at: DateTime
+}
+
+input UsersCreateWithoutOrdersInput {
+  children: ChildrenCreateNestedManyWithoutTutorInput
+  created_at: DateTime
+  deleted_at: DateTime
+  email: String!
+  first_name: String!
+  name: String!
+  password: String!
+  phone_number: String!
+  role: RoleEnum
+  secondary_email: String
+  verfifed_at: DateTime
+}
+
 input UsersOrderByInput {
   created_at: SortOrder
   deleted_at: SortOrder
@@ -335,6 +1531,75 @@ input UsersOrderByInput {
   role: SortOrder
   secondary_email: SortOrder
   verfifed_at: SortOrder
+}
+
+input UsersUpdateInput {
+  children: ChildrenUpdateManyWithoutTutorInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  deleted_at: NullableDateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  orders: OrdersUpdateManyWithoutUsersInput
+  password: StringFieldUpdateOperationsInput
+  phone_number: StringFieldUpdateOperationsInput
+  role: EnumRoleEnumFieldUpdateOperationsInput
+  secondary_email: NullableStringFieldUpdateOperationsInput
+  verfifed_at: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateOneRequiredWithoutChildrenInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutChildrenInput
+  create: UsersCreateWithoutChildrenInput
+  update: UsersUpdateWithoutChildrenInput
+  upsert: UsersUpsertWithoutChildrenInput
+}
+
+input UsersUpdateOneRequiredWithoutOrdersInput {
+  connect: UsersWhereUniqueInput
+  connectOrCreate: UsersCreateOrConnectWithoutOrdersInput
+  create: UsersCreateWithoutOrdersInput
+  update: UsersUpdateWithoutOrdersInput
+  upsert: UsersUpsertWithoutOrdersInput
+}
+
+input UsersUpdateWithoutChildrenInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  deleted_at: NullableDateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  orders: OrdersUpdateManyWithoutUsersInput
+  password: StringFieldUpdateOperationsInput
+  phone_number: StringFieldUpdateOperationsInput
+  role: EnumRoleEnumFieldUpdateOperationsInput
+  secondary_email: NullableStringFieldUpdateOperationsInput
+  verfifed_at: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpdateWithoutOrdersInput {
+  children: ChildrenUpdateManyWithoutTutorInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  deleted_at: NullableDateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  phone_number: StringFieldUpdateOperationsInput
+  role: EnumRoleEnumFieldUpdateOperationsInput
+  secondary_email: NullableStringFieldUpdateOperationsInput
+  verfifed_at: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input UsersUpsertWithoutChildrenInput {
+  create: UsersCreateWithoutChildrenInput!
+  update: UsersUpdateWithoutChildrenInput!
+}
+
+input UsersUpsertWithoutOrdersInput {
+  create: UsersCreateWithoutOrdersInput!
+  update: UsersUpdateWithoutOrdersInput!
 }
 
 input UsersWhereInput {
