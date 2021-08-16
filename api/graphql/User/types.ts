@@ -10,8 +10,8 @@ export const user = objectType({
     t.string("password");
     t.string("phone_number");
     t.string("secondary_email");
-    t.date("created_at")
-    t.date("vertified_at")
-    t.date("created_at")
+    t.date("created_at");
+    t.date("vertified_at");
+    t.date("created_at");
   },
 });

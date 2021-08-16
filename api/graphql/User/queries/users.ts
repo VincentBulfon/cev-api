@@ -1,6 +1,6 @@
 import { extendType } from "nexus";
 
-export const UserQuery = extendType({
+export const UsersQuery = extendType({
   type: "Query",
   definition(t) {
     t.crud.users({ type: "User", filtering: true, ordering: true });
