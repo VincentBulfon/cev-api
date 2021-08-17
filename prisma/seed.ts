@@ -48,6 +48,8 @@ async function main() {
     ],
   });
 
+  console.log(`Users created`);
+
   const children = await prisma.users.update({
     where: { email: "alex@prisma.io" },
     data: {
@@ -75,7 +77,9 @@ async function main() {
     },
   });
 
-  const course = await prisma.courses.createMany({
+  console.log(`Children created`);
+
+  const courses = await prisma.courses.createMany({
     data: [
       {
         day_of_week: 0,
@@ -122,6 +126,8 @@ async function main() {
     ],
   });
 
+  console.log(`Courses created`);
+
   const childrenArray = await prisma.children.findMany();
   const selectedCourse = await prisma.courses.findMany();
   childrenArray.forEach(async (child, index) => {
@@ -156,17 +162,21 @@ async function main() {
     },
   });
 
+  console.log(`Cancellations create`);
+
   const options = await prisma.options.createMany({
     data: [
       {
-        name: "cotisation 1",
+        name: "MEMBERSH1PFEE1",
       },
       {
-        name: "cotisation 2",
+        name: "MEMBERSHIPFEE2",
       },
-      { name: "assurance" },
+      { name: "INSSURANCE" },
     ],
   });
+
+  console.log(`Options created`);
 
   const allOptions = await prisma.options.findMany();
 
@@ -174,38 +184,38 @@ async function main() {
     data: [
       {
         price: 75,
-        options_id: allOptions[0].id,
+        option_id: allOptions[0].id,
       },
       {
         price: 75,
-        options_id: allOptions[1].id,
+        option_id: allOptions[1].id,
       },
       {
         price: 25,
-        options_id: allOptions[2].id,
+        option_id: allOptions[2].id,
       },
     ],
   });
 
-  console.log(options, prices);
+  console.log(`Prices created`);
 
   const optionsPrices = [
     await prisma.prices.findFirst({
-      where: { options_id: allOptions[0].id },
+      where: { option_id: allOptions[0].id },
       orderBy: {
         created_at: "desc",
       },
       take: 1,
     }),
     await prisma.prices.findFirst({
-      where: { options_id: allOptions[1].id },
+      where: { option_id: allOptions[1].id },
       orderBy: {
         created_at: "desc",
       },
       take: 1,
     }),
     await prisma.prices.findFirst({
-      where: { options_id: allOptions[2].id },
+      where: { option_id: allOptions[2].id },
       orderBy: {
         created_at: "desc",
       },
@@ -322,7 +332,7 @@ async function main() {
     },
   });
 
-  console.log(orders);
+  console.log(`Orders created`);
 }
 
 main()

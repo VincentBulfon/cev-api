@@ -460,6 +460,15 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
   }
+  EnumOptionEnumFieldUpdateOperationsInput: { // input type
+    set?: NexusGenEnums['OptionEnum'] | null; // OptionEnum
+  }
+  EnumOptionEnumFilter: { // input type
+    equals?: NexusGenEnums['OptionEnum'] | null; // OptionEnum
+    in?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
+    not?: NexusGenInputs['NestedEnumOptionEnumFilter'] | null; // NestedEnumOptionEnumFilter
+    notIn?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
+  }
   EnumRoleEnumFieldUpdateOperationsInput: { // input type
     set?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
   }
@@ -514,6 +523,12 @@ export interface NexusGenInputs {
     lte?: NexusGenScalars['DateTime'] | null; // DateTime
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+  }
+  NestedEnumOptionEnumFilter: { // input type
+    equals?: NexusGenEnums['OptionEnum'] | null; // OptionEnum
+    in?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
+    not?: NexusGenInputs['NestedEnumOptionEnumFilter'] | null; // NestedEnumOptionEnumFilter
+    notIn?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
   }
   NestedEnumRoleEnumFilter: { // input type
     equals?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
@@ -572,7 +587,7 @@ export interface NexusGenInputs {
   OptionsCreateInput: { // input type
     Prices?: NexusGenInputs['PricesCreateNestedManyWithoutOptionInput'] | null; // PricesCreateNestedManyWithoutOptionInput
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    name: string; // String!
+    name: NexusGenEnums['OptionEnum']; // OptionEnum!
     orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
   }
   OptionsCreateNestedOneWithoutOrdersInput: { // input type
@@ -596,11 +611,11 @@ export interface NexusGenInputs {
   OptionsCreateWithoutOrdersInput: { // input type
     Prices?: NexusGenInputs['PricesCreateNestedManyWithoutOptionInput'] | null; // PricesCreateNestedManyWithoutOptionInput
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    name: string; // String!
+    name: NexusGenEnums['OptionEnum']; // OptionEnum!
   }
   OptionsCreateWithoutPricesInput: { // input type
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    name: string; // String!
+    name: NexusGenEnums['OptionEnum']; // OptionEnum!
     orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
   }
   OptionsUpdateOneRequiredWithoutOrdersInput: { // input type
@@ -620,11 +635,11 @@ export interface NexusGenInputs {
   OptionsUpdateWithoutOrdersInput: { // input type
     Prices?: NexusGenInputs['PricesUpdateManyWithoutOptionInput'] | null; // PricesUpdateManyWithoutOptionInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['EnumOptionEnumFieldUpdateOperationsInput'] | null; // EnumOptionEnumFieldUpdateOperationsInput
   }
   OptionsUpdateWithoutPricesInput: { // input type
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['EnumOptionEnumFieldUpdateOperationsInput'] | null; // EnumOptionEnumFieldUpdateOperationsInput
     orders?: NexusGenInputs['Options_setUpdateManyWithoutOptionInput'] | null; // Options_setUpdateManyWithoutOptionInput
   }
   OptionsUpsertWithoutOrdersInput: { // input type
@@ -642,18 +657,26 @@ export interface NexusGenInputs {
     Prices?: NexusGenInputs['PricesListRelationFilter'] | null; // PricesListRelationFilter
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['EnumOptionEnumFilter'] | null; // EnumOptionEnumFilter
     orders?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
   }
   OptionsWhereUniqueInput: { // input type
     id?: number | null; // Int
   }
+  Options_setCreateInput: { // input type
+    cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    option: NexusGenInputs['OptionsCreateNestedOneWithoutOrdersInput']; // OptionsCreateNestedOneWithoutOrdersInput!
+    order: NexusGenInputs['OrdersCreateNestedOneWithoutOptions_setInput']; // OrdersCreateNestedOneWithoutOptions_setInput!
+    paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    price: NexusGenInputs['PricesCreateNestedOneWithoutOptions_setInput']; // PricesCreateNestedOneWithoutOptions_setInput!
+    status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
+  }
   Options_setCreateManyOptionInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
-    orders_id: number; // Int!
+    order_id: number; // Int!
     paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    prices_id: number; // Int!
+    price_id: number; // Int!
     status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
   }
   Options_setCreateManyOptionInputEnvelope: { // input type
@@ -663,9 +686,9 @@ export interface NexusGenInputs {
   Options_setCreateManyOrderInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
-    options_id: number; // Int!
+    option_id: number; // Int!
     paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    prices_id: number; // Int!
+    price_id: number; // Int!
     status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
   }
   Options_setCreateManyOrderInputEnvelope: { // input type
@@ -675,8 +698,8 @@ export interface NexusGenInputs {
   Options_setCreateManyPriceInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
-    options_id: number; // Int!
-    orders_id: number; // Int!
+    option_id: number; // Int!
+    order_id: number; // Int!
     paid_at?: NexusGenScalars['DateTime'] | null; // DateTime
     status?: NexusGenEnums['StatusEnum'] | null; // StatusEnum
   }
@@ -746,10 +769,10 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
     cancelled_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    orders_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    option_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    order_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     paid_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
-    prices_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    price_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     status?: NexusGenInputs['EnumStatusEnumFilter'] | null; // EnumStatusEnumFilter
   }
   Options_setUpdateManyMutationInput: { // input type
@@ -863,12 +886,12 @@ export interface NexusGenInputs {
     cancelled_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     option?: NexusGenInputs['OptionsWhereInput'] | null; // OptionsWhereInput
-    options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    option_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     order?: NexusGenInputs['OrdersWhereInput'] | null; // OrdersWhereInput
-    orders_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    order_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     paid_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     price?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
-    prices_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    price_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     status?: NexusGenInputs['EnumStatusEnumFilter'] | null; // EnumStatusEnumFilter
   }
   Options_setWhereUniqueInput: { // input type
@@ -1058,7 +1081,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    option_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     price?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   PricesUpdateManyMutationInput: { // input type
@@ -1119,7 +1142,7 @@ export interface NexusGenInputs {
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     option?: NexusGenInputs['OptionsWhereInput'] | null; // OptionsWhereInput
-    options_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    option_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     options_set?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
     price?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
@@ -1315,6 +1338,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  OptionEnum: "INSSURANCE" | "MEMBERSH1PFEE1" | "MEMBERSHIPFEE2"
   QueryMode: "default" | "insensitive"
   RoleEnum: "ADMIN" | "MONITOR" | "USER"
   SortOrder: "asc" | "desc"
@@ -1333,49 +1357,59 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Cancellation: { // root type
-    created_at?: NexusGenScalars['Date'] | null; // Date
-    date?: NexusGenScalars['Date'] | null; // Date
+    created_at: NexusGenScalars['Date']; // Date!
+    date: NexusGenScalars['Date']; // Date!
     deleted_at?: NexusGenScalars['Date'] | null; // Date
-    id?: number | null; // Int
+    id: number; // Int!
   }
   Child: { // root type
-    birth_date?: NexusGenScalars['Date'] | null; // Date
-    first_name?: string | null; // String
-    id?: number | null; // Int
-    name?: string | null; // String
+    birth_date: NexusGenScalars['Date']; // Date!
+    first_name: string; // String!
+    id: number; // Int!
+    name: string; // String!
+    tutor_id: number; // Int!
   }
   Course: { // root type
     day_of_week?: number | null; // Int
-    end_time?: NexusGenScalars['Date'] | null; // Date
-    id?: number | null; // Int
-    places?: number | null; // Int
-    start_time?: NexusGenScalars['Date'] | null; // Date
+    end_time: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    places: number; // Int!
+    start_time: NexusGenScalars['Date']; // Date!
   }
   Mutation: {};
   Option: { // root type
-    created_at?: NexusGenScalars['Date'] | null; // Date
-    id?: number | null; // Int
-    name?: string | null; // String
+    created_at: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    name: string; // String!
+  }
+  OptionSet: { // root type
+    cancelled_at?: NexusGenScalars['Date'] | null; // Date
+    id: number; // Int!
+    option_id: number; // Int!
+    order_id: number; // Int!
+    paid_at: NexusGenScalars['Date']; // Date!
+    price_id: number; // Int!
+    status: NexusGenEnums['StatusEnum']; // StatusEnum!
   }
   Order: { // root type
     cancelled_at?: NexusGenScalars['Date'] | null; // Date
-    created_at?: NexusGenScalars['Date'] | null; // Date
-    id?: number | null; // Int
+    created_at: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    user_id: number; // Int!
   }
   Price: { // root type
-    created_at?: NexusGenScalars['Date'] | null; // Date
-    id?: number | null; // Int
-    price?: number | null; // Int
+    created_at: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    price: number; // Int!
   }
   Query: {};
   User: { // root type
-    created_at?: NexusGenScalars['Date'] | null; // Date
-    email?: string | null; // String
-    first_name?: string | null; // String
-    id?: number | null; // Int
-    name?: string | null; // String
-    password?: string | null; // String
-    phone_number?: string | null; // String
+    created_at: NexusGenScalars['Date']; // Date!
+    first_name: string; // String!
+    id: number; // Int!
+    name: string; // String!
+    password: string; // String!
+    phone_number: string; // String!
     secondary_email?: string | null; // String
     vertified_at?: NexusGenScalars['Date'] | null; // Date
   }
@@ -1393,29 +1427,34 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 
 export interface NexusGenFieldTypes {
   Cancellation: { // field return type
-    created_at: NexusGenScalars['Date'] | null; // Date
-    date: NexusGenScalars['Date'] | null; // Date
+    created_at: NexusGenScalars['Date']; // Date!
+    date: NexusGenScalars['Date']; // Date!
     deleted_at: NexusGenScalars['Date'] | null; // Date
-    id: number | null; // Int
+    id: number; // Int!
   }
   Child: { // field return type
-    birth_date: NexusGenScalars['Date'] | null; // Date
-    first_name: string | null; // String
-    id: number | null; // Int
-    name: string | null; // String
+    birth_date: NexusGenScalars['Date']; // Date!
+    first_name: string; // String!
+    id: number; // Int!
+    name: string; // String!
+    tutor: NexusGenRootTypes['User'] | null; // User
+    tutor_id: number; // Int!
   }
   Course: { // field return type
+    cancellations: Array<NexusGenRootTypes['Cancellation'] | null> | null; // [Cancellation]
     day_of_week: number | null; // Int
-    end_time: NexusGenScalars['Date'] | null; // Date
-    id: number | null; // Int
-    places: number | null; // Int
-    start_time: NexusGenScalars['Date'] | null; // Date
+    end_time: NexusGenScalars['Date']; // Date!
+    enfants: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
+    id: number; // Int!
+    places: number; // Int!
+    start_time: NexusGenScalars['Date']; // Date!
   }
   Mutation: { // field return type
     createOneCancellations: NexusGenRootTypes['Cancellation']; // Cancellation!
     createOneChildren: NexusGenRootTypes['Child']; // Child!
     createOneCourses: NexusGenRootTypes['Course']; // Course!
     createOneOptions: NexusGenRootTypes['Option']; // Option!
+    createOneOptions_set: NexusGenRootTypes['OptionSet']; // OptionSet!
     createOneOrders: NexusGenRootTypes['Order']; // Order!
     createOnePrices: NexusGenRootTypes['Price']; // Price!
     createOneUsers: NexusGenRootTypes['User']; // User!
@@ -1431,19 +1470,34 @@ export interface NexusGenFieldTypes {
     updateOneUsers: NexusGenRootTypes['User'] | null; // User
   }
   Option: { // field return type
-    created_at: NexusGenScalars['Date'] | null; // Date
-    id: number | null; // Int
-    name: string | null; // String
+    created_at: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    name: string; // String!
+    price: NexusGenRootTypes['Price'] | null; // Price
+  }
+  OptionSet: { // field return type
+    cancelled_at: NexusGenScalars['Date'] | null; // Date
+    id: number; // Int!
+    option_id: number; // Int!
+    options: NexusGenRootTypes['Option'] | null; // Option
+    order_id: number; // Int!
+    paid_at: NexusGenScalars['Date']; // Date!
+    price: NexusGenRootTypes['Price'] | null; // Price
+    price_id: number; // Int!
+    status: NexusGenEnums['StatusEnum']; // StatusEnum!
   }
   Order: { // field return type
     cancelled_at: NexusGenScalars['Date'] | null; // Date
-    created_at: NexusGenScalars['Date'] | null; // Date
-    id: number | null; // Int
+    created_at: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    option_set: Array<NexusGenRootTypes['OptionSet'] | null> | null; // [OptionSet]
+    user: NexusGenRootTypes['User'] | null; // User
+    user_id: number; // Int!
   }
   Price: { // field return type
-    created_at: NexusGenScalars['Date'] | null; // Date
-    id: number | null; // Int
-    price: number | null; // Int
+    created_at: NexusGenScalars['Date']; // Date!
+    id: number; // Int!
+    price: number; // Int!
   }
   Query: { // field return type
     cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
@@ -1455,13 +1509,14 @@ export interface NexusGenFieldTypes {
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
-    created_at: NexusGenScalars['Date'] | null; // Date
-    email: string | null; // String
-    first_name: string | null; // String
-    id: number | null; // Int
-    name: string | null; // String
-    password: string | null; // String
-    phone_number: string | null; // String
+    Orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
+    children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
+    created_at: NexusGenScalars['Date']; // Date!
+    first_name: string; // String!
+    id: number; // Int!
+    name: string; // String!
+    password: string; // String!
+    phone_number: string; // String!
     secondary_email: string | null; // String
     vertified_at: NexusGenScalars['Date'] | null; // Date
   }
@@ -1479,10 +1534,14 @@ export interface NexusGenFieldTypeNames {
     first_name: 'String'
     id: 'Int'
     name: 'String'
+    tutor: 'User'
+    tutor_id: 'Int'
   }
   Course: { // field return type name
+    cancellations: 'Cancellation'
     day_of_week: 'Int'
     end_time: 'Date'
+    enfants: 'Child'
     id: 'Int'
     places: 'Int'
     start_time: 'Date'
@@ -1492,6 +1551,7 @@ export interface NexusGenFieldTypeNames {
     createOneChildren: 'Child'
     createOneCourses: 'Course'
     createOneOptions: 'Option'
+    createOneOptions_set: 'OptionSet'
     createOneOrders: 'Order'
     createOnePrices: 'Price'
     createOneUsers: 'User'
@@ -1510,11 +1570,26 @@ export interface NexusGenFieldTypeNames {
     created_at: 'Date'
     id: 'Int'
     name: 'String'
+    price: 'Price'
+  }
+  OptionSet: { // field return type name
+    cancelled_at: 'Date'
+    id: 'Int'
+    option_id: 'Int'
+    options: 'Option'
+    order_id: 'Int'
+    paid_at: 'Date'
+    price: 'Price'
+    price_id: 'Int'
+    status: 'StatusEnum'
   }
   Order: { // field return type name
     cancelled_at: 'Date'
     created_at: 'Date'
     id: 'Int'
+    option_set: 'OptionSet'
+    user: 'User'
+    user_id: 'Int'
   }
   Price: { // field return type name
     created_at: 'Date'
@@ -1531,8 +1606,9 @@ export interface NexusGenFieldTypeNames {
     users: 'User'
   }
   User: { // field return type name
+    Orders: 'Order'
+    children: 'Child'
     created_at: 'Date'
-    email: 'String'
     first_name: 'String'
     id: 'Int'
     name: 'String'
@@ -1544,6 +1620,12 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Course: {
+    cancellations: { // args
+      firstDate?: NexusGenScalars['DateTime'] | null; // DateTime
+      secondDate?: NexusGenScalars['DateTime'] | null; // DateTime
+    }
+  }
   Mutation: {
     createOneCancellations: { // args
       data: NexusGenInputs['CancellationsCreateInput']; // CancellationsCreateInput!
@@ -1556,6 +1638,9 @@ export interface NexusGenArgTypes {
     }
     createOneOptions: { // args
       data: NexusGenInputs['OptionsCreateInput']; // OptionsCreateInput!
+    }
+    createOneOptions_set: { // args
+      data: NexusGenInputs['Options_setCreateInput']; // Options_setCreateInput!
     }
     createOneOrders: { // args
       data: NexusGenInputs['OrdersCreateInput']; // OrdersCreateInput!

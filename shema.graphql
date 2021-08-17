@@ -3,10 +3,10 @@
 
 
 type Cancellation {
-  created_at: Date
-  date: Date
+  created_at: Date!
+  date: Date!
   deleted_at: Date
-  id: Int
+  id: Int!
 }
 
 input CancellationsCreateInput {
@@ -137,10 +137,12 @@ input CancellationsWhereUniqueInput {
 }
 
 type Child {
-  birth_date: Date
-  first_name: String
-  id: Int
-  name: String
+  birth_date: Date!
+  first_name: String!
+  id: Int!
+  name: String!
+  tutor: User
+  tutor_id: Int!
 }
 
 input ChildrenCreateInput {
@@ -322,11 +324,13 @@ input ChildrenWhereUniqueInput {
 }
 
 type Course {
+  cancellations(firstDate: DateTime, secondDate: DateTime): [Cancellation]
   day_of_week: Int
-  end_time: Date
-  id: Int
-  places: Int
-  start_time: Date
+  end_time: Date!
+  enfants: [Child]
+  id: Int!
+  places: Int!
+  start_time: Date!
 }
 
 input CoursesCreateInput {
@@ -523,6 +527,17 @@ input DateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
+input EnumOptionEnumFieldUpdateOperationsInput {
+  set: OptionEnum
+}
+
+input EnumOptionEnumFilter {
+  equals: OptionEnum
+  in: [OptionEnum!]
+  not: NestedEnumOptionEnumFilter
+  notIn: [OptionEnum!]
+}
+
 input EnumRoleEnumFieldUpdateOperationsInput {
   set: RoleEnum
 }
@@ -576,6 +591,9 @@ type Mutation {
 
   """create one option"""
   createOneOptions(data: OptionsCreateInput!): Option!
+
+  """create one option set"""
+  createOneOptions_set(data: Options_setCreateInput!): OptionSet!
 
   """create one order"""
   createOneOrders(data: OrdersCreateInput!): Order!
@@ -637,6 +655,13 @@ input NestedDateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
+}
+
+input NestedEnumOptionEnumFilter {
+  equals: OptionEnum
+  in: [OptionEnum!]
+  not: NestedEnumOptionEnumFilter
+  notIn: [OptionEnum!]
 }
 
 input NestedEnumRoleEnumFilter {
@@ -701,15 +726,34 @@ input NullableStringFieldUpdateOperationsInput {
 }
 
 type Option {
-  created_at: Date
-  id: Int
-  name: String
+  created_at: Date!
+  id: Int!
+  name: String!
+  price: Price
+}
+
+enum OptionEnum {
+  INSSURANCE
+  MEMBERSH1PFEE1
+  MEMBERSHIPFEE2
+}
+
+type OptionSet {
+  cancelled_at: Date
+  id: Int!
+  option_id: Int!
+  options: Option
+  order_id: Int!
+  paid_at: Date!
+  price: Price
+  price_id: Int!
+  status: StatusEnum!
 }
 
 input OptionsCreateInput {
   Prices: PricesCreateNestedManyWithoutOptionInput
   created_at: DateTime
-  name: String!
+  name: OptionEnum!
   orders: Options_setCreateNestedManyWithoutOptionInput
 }
 
@@ -738,12 +782,12 @@ input OptionsCreateOrConnectWithoutPricesInput {
 input OptionsCreateWithoutOrdersInput {
   Prices: PricesCreateNestedManyWithoutOptionInput
   created_at: DateTime
-  name: String!
+  name: OptionEnum!
 }
 
 input OptionsCreateWithoutPricesInput {
   created_at: DateTime
-  name: String!
+  name: OptionEnum!
   orders: Options_setCreateNestedManyWithoutOptionInput
 }
 
@@ -766,12 +810,12 @@ input OptionsUpdateOneRequiredWithoutPricesInput {
 input OptionsUpdateWithoutOrdersInput {
   Prices: PricesUpdateManyWithoutOptionInput
   created_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: EnumOptionEnumFieldUpdateOperationsInput
 }
 
 input OptionsUpdateWithoutPricesInput {
   created_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: EnumOptionEnumFieldUpdateOperationsInput
   orders: Options_setUpdateManyWithoutOptionInput
 }
 
@@ -792,7 +836,7 @@ input OptionsWhereInput {
   Prices: PricesListRelationFilter
   created_at: DateTimeFilter
   id: IntFilter
-  name: StringFilter
+  name: EnumOptionEnumFilter
   orders: Options_setListRelationFilter
 }
 
@@ -800,12 +844,21 @@ input OptionsWhereUniqueInput {
   id: Int
 }
 
+input Options_setCreateInput {
+  cancelled_at: DateTime
+  option: OptionsCreateNestedOneWithoutOrdersInput!
+  order: OrdersCreateNestedOneWithoutOptions_setInput!
+  paid_at: DateTime
+  price: PricesCreateNestedOneWithoutOptions_setInput!
+  status: StatusEnum
+}
+
 input Options_setCreateManyOptionInput {
   cancelled_at: DateTime
   id: Int
-  orders_id: Int!
+  order_id: Int!
   paid_at: DateTime
-  prices_id: Int!
+  price_id: Int!
   status: StatusEnum
 }
 
@@ -817,9 +870,9 @@ input Options_setCreateManyOptionInputEnvelope {
 input Options_setCreateManyOrderInput {
   cancelled_at: DateTime
   id: Int
-  options_id: Int!
+  option_id: Int!
   paid_at: DateTime
-  prices_id: Int!
+  price_id: Int!
   status: StatusEnum
 }
 
@@ -831,8 +884,8 @@ input Options_setCreateManyOrderInputEnvelope {
 input Options_setCreateManyPriceInput {
   cancelled_at: DateTime
   id: Int
-  options_id: Int!
-  orders_id: Int!
+  option_id: Int!
+  order_id: Int!
   paid_at: DateTime
   status: StatusEnum
 }
@@ -914,10 +967,10 @@ input Options_setScalarWhereInput {
   OR: [Options_setScalarWhereInput!]
   cancelled_at: DateTimeNullableFilter
   id: IntFilter
-  options_id: IntFilter
-  orders_id: IntFilter
+  option_id: IntFilter
+  order_id: IntFilter
   paid_at: DateTimeNullableFilter
-  prices_id: IntFilter
+  price_id: IntFilter
   status: EnumStatusEnumFilter
 }
 
@@ -1048,12 +1101,12 @@ input Options_setWhereInput {
   cancelled_at: DateTimeNullableFilter
   id: IntFilter
   option: OptionsWhereInput
-  options_id: IntFilter
+  option_id: IntFilter
   order: OrdersWhereInput
-  orders_id: IntFilter
+  order_id: IntFilter
   paid_at: DateTimeNullableFilter
   price: PricesWhereInput
-  prices_id: IntFilter
+  price_id: IntFilter
   status: EnumStatusEnumFilter
 }
 
@@ -1063,8 +1116,11 @@ input Options_setWhereUniqueInput {
 
 type Order {
   cancelled_at: Date
-  created_at: Date
-  id: Int
+  created_at: Date!
+  id: Int!
+  option_set: [OptionSet]
+  user: User
+  user_id: Int!
 }
 
 input OrdersCreateInput {
@@ -1220,9 +1276,9 @@ input OrdersWhereUniqueInput {
 }
 
 type Price {
-  created_at: Date
-  id: Int
-  price: Int
+  created_at: Date!
+  id: Int!
+  price: Int!
 }
 
 input PricesCreateInput {
@@ -1290,7 +1346,7 @@ input PricesScalarWhereInput {
   OR: [PricesScalarWhereInput!]
   created_at: DateTimeFilter
   id: IntFilter
-  options_id: IntFilter
+  option_id: IntFilter
   price: IntFilter
 }
 
@@ -1361,7 +1417,7 @@ input PricesWhereInput {
   created_at: DateTimeFilter
   id: IntFilter
   option: OptionsWhereInput
-  options_id: IntFilter
+  option_id: IntFilter
   options_set: Options_setListRelationFilter
   price: IntFilter
 }
@@ -1443,13 +1499,14 @@ input StringNullableFilter {
 }
 
 type User {
-  created_at: Date
-  email: String
-  first_name: String
-  id: Int
-  name: String
-  password: String
-  phone_number: String
+  Orders: [Order]
+  children: [Child]
+  created_at: Date!
+  first_name: String!
+  id: Int!
+  name: String!
+  password: String!
+  phone_number: String!
   secondary_email: String
   vertified_at: Date
 }
