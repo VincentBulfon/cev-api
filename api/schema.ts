@@ -10,7 +10,14 @@ const graphqlSchema = makeSchema({
     typegen: join(__dirname, "..", "nexus-typegen.ts"),
     schema: join(__dirname, "..", "shema.graphql"),
   },
-  plugins: [nexusPrisma({ experimentalCRUD: true })],
+  plugins: [
+    nexusPrisma({
+      experimentalCRUD: true,
+      outputs: {
+        typegen: __dirname + "/generated/typegen-nexus-plugin-prisma.d.ts",
+      },
+    }),
+  ],
   contextType: {
     module: join(__dirname, "./context.ts"),
     alias: "ContextModule",
