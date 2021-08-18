@@ -12,7 +12,7 @@ const graphqlSchema = makeSchema({
   },
   plugins: [nexusPrisma({ experimentalCRUD: true })],
   contextType: {
-    module: join(__dirname, "./context.js"),
+    module: join(__dirname, "./context.ts"),
     alias: "ContextModule",
     export: "Context",
   },
