@@ -1,11 +1,11 @@
 import { extendType } from "nexus";
 
-export const updateOrder = extendType({
+export const createOrder = extendType({
   type: "Mutation",
   definition(t) {
-    t.crud.updateOneOrders({
+    t.crud.createOneOrders({
       type: "Order",
-      description: "update one order",
+      description: "craete on order",
     });
   },
 });

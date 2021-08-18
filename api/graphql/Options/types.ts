@@ -1,10 +1,14 @@
 import { objectType } from "nexus";
-import { resolve } from "path/posix";
 
 export const option = objectType({
   name: "Option",
   definition(t) {
-    t.nonNull.int("id"), t.nonNull.string("name");
+    t.nonNull.int("id");
+    t.model("Options").name();
+    // t.nonNull.field("name_cust", {
+    //   type: "OptionEnum",
+    // });
+    t.string("name");
     t.nonNull.date("created_at");
     t.field("price", {
       type: "Price",

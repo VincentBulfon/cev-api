@@ -138,6 +138,7 @@ input CancellationsWhereUniqueInput {
 
 type Child {
   birth_date: Date!
+  courses: [Course]
   first_name: String!
   id: Int!
   name: String!
@@ -527,15 +528,15 @@ input DateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
-input EnumOptionEnumFieldUpdateOperationsInput {
-  set: OptionEnum
+input EnumNameEnumFieldUpdateOperationsInput {
+  set: NameEnum
 }
 
-input EnumOptionEnumFilter {
-  equals: OptionEnum
-  in: [OptionEnum!]
-  not: NestedEnumOptionEnumFilter
-  notIn: [OptionEnum!]
+input EnumNameEnumFilter {
+  equals: NameEnum
+  in: [NameEnum!]
+  not: NestedEnumNameEnumFilter
+  notIn: [NameEnum!]
 }
 
 input EnumRoleEnumFieldUpdateOperationsInput {
@@ -595,7 +596,7 @@ type Mutation {
   """create one option set"""
   createOneOptions_set(data: Options_setCreateInput!): OptionSet!
 
-  """create one order"""
+  """craete on order"""
   createOneOrders(data: OrdersCreateInput!): Order!
 
   """create one price"""
@@ -628,11 +629,14 @@ type Mutation {
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
 
-  """update one order"""
-  updateOneOrders(data: OrdersUpdateInput!, where: OrdersWhereUniqueInput!): Order
-
   """update one user"""
   updateOneUsers(data: UsersUpdateInput!, where: UsersWhereUniqueInput!): User
+}
+
+enum NameEnum {
+  INSSURANCE
+  MEMBERSH1PFEE1
+  MEMBERSHIPFEE2
 }
 
 input NestedDateTimeFilter {
@@ -657,11 +661,11 @@ input NestedDateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
-input NestedEnumOptionEnumFilter {
-  equals: OptionEnum
-  in: [OptionEnum!]
-  not: NestedEnumOptionEnumFilter
-  notIn: [OptionEnum!]
+input NestedEnumNameEnumFilter {
+  equals: NameEnum
+  in: [NameEnum!]
+  not: NestedEnumNameEnumFilter
+  notIn: [NameEnum!]
 }
 
 input NestedEnumRoleEnumFilter {
@@ -728,14 +732,8 @@ input NullableStringFieldUpdateOperationsInput {
 type Option {
   created_at: Date!
   id: Int!
-  name: String!
+  name: String
   price: Price
-}
-
-enum OptionEnum {
-  INSSURANCE
-  MEMBERSH1PFEE1
-  MEMBERSHIPFEE2
 }
 
 type OptionSet {
@@ -744,7 +742,7 @@ type OptionSet {
   option_id: Int!
   options: Option
   order_id: Int!
-  paid_at: Date!
+  paid_at: Date
   price: Price
   price_id: Int!
   status: StatusEnum!
@@ -753,7 +751,7 @@ type OptionSet {
 input OptionsCreateInput {
   Prices: PricesCreateNestedManyWithoutOptionInput
   created_at: DateTime
-  name: OptionEnum!
+  name: NameEnum!
   orders: Options_setCreateNestedManyWithoutOptionInput
 }
 
@@ -782,12 +780,12 @@ input OptionsCreateOrConnectWithoutPricesInput {
 input OptionsCreateWithoutOrdersInput {
   Prices: PricesCreateNestedManyWithoutOptionInput
   created_at: DateTime
-  name: OptionEnum!
+  name: NameEnum!
 }
 
 input OptionsCreateWithoutPricesInput {
   created_at: DateTime
-  name: OptionEnum!
+  name: NameEnum!
   orders: Options_setCreateNestedManyWithoutOptionInput
 }
 
@@ -810,12 +808,12 @@ input OptionsUpdateOneRequiredWithoutPricesInput {
 input OptionsUpdateWithoutOrdersInput {
   Prices: PricesUpdateManyWithoutOptionInput
   created_at: DateTimeFieldUpdateOperationsInput
-  name: EnumOptionEnumFieldUpdateOperationsInput
+  name: EnumNameEnumFieldUpdateOperationsInput
 }
 
 input OptionsUpdateWithoutPricesInput {
   created_at: DateTimeFieldUpdateOperationsInput
-  name: EnumOptionEnumFieldUpdateOperationsInput
+  name: EnumNameEnumFieldUpdateOperationsInput
   orders: Options_setUpdateManyWithoutOptionInput
 }
 
@@ -836,7 +834,7 @@ input OptionsWhereInput {
   Prices: PricesListRelationFilter
   created_at: DateTimeFilter
   id: IntFilter
-  name: EnumOptionEnumFilter
+  name: EnumNameEnumFilter
   orders: Options_setListRelationFilter
 }
 
@@ -1127,25 +1125,25 @@ input OrdersCreateInput {
   cancelled_at: DateTime
   created_at: DateTime
   options_set: Options_setCreateNestedManyWithoutOrderInput
-  users: UsersCreateNestedOneWithoutOrdersInput!
+  user: UsersCreateNestedOneWithoutOrdersInput!
 }
 
-input OrdersCreateManyUsersInput {
+input OrdersCreateManyUserInput {
   cancelled_at: DateTime
   created_at: DateTime
   id: Int
 }
 
-input OrdersCreateManyUsersInputEnvelope {
-  data: [OrdersCreateManyUsersInput!]
+input OrdersCreateManyUserInputEnvelope {
+  data: [OrdersCreateManyUserInput!]
   skipDuplicates: Boolean
 }
 
-input OrdersCreateNestedManyWithoutUsersInput {
+input OrdersCreateNestedManyWithoutUserInput {
   connect: [OrdersWhereUniqueInput!]
-  connectOrCreate: [OrdersCreateOrConnectWithoutUsersInput!]
-  create: [OrdersCreateWithoutUsersInput!]
-  createMany: OrdersCreateManyUsersInputEnvelope
+  connectOrCreate: [OrdersCreateOrConnectWithoutUserInput!]
+  create: [OrdersCreateWithoutUserInput!]
+  createMany: OrdersCreateManyUserInputEnvelope
 }
 
 input OrdersCreateNestedOneWithoutOptions_setInput {
@@ -1159,18 +1157,18 @@ input OrdersCreateOrConnectWithoutOptions_setInput {
   where: OrdersWhereUniqueInput!
 }
 
-input OrdersCreateOrConnectWithoutUsersInput {
-  create: OrdersCreateWithoutUsersInput!
+input OrdersCreateOrConnectWithoutUserInput {
+  create: OrdersCreateWithoutUserInput!
   where: OrdersWhereUniqueInput!
 }
 
 input OrdersCreateWithoutOptions_setInput {
   cancelled_at: DateTime
   created_at: DateTime
-  users: UsersCreateNestedOneWithoutOrdersInput!
+  user: UsersCreateNestedOneWithoutOrdersInput!
 }
 
-input OrdersCreateWithoutUsersInput {
+input OrdersCreateWithoutUserInput {
   cancelled_at: DateTime
   created_at: DateTime
   options_set: Options_setCreateNestedManyWithoutOrderInput
@@ -1189,14 +1187,7 @@ input OrdersScalarWhereInput {
   cancelled_at: DateTimeNullableFilter
   created_at: DateTimeFilter
   id: IntFilter
-  users_id: IntFilter
-}
-
-input OrdersUpdateInput {
-  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  options_set: Options_setUpdateManyWithoutOrderInput
-  users: UsersUpdateOneRequiredWithoutOrdersInput
+  user_id: IntFilter
 }
 
 input OrdersUpdateManyMutationInput {
@@ -1204,23 +1195,23 @@ input OrdersUpdateManyMutationInput {
   created_at: DateTimeFieldUpdateOperationsInput
 }
 
-input OrdersUpdateManyWithWhereWithoutUsersInput {
+input OrdersUpdateManyWithWhereWithoutUserInput {
   data: OrdersUpdateManyMutationInput!
   where: OrdersScalarWhereInput!
 }
 
-input OrdersUpdateManyWithoutUsersInput {
+input OrdersUpdateManyWithoutUserInput {
   connect: [OrdersWhereUniqueInput!]
-  connectOrCreate: [OrdersCreateOrConnectWithoutUsersInput!]
-  create: [OrdersCreateWithoutUsersInput!]
-  createMany: OrdersCreateManyUsersInputEnvelope
+  connectOrCreate: [OrdersCreateOrConnectWithoutUserInput!]
+  create: [OrdersCreateWithoutUserInput!]
+  createMany: OrdersCreateManyUserInputEnvelope
   delete: [OrdersWhereUniqueInput!]
   deleteMany: [OrdersScalarWhereInput!]
   disconnect: [OrdersWhereUniqueInput!]
   set: [OrdersWhereUniqueInput!]
-  update: [OrdersUpdateWithWhereUniqueWithoutUsersInput!]
-  updateMany: [OrdersUpdateManyWithWhereWithoutUsersInput!]
-  upsert: [OrdersUpsertWithWhereUniqueWithoutUsersInput!]
+  update: [OrdersUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [OrdersUpdateManyWithWhereWithoutUserInput!]
+  upsert: [OrdersUpsertWithWhereUniqueWithoutUserInput!]
 }
 
 input OrdersUpdateOneRequiredWithoutOptions_setInput {
@@ -1231,26 +1222,26 @@ input OrdersUpdateOneRequiredWithoutOptions_setInput {
   upsert: OrdersUpsertWithoutOptions_setInput
 }
 
-input OrdersUpdateWithWhereUniqueWithoutUsersInput {
-  data: OrdersUpdateWithoutUsersInput!
+input OrdersUpdateWithWhereUniqueWithoutUserInput {
+  data: OrdersUpdateWithoutUserInput!
   where: OrdersWhereUniqueInput!
 }
 
 input OrdersUpdateWithoutOptions_setInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
-  users: UsersUpdateOneRequiredWithoutOrdersInput
+  user: UsersUpdateOneRequiredWithoutOrdersInput
 }
 
-input OrdersUpdateWithoutUsersInput {
+input OrdersUpdateWithoutUserInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   options_set: Options_setUpdateManyWithoutOrderInput
 }
 
-input OrdersUpsertWithWhereUniqueWithoutUsersInput {
-  create: OrdersCreateWithoutUsersInput!
-  update: OrdersUpdateWithoutUsersInput!
+input OrdersUpsertWithWhereUniqueWithoutUserInput {
+  create: OrdersCreateWithoutUserInput!
+  update: OrdersUpdateWithoutUserInput!
   where: OrdersWhereUniqueInput!
 }
 
@@ -1267,8 +1258,8 @@ input OrdersWhereInput {
   created_at: DateTimeFilter
   id: IntFilter
   options_set: Options_setListRelationFilter
-  users: UsersWhereInput
-  users_id: IntFilter
+  user: UsersWhereInput
+  user_id: IntFilter
 }
 
 input OrdersWhereUniqueInput {
@@ -1434,9 +1425,6 @@ type Query {
 
   """get options"""
   options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!
-
-  """get orders"""
-  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int): [Order!]!
   prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, where: PricesWhereInput): [Price!]!
   users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByInput!], where: UsersWhereInput): [User!]!
 }
@@ -1518,7 +1506,7 @@ input UsersCreateInput {
   email: String!
   first_name: String!
   name: String!
-  orders: OrdersCreateNestedManyWithoutUsersInput
+  orders: OrdersCreateNestedManyWithoutUserInput
   password: String!
   phone_number: String!
   role: RoleEnum
@@ -1554,7 +1542,7 @@ input UsersCreateWithoutChildrenInput {
   email: String!
   first_name: String!
   name: String!
-  orders: OrdersCreateNestedManyWithoutUsersInput
+  orders: OrdersCreateNestedManyWithoutUserInput
   password: String!
   phone_number: String!
   role: RoleEnum
@@ -1597,7 +1585,7 @@ input UsersUpdateInput {
   email: StringFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  orders: OrdersUpdateManyWithoutUsersInput
+  orders: OrdersUpdateManyWithoutUserInput
   password: StringFieldUpdateOperationsInput
   phone_number: StringFieldUpdateOperationsInput
   role: EnumRoleEnumFieldUpdateOperationsInput
@@ -1627,7 +1615,7 @@ input UsersUpdateWithoutChildrenInput {
   email: StringFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  orders: OrdersUpdateManyWithoutUsersInput
+  orders: OrdersUpdateManyWithoutUserInput
   password: StringFieldUpdateOperationsInput
   phone_number: StringFieldUpdateOperationsInput
   role: EnumRoleEnumFieldUpdateOperationsInput

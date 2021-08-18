@@ -7,7 +7,7 @@ export const option_set = objectType({
     t.nonNull.field("status", {
       type: "StatusEnum",
     });
-    t.nonNull.date("paid_at");
+    t.date("paid_at");
     t.date("cancelled_at");
     t.nonNull.int("option_id");
     t.nonNull.int("price_id");

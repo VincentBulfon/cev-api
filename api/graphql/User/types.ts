@@ -23,7 +23,7 @@ export const user = objectType({
       type: "Order",
       resolve: (root, args, ctx) => {
         return ctx.prisma.orders.findMany({
-          where: { users_id: root.id },
+          where: { user_id: root.id },
         });
       },
     });

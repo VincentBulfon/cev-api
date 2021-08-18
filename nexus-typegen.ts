@@ -460,14 +460,14 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
   }
-  EnumOptionEnumFieldUpdateOperationsInput: { // input type
-    set?: NexusGenEnums['OptionEnum'] | null; // OptionEnum
+  EnumNameEnumFieldUpdateOperationsInput: { // input type
+    set?: NexusGenEnums['NameEnum'] | null; // NameEnum
   }
-  EnumOptionEnumFilter: { // input type
-    equals?: NexusGenEnums['OptionEnum'] | null; // OptionEnum
-    in?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
-    not?: NexusGenInputs['NestedEnumOptionEnumFilter'] | null; // NestedEnumOptionEnumFilter
-    notIn?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
+  EnumNameEnumFilter: { // input type
+    equals?: NexusGenEnums['NameEnum'] | null; // NameEnum
+    in?: NexusGenEnums['NameEnum'][] | null; // [NameEnum!]
+    not?: NexusGenInputs['NestedEnumNameEnumFilter'] | null; // NestedEnumNameEnumFilter
+    notIn?: NexusGenEnums['NameEnum'][] | null; // [NameEnum!]
   }
   EnumRoleEnumFieldUpdateOperationsInput: { // input type
     set?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
@@ -524,11 +524,11 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
   }
-  NestedEnumOptionEnumFilter: { // input type
-    equals?: NexusGenEnums['OptionEnum'] | null; // OptionEnum
-    in?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
-    not?: NexusGenInputs['NestedEnumOptionEnumFilter'] | null; // NestedEnumOptionEnumFilter
-    notIn?: NexusGenEnums['OptionEnum'][] | null; // [OptionEnum!]
+  NestedEnumNameEnumFilter: { // input type
+    equals?: NexusGenEnums['NameEnum'] | null; // NameEnum
+    in?: NexusGenEnums['NameEnum'][] | null; // [NameEnum!]
+    not?: NexusGenInputs['NestedEnumNameEnumFilter'] | null; // NestedEnumNameEnumFilter
+    notIn?: NexusGenEnums['NameEnum'][] | null; // [NameEnum!]
   }
   NestedEnumRoleEnumFilter: { // input type
     equals?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
@@ -587,7 +587,7 @@ export interface NexusGenInputs {
   OptionsCreateInput: { // input type
     Prices?: NexusGenInputs['PricesCreateNestedManyWithoutOptionInput'] | null; // PricesCreateNestedManyWithoutOptionInput
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    name: NexusGenEnums['OptionEnum']; // OptionEnum!
+    name: NexusGenEnums['NameEnum']; // NameEnum!
     orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
   }
   OptionsCreateNestedOneWithoutOrdersInput: { // input type
@@ -611,11 +611,11 @@ export interface NexusGenInputs {
   OptionsCreateWithoutOrdersInput: { // input type
     Prices?: NexusGenInputs['PricesCreateNestedManyWithoutOptionInput'] | null; // PricesCreateNestedManyWithoutOptionInput
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    name: NexusGenEnums['OptionEnum']; // OptionEnum!
+    name: NexusGenEnums['NameEnum']; // NameEnum!
   }
   OptionsCreateWithoutPricesInput: { // input type
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    name: NexusGenEnums['OptionEnum']; // OptionEnum!
+    name: NexusGenEnums['NameEnum']; // NameEnum!
     orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
   }
   OptionsUpdateOneRequiredWithoutOrdersInput: { // input type
@@ -635,11 +635,11 @@ export interface NexusGenInputs {
   OptionsUpdateWithoutOrdersInput: { // input type
     Prices?: NexusGenInputs['PricesUpdateManyWithoutOptionInput'] | null; // PricesUpdateManyWithoutOptionInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    name?: NexusGenInputs['EnumOptionEnumFieldUpdateOperationsInput'] | null; // EnumOptionEnumFieldUpdateOperationsInput
+    name?: NexusGenInputs['EnumNameEnumFieldUpdateOperationsInput'] | null; // EnumNameEnumFieldUpdateOperationsInput
   }
   OptionsUpdateWithoutPricesInput: { // input type
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    name?: NexusGenInputs['EnumOptionEnumFieldUpdateOperationsInput'] | null; // EnumOptionEnumFieldUpdateOperationsInput
+    name?: NexusGenInputs['EnumNameEnumFieldUpdateOperationsInput'] | null; // EnumNameEnumFieldUpdateOperationsInput
     orders?: NexusGenInputs['Options_setUpdateManyWithoutOptionInput'] | null; // Options_setUpdateManyWithoutOptionInput
   }
   OptionsUpsertWithoutOrdersInput: { // input type
@@ -657,7 +657,7 @@ export interface NexusGenInputs {
     Prices?: NexusGenInputs['PricesListRelationFilter'] | null; // PricesListRelationFilter
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    name?: NexusGenInputs['EnumOptionEnumFilter'] | null; // EnumOptionEnumFilter
+    name?: NexusGenInputs['EnumNameEnumFilter'] | null; // EnumNameEnumFilter
     orders?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
   }
   OptionsWhereUniqueInput: { // input type
@@ -901,22 +901,22 @@ export interface NexusGenInputs {
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutOrderInput'] | null; // Options_setCreateNestedManyWithoutOrderInput
-    users: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
+    user: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
   }
-  OrdersCreateManyUsersInput: { // input type
+  OrdersCreateManyUserInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
   }
-  OrdersCreateManyUsersInputEnvelope: { // input type
-    data?: NexusGenInputs['OrdersCreateManyUsersInput'][] | null; // [OrdersCreateManyUsersInput!]
+  OrdersCreateManyUserInputEnvelope: { // input type
+    data?: NexusGenInputs['OrdersCreateManyUserInput'][] | null; // [OrdersCreateManyUserInput!]
     skipDuplicates?: boolean | null; // Boolean
   }
-  OrdersCreateNestedManyWithoutUsersInput: { // input type
+  OrdersCreateNestedManyWithoutUserInput: { // input type
     connect?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutUsersInput'][] | null; // [OrdersCreateOrConnectWithoutUsersInput!]
-    create?: NexusGenInputs['OrdersCreateWithoutUsersInput'][] | null; // [OrdersCreateWithoutUsersInput!]
-    createMany?: NexusGenInputs['OrdersCreateManyUsersInputEnvelope'] | null; // OrdersCreateManyUsersInputEnvelope
+    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutUserInput'][] | null; // [OrdersCreateOrConnectWithoutUserInput!]
+    create?: NexusGenInputs['OrdersCreateWithoutUserInput'][] | null; // [OrdersCreateWithoutUserInput!]
+    createMany?: NexusGenInputs['OrdersCreateManyUserInputEnvelope'] | null; // OrdersCreateManyUserInputEnvelope
   }
   OrdersCreateNestedOneWithoutOptions_setInput: { // input type
     connect?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
@@ -927,16 +927,16 @@ export interface NexusGenInputs {
     create: NexusGenInputs['OrdersCreateWithoutOptions_setInput']; // OrdersCreateWithoutOptions_setInput!
     where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
   }
-  OrdersCreateOrConnectWithoutUsersInput: { // input type
-    create: NexusGenInputs['OrdersCreateWithoutUsersInput']; // OrdersCreateWithoutUsersInput!
+  OrdersCreateOrConnectWithoutUserInput: { // input type
+    create: NexusGenInputs['OrdersCreateWithoutUserInput']; // OrdersCreateWithoutUserInput!
     where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
   }
   OrdersCreateWithoutOptions_setInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
-    users: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
+    user: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
   }
-  OrdersCreateWithoutUsersInput: { // input type
+  OrdersCreateWithoutUserInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutOrderInput'] | null; // Options_setCreateNestedManyWithoutOrderInput
@@ -953,34 +953,28 @@ export interface NexusGenInputs {
     cancelled_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    users_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-  }
-  OrdersUpdateInput: { // input type
-    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
-    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    options_set?: NexusGenInputs['Options_setUpdateManyWithoutOrderInput'] | null; // Options_setUpdateManyWithoutOrderInput
-    users?: NexusGenInputs['UsersUpdateOneRequiredWithoutOrdersInput'] | null; // UsersUpdateOneRequiredWithoutOrdersInput
+    user_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   OrdersUpdateManyMutationInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  OrdersUpdateManyWithWhereWithoutUsersInput: { // input type
+  OrdersUpdateManyWithWhereWithoutUserInput: { // input type
     data: NexusGenInputs['OrdersUpdateManyMutationInput']; // OrdersUpdateManyMutationInput!
     where: NexusGenInputs['OrdersScalarWhereInput']; // OrdersScalarWhereInput!
   }
-  OrdersUpdateManyWithoutUsersInput: { // input type
+  OrdersUpdateManyWithoutUserInput: { // input type
     connect?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutUsersInput'][] | null; // [OrdersCreateOrConnectWithoutUsersInput!]
-    create?: NexusGenInputs['OrdersCreateWithoutUsersInput'][] | null; // [OrdersCreateWithoutUsersInput!]
-    createMany?: NexusGenInputs['OrdersCreateManyUsersInputEnvelope'] | null; // OrdersCreateManyUsersInputEnvelope
+    connectOrCreate?: NexusGenInputs['OrdersCreateOrConnectWithoutUserInput'][] | null; // [OrdersCreateOrConnectWithoutUserInput!]
+    create?: NexusGenInputs['OrdersCreateWithoutUserInput'][] | null; // [OrdersCreateWithoutUserInput!]
+    createMany?: NexusGenInputs['OrdersCreateManyUserInputEnvelope'] | null; // OrdersCreateManyUserInputEnvelope
     delete?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
     deleteMany?: NexusGenInputs['OrdersScalarWhereInput'][] | null; // [OrdersScalarWhereInput!]
     disconnect?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
     set?: NexusGenInputs['OrdersWhereUniqueInput'][] | null; // [OrdersWhereUniqueInput!]
-    update?: NexusGenInputs['OrdersUpdateWithWhereUniqueWithoutUsersInput'][] | null; // [OrdersUpdateWithWhereUniqueWithoutUsersInput!]
-    updateMany?: NexusGenInputs['OrdersUpdateManyWithWhereWithoutUsersInput'][] | null; // [OrdersUpdateManyWithWhereWithoutUsersInput!]
-    upsert?: NexusGenInputs['OrdersUpsertWithWhereUniqueWithoutUsersInput'][] | null; // [OrdersUpsertWithWhereUniqueWithoutUsersInput!]
+    update?: NexusGenInputs['OrdersUpdateWithWhereUniqueWithoutUserInput'][] | null; // [OrdersUpdateWithWhereUniqueWithoutUserInput!]
+    updateMany?: NexusGenInputs['OrdersUpdateManyWithWhereWithoutUserInput'][] | null; // [OrdersUpdateManyWithWhereWithoutUserInput!]
+    upsert?: NexusGenInputs['OrdersUpsertWithWhereUniqueWithoutUserInput'][] | null; // [OrdersUpsertWithWhereUniqueWithoutUserInput!]
   }
   OrdersUpdateOneRequiredWithoutOptions_setInput: { // input type
     connect?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
@@ -989,23 +983,23 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['OrdersUpdateWithoutOptions_setInput'] | null; // OrdersUpdateWithoutOptions_setInput
     upsert?: NexusGenInputs['OrdersUpsertWithoutOptions_setInput'] | null; // OrdersUpsertWithoutOptions_setInput
   }
-  OrdersUpdateWithWhereUniqueWithoutUsersInput: { // input type
-    data: NexusGenInputs['OrdersUpdateWithoutUsersInput']; // OrdersUpdateWithoutUsersInput!
+  OrdersUpdateWithWhereUniqueWithoutUserInput: { // input type
+    data: NexusGenInputs['OrdersUpdateWithoutUserInput']; // OrdersUpdateWithoutUserInput!
     where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
   }
   OrdersUpdateWithoutOptions_setInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    users?: NexusGenInputs['UsersUpdateOneRequiredWithoutOrdersInput'] | null; // UsersUpdateOneRequiredWithoutOrdersInput
+    user?: NexusGenInputs['UsersUpdateOneRequiredWithoutOrdersInput'] | null; // UsersUpdateOneRequiredWithoutOrdersInput
   }
-  OrdersUpdateWithoutUsersInput: { // input type
+  OrdersUpdateWithoutUserInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     options_set?: NexusGenInputs['Options_setUpdateManyWithoutOrderInput'] | null; // Options_setUpdateManyWithoutOrderInput
   }
-  OrdersUpsertWithWhereUniqueWithoutUsersInput: { // input type
-    create: NexusGenInputs['OrdersCreateWithoutUsersInput']; // OrdersCreateWithoutUsersInput!
-    update: NexusGenInputs['OrdersUpdateWithoutUsersInput']; // OrdersUpdateWithoutUsersInput!
+  OrdersUpsertWithWhereUniqueWithoutUserInput: { // input type
+    create: NexusGenInputs['OrdersCreateWithoutUserInput']; // OrdersCreateWithoutUserInput!
+    update: NexusGenInputs['OrdersUpdateWithoutUserInput']; // OrdersUpdateWithoutUserInput!
     where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
   }
   OrdersUpsertWithoutOptions_setInput: { // input type
@@ -1020,8 +1014,8 @@ export interface NexusGenInputs {
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     options_set?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
-    users?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
-    users_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    user?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
+    user_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   OrdersWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -1187,7 +1181,7 @@ export interface NexusGenInputs {
     email: string; // String!
     first_name: string; // String!
     name: string; // String!
-    orders?: NexusGenInputs['OrdersCreateNestedManyWithoutUsersInput'] | null; // OrdersCreateNestedManyWithoutUsersInput
+    orders?: NexusGenInputs['OrdersCreateNestedManyWithoutUserInput'] | null; // OrdersCreateNestedManyWithoutUserInput
     password: string; // String!
     phone_number: string; // String!
     role?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
@@ -1218,7 +1212,7 @@ export interface NexusGenInputs {
     email: string; // String!
     first_name: string; // String!
     name: string; // String!
-    orders?: NexusGenInputs['OrdersCreateNestedManyWithoutUsersInput'] | null; // OrdersCreateNestedManyWithoutUsersInput
+    orders?: NexusGenInputs['OrdersCreateNestedManyWithoutUserInput'] | null; // OrdersCreateNestedManyWithoutUserInput
     password: string; // String!
     phone_number: string; // String!
     role?: NexusGenEnums['RoleEnum'] | null; // RoleEnum
@@ -1258,7 +1252,7 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrdersUpdateManyWithoutUsersInput'] | null; // OrdersUpdateManyWithoutUsersInput
+    orders?: NexusGenInputs['OrdersUpdateManyWithoutUserInput'] | null; // OrdersUpdateManyWithoutUserInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phone_number?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     role?: NexusGenInputs['EnumRoleEnumFieldUpdateOperationsInput'] | null; // EnumRoleEnumFieldUpdateOperationsInput
@@ -1285,7 +1279,7 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    orders?: NexusGenInputs['OrdersUpdateManyWithoutUsersInput'] | null; // OrdersUpdateManyWithoutUsersInput
+    orders?: NexusGenInputs['OrdersUpdateManyWithoutUserInput'] | null; // OrdersUpdateManyWithoutUserInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phone_number?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     role?: NexusGenInputs['EnumRoleEnumFieldUpdateOperationsInput'] | null; // EnumRoleEnumFieldUpdateOperationsInput
@@ -1338,7 +1332,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  OptionEnum: "INSSURANCE" | "MEMBERSH1PFEE1" | "MEMBERSHIPFEE2"
+  NameEnum: "INSSURANCE" | "MEMBERSH1PFEE1" | "MEMBERSHIPFEE2"
   QueryMode: "default" | "insensitive"
   RoleEnum: "ADMIN" | "MONITOR" | "USER"
   SortOrder: "asc" | "desc"
@@ -1380,14 +1374,14 @@ export interface NexusGenObjects {
   Option: { // root type
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
-    name: string; // String!
+    name?: string | null; // String
   }
   OptionSet: { // root type
     cancelled_at?: NexusGenScalars['Date'] | null; // Date
     id: number; // Int!
     option_id: number; // Int!
     order_id: number; // Int!
-    paid_at: NexusGenScalars['Date']; // Date!
+    paid_at?: NexusGenScalars['Date'] | null; // Date
     price_id: number; // Int!
     status: NexusGenEnums['StatusEnum']; // StatusEnum!
   }
@@ -1434,6 +1428,7 @@ export interface NexusGenFieldTypes {
   }
   Child: { // field return type
     birth_date: NexusGenScalars['Date']; // Date!
+    courses: Array<NexusGenRootTypes['Course'] | null> | null; // [Course]
     first_name: string; // String!
     id: number; // Int!
     name: string; // String!
@@ -1466,13 +1461,12 @@ export interface NexusGenFieldTypes {
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
-    updateOneOrders: NexusGenRootTypes['Order'] | null; // Order
     updateOneUsers: NexusGenRootTypes['User'] | null; // User
   }
   Option: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
-    name: string; // String!
+    name: string | null; // String
     price: NexusGenRootTypes['Price'] | null; // Price
   }
   OptionSet: { // field return type
@@ -1481,7 +1475,7 @@ export interface NexusGenFieldTypes {
     option_id: number; // Int!
     options: NexusGenRootTypes['Option'] | null; // Option
     order_id: number; // Int!
-    paid_at: NexusGenScalars['Date']; // Date!
+    paid_at: NexusGenScalars['Date'] | null; // Date
     price: NexusGenRootTypes['Price'] | null; // Price
     price_id: number; // Int!
     status: NexusGenEnums['StatusEnum']; // StatusEnum!
@@ -1504,7 +1498,6 @@ export interface NexusGenFieldTypes {
     children: NexusGenRootTypes['Child'][]; // [Child!]!
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     options: NexusGenRootTypes['Option'][]; // [Option!]!
-    orders: NexusGenRootTypes['Order'][]; // [Order!]!
     prices: NexusGenRootTypes['Price'][]; // [Price!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
@@ -1531,6 +1524,7 @@ export interface NexusGenFieldTypeNames {
   }
   Child: { // field return type name
     birth_date: 'Date'
+    courses: 'Course'
     first_name: 'String'
     id: 'Int'
     name: 'String'
@@ -1563,7 +1557,6 @@ export interface NexusGenFieldTypeNames {
     updateOneCancellations: 'Cancellation'
     updateOneChildren: 'Child'
     updateOneCourses: 'Course'
-    updateOneOrders: 'Order'
     updateOneUsers: 'User'
   }
   Option: { // field return type name
@@ -1601,7 +1594,6 @@ export interface NexusGenFieldTypeNames {
     children: 'Child'
     courses: 'Course'
     options: 'Option'
-    orders: 'Order'
     prices: 'Price'
     users: 'User'
   }
@@ -1678,10 +1670,6 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['CoursesUpdateInput']; // CoursesUpdateInput!
       where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
     }
-    updateOneOrders: { // args
-      data: NexusGenInputs['OrdersUpdateInput']; // OrdersUpdateInput!
-      where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
-    }
     updateOneUsers: { // args
       data: NexusGenInputs['UsersUpdateInput']; // UsersUpdateInput!
       where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
@@ -1716,12 +1704,6 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
       where?: NexusGenInputs['OptionsWhereInput'] | null; // OptionsWhereInput
-    }
-    orders: { // args
-      after?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
-      before?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
     }
     prices: { // args
       after?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput

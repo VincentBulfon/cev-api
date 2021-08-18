@@ -82,43 +82,43 @@ async function main() {
   const courses = await prisma.courses.createMany({
     data: [
       {
-        day_of_week: 0,
+        day_of_week: 1,
         places: 16,
         start_time: new Date("1996-01-01T18:00:00"),
         end_time: new Date("1996-01-01T19:00:00"),
       },
       {
-        day_of_week: 0,
+        day_of_week: 1,
         places: 16,
         start_time: new Date("1996-01-01T19:00:00"),
         end_time: new Date("1996-01-01T20:00:00"),
       },
       {
-        day_of_week: 2,
+        day_of_week: 3,
         places: 16,
         start_time: new Date("1996-01-02T17:30:00"),
         end_time: new Date("1996-01-01T18:30:00"),
       },
       {
-        day_of_week: 2,
+        day_of_week: 3,
         places: 16,
         start_time: new Date("1996-01-01T18:30:00"),
         end_time: new Date("1996-01-01T19:30:00"),
       },
       {
-        day_of_week: 5,
+        day_of_week: 6,
         places: 16,
         start_time: new Date("1996-01-01T10:00:00"),
         end_time: new Date("1996-01-01T11:00:00"),
       },
       {
-        day_of_week: 5,
+        day_of_week: 6,
         places: 16,
         start_time: new Date("1996-01-01T11:00:00"),
         end_time: new Date("1996-01-01T12:00:00"),
       },
       {
-        day_of_week: 5,
+        day_of_week: 6,
         places: 16,
         start_time: new Date("1996-01-01T12:00:00"),
         end_time: new Date("1996-01-01T13:00:00"),
@@ -225,7 +225,7 @@ async function main() {
 
   const orders = await prisma.orders.create({
     data: {
-      users: { connect: { email: "alex@prisma.io" } },
+      user: { connect: { email: "alex@prisma.io" } },
       options_set: {
         create: [
           {

@@ -55,8 +55,8 @@ model Cancellations {
 
 model Options {
   id         Int           @id @default(autoincrement())
-  name       OptionEnum
   created_at DateTime      @default(now())
+  name       NameEnum
   orders     Options_set[]
   Prices     Prices[]
 }
@@ -74,8 +74,8 @@ model Orders {
   id           Int           @id @default(autoincrement())
   cancelled_at DateTime?
   created_at   DateTime      @default(now())
-  users_id     Int
-  users        Users         @relation(fields: [users_id], references: [id])
+  user_id      Int
+  user         Users         @relation(fields: [user_id], references: [id])
   options_set  Options_set[]
 }
 
@@ -98,7 +98,7 @@ enum RoleEnum {
   USER
 }
 
-enum OptionEnum {
+enum NameEnum {
   INSSURANCE
   MEMBERSH1PFEE1
   MEMBERSHIPFEE2

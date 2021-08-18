@@ -16,5 +16,13 @@ export const child = objectType({
         });
       },
     });
+    t.list.field("courses", {
+      type: "Course",
+      resolve: (root, _, ctx) => {
+        return ctx.prisma.courses.findMany({
+          where: { children: { every: { id: { equals: root.id } } } },
+        });
+      },
+    });
   },
 });
