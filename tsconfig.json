@@ -6,6 +6,13 @@
     "module": "commonjs",
     "strict": true,
     "outDir": "build",
-    "rootDir": "."
-  }
+    "rootDir": ".",
+    "plugins": [
+      {
+        "name": "nexus/typescript-language-service"
+      }
+    ],
+    "typeRoots": ["node_modules/@types", "types"]
+  },
+  "include": ["types.d.ts", "."]
 }
