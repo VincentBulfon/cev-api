@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "target": "es2018",
+    "sourceMap": true,
     "module": "commonjs",
-    "strict": true,
-    "outDir": "build",
-    "rootDir": ".",
-    "plugins": [
-      {
-        "name": "nexus/typescript-language-service"
-      }
-    ],
-    "typeRoots": ["node_modules/@types", "types"]
+    "target": "ES2018",
+    "outDir": "dist",
+    "lib": ["esnext", "dom"],
+    // "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noUnusedParameters": false
   },
-  "include": ["types.d.ts", "."]
+  "include": ["./src"]
 }
