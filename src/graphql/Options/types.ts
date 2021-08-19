@@ -14,6 +14,7 @@ export const option = objectType({
       type: "Price",
       resolve: (root, _, ctx) => {
         return ctx.prisma.prices.findFirst({
+          where: { option_id: { equals: root.id } },
           orderBy: { created_at: "asc" },
           take: 1,
         });
