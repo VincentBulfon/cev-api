@@ -150,10 +150,10 @@ async function main() {
         createMany: {
           data: [
             {
-              date: new Date(2021, 9, 20),
+              date: new Date(2021, 9, 24),
             },
             {
-              date: new Date(2021, 9, 27),
+              date: new Date(2021, 9, 17),
               deleted_at: new Date(Date.now()),
             },
           ],
