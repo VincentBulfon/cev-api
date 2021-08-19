@@ -4,7 +4,7 @@
  */
 
 
-import type { Context as ContextModule } from "./api/context"
+import type { Context as ContextModule } from "./src/context"
 import type { core } from "nexus"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
