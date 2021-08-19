@@ -1,5 +1,4 @@
 import { arg, objectType } from "nexus";
-import { DateScalar } from "../scalars";
 
 export const course = objectType({
   name: "Course",
