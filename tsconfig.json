@@ -3,7 +3,7 @@
     "sourceMap": true,
     "module": "commonjs",
     "target": "ES2018",
-    "outDir": "dist",
+    "outDir": "./dist",
     "lib": ["ESNext", "DOM"],
     // "strict": true,
     "noImplicitAny": true,
