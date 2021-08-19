@@ -4,7 +4,7 @@
     "module": "commonjs",
     "target": "ES2018",
     "outDir": "dist",
-    "lib": ["esnext", "dom"],
+    "lib": ["ESNext", "DOM"],
     // "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -14,6 +14,5 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noUnusedParameters": false
-  },
-  "include": ["./api"]
+  }
 }
