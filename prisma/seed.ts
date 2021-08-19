@@ -19,7 +19,7 @@ async function main() {
         first_name: "Vincent",
         password: "root",
         role: "ADMIN",
-        phone_number: "00121212",
+        phone_number: "0456576787",
       },
       {
         email: "pierre@gmail.io",
@@ -27,7 +27,7 @@ async function main() {
         first_name: "Pierre",
         password: "root",
         role: "MONITOR",
-        phone_number: "00121212",
+        phone_number: "0456986789",
       },
       {
         email: "alex@prisma.io",
@@ -35,7 +35,7 @@ async function main() {
         first_name: "Alex",
         password: "root",
         role: "USER",
-        phone_number: "00121212",
+        phone_number: "0456576780",
       },
       {
         email: "alice@prisma.io",
