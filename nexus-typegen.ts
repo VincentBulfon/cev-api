@@ -1467,7 +1467,7 @@ export interface NexusGenFieldTypes {
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
     name: string | null; // String
-    price: NexusGenRootTypes['Price'] | null; // Price
+    price: NexusGenRootTypes['Price']; // Price!
   }
   OptionSet: { // field return type
     cancelled_at: NexusGenScalars['Date'] | null; // Date

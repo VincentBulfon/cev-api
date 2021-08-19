@@ -733,7 +733,7 @@ type Option {
   created_at: Date!
   id: Int!
   name: String
-  price: Price
+  price: Price!
 }
 
 type OptionSet {

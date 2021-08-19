@@ -10,7 +10,7 @@ export const option = objectType({
     // });
     t.string("name");
     t.nonNull.date("created_at");
-    t.field("price", {
+    t.nonNull.field("price", {
       type: "Price",
       resolve: (root, _, ctx) => {
         return ctx.prisma.prices.findFirst({
