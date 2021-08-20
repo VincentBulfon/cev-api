@@ -1429,6 +1429,7 @@ type Query {
   cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!
   children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int): [Child!]!
   courses(after: CoursesWhereUniqueInput, before: CoursesWhereUniqueInput, first: Int, last: Int, orderBy: [CoursesOrderByInput!], where: CoursesWhereInput): [Course!]!
+  currentUser: User!
 
   """get options"""
   options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!

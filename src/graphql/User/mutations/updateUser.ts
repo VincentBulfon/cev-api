@@ -1,6 +1,6 @@
 import { Maybe } from "graphql/jsutils/Maybe";
 import { arg, extendType, nonNull } from "nexus";
-import { getUserEmail } from "../../../ultils/getUserId";
+import { getUserEmail } from "../../../ultils/getUserEmail";
 import generateHashPassword from "../../../ultils/hashPassword";
 
 // export const updateUser = extendType({

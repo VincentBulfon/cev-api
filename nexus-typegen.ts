@@ -1517,6 +1517,7 @@ export interface NexusGenFieldTypes {
     cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
     children: NexusGenRootTypes['Child'][]; // [Child!]!
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
+    currentUser: NexusGenRootTypes['User']; // User!
     options: NexusGenRootTypes['Option'][]; // [Option!]!
     prices: NexusGenRootTypes['Price'][]; // [Price!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
@@ -1623,6 +1624,7 @@ export interface NexusGenFieldTypeNames {
     cancellations: 'Cancellation'
     children: 'Child'
     courses: 'Course'
+    currentUser: 'User'
     options: 'Option'
     prices: 'Price'
     users: 'User'

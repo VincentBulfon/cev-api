@@ -1,6 +1,8 @@
 import { ApolloServer } from "apollo-server";
+import { applyMiddleware } from "graphql-middleware";
 import { prisma } from "./db";
 import graphqlSchema from "./schema";
+import { middlewares } from "./shield/middlewares";
 
 export const server = new ApolloServer({
   introspection: true,
@@ -10,5 +12,5 @@ export const server = new ApolloServer({
       prisma,
     };
   },
-  schema: graphqlSchema,
+  schema: applyMiddleware(graphqlSchema, middlewares),
 });

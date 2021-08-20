@@ -4,7 +4,7 @@ import { Context } from "../context";
 interface Token {
   userEmail: string;
 }
-export const getUserEmail= (context: Context) => {
+export const getUserEmail = (context: Context) => {
   const authTokenWithBarer = context.request.request.headers.authorization;
   if (authTokenWithBarer) {
     const token = authTokenWithBarer.split(" ")[1];
