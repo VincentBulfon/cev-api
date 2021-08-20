@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken";
-import { arg, extendType, nonNull, stringArg } from "nexus";
+import { extendType, nonNull, stringArg } from "nexus";
 import { Context } from "../../../context";
 import mailService from "../../../ultils/sendEmail";
 

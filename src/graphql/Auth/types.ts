@@ -46,3 +46,16 @@ export const currentUser = extendType({
     });
   },
 });
+export const verifyTokenInput = inputObjectType({
+  name: "verifyTokenInput",
+  definition(t) {
+    t.nonNull.string("token");
+  },
+});
+
+export const tokenVerificationResponse = objectType({
+  name: "tokenVerificationResponse",
+  definition(t) {
+    t.boolean("response");
+  },
+});

@@ -627,6 +627,7 @@ type Mutation {
   deleteOneUsers(where: UsersWhereUniqueInput!): User
   forgotPassword(email: String!): MessagePayload!
   login(loginInput: loginInput): AuthPayload!
+  resetPassword(resetPasswordInput: resetPasswordInput!): MessagePayload!
   signup(signupInput: signupInput): AuthPayload!
 
   """update on cancellation"""
@@ -638,6 +639,7 @@ type Mutation {
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
   updateUser(updateUserInput: userUpdateInput!): User!
+  verifyToken(token: verifyTokenInput!): tokenVerificationResponse!
 }
 
 enum NameEnum {
@@ -1675,6 +1677,10 @@ input signupInput {
   phone_number: String!
 }
 
+type tokenVerificationResponse {
+  response: Boolean
+}
+
 input userUniqueInput {
   email: String
   id: ID
@@ -1684,4 +1690,8 @@ input userUpdateInput {
   email: String
   password: String
   resetPasswordToken: String
+}
+
+input verifyTokenInput {
+  token: String!
 }

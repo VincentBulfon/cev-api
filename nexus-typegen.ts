@@ -1332,6 +1332,9 @@ export interface NexusGenInputs {
     password?: string | null; // String
     resetPasswordToken?: string | null; // String
   }
+  verifyTokenInput: { // input type
+    token: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -1418,6 +1421,9 @@ export interface NexusGenObjects {
     secondary_email?: string | null; // String
     vertified_at?: NexusGenScalars['Date'] | null; // Date
   }
+  tokenVerificationResponse: { // root type
+    response?: boolean | null; // Boolean
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -1477,11 +1483,13 @@ export interface NexusGenFieldTypes {
     deleteOneUsers: NexusGenRootTypes['User'] | null; // User
     forgotPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
     updateUser: NexusGenRootTypes['User']; // User!
+    verifyToken: NexusGenRootTypes['tokenVerificationResponse']; // tokenVerificationResponse!
   }
   Option: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1535,6 +1543,9 @@ export interface NexusGenFieldTypes {
     secondary_email: string | null; // String
     vertified_at: NexusGenScalars['Date'] | null; // Date
   }
+  tokenVerificationResponse: { // field return type
+    response: boolean | null; // Boolean
+  }
 }
 
 export interface NexusGenFieldTypeNames {
@@ -1584,11 +1595,13 @@ export interface NexusGenFieldTypeNames {
     deleteOneUsers: 'User'
     forgotPassword: 'MessagePayload'
     login: 'AuthPayload'
+    resetPassword: 'MessagePayload'
     signup: 'AuthPayload'
     updateOneCancellations: 'Cancellation'
     updateOneChildren: 'Child'
     updateOneCourses: 'Course'
     updateUser: 'User'
+    verifyToken: 'tokenVerificationResponse'
   }
   Option: { // field return type name
     created_at: 'Date'
@@ -1642,6 +1655,9 @@ export interface NexusGenFieldTypeNames {
     secondary_email: 'String'
     vertified_at: 'Date'
   }
+  tokenVerificationResponse: { // field return type name
+    response: 'Boolean'
+  }
 }
 
 export interface NexusGenArgTypes {
@@ -1694,6 +1710,9 @@ export interface NexusGenArgTypes {
     login: { // args
       loginInput?: NexusGenInputs['loginInput'] | null; // loginInput
     }
+    resetPassword: { // args
+      resetPasswordInput: NexusGenInputs['resetPasswordInput']; // resetPasswordInput!
+    }
     signup: { // args
       signupInput?: NexusGenInputs['signupInput'] | null; // signupInput
     }
@@ -1711,6 +1730,9 @@ export interface NexusGenArgTypes {
     }
     updateUser: { // args
       updateUserInput: NexusGenInputs['userUpdateInput']; // userUpdateInput!
+    }
+    verifyToken: { // args
+      token: NexusGenInputs['verifyTokenInput']; // verifyTokenInput!
     }
   }
   Query: {
