@@ -13,6 +13,8 @@ export const verifyToken = extendType({
         console.log(user);
         if (user) {
           return { response: true };
+        } else {
+          return { response: false };
         }
       },
     });
