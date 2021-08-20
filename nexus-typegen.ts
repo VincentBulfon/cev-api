@@ -1422,7 +1422,8 @@ export interface NexusGenObjects {
     vertified_at?: NexusGenScalars['Date'] | null; // Date
   }
   tokenVerificationResponse: { // root type
-    response?: boolean | null; // Boolean
+    response: boolean; // Boolean!
+    userEmail: string; // String!
   }
 }
 
@@ -1544,7 +1545,8 @@ export interface NexusGenFieldTypes {
     vertified_at: NexusGenScalars['Date'] | null; // Date
   }
   tokenVerificationResponse: { // field return type
-    response: boolean | null; // Boolean
+    response: boolean; // Boolean!
+    userEmail: string; // String!
   }
 }
 
@@ -1657,6 +1659,7 @@ export interface NexusGenFieldTypeNames {
   }
   tokenVerificationResponse: { // field return type name
     response: 'Boolean'
+    userEmail: 'String'
   }
 }
 

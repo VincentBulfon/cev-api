@@ -1,7 +1,7 @@
 import { verify } from "jsonwebtoken";
 import { Context } from "../context";
 
-interface Token {
+export interface Token {
   userEmail: string;
 }
 export const getUserEmail = (context: Context) => {

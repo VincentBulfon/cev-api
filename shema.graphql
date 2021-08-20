@@ -1678,7 +1678,8 @@ input signupInput {
 }
 
 type tokenVerificationResponse {
-  response: Boolean
+  response: Boolean!
+  userEmail: String!
 }
 
 input userUniqueInput {

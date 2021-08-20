@@ -1,6 +1,6 @@
-import { Token } from "graphql";
 import { verify } from "jsonwebtoken";
-import { arg, extendType, nonNull, stringArg } from "nexus";
+import { arg, extendType, nonNull } from "nexus";
+import { Token } from "../../../ultils/getUserEmail";
 
 export const verifyToken = extendType({
   type: "Mutation",
@@ -10,11 +10,10 @@ export const verifyToken = extendType({
       args: { token: nonNull(arg({ type: "verifyTokenInput" })) },
       resolve: (root, { token: { token } }, ctx) => {
         const user = verify(token, process.env.JWT_KEY) as Token;
-        console.log(user);
         if (user) {
-          return { response: true };
+          return { response: true, userEmail: user.userEmail };
         } else {
-          return { response: false };
+          return { response: false, userEmail: "" };
         }
       },
     });
