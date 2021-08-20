@@ -2,6 +2,11 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String!
+  userEmail: String!
+}
+
 type Cancellation {
   created_at: Date!
   date: Date!
@@ -580,6 +585,10 @@ input IntFilter {
   notIn: [Int!]
 }
 
+type MessagePayload {
+  message: String!
+}
+
 type Mutation {
   """create one cancellation"""
   createOneCancellations(data: CancellationsCreateInput!): Cancellation!
@@ -602,9 +611,6 @@ type Mutation {
   """create one price"""
   createOnePrices(data: PricesCreateInput!): Price!
 
-  """create on user"""
-  createOneUsers(data: UsersCreateInput!): User!
-
   """delete on cancellations"""
   deleteOneCancellations(where: CancellationsWhereUniqueInput!): Cancellation
 
@@ -619,6 +625,9 @@ type Mutation {
 
   """delete on user"""
   deleteOneUsers(where: UsersWhereUniqueInput!): User
+  forgotPassword(email: String!): MessagePayload!
+  login(loginInput: loginInput): AuthPayload!
+  signup(signupInput: signupInput): AuthPayload!
 
   """update on cancellation"""
   updateOneCancellations(data: CancellationsUpdateInput!, where: CancellationsWhereUniqueInput!): Cancellation
@@ -628,9 +637,7 @@ type Mutation {
 
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
-
-  """update one user"""
-  updateOneUsers(data: UsersUpdateInput!, where: UsersWhereUniqueInput!): User
+  updateUser(updateUserInput: userUpdateInput!): User!
 }
 
 enum NameEnum {
@@ -1490,6 +1497,7 @@ type User {
   Orders: [Order]
   children: [Child]
   created_at: Date!
+  email: String!
   first_name: String!
   id: Int!
   name: String!
@@ -1497,21 +1505,6 @@ type User {
   phone_number: String!
   secondary_email: String
   vertified_at: Date
-}
-
-input UsersCreateInput {
-  children: ChildrenCreateNestedManyWithoutTutorInput
-  created_at: DateTime
-  deleted_at: DateTime
-  email: String!
-  first_name: String!
-  name: String!
-  orders: OrdersCreateNestedManyWithoutUserInput
-  password: String!
-  phone_number: String!
-  role: RoleEnum
-  secondary_email: String
-  verfifed_at: DateTime
 }
 
 input UsersCreateNestedOneWithoutChildrenInput {
@@ -1545,6 +1538,7 @@ input UsersCreateWithoutChildrenInput {
   orders: OrdersCreateNestedManyWithoutUserInput
   password: String!
   phone_number: String!
+  resetPasswordToken: String
   role: RoleEnum
   secondary_email: String
   verfifed_at: DateTime
@@ -1559,6 +1553,7 @@ input UsersCreateWithoutOrdersInput {
   name: String!
   password: String!
   phone_number: String!
+  resetPasswordToken: String
   role: RoleEnum
   secondary_email: String
   verfifed_at: DateTime
@@ -1573,24 +1568,10 @@ input UsersOrderByInput {
   name: SortOrder
   password: SortOrder
   phone_number: SortOrder
+  resetPasswordToken: SortOrder
   role: SortOrder
   secondary_email: SortOrder
   verfifed_at: SortOrder
-}
-
-input UsersUpdateInput {
-  children: ChildrenUpdateManyWithoutTutorInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  deleted_at: NullableDateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  first_name: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  orders: OrdersUpdateManyWithoutUserInput
-  password: StringFieldUpdateOperationsInput
-  phone_number: StringFieldUpdateOperationsInput
-  role: EnumRoleEnumFieldUpdateOperationsInput
-  secondary_email: NullableStringFieldUpdateOperationsInput
-  verfifed_at: NullableDateTimeFieldUpdateOperationsInput
 }
 
 input UsersUpdateOneRequiredWithoutChildrenInput {
@@ -1618,6 +1599,7 @@ input UsersUpdateWithoutChildrenInput {
   orders: OrdersUpdateManyWithoutUserInput
   password: StringFieldUpdateOperationsInput
   phone_number: StringFieldUpdateOperationsInput
+  resetPasswordToken: NullableStringFieldUpdateOperationsInput
   role: EnumRoleEnumFieldUpdateOperationsInput
   secondary_email: NullableStringFieldUpdateOperationsInput
   verfifed_at: NullableDateTimeFieldUpdateOperationsInput
@@ -1632,6 +1614,7 @@ input UsersUpdateWithoutOrdersInput {
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   phone_number: StringFieldUpdateOperationsInput
+  resetPasswordToken: NullableStringFieldUpdateOperationsInput
   role: EnumRoleEnumFieldUpdateOperationsInput
   secondary_email: NullableStringFieldUpdateOperationsInput
   verfifed_at: NullableDateTimeFieldUpdateOperationsInput
@@ -1661,6 +1644,7 @@ input UsersWhereInput {
   orders: OrdersListRelationFilter
   password: StringFilter
   phone_number: StringFilter
+  resetPasswordToken: StringNullableFilter
   role: EnumRoleEnumFilter
   secondary_email: StringNullableFilter
   verfifed_at: DateTimeNullableFilter
@@ -1669,4 +1653,33 @@ input UsersWhereInput {
 input UsersWhereUniqueInput {
   email: String
   id: Int
+}
+
+input loginInput {
+  email: String!
+  password: String!
+}
+
+input resetPasswordInput {
+  newPassword: String!
+  resetPasswordToken: String!
+}
+
+input signupInput {
+  email: String!
+  first_name: String!
+  name: String!
+  password: String!
+  phone_number: String!
+}
+
+input userUniqueInput {
+  email: String
+  id: ID
+}
+
+input userUpdateInput {
+  email: String
+  password: String
+  resetPasswordToken: String
 }

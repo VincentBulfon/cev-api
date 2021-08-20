@@ -1,4 +1,5 @@
-import { nonNull, objectType } from "nexus";
+import { prisma } from "@prisma/client";
+import { inputObjectType, nonNull, objectType } from "nexus";
 
 export const user = objectType({
   name: "User",
@@ -8,6 +9,7 @@ export const user = objectType({
     t.nonNull.string("first_name");
     t.nonNull.string("password");
     t.nonNull.string("phone_number");
+    t.nonNull.string("email");
     t.string("secondary_email");
     t.date("vertified_at");
     t.nonNull.date("created_at");
@@ -27,5 +29,33 @@ export const user = objectType({
         });
       },
     });
+  },
+});
+
+export const signupInput = inputObjectType({
+  name: "signupInput",
+  definition(t) {
+    t.nonNull.string("name");
+    t.nonNull.string("first_name");
+    t.nonNull.string("password");
+    t.nonNull.string("phone_number");
+    t.nonNull.string("email");
+  },
+});
+
+export const UserUniqueInput = inputObjectType({
+  name: "userUniqueInput",
+  definition(t) {
+    t.id("id");
+    t.string("email");
+  },
+});
+
+export const UserUpdateInput = inputObjectType({
+  name: "userUpdateInput",
+  definition(t) {
+    t.string("email");
+    t.string("password");
+    t.string("resetPasswordToken");
   },
 });

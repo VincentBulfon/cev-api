@@ -1,9 +1,14 @@
 import { ApolloServer } from "apollo-server";
-import { context } from "./context";
+import { prisma } from "./db";
 import graphqlSchema from "./schema";
 
 export const server = new ApolloServer({
   introspection: true,
-  context,
+  context: (req) => {
+    return {
+      request: req,
+      prisma,
+    };
+  },
   schema: graphqlSchema,
 });

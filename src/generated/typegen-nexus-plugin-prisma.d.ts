@@ -28,8 +28,8 @@ interface PrismaModels {
 interface NexusPrismaInputs {
   Query: {
     users: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'verfifed_at' | 'created_at' | 'children' | 'orders'
-      ordering: 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'verfifed_at' | 'created_at'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at' | 'children' | 'orders'
+      ordering: 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at'
     }
     children: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses'
@@ -196,6 +196,7 @@ interface NexusPrismaOutputs {
     first_name: 'String'
     phone_number: 'String'
     secondary_email: 'String'
+    resetPasswordToken: 'String'
     verfifed_at: 'DateTime'
     created_at: 'DateTime'
     children: 'Children'

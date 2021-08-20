@@ -1,11 +1,50 @@
-import { extendType } from "nexus";
+import { Maybe } from "graphql/jsutils/Maybe";
+import { arg, extendType, nonNull } from "nexus";
+import { getUserId } from "../../../ultils/getUserId";
+import generateHashPassword from "../../../ultils/hashPassword";
 
-export const updateUser = extendType({
+// export const updateUser = extendType({
+//   type: "Mutation",
+//   definition(t) {
+//     t.crud.updateOneUsers({
+//       type: "User",
+//       description: "update one user",
+//     });
+//   },
+// });
+
+export const updateUserForgotPassword = extendType({
   type: "Mutation",
   definition(t) {
-    t.crud.updateOneUsers({
+    t.nonNull.field("updateUser", {
       type: "User",
-      description: "update one user",
+      args: {
+        updateUserInput: nonNull(arg({ type: "userUpdateInput" })),
+      },
+      resolve: async (_, { updateUserInput: { password, email } }, ctx) => {
+        const userId = getUserId(ctx);
+        if (!password && !email) {
+          throw new Error("No Field to update");
+        }
+        interface DataType {
+          email?: string;
+          password: string;
+        }
+        const data = {} as DataType;
+        if (email) {
+          data.email = email;
+        }
+        if (password) {
+          data.password = await generateHashPassword(password);
+        }
+        const updateUser = await ctx.prisma.users.update({
+          where: {
+            email: userId,
+          },
+          data,
+        });
+        return updateUser;
+      },
     });
   },
 });
