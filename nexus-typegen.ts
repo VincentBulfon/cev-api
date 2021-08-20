@@ -1306,6 +1306,7 @@ export interface NexusGenInputs {
   UsersWhereUniqueInput: { // input type
     email?: string | null; // String
     id?: number | null; // Int
+    resetPasswordToken?: string | null; // String
   }
   loginInput: { // input type
     email: string; // String!

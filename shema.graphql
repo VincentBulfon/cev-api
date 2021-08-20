@@ -1653,6 +1653,7 @@ input UsersWhereInput {
 input UsersWhereUniqueInput {
   email: String
   id: Int
+  resetPasswordToken: String
 }
 
 input loginInput {

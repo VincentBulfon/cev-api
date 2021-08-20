@@ -1,6 +1,6 @@
 import { Maybe } from "graphql/jsutils/Maybe";
 import { arg, extendType, nonNull } from "nexus";
-import { getUserId } from "../../../ultils/getUserId";
+import { getUserEmail } from "../../../ultils/getUserId";
 import generateHashPassword from "../../../ultils/hashPassword";
 
 // export const updateUser = extendType({
@@ -22,7 +22,7 @@ export const updateUserForgotPassword = extendType({
         updateUserInput: nonNull(arg({ type: "userUpdateInput" })),
       },
       resolve: async (_, { updateUserInput: { password, email } }, ctx) => {
-        const userId = getUserId(ctx);
+        const userEmail = getUserEmail(ctx);
         if (!password && !email) {
           throw new Error("No Field to update");
         }
@@ -39,7 +39,7 @@ export const updateUserForgotPassword = extendType({
         }
         const updateUser = await ctx.prisma.users.update({
           where: {
-            email: userId,
+            email: userEmail,
           },
           data,
         });

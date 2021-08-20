@@ -7,7 +7,6 @@ export const resetPAssword = extendType({
   definition(t) {
     t.nonNull.field("resetPassword", {
       type: "MessagePayload",
-
       args: {
         resetPasswordInput: nonNull(
           arg({
@@ -44,7 +43,7 @@ export const resetPAssword = extendType({
             },
           });
           return {
-            message: `Great! Now you can login with your new password`,
+            message: `Super! Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.`,
           };
         } catch (error) {
           throw new Error(error.message);
