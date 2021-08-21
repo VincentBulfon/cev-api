@@ -22,7 +22,6 @@ model Users {
   verfifed_at        DateTime?
   created_at         DateTime   @default(now())
   children           Children[]
-  orders             Orders[]
 }
 
 model Children {
@@ -33,6 +32,7 @@ model Children {
   tutor_id   Int
   tutor      Users     @relation(fields: [tutor_id], references: [id])
   courses    Courses[]
+  Orders     Orders[]
 }
 
 model Courses {
@@ -76,8 +76,8 @@ model Orders {
   cancelled_at  DateTime?
   created_at    DateTime      @default(now())
   sport_voucher Boolean       @default(false)
-  user_id       Int
-  user          Users         @relation(fields: [user_id], references: [id])
+  child_id      Int
+  child         Children      @relation(fields: [child_id], references: [id])
   options_set   Options_set[]
 }
 

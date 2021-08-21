@@ -28,11 +28,11 @@ interface PrismaModels {
 interface NexusPrismaInputs {
   Query: {
     users: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at' | 'children' | 'orders'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at' | 'children'
       ordering: 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at'
     }
     children: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
     }
     courses: {
@@ -52,8 +52,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'price' | 'created_at' | 'option_id'
     }
     orders: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id' | 'user' | 'options_set'
-      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
+      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id'
     }
     optionsSets: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
@@ -62,18 +62,18 @@ interface NexusPrismaInputs {
   },
   Users: {
     children: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
-    }
-    orders: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id' | 'user' | 'options_set'
-      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id'
     }
   }
   Children: {
     courses: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
       ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week'
+    }
+    Orders: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
+      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id'
     }
   }
   Courses: {
@@ -82,7 +82,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at'
     }
     children: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
     }
   }
@@ -200,7 +200,6 @@ interface NexusPrismaOutputs {
     verfifed_at: 'DateTime'
     created_at: 'DateTime'
     children: 'Children'
-    orders: 'Orders'
   }
   Children: {
     id: 'Int'
@@ -210,6 +209,7 @@ interface NexusPrismaOutputs {
     tutor_id: 'Int'
     tutor: 'Users'
     courses: 'Courses'
+    Orders: 'Orders'
   }
   Courses: {
     id: 'Int'
@@ -248,8 +248,8 @@ interface NexusPrismaOutputs {
     cancelled_at: 'DateTime'
     created_at: 'DateTime'
     sport_voucher: 'Boolean'
-    user_id: 'Int'
-    user: 'Users'
+    child_id: 'Int'
+    child: 'Children'
     options_set: 'Options_set'
   }
   Options_set: {

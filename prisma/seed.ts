@@ -2,10 +2,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.children.deleteMany();
   await prisma.options_set.deleteMany();
   await prisma.prices.deleteMany();
   await prisma.orders.deleteMany();
+  await prisma.children.deleteMany();
   await prisma.options.deleteMany();
   await prisma.users.deleteMany();
   await prisma.cancellations.deleteMany();
@@ -223,116 +223,57 @@ async function main() {
     }),
   ];
 
-  const orders = await prisma.orders.create({
-    data: {
-      user: { connect: { email: "alex@prisma.io" } },
-      options_set: {
-        create: [
-          {
-            price: {
-              connect: { id: optionsPrices[0]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[0].id,
+  const childrenSelection = await prisma.users
+    .findUnique({
+      where: { email: "alex@prisma.io" },
+    })
+    .children();
+  childrenSelection.forEach(async (child) => {
+    await prisma.orders.create({
+      data: {
+        child: { connect: { id: child.id } },
+        options_set: {
+          create: [
+            {
+              price: {
+                connect: { id: optionsPrices[0]?.id },
               },
-            },
-            status: "UNPAID",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[1]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[1].id,
+              option: {
+                connect: {
+                  id: allOptions[0].id,
+                },
               },
+              status: "UNPAID",
             },
-            status: "PAID",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[2]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[2].id,
+            {
+              price: {
+                connect: { id: optionsPrices[1]?.id },
               },
-            },
-            status: "PAID",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[0]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[0].id,
+              option: {
+                connect: {
+                  id: allOptions[1].id,
+                },
               },
+              status: "PAID",
             },
-            status: "NOTYETPAYABLE",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[1]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[1].id,
+            {
+              price: {
+                connect: { id: optionsPrices[2]?.id },
               },
-            },
-            status: "PAID",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[2]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[2].id,
+              option: {
+                connect: {
+                  id: allOptions[2].id,
+                },
               },
+              status: "PAID",
             },
-            status: "PAID",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[0]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[0].id,
-              },
-            },
-            status: "NOTAPPLICABLE",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[1]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[1].id,
-              },
-            },
-            status: "UNPAID",
-          },
-          {
-            price: {
-              connect: { id: optionsPrices[2]?.id },
-            },
-            option: {
-              connect: {
-                id: allOptions[2].id,
-              },
-            },
-            status: "UNPAID",
-          },
-        ],
+          ],
+        },
       },
-    },
+    });
   });
-
-  console.log(`Orders created`);
+  console.log("Orders created");
+  console.log("finished exit with ctr+c")
 }
 
 main()

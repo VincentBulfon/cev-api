@@ -161,23 +161,12 @@ type Child {
 }
 
 input ChildrenCreateInput {
+  Orders: OrdersCreateNestedManyWithoutChildInput
   birth_date: DateTime!
   courses: CoursesCreateNestedManyWithoutChildrenInput
   first_name: String!
   name: String!
   tutor: UsersCreateNestedOneWithoutChildrenInput!
-}
-
-input ChildrenCreateManyTutorInput {
-  birth_date: DateTime!
-  first_name: String!
-  id: Int
-  name: String!
-}
-
-input ChildrenCreateManyTutorInputEnvelope {
-  data: [ChildrenCreateManyTutorInput!]
-  skipDuplicates: Boolean
 }
 
 input ChildrenCreateNestedManyWithoutCoursesInput {
@@ -186,11 +175,10 @@ input ChildrenCreateNestedManyWithoutCoursesInput {
   create: [ChildrenCreateWithoutCoursesInput!]
 }
 
-input ChildrenCreateNestedManyWithoutTutorInput {
-  connect: [ChildrenWhereUniqueInput!]
-  connectOrCreate: [ChildrenCreateOrConnectWithoutTutorInput!]
-  create: [ChildrenCreateWithoutTutorInput!]
-  createMany: ChildrenCreateManyTutorInputEnvelope
+input ChildrenCreateNestedOneWithoutOrdersInput {
+  connect: ChildrenWhereUniqueInput
+  connectOrCreate: ChildrenCreateOrConnectWithoutOrdersInput
+  create: ChildrenCreateWithoutOrdersInput
 }
 
 input ChildrenCreateOrConnectWithoutCoursesInput {
@@ -198,23 +186,25 @@ input ChildrenCreateOrConnectWithoutCoursesInput {
   where: ChildrenWhereUniqueInput!
 }
 
-input ChildrenCreateOrConnectWithoutTutorInput {
-  create: ChildrenCreateWithoutTutorInput!
+input ChildrenCreateOrConnectWithoutOrdersInput {
+  create: ChildrenCreateWithoutOrdersInput!
   where: ChildrenWhereUniqueInput!
 }
 
 input ChildrenCreateWithoutCoursesInput {
+  Orders: OrdersCreateNestedManyWithoutChildInput
   birth_date: DateTime!
   first_name: String!
   name: String!
   tutor: UsersCreateNestedOneWithoutChildrenInput!
 }
 
-input ChildrenCreateWithoutTutorInput {
+input ChildrenCreateWithoutOrdersInput {
   birth_date: DateTime!
   courses: CoursesCreateNestedManyWithoutChildrenInput
   first_name: String!
   name: String!
+  tutor: UsersCreateNestedOneWithoutChildrenInput!
 }
 
 input ChildrenListRelationFilter {
@@ -235,6 +225,7 @@ input ChildrenScalarWhereInput {
 }
 
 input ChildrenUpdateInput {
+  Orders: OrdersUpdateManyWithoutChildInput
   birth_date: DateTimeFieldUpdateOperationsInput
   courses: CoursesUpdateManyWithoutChildrenInput
   first_name: StringFieldUpdateOperationsInput
@@ -253,11 +244,6 @@ input ChildrenUpdateManyWithWhereWithoutCoursesInput {
   where: ChildrenScalarWhereInput!
 }
 
-input ChildrenUpdateManyWithWhereWithoutTutorInput {
-  data: ChildrenUpdateManyMutationInput!
-  where: ChildrenScalarWhereInput!
-}
-
 input ChildrenUpdateManyWithoutCoursesInput {
   connect: [ChildrenWhereUniqueInput!]
   connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
@@ -271,18 +257,12 @@ input ChildrenUpdateManyWithoutCoursesInput {
   upsert: [ChildrenUpsertWithWhereUniqueWithoutCoursesInput!]
 }
 
-input ChildrenUpdateManyWithoutTutorInput {
-  connect: [ChildrenWhereUniqueInput!]
-  connectOrCreate: [ChildrenCreateOrConnectWithoutTutorInput!]
-  create: [ChildrenCreateWithoutTutorInput!]
-  createMany: ChildrenCreateManyTutorInputEnvelope
-  delete: [ChildrenWhereUniqueInput!]
-  deleteMany: [ChildrenScalarWhereInput!]
-  disconnect: [ChildrenWhereUniqueInput!]
-  set: [ChildrenWhereUniqueInput!]
-  update: [ChildrenUpdateWithWhereUniqueWithoutTutorInput!]
-  updateMany: [ChildrenUpdateManyWithWhereWithoutTutorInput!]
-  upsert: [ChildrenUpsertWithWhereUniqueWithoutTutorInput!]
+input ChildrenUpdateOneRequiredWithoutOrdersInput {
+  connect: ChildrenWhereUniqueInput
+  connectOrCreate: ChildrenCreateOrConnectWithoutOrdersInput
+  create: ChildrenCreateWithoutOrdersInput
+  update: ChildrenUpdateWithoutOrdersInput
+  upsert: ChildrenUpsertWithoutOrdersInput
 }
 
 input ChildrenUpdateWithWhereUniqueWithoutCoursesInput {
@@ -290,23 +270,20 @@ input ChildrenUpdateWithWhereUniqueWithoutCoursesInput {
   where: ChildrenWhereUniqueInput!
 }
 
-input ChildrenUpdateWithWhereUniqueWithoutTutorInput {
-  data: ChildrenUpdateWithoutTutorInput!
-  where: ChildrenWhereUniqueInput!
-}
-
 input ChildrenUpdateWithoutCoursesInput {
+  Orders: OrdersUpdateManyWithoutChildInput
   birth_date: DateTimeFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   tutor: UsersUpdateOneRequiredWithoutChildrenInput
 }
 
-input ChildrenUpdateWithoutTutorInput {
+input ChildrenUpdateWithoutOrdersInput {
   birth_date: DateTimeFieldUpdateOperationsInput
   courses: CoursesUpdateManyWithoutChildrenInput
   first_name: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  tutor: UsersUpdateOneRequiredWithoutChildrenInput
 }
 
 input ChildrenUpsertWithWhereUniqueWithoutCoursesInput {
@@ -315,16 +292,16 @@ input ChildrenUpsertWithWhereUniqueWithoutCoursesInput {
   where: ChildrenWhereUniqueInput!
 }
 
-input ChildrenUpsertWithWhereUniqueWithoutTutorInput {
-  create: ChildrenCreateWithoutTutorInput!
-  update: ChildrenUpdateWithoutTutorInput!
-  where: ChildrenWhereUniqueInput!
+input ChildrenUpsertWithoutOrdersInput {
+  create: ChildrenCreateWithoutOrdersInput!
+  update: ChildrenUpdateWithoutOrdersInput!
 }
 
 input ChildrenWhereInput {
   AND: [ChildrenWhereInput!]
   NOT: [ChildrenWhereInput!]
   OR: [ChildrenWhereInput!]
+  Orders: OrdersListRelationFilter
   birth_date: DateTimeFilter
   courses: CoursesListRelationFilter
   first_name: StringFilter
@@ -1137,39 +1114,39 @@ input Options_setWhereUniqueInput {
 
 type Order {
   cancelled_at: Date
+  child: Child
   created_at: Date!
   id: Int!
   option_set: [OptionSet]
   sport_voucher: Boolean!
-  user: User
   user_id: Int!
 }
 
 input OrdersCreateInput {
   cancelled_at: DateTime
+  child: ChildrenCreateNestedOneWithoutOrdersInput!
   created_at: DateTime
   options_set: Options_setCreateNestedManyWithoutOrderInput
   sport_voucher: Boolean
-  user: UsersCreateNestedOneWithoutOrdersInput!
 }
 
-input OrdersCreateManyUserInput {
+input OrdersCreateManyChildInput {
   cancelled_at: DateTime
   created_at: DateTime
   id: Int
   sport_voucher: Boolean
 }
 
-input OrdersCreateManyUserInputEnvelope {
-  data: [OrdersCreateManyUserInput!]
+input OrdersCreateManyChildInputEnvelope {
+  data: [OrdersCreateManyChildInput!]
   skipDuplicates: Boolean
 }
 
-input OrdersCreateNestedManyWithoutUserInput {
+input OrdersCreateNestedManyWithoutChildInput {
   connect: [OrdersWhereUniqueInput!]
-  connectOrCreate: [OrdersCreateOrConnectWithoutUserInput!]
-  create: [OrdersCreateWithoutUserInput!]
-  createMany: OrdersCreateManyUserInputEnvelope
+  connectOrCreate: [OrdersCreateOrConnectWithoutChildInput!]
+  create: [OrdersCreateWithoutChildInput!]
+  createMany: OrdersCreateManyChildInputEnvelope
 }
 
 input OrdersCreateNestedOneWithoutOptions_setInput {
@@ -1178,27 +1155,27 @@ input OrdersCreateNestedOneWithoutOptions_setInput {
   create: OrdersCreateWithoutOptions_setInput
 }
 
+input OrdersCreateOrConnectWithoutChildInput {
+  create: OrdersCreateWithoutChildInput!
+  where: OrdersWhereUniqueInput!
+}
+
 input OrdersCreateOrConnectWithoutOptions_setInput {
   create: OrdersCreateWithoutOptions_setInput!
   where: OrdersWhereUniqueInput!
 }
 
-input OrdersCreateOrConnectWithoutUserInput {
-  create: OrdersCreateWithoutUserInput!
-  where: OrdersWhereUniqueInput!
+input OrdersCreateWithoutChildInput {
+  cancelled_at: DateTime
+  created_at: DateTime
+  options_set: Options_setCreateNestedManyWithoutOrderInput
+  sport_voucher: Boolean
 }
 
 input OrdersCreateWithoutOptions_setInput {
   cancelled_at: DateTime
+  child: ChildrenCreateNestedOneWithoutOrdersInput!
   created_at: DateTime
-  sport_voucher: Boolean
-  user: UsersCreateNestedOneWithoutOrdersInput!
-}
-
-input OrdersCreateWithoutUserInput {
-  cancelled_at: DateTime
-  created_at: DateTime
-  options_set: Options_setCreateNestedManyWithoutOrderInput
   sport_voucher: Boolean
 }
 
@@ -1213,10 +1190,10 @@ input OrdersScalarWhereInput {
   NOT: [OrdersScalarWhereInput!]
   OR: [OrdersScalarWhereInput!]
   cancelled_at: DateTimeNullableFilter
+  child_id: IntFilter
   created_at: DateTimeFilter
   id: IntFilter
   sport_voucher: BoolFilter
-  user_id: IntFilter
 }
 
 input OrdersUpdateManyMutationInput {
@@ -1225,23 +1202,23 @@ input OrdersUpdateManyMutationInput {
   sport_voucher: BoolFieldUpdateOperationsInput
 }
 
-input OrdersUpdateManyWithWhereWithoutUserInput {
+input OrdersUpdateManyWithWhereWithoutChildInput {
   data: OrdersUpdateManyMutationInput!
   where: OrdersScalarWhereInput!
 }
 
-input OrdersUpdateManyWithoutUserInput {
+input OrdersUpdateManyWithoutChildInput {
   connect: [OrdersWhereUniqueInput!]
-  connectOrCreate: [OrdersCreateOrConnectWithoutUserInput!]
-  create: [OrdersCreateWithoutUserInput!]
-  createMany: OrdersCreateManyUserInputEnvelope
+  connectOrCreate: [OrdersCreateOrConnectWithoutChildInput!]
+  create: [OrdersCreateWithoutChildInput!]
+  createMany: OrdersCreateManyChildInputEnvelope
   delete: [OrdersWhereUniqueInput!]
   deleteMany: [OrdersScalarWhereInput!]
   disconnect: [OrdersWhereUniqueInput!]
   set: [OrdersWhereUniqueInput!]
-  update: [OrdersUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [OrdersUpdateManyWithWhereWithoutUserInput!]
-  upsert: [OrdersUpsertWithWhereUniqueWithoutUserInput!]
+  update: [OrdersUpdateWithWhereUniqueWithoutChildInput!]
+  updateMany: [OrdersUpdateManyWithWhereWithoutChildInput!]
+  upsert: [OrdersUpsertWithWhereUniqueWithoutChildInput!]
 }
 
 input OrdersUpdateOneRequiredWithoutOptions_setInput {
@@ -1252,28 +1229,28 @@ input OrdersUpdateOneRequiredWithoutOptions_setInput {
   upsert: OrdersUpsertWithoutOptions_setInput
 }
 
-input OrdersUpdateWithWhereUniqueWithoutUserInput {
-  data: OrdersUpdateWithoutUserInput!
+input OrdersUpdateWithWhereUniqueWithoutChildInput {
+  data: OrdersUpdateWithoutChildInput!
   where: OrdersWhereUniqueInput!
 }
 
-input OrdersUpdateWithoutOptions_setInput {
-  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  sport_voucher: BoolFieldUpdateOperationsInput
-  user: UsersUpdateOneRequiredWithoutOrdersInput
-}
-
-input OrdersUpdateWithoutUserInput {
+input OrdersUpdateWithoutChildInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   options_set: Options_setUpdateManyWithoutOrderInput
   sport_voucher: BoolFieldUpdateOperationsInput
 }
 
-input OrdersUpsertWithWhereUniqueWithoutUserInput {
-  create: OrdersCreateWithoutUserInput!
-  update: OrdersUpdateWithoutUserInput!
+input OrdersUpdateWithoutOptions_setInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  child: ChildrenUpdateOneRequiredWithoutOrdersInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  sport_voucher: BoolFieldUpdateOperationsInput
+}
+
+input OrdersUpsertWithWhereUniqueWithoutChildInput {
+  create: OrdersCreateWithoutChildInput!
+  update: OrdersUpdateWithoutChildInput!
   where: OrdersWhereUniqueInput!
 }
 
@@ -1287,12 +1264,12 @@ input OrdersWhereInput {
   NOT: [OrdersWhereInput!]
   OR: [OrdersWhereInput!]
   cancelled_at: DateTimeNullableFilter
+  child: ChildrenWhereInput
+  child_id: IntFilter
   created_at: DateTimeFilter
   id: IntFilter
   options_set: Options_setListRelationFilter
   sport_voucher: BoolFilter
-  user: UsersWhereInput
-  user_id: IntFilter
 }
 
 input OrdersWhereUniqueInput {
@@ -1540,39 +1517,12 @@ input UsersCreateNestedOneWithoutChildrenInput {
   create: UsersCreateWithoutChildrenInput
 }
 
-input UsersCreateNestedOneWithoutOrdersInput {
-  connect: UsersWhereUniqueInput
-  connectOrCreate: UsersCreateOrConnectWithoutOrdersInput
-  create: UsersCreateWithoutOrdersInput
-}
-
 input UsersCreateOrConnectWithoutChildrenInput {
   create: UsersCreateWithoutChildrenInput!
   where: UsersWhereUniqueInput!
 }
 
-input UsersCreateOrConnectWithoutOrdersInput {
-  create: UsersCreateWithoutOrdersInput!
-  where: UsersWhereUniqueInput!
-}
-
 input UsersCreateWithoutChildrenInput {
-  created_at: DateTime
-  deleted_at: DateTime
-  email: String!
-  first_name: String!
-  name: String!
-  orders: OrdersCreateNestedManyWithoutUserInput
-  password: String!
-  phone_number: String!
-  resetPasswordToken: String
-  role: RoleEnum
-  secondary_email: String
-  verfifed_at: DateTime
-}
-
-input UsersCreateWithoutOrdersInput {
-  children: ChildrenCreateNestedManyWithoutTutorInput
   created_at: DateTime
   deleted_at: DateTime
   email: String!
@@ -1609,31 +1559,7 @@ input UsersUpdateOneRequiredWithoutChildrenInput {
   upsert: UsersUpsertWithoutChildrenInput
 }
 
-input UsersUpdateOneRequiredWithoutOrdersInput {
-  connect: UsersWhereUniqueInput
-  connectOrCreate: UsersCreateOrConnectWithoutOrdersInput
-  create: UsersCreateWithoutOrdersInput
-  update: UsersUpdateWithoutOrdersInput
-  upsert: UsersUpsertWithoutOrdersInput
-}
-
 input UsersUpdateWithoutChildrenInput {
-  created_at: DateTimeFieldUpdateOperationsInput
-  deleted_at: NullableDateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  first_name: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  orders: OrdersUpdateManyWithoutUserInput
-  password: StringFieldUpdateOperationsInput
-  phone_number: StringFieldUpdateOperationsInput
-  resetPasswordToken: NullableStringFieldUpdateOperationsInput
-  role: EnumRoleEnumFieldUpdateOperationsInput
-  secondary_email: NullableStringFieldUpdateOperationsInput
-  verfifed_at: NullableDateTimeFieldUpdateOperationsInput
-}
-
-input UsersUpdateWithoutOrdersInput {
-  children: ChildrenUpdateManyWithoutTutorInput
   created_at: DateTimeFieldUpdateOperationsInput
   deleted_at: NullableDateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
@@ -1652,11 +1578,6 @@ input UsersUpsertWithoutChildrenInput {
   update: UsersUpdateWithoutChildrenInput!
 }
 
-input UsersUpsertWithoutOrdersInput {
-  create: UsersCreateWithoutOrdersInput!
-  update: UsersUpdateWithoutOrdersInput!
-}
-
 input UsersWhereInput {
   AND: [UsersWhereInput!]
   NOT: [UsersWhereInput!]
@@ -1668,7 +1589,6 @@ input UsersWhereInput {
   first_name: StringFilter
   id: IntFilter
   name: StringFilter
-  orders: OrdersListRelationFilter
   password: StringFilter
   phone_number: StringFilter
   resetPasswordToken: StringNullableFilter

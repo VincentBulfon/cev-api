@@ -16,10 +16,10 @@ export const order = objectType({
         });
       },
     });
-    t.field("user", {
-      type: "User",
+    t.field("child", {
+      type: "Child",
       resolve: (root, _, ctx) => {
-        return ctx.prisma.users.findFirst({
+        return ctx.prisma.children.findFirst({
           where: { id: { equals: root.user_id } },
         });
       },
