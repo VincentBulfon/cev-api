@@ -7,6 +7,7 @@ export const order = objectType({
     t.nonNull.date("created_at");
     t.date("cancelled_at");
     t.nonNull.int("user_id");
+    t.nonNull.boolean("sport_voucher");
     t.list.field("option_set", {
       type: "OptionSet",
       resolve: (root, _, ctx) => {

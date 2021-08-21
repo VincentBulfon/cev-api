@@ -1140,6 +1140,7 @@ type Order {
   created_at: Date!
   id: Int!
   option_set: [OptionSet]
+  sport_voucher: Boolean!
   user: User
   user_id: Int!
 }

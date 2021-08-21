@@ -1422,6 +1422,7 @@ export interface NexusGenObjects {
     cancelled_at?: NexusGenScalars['Date'] | null; // Date
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
+    sport_voucher: boolean; // Boolean!
     user_id: number; // Int!
   }
   Price: { // root type
@@ -1534,6 +1535,7 @@ export interface NexusGenFieldTypes {
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
     option_set: Array<NexusGenRootTypes['OptionSet'] | null> | null; // [OptionSet]
+    sport_voucher: boolean; // Boolean!
     user: NexusGenRootTypes['User'] | null; // User
     user_id: number; // Int!
   }
@@ -1647,6 +1649,7 @@ export interface NexusGenFieldTypeNames {
     created_at: 'Date'
     id: 'Int'
     option_set: 'OptionSet'
+    sport_voucher: 'Boolean'
     user: 'User'
     user_id: 'Int'
   }
