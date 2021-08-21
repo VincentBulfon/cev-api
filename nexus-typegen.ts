@@ -34,6 +34,13 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  BoolFieldUpdateOperationsInput: { // input type
+    set?: boolean | null; // Boolean
+  }
+  BoolFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
+  }
   CancellationsCreateInput: { // input type
     course: NexusGenInputs['CoursesCreateNestedOneWithoutCancellationsInput']; // CoursesCreateNestedOneWithoutCancellationsInput!
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -504,6 +511,10 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
     notIn?: number[] | null; // [Int!]
   }
+  NestedBoolFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
+  }
   NestedDateTimeFilter: { // input type
     equals?: NexusGenScalars['DateTime'] | null; // DateTime
     gt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -901,12 +912,14 @@ export interface NexusGenInputs {
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutOrderInput'] | null; // Options_setCreateNestedManyWithoutOrderInput
+    sport_voucher?: boolean | null; // Boolean
     user: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
   }
   OrdersCreateManyUserInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
+    sport_voucher?: boolean | null; // Boolean
   }
   OrdersCreateManyUserInputEnvelope: { // input type
     data?: NexusGenInputs['OrdersCreateManyUserInput'][] | null; // [OrdersCreateManyUserInput!]
@@ -934,12 +947,14 @@ export interface NexusGenInputs {
   OrdersCreateWithoutOptions_setInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
+    sport_voucher?: boolean | null; // Boolean
     user: NexusGenInputs['UsersCreateNestedOneWithoutOrdersInput']; // UsersCreateNestedOneWithoutOrdersInput!
   }
   OrdersCreateWithoutUserInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime
     created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     options_set?: NexusGenInputs['Options_setCreateNestedManyWithoutOrderInput'] | null; // Options_setCreateNestedManyWithoutOrderInput
+    sport_voucher?: boolean | null; // Boolean
   }
   OrdersListRelationFilter: { // input type
     every?: NexusGenInputs['OrdersWhereInput'] | null; // OrdersWhereInput
@@ -953,11 +968,13 @@ export interface NexusGenInputs {
     cancelled_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    sport_voucher?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     user_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   OrdersUpdateManyMutationInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    sport_voucher?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
   }
   OrdersUpdateManyWithWhereWithoutUserInput: { // input type
     data: NexusGenInputs['OrdersUpdateManyMutationInput']; // OrdersUpdateManyMutationInput!
@@ -990,12 +1007,14 @@ export interface NexusGenInputs {
   OrdersUpdateWithoutOptions_setInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    sport_voucher?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     user?: NexusGenInputs['UsersUpdateOneRequiredWithoutOrdersInput'] | null; // UsersUpdateOneRequiredWithoutOrdersInput
   }
   OrdersUpdateWithoutUserInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     options_set?: NexusGenInputs['Options_setUpdateManyWithoutOrderInput'] | null; // Options_setUpdateManyWithoutOrderInput
+    sport_voucher?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
   }
   OrdersUpsertWithWhereUniqueWithoutUserInput: { // input type
     create: NexusGenInputs['OrdersCreateWithoutUserInput']; // OrdersCreateWithoutUserInput!
@@ -1014,6 +1033,7 @@ export interface NexusGenInputs {
     created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     options_set?: NexusGenInputs['Options_setListRelationFilter'] | null; // Options_setListRelationFilter
+    sport_voucher?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     user?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
     user_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }

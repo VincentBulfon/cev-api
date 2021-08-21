@@ -52,8 +52,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'price' | 'created_at' | 'option_id'
     }
     orders: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'user_id' | 'user' | 'options_set'
-      ordering: 'id' | 'cancelled_at' | 'created_at' | 'user_id'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id' | 'user' | 'options_set'
+      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id'
     }
     optionsSets: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
@@ -66,8 +66,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
     }
     orders: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'user_id' | 'user' | 'options_set'
-      ordering: 'id' | 'cancelled_at' | 'created_at' | 'user_id'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id' | 'user' | 'options_set'
+      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'user_id'
     }
   }
   Children: {
@@ -247,6 +247,7 @@ interface NexusPrismaOutputs {
     id: 'Int'
     cancelled_at: 'DateTime'
     created_at: 'DateTime'
+    sport_voucher: 'Boolean'
     user_id: 'Int'
     user: 'Users'
     options_set: 'Options_set'

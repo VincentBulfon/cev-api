@@ -7,6 +7,15 @@ type AuthPayload {
   userEmail: String!
 }
 
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
 type Cancellation {
   created_at: Date!
   date: Date!
@@ -648,6 +657,11 @@ enum NameEnum {
   MEMBERSHIPFEE2
 }
 
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
 input NestedDateTimeFilter {
   equals: DateTime
   gt: DateTime
@@ -1134,6 +1148,7 @@ input OrdersCreateInput {
   cancelled_at: DateTime
   created_at: DateTime
   options_set: Options_setCreateNestedManyWithoutOrderInput
+  sport_voucher: Boolean
   user: UsersCreateNestedOneWithoutOrdersInput!
 }
 
@@ -1141,6 +1156,7 @@ input OrdersCreateManyUserInput {
   cancelled_at: DateTime
   created_at: DateTime
   id: Int
+  sport_voucher: Boolean
 }
 
 input OrdersCreateManyUserInputEnvelope {
@@ -1174,6 +1190,7 @@ input OrdersCreateOrConnectWithoutUserInput {
 input OrdersCreateWithoutOptions_setInput {
   cancelled_at: DateTime
   created_at: DateTime
+  sport_voucher: Boolean
   user: UsersCreateNestedOneWithoutOrdersInput!
 }
 
@@ -1181,6 +1198,7 @@ input OrdersCreateWithoutUserInput {
   cancelled_at: DateTime
   created_at: DateTime
   options_set: Options_setCreateNestedManyWithoutOrderInput
+  sport_voucher: Boolean
 }
 
 input OrdersListRelationFilter {
@@ -1196,12 +1214,14 @@ input OrdersScalarWhereInput {
   cancelled_at: DateTimeNullableFilter
   created_at: DateTimeFilter
   id: IntFilter
+  sport_voucher: BoolFilter
   user_id: IntFilter
 }
 
 input OrdersUpdateManyMutationInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
+  sport_voucher: BoolFieldUpdateOperationsInput
 }
 
 input OrdersUpdateManyWithWhereWithoutUserInput {
@@ -1239,6 +1259,7 @@ input OrdersUpdateWithWhereUniqueWithoutUserInput {
 input OrdersUpdateWithoutOptions_setInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
+  sport_voucher: BoolFieldUpdateOperationsInput
   user: UsersUpdateOneRequiredWithoutOrdersInput
 }
 
@@ -1246,6 +1267,7 @@ input OrdersUpdateWithoutUserInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   options_set: Options_setUpdateManyWithoutOrderInput
+  sport_voucher: BoolFieldUpdateOperationsInput
 }
 
 input OrdersUpsertWithWhereUniqueWithoutUserInput {
@@ -1267,6 +1289,7 @@ input OrdersWhereInput {
   created_at: DateTimeFilter
   id: IntFilter
   options_set: Options_setListRelationFilter
+  sport_voucher: BoolFilter
   user: UsersWhereInput
   user_id: IntFilter
 }

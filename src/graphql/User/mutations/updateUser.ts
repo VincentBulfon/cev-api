@@ -3,16 +3,6 @@ import { arg, extendType, nonNull } from "nexus";
 import { getUserEmail } from "../../../ultils/getUserEmail";
 import generateHashPassword from "../../../ultils/hashPassword";
 
-// export const updateUser = extendType({
-//   type: "Mutation",
-//   definition(t) {
-//     t.crud.updateOneUsers({
-//       type: "User",
-//       description: "update one user",
-//     });
-//   },
-// });
-
 export const updateUserForgotPassword = extendType({
   type: "Mutation",
   definition(t) {
