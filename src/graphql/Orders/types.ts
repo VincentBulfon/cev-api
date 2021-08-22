@@ -6,7 +6,7 @@ export const order = objectType({
     t.nonNull.int("id");
     t.nonNull.date("created_at");
     t.date("cancelled_at");
-    t.nonNull.int("user_id");
+    t.nonNull.int("child_id");
     t.nonNull.boolean("sport_voucher");
     t.list.field("option_set", {
       type: "OptionSet",
@@ -20,7 +20,7 @@ export const order = objectType({
       type: "Child",
       resolve: (root, _, ctx) => {
         return ctx.prisma.children.findFirst({
-          where: { id: { equals: root.user_id } },
+          where: { id: { equals: root.child_id } },
         });
       },
     });

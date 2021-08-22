@@ -1,5 +1,4 @@
-import { sign } from "jsonwebtoken";
-import { arg, extendType, nonNull } from "nexus";
+import { arg, extendType } from "nexus";
 import { Context } from "../../../context";
 
 import generateHashPassword from "../../../ultils/hashPassword";
@@ -46,25 +45,3 @@ export const createUser = extendType({
     });
   },
 });
-
-// t.nonNull.field("signup", {
-//   type: "AuthPayload",
-//   args: {
-//     singupInput: nonNull(arg({ type: "signupInput" })),
-//   },
-//   resolve: async (_,{singupInput: {name,first_name,email,password,phone_number}}, ctx: Context) => {
-//     try {
-//       const isUserExist = await ctx.prisma.users.findUnique({where :{ email }});
-//       if (isUserExist) {
-//         throw new Error("Email is already associated with another user");
-//       }
-//       const hashPassword = await generateHashPassword(password);
-//       return ({
-//         token : "string",
-//         userEmail : email
-//       })
-//     } catch (error) {
-//       throw new Error(error.message);
-//     }
-//   },
-// }

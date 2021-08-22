@@ -1350,10 +1350,10 @@ export interface NexusGenObjects {
   }
   Order: { // root type
     cancelled_at?: NexusGenScalars['Date'] | null; // Date
+    child_id: number; // Int!
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
     sport_voucher: boolean; // Boolean!
-    user_id: number; // Int!
   }
   Price: { // root type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1405,6 +1405,7 @@ export interface NexusGenFieldTypes {
     first_name: string; // String!
     id: number; // Int!
     name: string; // String!
+    orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     tutor: NexusGenRootTypes['User'] | null; // User
     tutor_id: number; // Int!
   }
@@ -1463,11 +1464,11 @@ export interface NexusGenFieldTypes {
   Order: { // field return type
     cancelled_at: NexusGenScalars['Date'] | null; // Date
     child: NexusGenRootTypes['Child'] | null; // Child
+    child_id: number; // Int!
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
     option_set: Array<NexusGenRootTypes['OptionSet'] | null> | null; // [OptionSet]
     sport_voucher: boolean; // Boolean!
-    user_id: number; // Int!
   }
   Price: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1484,7 +1485,6 @@ export interface NexusGenFieldTypes {
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
-    Orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
     created_at: NexusGenScalars['Date']; // Date!
     email: string; // String!
@@ -1519,6 +1519,7 @@ export interface NexusGenFieldTypeNames {
     first_name: 'String'
     id: 'Int'
     name: 'String'
+    orders: 'Order'
     tutor: 'User'
     tutor_id: 'Int'
   }
@@ -1577,11 +1578,11 @@ export interface NexusGenFieldTypeNames {
   Order: { // field return type name
     cancelled_at: 'Date'
     child: 'Child'
+    child_id: 'Int'
     created_at: 'Date'
     id: 'Int'
     option_set: 'OptionSet'
     sport_voucher: 'Boolean'
-    user_id: 'Int'
   }
   Price: { // field return type name
     created_at: 'Date'
@@ -1598,7 +1599,6 @@ export interface NexusGenFieldTypeNames {
     users: 'User'
   }
   User: { // field return type name
-    Orders: 'Order'
     children: 'Child'
     created_at: 'Date'
     email: 'String'

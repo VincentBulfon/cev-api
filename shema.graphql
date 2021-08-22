@@ -156,6 +156,7 @@ type Child {
   first_name: String!
   id: Int!
   name: String!
+  orders: [Order]
   tutor: User
   tutor_id: Int!
 }
@@ -1115,11 +1116,11 @@ input Options_setWhereUniqueInput {
 type Order {
   cancelled_at: Date
   child: Child
+  child_id: Int!
   created_at: Date!
   id: Int!
   option_set: [OptionSet]
   sport_voucher: Boolean!
-  user_id: Int!
 }
 
 input OrdersCreateInput {
@@ -1498,7 +1499,6 @@ input StringNullableFilter {
 }
 
 type User {
-  Orders: [Order]
   children: [Child]
   created_at: Date!
   email: String!

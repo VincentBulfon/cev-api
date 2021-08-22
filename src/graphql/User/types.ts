@@ -21,14 +21,6 @@ export const user = objectType({
         });
       },
     });
-    t.list.field("Orders", {
-      type: "Order",
-      resolve: (root, args, ctx) => {
-        return ctx.prisma.orders.findMany({
-          where: { user_id: root.id },
-        });
-      },
-    });
   },
 });
 

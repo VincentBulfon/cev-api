@@ -24,5 +24,13 @@ export const child = objectType({
         });
       },
     });
+    t.list.field("orders", {
+      type: "Order",
+      resolve: (root, args, ctx) => {
+        return ctx.prisma.orders.findMany({
+          where: { id: root.id },
+        });
+      },
+    });
   },
 });
