@@ -654,6 +654,7 @@ export interface NexusGenInputs {
   }
   OptionsWhereUniqueInput: { // input type
     id?: number | null; // Int
+    name?: NexusGenEnums['NameEnum'] | null; // NameEnum
   }
   Options_setCreateInput: { // input type
     cancelled_at?: NexusGenScalars['DateTime'] | null; // DateTime

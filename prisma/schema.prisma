@@ -57,7 +57,7 @@ model Cancellations {
 model Options {
   id         Int           @id @default(autoincrement())
   created_at DateTime      @default(now())
-  name       NameEnum
+  name       NameEnum      @unique
   orders     Options_set[]
   Prices     Prices[]
 }
