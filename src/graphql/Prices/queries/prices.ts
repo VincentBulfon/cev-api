@@ -5,6 +5,7 @@ export const pricesQuery = extendType({
   definition(t) {
     t.crud.prices({
       type: "Price",
+      ordering: true,
       filtering: true,
     });
   },

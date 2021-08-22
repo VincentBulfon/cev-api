@@ -1071,6 +1071,12 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
     some?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
   }
+  PricesOrderByInput: { // input type
+    created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    option_id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    price?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   PricesScalarWhereInput: { // input type
     AND?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
     NOT?: NexusGenInputs['PricesScalarWhereInput'][] | null; // [PricesScalarWhereInput!]
@@ -1727,7 +1733,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
-      where?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
+      orderBy?: NexusGenInputs['PricesOrderByInput'][] | null; // [PricesOrderByInput!]
     }
     users: { // args
       after?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput

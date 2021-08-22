@@ -1343,6 +1343,13 @@ input PricesListRelationFilter {
   some: PricesWhereInput
 }
 
+input PricesOrderByInput {
+  created_at: SortOrder
+  id: SortOrder
+  option_id: SortOrder
+  price: SortOrder
+}
+
 input PricesScalarWhereInput {
   AND: [PricesScalarWhereInput!]
   NOT: [PricesScalarWhereInput!]
@@ -1438,7 +1445,7 @@ type Query {
 
   """get options"""
   options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!
-  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, where: PricesWhereInput): [Price!]!
+  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, orderBy: [PricesOrderByInput!]): [Price!]!
   users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByInput!], where: UsersWhereInput): [User!]!
 }
 
