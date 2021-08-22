@@ -12,12 +12,7 @@ export const middlewares = shield({
     currentUser: allow,
   },
   Mutation: {
-    signup: allow,
-    login: allow,
-    forgotPassword: allow,
     deleteOneUsers: rules.isAuthenticatedUser,
-    createOneChildren: rules.isAuthenticatedUser,
-    createOneOptions_set: rules.isAuthenticatedUser,
     deleteOneCancellations: rules.isAdmin,
     createOneCancellations: rules.isAdmin,
   },
