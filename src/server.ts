@@ -12,5 +12,5 @@ export const server = new ApolloServer({
       prisma,
     };
   },
-  schema: applyMiddleware(graphqlSchema, middlewares),
+  schema: graphqlSchema,
 });
