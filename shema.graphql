@@ -1281,6 +1281,8 @@ input OrdersWhereUniqueInput {
 type Price {
   created_at: Date!
   id: Int!
+  option: Option!
+  option_id: Int!
   price: Int!
 }
 
@@ -1445,7 +1447,7 @@ type Query {
 
   """get options"""
   options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!
-  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, orderBy: [PricesOrderByInput!]): [Price!]!
+  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, orderBy: [PricesOrderByInput!], where: PricesWhereInput): [Price!]!
   users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByInput!], where: UsersWhereInput): [User!]!
 }
 

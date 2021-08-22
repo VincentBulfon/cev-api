@@ -1365,6 +1365,7 @@ export interface NexusGenObjects {
   Price: { // root type
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
+    option_id: number; // Int!
     price: number; // Int!
   }
   Query: {};
@@ -1480,6 +1481,8 @@ export interface NexusGenFieldTypes {
   Price: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
+    option: NexusGenRootTypes['Option']; // Option!
+    option_id: number; // Int!
     price: number; // Int!
   }
   Query: { // field return type
@@ -1594,6 +1597,8 @@ export interface NexusGenFieldTypeNames {
   Price: { // field return type name
     created_at: 'Date'
     id: 'Int'
+    option: 'Option'
+    option_id: 'Int'
     price: 'Int'
   }
   Query: { // field return type name
@@ -1734,6 +1739,7 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
       orderBy?: NexusGenInputs['PricesOrderByInput'][] | null; // [PricesOrderByInput!]
+      where?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
     }
     users: { // args
       after?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
