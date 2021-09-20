@@ -39,7 +39,7 @@ export const createUser = extendType({
             userEmail: email,
           };
         } catch (error) {
-          throw new Error(error);
+          throw new Error(error.message);
         }
       },
     });
