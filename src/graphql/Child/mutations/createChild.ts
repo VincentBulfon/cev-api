@@ -5,7 +5,7 @@ export const createChild = extendType({
   definition(t) {
     t.crud.createOneChildren({
       type: "Child",
-      description: "create on child",
+      description: "create one child",
     });
   },
 });

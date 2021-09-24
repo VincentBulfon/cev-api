@@ -1430,6 +1430,7 @@ export interface NexusGenFieldTypes {
     message: string; // String!
   }
   Mutation: { // field return type
+    createChildren: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
     createOneCancellations: NexusGenRootTypes['Cancellation']; // Cancellation!
     createOneChildren: NexusGenRootTypes['Child']; // Child!
     createOneCourses: NexusGenRootTypes['Course']; // Course!
@@ -1546,6 +1547,7 @@ export interface NexusGenFieldTypeNames {
     message: 'String'
   }
   Mutation: { // field return type name
+    createChildren: 'Child'
     createOneCancellations: 'Cancellation'
     createOneChildren: 'Child'
     createOneCourses: 'Course'
@@ -1636,6 +1638,10 @@ export interface NexusGenArgTypes {
     }
   }
   Mutation: {
+    createChildren: { // args
+      childrenList?: Array<NexusGenInputs['ChildrenCreateInput'] | null> | null; // [ChildrenCreateInput]
+      parentMail?: string | null; // String
+    }
     createOneCancellations: { // args
       data: NexusGenInputs['CancellationsCreateInput']; // CancellationsCreateInput!
     }
