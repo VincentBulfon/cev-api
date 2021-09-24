@@ -24,7 +24,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --transpile-only --no-notify src/index.ts",
-    "cleanup": "node node_scripts/cleanup.js",
+    "devcleanup": "node node_scripts/cleanup.js && ts-node-dev --transpile-only --no-notify src/index.ts",
     "build": "tsc",
     "start": "node ./dist/src/index.js"
   }

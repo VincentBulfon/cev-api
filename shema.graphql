@@ -577,10 +577,12 @@ type MessagePayload {
 }
 
 type Mutation {
+  createChildren(childrenList: [ChildrenCreateInput], parentMail: String): [Child]
+
   """create one cancellation"""
   createOneCancellations(data: CancellationsCreateInput!): Cancellation!
 
-  """create on child"""
+  """create one child"""
   createOneChildren(data: ChildrenCreateInput!): Child!
 
   """create on course"""
