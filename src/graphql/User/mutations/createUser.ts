@@ -1,3 +1,4 @@
+import { ApolloError } from "apollo-server";
 import { arg, extendType } from "nexus";
 import { Context } from "../../../context";
 
@@ -22,7 +23,10 @@ export const createUser = extendType({
             where: { email },
           });
           if (isUserExist) {
-            throw new Error("Email is already associated with another user");
+            throw new ApolloError(
+              "Email is already associated with another user",
+              "BAD_USER_INPUT"
+            );
           }
           const hashPassword = await generateHashPassword(password);
           await ctx.prisma.users.create({
