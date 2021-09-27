@@ -1,21 +1,14 @@
-import { prisma } from "@prisma/client";
-import { arg, booleanArg, extendType, intArg, list, stringArg } from "nexus";
-import { Children } from "@prisma/client";
-
-type CreateChildrenTypes = [{}];
+import { arg, extendType, list } from 'nexus';
 
 export const createChildren = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
-    t.field("createChildren", {
-      type: list("Child"),
+    t.field('createChildren', {
+      type: list('Child'),
       args: {
         childrenList: arg({
-          type: list("ChildrenCreateInput"),
+          type: list('ChildrenCreateInput'),
         }),
-        parentMail: stringArg(),
-        // courseId: intArg(),
-        // voucher: booleanArg(),
       },
       async resolve(root, args, ctx) {
         let returnedData: any = [];
@@ -27,17 +20,9 @@ export const createChildren = extendType({
                 first_name: child.first_name,
                 birth_date: new Date(child.birth_date),
                 tutor: { connect: { email: args.parentMail } },
-                // courses: {
-                //   connect: { id: args.courseId },
-                // },
-                // Orders: {
-                //   create: {
-                //     sport_voucher: args.voucher,
-                //   },
-                // },
               },
             })
-            .then((res) => {
+            .then(res => {
               returnedData.push(res);
             });
         }
