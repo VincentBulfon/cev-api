@@ -1,22 +1,22 @@
-import { ApolloError } from "apollo-server";
-import { arg, extendType } from "nexus";
-import { Context } from "../../../context";
+import { ApolloError } from 'apollo-server';
+import { arg, extendType } from 'nexus';
+import { Context } from '../../../context';
 
-import generateHashPassword from "../../../ultils/hashPassword";
-import generateToken from "../../../ultils/tokenUtility";
+import generateHashPassword from '../../../ultils/hashPassword';
+import generateToken from '../../../ultils/tokenUtility';
 
 export const createUser = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
-    t.nonNull.field("signup", {
-      type: "AuthPayload",
+    t.nonNull.field('signup', {
+      type: 'AuthPayload',
       args: {
-        signupInput: arg({ type: "signupInput" }),
+        signupInput: arg({ type: 'signupInput' }),
       },
       resolve: async (
         _,
         { signupInput: { name, first_name, email, password, phone_number } },
-        ctx: Context
+        ctx: Context,
       ) => {
         try {
           const isUserExist = await ctx.prisma.users.findUnique({
@@ -24,8 +24,8 @@ export const createUser = extendType({
           });
           if (isUserExist) {
             throw new ApolloError(
-              "Email is already associated with another user",
-              "BAD_USER_INPUT"
+              'Email is already associated with another user',
+              'BAD_USER_INPUT',
             );
           }
           const hashPassword = await generateHashPassword(password);
