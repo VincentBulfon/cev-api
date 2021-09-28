@@ -15,8 +15,8 @@ export const course = objectType({
         return occupation;
       },
     });
-    t.list.field('enfants', {
-      type: list('Child'),
+    t.list.field('children', {
+      type: 'Child',
       resolve: (root, args, ctx) => {
         return ctx.prisma.children.findMany({
           where: { courses: { some: { id: { equals: root.id } } } },
