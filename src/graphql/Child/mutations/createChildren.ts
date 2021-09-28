@@ -19,7 +19,7 @@ export const createChildren = extendType({
                 name: child.name,
                 first_name: child.first_name,
                 birth_date: new Date(child.birth_date),
-                tutor: { connect: { email: args.parentMail } },
+                tutor: child.tutor,
               },
             })
             .then(res => {
