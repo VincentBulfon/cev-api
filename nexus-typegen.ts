@@ -1420,9 +1420,9 @@ export interface NexusGenFieldTypes {
   }
   Course: { // field return type
     cancellations: Array<NexusGenRootTypes['Cancellation'] | null> | null; // [Cancellation]
+    children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
     day_of_week: number; // Int!
     end_time: NexusGenScalars['Date']; // Date!
-    enfants: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
     id: number; // Int!
     occupation: number; // Int!
     places: number; // Int!
@@ -1538,9 +1538,9 @@ export interface NexusGenFieldTypeNames {
   }
   Course: { // field return type name
     cancellations: 'Cancellation'
+    children: 'Child'
     day_of_week: 'Int'
     end_time: 'Date'
-    enfants: 'Child'
     id: 'Int'
     occupation: 'Int'
     places: 'Int'

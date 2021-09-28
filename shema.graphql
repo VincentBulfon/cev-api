@@ -318,9 +318,9 @@ input ChildrenWhereUniqueInput {
 
 type Course {
   cancellations(firstDate: DateTime, secondDate: DateTime): [Cancellation]
+  children: [Child]
   day_of_week: Int!
   end_time: Date!
-  enfants: [Child]
   id: Int!
   occupation: Int!
   places: Int!
