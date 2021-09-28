@@ -1,4 +1,4 @@
-import { arg, objectType } from 'nexus';
+import { arg, list, objectType } from 'nexus';
 
 export const course = objectType({
   name: 'Course',
@@ -7,8 +7,15 @@ export const course = objectType({
     t.nonNull.date('start_time');
     t.nonNull.date('end_time');
     t.nonNull.int('places');
+    t.nonNull.int('occupation', {
+      resolve(root, _args, ctx) {
+        ctx.prisma.children.findMany({
+          where: { courses: { some: { id: root.id } } },
+        });
+      },
+    });
     t.list.field('enfants', {
-      type: 'Child',
+      type: list('Child'),
       resolve: (root, args, ctx) => {
         return ctx.prisma.children.findMany({
           where: { courses: { some: { id: { equals: root.id } } } },
