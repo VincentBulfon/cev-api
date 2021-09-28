@@ -1,10 +1,10 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const coursesQuery = extendType({
-  type: "Query",
+  type: 'Query',
   definition(t) {
     t.crud.courses({
-      type: "Course",
+      type: 'Course',
       filtering: true,
       ordering: true,
     });
