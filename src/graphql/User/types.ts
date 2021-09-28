@@ -31,7 +31,7 @@ export const signupInput = inputObjectType({
     t.nonNull.string('password');
     t.nonNull.string('phone_number');
     t.nonNull.string('email');
-    t.list.field('children', { type: 'ChildrenCreateInput' });
+    t.nonNull.list.field('children', { type: 'ChildrenCreateInput' });
   },
 });
 
