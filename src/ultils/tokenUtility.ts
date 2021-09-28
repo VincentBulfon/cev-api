@@ -1,4 +1,4 @@
-import { sign } from "jsonwebtoken";
+import { sign } from 'jsonwebtoken';
 const generateToken = (userEmail: String) => {
   const token = sign(
     {
@@ -6,7 +6,7 @@ const generateToken = (userEmail: String) => {
     },
     process.env.JWT_KEY,
     {
-      expiresIn: "15d",
+      expiresIn: '15d',
     }
   );
   return token;

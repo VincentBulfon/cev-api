@@ -25,7 +25,7 @@ export const createUser = extendType({
             children,
           },
         },
-        ctx: Context,
+        ctx: Context
       ) => {
         try {
           const isUserExist = await ctx.prisma.users.findUnique({
@@ -34,7 +34,7 @@ export const createUser = extendType({
           if (isUserExist) {
             throw new ApolloError(
               'Email is already associated with another user',
-              'BAD_USER_INPUT',
+              'BAD_USER_INPUT'
             );
           }
 

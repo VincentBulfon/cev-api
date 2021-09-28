@@ -27,7 +27,7 @@ export const forgotPassword = extendType({
             process.env.JWT_KEY,
             {
               expiresIn: '10m',
-            },
+            }
           );
           const html = mailService.resetPassword(token);
           await ctx.prisma.users.update({
@@ -42,7 +42,7 @@ export const forgotPassword = extendType({
             process.env.EMAIL_FROM,
             email,
             'Password Reset',
-            html,
+            html
           );
           return {
             message: `Un email à été envoyé à ${email}. Suivez les instruction pour réinitialiser votre mot de passe (le lien n'est valide que 10 minutes).`,

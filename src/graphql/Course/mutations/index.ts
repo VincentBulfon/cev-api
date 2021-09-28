@@ -1,3 +1,3 @@
-export * from "./createCourse";
-export * from "./updateCourse";
-export * from "./deleteCourse";
+export * from './createCourse';
+export * from './updateCourse';
+export * from './deleteCourse';

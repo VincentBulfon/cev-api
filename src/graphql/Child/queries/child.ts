@@ -1,10 +1,10 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const ChildrenQuery = extendType({
-  type: "Query",
+  type: 'Query',
   definition(t) {
     t.crud.children({
-      type: "Child",
+      type: 'Child',
     });
   },
 });

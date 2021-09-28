@@ -1,41 +1,41 @@
-import { extendType, inputObjectType, objectType } from "nexus";
-import { getUserEmail } from "../../ultils/getUserEmail";
+import { extendType, inputObjectType, objectType } from 'nexus';
+import { getUserEmail } from '../../ultils/getUserEmail';
 
 export const messagePayload = objectType({
-  name: "MessagePayload",
+  name: 'MessagePayload',
   definition(t) {
-    t.nonNull.string("message");
+    t.nonNull.string('message');
   },
 });
 
 export const loginInput = inputObjectType({
-  name: "loginInput",
+  name: 'loginInput',
   definition(t) {
-    t.nonNull.string("email");
-    t.nonNull.string("password");
+    t.nonNull.string('email');
+    t.nonNull.string('password');
   },
 });
 
 export const AuthPayload = objectType({
-  name: "AuthPayload",
+  name: 'AuthPayload',
   definition(t) {
-    t.nonNull.string("token"), t.nonNull.string("userEmail");
+    t.nonNull.string('token'), t.nonNull.string('userEmail');
   },
 });
 
 export const resetPasswordInput = inputObjectType({
-  name: "resetPasswordInput",
+  name: 'resetPasswordInput',
   definition(t) {
-    t.nonNull.string("resetPasswordToken");
-    t.nonNull.string("newPassword");
+    t.nonNull.string('resetPasswordToken');
+    t.nonNull.string('newPassword');
   },
 });
 
 export const currentUser = extendType({
-  type: "Query",
+  type: 'Query',
   definition(t) {
-    t.nonNull.field("currentUser", {
-      type: "User",
+    t.nonNull.field('currentUser', {
+      type: 'User',
       resolve: async (parent, args, ctx) => {
         const userEmail = getUserEmail(ctx);
         const user = await ctx.prisma.users.findUnique({
@@ -48,16 +48,16 @@ export const currentUser = extendType({
 });
 
 export const verifyTokenInput = inputObjectType({
-  name: "verifyTokenInput",
+  name: 'verifyTokenInput',
   definition(t) {
-    t.nonNull.string("token");
+    t.nonNull.string('token');
   },
 });
 
 export const tokenVerificationResponse = objectType({
-  name: "tokenVerificationResponse",
+  name: 'tokenVerificationResponse',
   definition(t) {
-    t.nonNull.boolean("response");
-    t.nonNull.string("userEmail");
+    t.nonNull.boolean('response');
+    t.nonNull.string('userEmail');
   },
 });

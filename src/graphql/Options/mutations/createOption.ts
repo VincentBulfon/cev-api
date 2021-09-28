@@ -1,11 +1,11 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const createOption = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
     t.crud.createOneOptions({
-      type: "Option",
-      description: "create one option",
+      type: 'Option',
+      description: 'create one option',
     });
   },
 });

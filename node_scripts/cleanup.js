@@ -1,7 +1,7 @@
-let fs = require('fs')
+let fs = require('fs');
 
 function cleanupFiles({ path }) {
-  path.forEach((path) => {
+  path.forEach(path => {
     //check if file exist or is a directory
     if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
       console.log(`Deleting file ${path}`);
@@ -13,8 +13,8 @@ function cleanupFiles({ path }) {
   return;
 }
 
-console.log("Cleaning auto generated files...");
+console.log('Cleaning auto generated files...');
 
-cleanupFiles({ path: ["nexus-typegen.ts", "shema.graphql"] });
+cleanupFiles({ path: ['nexus-typegen.ts', 'shema.graphql'] });
 
-console.log("Files sucessfully cleaned");
+console.log('Files sucessfully cleaned');

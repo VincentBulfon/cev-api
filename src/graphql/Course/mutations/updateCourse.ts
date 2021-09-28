@@ -1,11 +1,11 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const updateCourse = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
     t.crud.updateOneCourses({
-      type: "Course",
-      description: "update one course",
+      type: 'Course',
+      description: 'update one course',
     });
   },
 });

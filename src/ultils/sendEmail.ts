@@ -1,8 +1,8 @@
-import { createTransport } from "nodemailer";
+import { createTransport } from 'nodemailer';
 type Token = string;
 
 const transport = createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_PASSWORD,

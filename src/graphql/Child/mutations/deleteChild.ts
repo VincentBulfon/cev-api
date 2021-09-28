@@ -1,11 +1,11 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const deleteChild = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
     t.crud.deleteOneChildren({
-      type: "Child",
-      description: "delete one user",
+      type: 'Child',
+      description: 'delete one user',
     });
   },
 });

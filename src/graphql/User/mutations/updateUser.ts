@@ -1,20 +1,20 @@
-import { Maybe } from "graphql/jsutils/Maybe";
-import { arg, extendType, nonNull } from "nexus";
-import { getUserEmail } from "../../../ultils/getUserEmail";
-import generateHashPassword from "../../../ultils/hashPassword";
+import { Maybe } from 'graphql/jsutils/Maybe';
+import { arg, extendType, nonNull } from 'nexus';
+import { getUserEmail } from '../../../ultils/getUserEmail';
+import generateHashPassword from '../../../ultils/hashPassword';
 
 export const updateUserForgotPassword = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
-    t.nonNull.field("updateUser", {
-      type: "User",
+    t.nonNull.field('updateUser', {
+      type: 'User',
       args: {
-        updateUserInput: nonNull(arg({ type: "userUpdateInput" })),
+        updateUserInput: nonNull(arg({ type: 'userUpdateInput' })),
       },
       resolve: async (_, { updateUserInput: { password, email } }, ctx) => {
         const userEmail = getUserEmail(ctx);
         if (!password && !email) {
-          throw new Error("No Field to update");
+          throw new Error('No Field to update');
         }
         interface DataType {
           email?: string;

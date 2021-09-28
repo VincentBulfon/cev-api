@@ -1,13 +1,13 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const cancellationQuery = extendType({
-  type: "Query",
+  type: 'Query',
   definition(t) {
     t.crud.cancellations({
-      type: "Cancellation",
+      type: 'Cancellation',
       filtering: true,
       ordering: true,
-      description: "get cancellations",
+      description: 'get cancellations',
     });
   },
 });

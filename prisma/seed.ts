@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
@@ -14,36 +14,36 @@ async function main() {
   const users = await prisma.users.createMany({
     data: [
       {
-        email: "vincent@prisma.io",
-        name: "Bulfon",
-        first_name: "Vincent",
-        password: "root",
-        role: "ADMIN",
-        phone_number: "0456576787",
+        email: 'vincent@prisma.io',
+        name: 'Bulfon',
+        first_name: 'Vincent',
+        password: 'root',
+        role: 'ADMIN',
+        phone_number: '0456576787',
       },
       {
-        email: "pierre@gmail.io",
-        name: "Loma",
-        first_name: "Pierre",
-        password: "root",
-        role: "MONITOR",
-        phone_number: "0456986789",
+        email: 'pierre@gmail.io',
+        name: 'Loma',
+        first_name: 'Pierre',
+        password: 'root',
+        role: 'MONITOR',
+        phone_number: '0456986789',
       },
       {
-        email: "alex@prisma.io",
-        name: "Herlot",
-        first_name: "Alex",
-        password: "root",
-        role: "USER",
-        phone_number: "0456576780",
+        email: 'alex@prisma.io',
+        name: 'Herlot',
+        first_name: 'Alex',
+        password: 'root',
+        role: 'USER',
+        phone_number: '0456576780',
       },
       {
-        email: "alice@prisma.io",
-        name: "Koopers",
-        first_name: "Alice",
-        password: "root",
-        role: "USER",
-        phone_number: "044586825",
+        email: 'alice@prisma.io',
+        name: 'Koopers',
+        first_name: 'Alice',
+        password: 'root',
+        role: 'USER',
+        phone_number: '044586825',
       },
     ],
   });
@@ -51,24 +51,24 @@ async function main() {
   console.log(`Users created`);
 
   const children = await prisma.users.update({
-    where: { email: "alex@prisma.io" },
+    where: { email: 'alex@prisma.io' },
     data: {
       children: {
         createMany: {
           data: [
             {
-              name: "Herlot",
-              first_name: "Roger",
+              name: 'Herlot',
+              first_name: 'Roger',
               birth_date: new Date(2011, 8, 13),
             },
             {
-              name: "Herlot",
-              first_name: "Alice",
+              name: 'Herlot',
+              first_name: 'Alice',
               birth_date: new Date(2010, 1, 23),
             },
             {
-              name: "Lemons",
-              first_name: "Bobby",
+              name: 'Lemons',
+              first_name: 'Bobby',
               birth_date: new Date(2011, 5, 2),
             },
           ],
@@ -84,44 +84,44 @@ async function main() {
       {
         day_of_week: 1,
         places: 16,
-        start_time: new Date("1996-01-01T18:00:00"),
-        end_time: new Date("1996-01-01T19:00:00"),
+        start_time: new Date('1996-01-01T18:00:00'),
+        end_time: new Date('1996-01-01T19:00:00'),
       },
       {
         day_of_week: 1,
         places: 16,
-        start_time: new Date("1996-01-01T19:00:00"),
-        end_time: new Date("1996-01-01T20:00:00"),
+        start_time: new Date('1996-01-01T19:00:00'),
+        end_time: new Date('1996-01-01T20:00:00'),
       },
       {
         day_of_week: 3,
         places: 16,
-        start_time: new Date("1996-01-02T17:30:00"),
-        end_time: new Date("1996-01-01T18:30:00"),
+        start_time: new Date('1996-01-02T17:30:00'),
+        end_time: new Date('1996-01-01T18:30:00'),
       },
       {
         day_of_week: 3,
         places: 16,
-        start_time: new Date("1996-01-01T18:30:00"),
-        end_time: new Date("1996-01-01T19:30:00"),
+        start_time: new Date('1996-01-01T18:30:00'),
+        end_time: new Date('1996-01-01T19:30:00'),
       },
       {
         day_of_week: 6,
         places: 16,
-        start_time: new Date("1996-01-01T10:00:00"),
-        end_time: new Date("1996-01-01T11:00:00"),
+        start_time: new Date('1996-01-01T10:00:00'),
+        end_time: new Date('1996-01-01T11:00:00'),
       },
       {
         day_of_week: 6,
         places: 16,
-        start_time: new Date("1996-01-01T11:00:00"),
-        end_time: new Date("1996-01-01T12:00:00"),
+        start_time: new Date('1996-01-01T11:00:00'),
+        end_time: new Date('1996-01-01T12:00:00'),
       },
       {
         day_of_week: 6,
         places: 16,
-        start_time: new Date("1996-01-01T12:00:00"),
-        end_time: new Date("1996-01-01T13:00:00"),
+        start_time: new Date('1996-01-01T12:00:00'),
+        end_time: new Date('1996-01-01T13:00:00'),
       },
     ],
   });
@@ -167,12 +167,12 @@ async function main() {
   const options = await prisma.options.createMany({
     data: [
       {
-        name: "MEMBERSH1PFEE1",
+        name: 'MEMBERSH1PFEE1',
       },
       {
-        name: "MEMBERSHIPFEE2",
+        name: 'MEMBERSHIPFEE2',
       },
-      { name: "INSSURANCE" },
+      { name: 'INSSURANCE' },
     ],
   });
 
@@ -203,21 +203,21 @@ async function main() {
     await prisma.prices.findFirst({
       where: { option_id: allOptions[0].id },
       orderBy: {
-        created_at: "desc",
+        created_at: 'desc',
       },
       take: 1,
     }),
     await prisma.prices.findFirst({
       where: { option_id: allOptions[1].id },
       orderBy: {
-        created_at: "desc",
+        created_at: 'desc',
       },
       take: 1,
     }),
     await prisma.prices.findFirst({
       where: { option_id: allOptions[2].id },
       orderBy: {
-        created_at: "desc",
+        created_at: 'desc',
       },
       take: 1,
     }),
@@ -225,10 +225,10 @@ async function main() {
 
   const childrenSelection = await prisma.users
     .findUnique({
-      where: { email: "alex@prisma.io" },
+      where: { email: 'alex@prisma.io' },
     })
     .children();
-  childrenSelection.forEach(async (child) => {
+  childrenSelection.forEach(async child => {
     await prisma.orders.create({
       data: {
         child: { connect: { id: child.id } },
@@ -243,7 +243,7 @@ async function main() {
                   id: allOptions[0].id,
                 },
               },
-              status: "UNPAID",
+              status: 'UNPAID',
             },
             {
               price: {
@@ -254,7 +254,7 @@ async function main() {
                   id: allOptions[1].id,
                 },
               },
-              status: "PAID",
+              status: 'PAID',
             },
             {
               price: {
@@ -265,19 +265,19 @@ async function main() {
                   id: allOptions[2].id,
                 },
               },
-              status: "PAID",
+              status: 'PAID',
             },
           ],
         },
       },
     });
   });
-  console.log("Orders created");
-  console.log("finished exit with ctr+c")
+  console.log('Orders created');
+  console.log('finished exit with ctr+c');
 }
 
 main()
-  .catch((e) => {
+  .catch(e => {
     console.error(e);
     process.exit(1);
   })

@@ -1,6 +1,6 @@
-import { rule } from "graphql-shield";
-import { Context } from "../context";
-import { getUserEmail } from "../ultils/getUserEmail";
+import { rule } from 'graphql-shield';
+import { Context } from '../context';
+import { getUserEmail } from '../ultils/getUserEmail';
 
 export const rules = {
   isAuthenticatedUser: rule()((_parent, _args, ctx: Context) => {
@@ -11,7 +11,7 @@ export const rules = {
     const userEmail = getUserEmail(ctx);
     const user = await ctx.prisma.users.findMany({
       where: {
-        AND: [{ email: { equals: userEmail } }, { role: { equals: "ADMIN" } }],
+        AND: [{ email: { equals: userEmail } }, { role: { equals: 'ADMIN' } }],
       },
       take: 1,
     });
@@ -24,7 +24,7 @@ export const rules = {
       where: {
         AND: [
           { email: { equals: userEmail } },
-          { role: { equals: "MONITOR" } },
+          { role: { equals: 'MONITOR' } },
         ],
       },
     });
@@ -37,7 +37,7 @@ export const rules = {
       where: {
         AND: [
           { email: { equals: userEmail } },
-          { role: { equals: "MONITOR" } },
+          { role: { equals: 'MONITOR' } },
         ],
       },
     });

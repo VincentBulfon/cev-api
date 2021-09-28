@@ -1,5 +1,5 @@
-import { allow, or, shield } from "graphql-shield";
-import { rules } from "./rules";
+import { allow, or, shield } from 'graphql-shield';
+import { rules } from './rules';
 
 export const middlewares = shield({
   Query: {

@@ -318,10 +318,11 @@ input ChildrenWhereUniqueInput {
 
 type Course {
   cancellations(firstDate: DateTime, secondDate: DateTime): [Cancellation]
-  day_of_week: Int
+  day_of_week: Int!
   end_time: Date!
   enfants: [Child]
   id: Int!
+  occupation: Int!
   places: Int!
   start_time: Date!
 }
@@ -577,7 +578,7 @@ type MessagePayload {
 }
 
 type Mutation {
-  createChildren(childrenList: [ChildrenCreateInput], parentMail: String): [Child]
+  createChildren(childrenList: [ChildrenCreateInput]): [Child]
 
   """create one cancellation"""
   createOneCancellations(data: CancellationsCreateInput!): Cancellation!
@@ -1626,6 +1627,7 @@ input resetPasswordInput {
 }
 
 input signupInput {
+  children: [ChildrenCreateInput]
   email: String!
   first_name: String!
   name: String!

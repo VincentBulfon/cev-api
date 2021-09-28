@@ -1274,6 +1274,7 @@ export interface NexusGenInputs {
     resetPasswordToken: string; // String!
   }
   signupInput: { // input type
+    children?: Array<NexusGenInputs['ChildrenCreateInput'] | null> | null; // [ChildrenCreateInput]
     email: string; // String!
     first_name: string; // String!
     name: string; // String!
@@ -1331,7 +1332,7 @@ export interface NexusGenObjects {
     tutor_id: number; // Int!
   }
   Course: { // root type
-    day_of_week?: number | null; // Int
+    day_of_week: number; // Int!
     end_time: NexusGenScalars['Date']; // Date!
     id: number; // Int!
     places: number; // Int!
@@ -1419,10 +1420,11 @@ export interface NexusGenFieldTypes {
   }
   Course: { // field return type
     cancellations: Array<NexusGenRootTypes['Cancellation'] | null> | null; // [Cancellation]
-    day_of_week: number | null; // Int
+    day_of_week: number; // Int!
     end_time: NexusGenScalars['Date']; // Date!
     enfants: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
     id: number; // Int!
+    occupation: number; // Int!
     places: number; // Int!
     start_time: NexusGenScalars['Date']; // Date!
   }
@@ -1540,6 +1542,7 @@ export interface NexusGenFieldTypeNames {
     end_time: 'Date'
     enfants: 'Child'
     id: 'Int'
+    occupation: 'Int'
     places: 'Int'
     start_time: 'Date'
   }
@@ -1640,7 +1643,6 @@ export interface NexusGenArgTypes {
   Mutation: {
     createChildren: { // args
       childrenList?: Array<NexusGenInputs['ChildrenCreateInput'] | null> | null; // [ChildrenCreateInput]
-      parentMail?: string | null; // String
     }
     createOneCancellations: { // args
       data: NexusGenInputs['CancellationsCreateInput']; // CancellationsCreateInput!

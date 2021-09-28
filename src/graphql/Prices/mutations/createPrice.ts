@@ -1,11 +1,11 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const createPrice = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
     t.crud.createOnePrices({
-      type: "Price",
-      description: "create one price",
+      type: 'Price',
+      description: 'create one price',
     });
   },
 });

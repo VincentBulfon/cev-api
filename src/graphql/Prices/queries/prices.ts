@@ -1,10 +1,10 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const pricesQuery = extendType({
-  type: "Query",
+  type: 'Query',
   definition(t) {
     t.crud.prices({
-      type: "Price",
+      type: 'Price',
       ordering: true,
       filtering: true,
     });

@@ -1,16 +1,16 @@
-import { verify } from "jsonwebtoken";
-import { arg, extendType, nonNull } from "nexus";
-import generateHashPassword from "../../../ultils/hashPassword";
+import { verify } from 'jsonwebtoken';
+import { arg, extendType, nonNull } from 'nexus';
+import generateHashPassword from '../../../ultils/hashPassword';
 
 export const resetPAssword = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
-    t.nonNull.field("resetPassword", {
-      type: "MessagePayload",
+    t.nonNull.field('resetPassword', {
+      type: 'MessagePayload',
       args: {
         resetPasswordInput: nonNull(
           arg({
-            type: "resetPasswordInput",
+            type: 'resetPasswordInput',
           })
         ),
       },
@@ -21,7 +21,7 @@ export const resetPAssword = extendType({
       ) => {
         try {
           if (!resetPasswordToken) {
-            throw new Error("No reset link found");
+            throw new Error('No reset link found');
           }
           verify(resetPasswordToken, process.env.JWT_RESET_PASSWORD);
           const user = await ctx.prisma.users.findUnique({
@@ -30,7 +30,7 @@ export const resetPAssword = extendType({
             },
           });
           if (!user) {
-            throw new Error("User not exist");
+            throw new Error('User not exist');
           }
           const password = await generateHashPassword(newPassword);
           await ctx.prisma.users.update({
@@ -39,7 +39,7 @@ export const resetPAssword = extendType({
             },
             data: {
               password,
-              resetPasswordToken: "",
+              resetPasswordToken: '',
             },
           });
           return {

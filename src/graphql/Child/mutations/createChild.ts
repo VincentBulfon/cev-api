@@ -1,11 +1,11 @@
-import { extendType } from "nexus";
+import { extendType } from 'nexus';
 
 export const createChild = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
     t.crud.createOneChildren({
-      type: "Child",
-      description: "create one child",
+      type: 'Child',
+      description: 'create one child',
     });
   },
 });
