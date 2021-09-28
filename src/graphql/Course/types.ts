@@ -9,12 +9,9 @@ export const course = objectType({
     t.nonNull.int('places');
     t.nonNull.int('occupation', {
       async resolve(root, _args, ctx) {
-        const occupation = await ctx.prisma.children.findMany({
+        const occupation = await ctx.prisma.children.count({
           where: { courses: { some: { id: root.id } } },
         });
-        if (occupation == []) {
-          return 0;
-        }
         return occupation;
       },
     });
