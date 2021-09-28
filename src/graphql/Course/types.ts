@@ -8,10 +8,14 @@ export const course = objectType({
     t.nonNull.date('end_time');
     t.nonNull.int('places');
     t.nonNull.int('occupation', {
-      resolve(root, _args, ctx) {
-        ctx.prisma.children.findMany({
+      async resolve(root, _args, ctx) {
+        const occupation = await ctx.prisma.children.findMany({
           where: { courses: { some: { id: root.id } } },
         });
+        if (occupation == []) {
+          return 0;
+        }
+        return occupation;
       },
     });
     t.list.field('enfants', {
