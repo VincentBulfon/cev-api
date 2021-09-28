@@ -15,7 +15,16 @@ export const createUser = extendType({
       },
       resolve: async (
         _,
-        { signupInput: { name, first_name, email, password, phone_number } },
+        {
+          signupInput: {
+            name,
+            first_name,
+            email,
+            password,
+            phone_number,
+            children,
+          },
+        },
         ctx: Context,
       ) => {
         try {
@@ -28,16 +37,38 @@ export const createUser = extendType({
               'BAD_USER_INPUT',
             );
           }
+
           const hashPassword = await generateHashPassword(password);
-          await ctx.prisma.users.create({
-            data: {
-              email,
-              name,
-              first_name,
-              password: hashPassword,
-              phone_number,
-            },
-          });
+
+          const user = await ctx.prisma.users
+            .create({
+              data: {
+                email,
+                name,
+                first_name,
+                password: hashPassword,
+                phone_number,
+              },
+            })
+            .then(async user => {
+              let returnedChildren = [];
+              children.map(async child => {
+                await ctx.prisma.children
+                  .create({
+                    data: {
+                      name: child.name,
+                      first_name: child.first_name,
+                      birth_date: new Date(child.birth_date),
+                      tutor: { connect: { email: user.email } },
+                    },
+                  })
+                  .then(res => {
+                    returnedChildren.push(res);
+                  });
+              });
+              console.log(children);
+            });
+
           return {
             token: generateToken(email),
             userEmail: email,
