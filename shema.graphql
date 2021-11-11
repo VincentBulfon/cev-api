@@ -578,7 +578,7 @@ type MessagePayload {
 }
 
 type Mutation {
-  createChildren(childrenList: [ChildrenCreateInput]): [Child]
+  createChildren(childrenList: [ChildrenCreateInput]!): [Child]
 
   """create one cancellation"""
   createOneCancellations(data: CancellationsCreateInput!): Cancellation!
@@ -1627,7 +1627,7 @@ input resetPasswordInput {
 }
 
 input signupInput {
-  children: [ChildrenCreateInput]
+  children: [ChildrenCreateInput]!
   email: String!
   first_name: String!
   name: String!

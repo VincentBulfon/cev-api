@@ -35,6 +35,17 @@ export const signupInput = inputObjectType({
   },
 });
 
+// export const CreateChildreInput = inputObjectType({
+//   name: 'createChildInput',
+//   definition(t) {
+//     t.nonNull.id('order');
+//     t.nonNull.date('birth_date');
+//     t.nonNull.id('course_id');
+//     t.nonNull.string('first_name');
+//     t.nonNull.string('name');
+//   },
+// });
+
 export const UserUniqueInput = inputObjectType({
   name: 'userUniqueInput',
   definition(t) {

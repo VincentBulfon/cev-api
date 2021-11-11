@@ -1274,7 +1274,7 @@ export interface NexusGenInputs {
     resetPasswordToken: string; // String!
   }
   signupInput: { // input type
-    children?: Array<NexusGenInputs['ChildrenCreateInput'] | null> | null; // [ChildrenCreateInput]
+    children: Array<NexusGenInputs['ChildrenCreateInput'] | null>; // [ChildrenCreateInput]!
     email: string; // String!
     first_name: string; // String!
     name: string; // String!
@@ -1642,7 +1642,7 @@ export interface NexusGenArgTypes {
   }
   Mutation: {
     createChildren: { // args
-      childrenList?: Array<NexusGenInputs['ChildrenCreateInput'] | null> | null; // [ChildrenCreateInput]
+      childrenList: Array<NexusGenInputs['ChildrenCreateInput'] | null>; // [ChildrenCreateInput]!
     }
     createOneCancellations: { // args
       data: NexusGenInputs['CancellationsCreateInput']; // CancellationsCreateInput!
