@@ -29,61 +29,61 @@ interface NexusPrismaInputs {
   Query: {
     users: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at' | 'children'
-      ordering: 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at'
+      ordering: 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at' | 'children'
     }
     children: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
-      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
+      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
     }
     courses: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
-      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week'
+      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
     }
     cancellations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at' | 'course'
-      ordering: 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at'
+      ordering: 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at' | 'course'
     }
     options: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'created_at' | 'name' | 'orders' | 'Prices'
-      ordering: 'id' | 'created_at' | 'name'
+      ordering: 'id' | 'created_at' | 'name' | 'orders' | 'Prices'
     }
     prices: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'price' | 'created_at' | 'option_id' | 'option' | 'options_set'
-      ordering: 'id' | 'price' | 'created_at' | 'option_id'
+      ordering: 'id' | 'price' | 'created_at' | 'option_id' | 'option' | 'options_set'
     }
     orders: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
-      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id'
+      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
     }
     optionsSets: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
-      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id'
+      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
     }
   },
   Users: {
     children: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
-      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
+      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
     }
   }
   Children: {
     courses: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
-      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week'
+      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
     }
     Orders: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
-      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id'
+      ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
     }
   }
   Courses: {
     cancellations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at' | 'course'
-      ordering: 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at'
+      ordering: 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at' | 'course'
     }
     children: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
-      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
+      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
     }
   }
   Cancellations: {
@@ -92,23 +92,23 @@ interface NexusPrismaInputs {
   Options: {
     orders: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
-      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id'
+      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
     }
     Prices: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'price' | 'created_at' | 'option_id' | 'option' | 'options_set'
-      ordering: 'id' | 'price' | 'created_at' | 'option_id'
+      ordering: 'id' | 'price' | 'created_at' | 'option_id' | 'option' | 'options_set'
     }
   }
   Prices: {
     options_set: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
-      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id'
+      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
     }
   }
   Orders: {
     options_set: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
-      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id'
+      ordering: 'id' | 'status' | 'paid_at' | 'cancelled_at' | 'option_id' | 'order_id' | 'price_id' | 'option' | 'order' | 'price'
     }
   }
   Options_set: {

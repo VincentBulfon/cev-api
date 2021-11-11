@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@prisma/client": "2.23",
     "@types/bcrypt": "^5.0.0",

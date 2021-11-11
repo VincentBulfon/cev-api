@@ -66,7 +66,12 @@ input CancellationsListRelationFilter {
   some: CancellationsWhereInput
 }
 
-input CancellationsOrderByInput {
+input CancellationsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CancellationsOrderByWithRelationInput {
+  course: CoursesOrderByWithRelationInput
   course_id: SortOrder
   created_at: SortOrder
   date: SortOrder
@@ -212,6 +217,10 @@ input ChildrenListRelationFilter {
   every: ChildrenWhereInput
   none: ChildrenWhereInput
   some: ChildrenWhereInput
+}
+
+input ChildrenOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input ChildrenScalarWhereInput {
@@ -380,7 +389,9 @@ input CoursesListRelationFilter {
   some: CoursesWhereInput
 }
 
-input CoursesOrderByInput {
+input CoursesOrderByWithRelationInput {
+  cancellations: CancellationsOrderByRelationAggregateInput
+  children: ChildrenOrderByRelationAggregateInput
   day_of_week: SortOrder
   end_time: SortOrder
   id: SortOrder
@@ -793,6 +804,14 @@ input OptionsCreateWithoutPricesInput {
   orders: Options_setCreateNestedManyWithoutOptionInput
 }
 
+input OptionsOrderByWithRelationInput {
+  Prices: PricesOrderByRelationAggregateInput
+  created_at: SortOrder
+  id: SortOrder
+  name: SortOrder
+  orders: Options_setOrderByRelationAggregateInput
+}
+
 input OptionsUpdateOneRequiredWithoutOrdersInput {
   connect: OptionsWhereUniqueInput
   connectOrCreate: OptionsCreateOrConnectWithoutOrdersInput
@@ -962,6 +981,10 @@ input Options_setListRelationFilter {
   every: Options_setWhereInput
   none: Options_setWhereInput
   some: Options_setWhereInput
+}
+
+input Options_setOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input Options_setScalarWhereInput {
@@ -1348,10 +1371,16 @@ input PricesListRelationFilter {
   some: PricesWhereInput
 }
 
-input PricesOrderByInput {
+input PricesOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input PricesOrderByWithRelationInput {
   created_at: SortOrder
   id: SortOrder
+  option: OptionsOrderByWithRelationInput
   option_id: SortOrder
+  options_set: Options_setOrderByRelationAggregateInput
   price: SortOrder
 }
 
@@ -1443,15 +1472,15 @@ input PricesWhereUniqueInput {
 
 type Query {
   """get cancellations"""
-  cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!
+  cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByWithRelationInput!], where: CancellationsWhereInput): [Cancellation!]!
   children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int): [Child!]!
-  courses(after: CoursesWhereUniqueInput, before: CoursesWhereUniqueInput, first: Int, last: Int, orderBy: [CoursesOrderByInput!], where: CoursesWhereInput): [Course!]!
+  courses(after: CoursesWhereUniqueInput, before: CoursesWhereUniqueInput, first: Int, last: Int, orderBy: [CoursesOrderByWithRelationInput!], where: CoursesWhereInput): [Course!]!
   currentUser: User!
 
   """get options"""
   options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!
-  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, orderBy: [PricesOrderByInput!], where: PricesWhereInput): [Price!]!
-  users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByInput!], where: UsersWhereInput): [User!]!
+  prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, orderBy: [PricesOrderByWithRelationInput!], where: PricesWhereInput): [Price!]!
+  users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByWithRelationInput!], where: UsersWhereInput): [User!]!
 }
 
 enum QueryMode {
@@ -1549,7 +1578,8 @@ input UsersCreateWithoutChildrenInput {
   verfifed_at: DateTime
 }
 
-input UsersOrderByInput {
+input UsersOrderByWithRelationInput {
+  children: ChildrenOrderByRelationAggregateInput
   created_at: SortOrder
   deleted_at: SortOrder
   email: SortOrder
