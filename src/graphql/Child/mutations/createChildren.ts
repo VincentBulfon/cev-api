@@ -31,7 +31,6 @@ export const createChildren = extendType({
           }
 
           const existingChildren = await Promise.all(promises);
-          console.log(existingChildren);
 
           //If count of a child is greater than 0 that means this child already exists
           existingChildren.forEach((count, index) => {
@@ -70,6 +69,7 @@ export const createChildren = extendType({
             //     },
             //   })
             // );
+            console.log('test');
 
             //Stores promise inside and array to be executed in concurrency later in code
             promArray.push(
@@ -84,11 +84,19 @@ export const createChildren = extendType({
                       create: child.tutor.connectOrCreate.create,
                     },
                   },
+                  courses: { connect: child.Orders.connect },
+                  Orders: {
+                    createMany: {
+                      data: child.Orders.createMany.data,
+                      skipDuplicates: child.Orders.createMany.skipDuplicates,
+                    },
+                  },
                 },
               })
             );
             //Execute all the promises in concurrency to reduce execution time
             returnedData = await Promise.all(promArray);
+            console.log(returnedData);
           }
           return returnedData;
         } catch (error) {

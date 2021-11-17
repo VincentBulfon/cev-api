@@ -77,11 +77,7 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
     some?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
   }
-  CancellationsOrderByRelationAggregateInput: { // input type
-    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  CancellationsOrderByWithRelationInput: { // input type
-    course?: NexusGenInputs['CoursesOrderByWithRelationInput'] | null; // CoursesOrderByWithRelationInput
+  CancellationsOrderByInput: { // input type
     course_id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
     date?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -198,9 +194,6 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
     none?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
     some?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
-  }
-  ChildrenOrderByRelationAggregateInput: { // input type
-    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChildrenScalarWhereInput: { // input type
     AND?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
@@ -336,9 +329,7 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
     some?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
   }
-  CoursesOrderByWithRelationInput: { // input type
-    cancellations?: NexusGenInputs['CancellationsOrderByRelationAggregateInput'] | null; // CancellationsOrderByRelationAggregateInput
-    children?: NexusGenInputs['ChildrenOrderByRelationAggregateInput'] | null; // ChildrenOrderByRelationAggregateInput
+  CoursesOrderByInput: { // input type
     day_of_week?: NexusGenEnums['SortOrder'] | null; // SortOrder
     end_time?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -619,13 +610,6 @@ export interface NexusGenInputs {
     name: NexusGenEnums['NameEnum']; // NameEnum!
     orders?: NexusGenInputs['Options_setCreateNestedManyWithoutOptionInput'] | null; // Options_setCreateNestedManyWithoutOptionInput
   }
-  OptionsOrderByWithRelationInput: { // input type
-    Prices?: NexusGenInputs['PricesOrderByRelationAggregateInput'] | null; // PricesOrderByRelationAggregateInput
-    created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    orders?: NexusGenInputs['Options_setOrderByRelationAggregateInput'] | null; // Options_setOrderByRelationAggregateInput
-  }
   OptionsUpdateOneRequiredWithoutOrdersInput: { // input type
     connect?: NexusGenInputs['OptionsWhereUniqueInput'] | null; // OptionsWhereUniqueInput
     connectOrCreate?: NexusGenInputs['OptionsCreateOrConnectWithoutOrdersInput'] | null; // OptionsCreateOrConnectWithoutOrdersInput
@@ -771,9 +755,6 @@ export interface NexusGenInputs {
     every?: NexusGenInputs['Options_setWhereInput'] | null; // Options_setWhereInput
     none?: NexusGenInputs['Options_setWhereInput'] | null; // Options_setWhereInput
     some?: NexusGenInputs['Options_setWhereInput'] | null; // Options_setWhereInput
-  }
-  Options_setOrderByRelationAggregateInput: { // input type
-    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   Options_setScalarWhereInput: { // input type
     AND?: NexusGenInputs['Options_setScalarWhereInput'][] | null; // [Options_setScalarWhereInput!]
@@ -1090,15 +1071,10 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
     some?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
   }
-  PricesOrderByRelationAggregateInput: { // input type
-    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
-  }
-  PricesOrderByWithRelationInput: { // input type
+  PricesOrderByInput: { // input type
     created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    option?: NexusGenInputs['OptionsOrderByWithRelationInput'] | null; // OptionsOrderByWithRelationInput
     option_id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    options_set?: NexusGenInputs['Options_setOrderByRelationAggregateInput'] | null; // Options_setOrderByRelationAggregateInput
     price?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   PricesScalarWhereInput: { // input type
@@ -1228,8 +1204,7 @@ export interface NexusGenInputs {
     secondary_email?: string | null; // String
     verfifed_at?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  UsersOrderByWithRelationInput: { // input type
-    children?: NexusGenInputs['ChildrenOrderByRelationAggregateInput'] | null; // ChildrenOrderByRelationAggregateInput
+  UsersOrderByInput: { // input type
     created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
     deleted_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -1742,7 +1717,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['CancellationsWhereUniqueInput'] | null; // CancellationsWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenInputs['CancellationsOrderByWithRelationInput'][] | null; // [CancellationsOrderByWithRelationInput!]
+      orderBy?: NexusGenInputs['CancellationsOrderByInput'][] | null; // [CancellationsOrderByInput!]
       where?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
     }
     children: { // args
@@ -1756,7 +1731,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenInputs['CoursesOrderByWithRelationInput'][] | null; // [CoursesOrderByWithRelationInput!]
+      orderBy?: NexusGenInputs['CoursesOrderByInput'][] | null; // [CoursesOrderByInput!]
       where?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
     }
     options: { // args
@@ -1771,7 +1746,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenInputs['PricesOrderByWithRelationInput'][] | null; // [PricesOrderByWithRelationInput!]
+      orderBy?: NexusGenInputs['PricesOrderByInput'][] | null; // [PricesOrderByInput!]
       where?: NexusGenInputs['PricesWhereInput'] | null; // PricesWhereInput
     }
     users: { // args
@@ -1779,7 +1754,7 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenInputs['UsersOrderByWithRelationInput'][] | null; // [UsersOrderByWithRelationInput!]
+      orderBy?: NexusGenInputs['UsersOrderByInput'][] | null; // [UsersOrderByInput!]
       where?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
     }
   }
