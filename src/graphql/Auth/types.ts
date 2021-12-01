@@ -1,5 +1,5 @@
 import { extendType, inputObjectType, objectType } from 'nexus';
-import { getUserEmail } from '../../ultils/getUserEmail';
+import { getUserId } from '../../ultils/getUserId';
 
 export const messagePayload = objectType({
   name: 'MessagePayload',
@@ -37,7 +37,7 @@ export const currentUser = extendType({
     t.nonNull.field('currentUser', {
       type: 'User',
       resolve: async (parent, args, ctx) => {
-        const userEmail = getUserEmail(ctx);
+        const userEmail = getUserId(ctx);
         const user = await ctx.prisma.users.findUnique({
           where: { email: userEmail },
         });
@@ -58,6 +58,6 @@ export const tokenVerificationResponse = objectType({
   name: 'tokenVerificationResponse',
   definition(t) {
     t.nonNull.boolean('response');
-    t.nonNull.string('userEmail');
+    t.nonNull.string('userId');
   },
 });

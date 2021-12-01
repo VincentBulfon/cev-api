@@ -1,14 +1,14 @@
 import { rule } from 'graphql-shield';
 import { Context } from '../context';
-import { getUserEmail } from '../ultils/getUserEmail';
+import { getUserId } from '../ultils/getUserId';
 
 export const rules = {
   isAuthenticatedUser: rule()((_parent, _args, ctx: Context) => {
-    const userEmail = getUserEmail(ctx);
+    const userEmail = getUserId(ctx);
     return Boolean(userEmail);
   }),
   isAdmin: rule()(async (_parent, _args, ctx: Context) => {
-    const userEmail = getUserEmail(ctx);
+    const userEmail = getUserId(ctx);
     const user = await ctx.prisma.users.findMany({
       where: {
         AND: [{ email: { equals: userEmail } }, { role: { equals: 'ADMIN' } }],
@@ -19,7 +19,7 @@ export const rules = {
     return isAdmin;
   }),
   isMonitor: rule()(async (_parent, _args, ctx: Context) => {
-    const userEmail = getUserEmail(ctx);
+    const userEmail = getUserId(ctx);
     const user = await ctx.prisma.users.findMany({
       where: {
         AND: [
@@ -32,7 +32,7 @@ export const rules = {
     return isMonitor;
   }),
   isNormalUser: rule()(async (_parent, _args, ctx: Context) => {
-    const userEmail = getUserEmail(ctx);
+    const userEmail = getUserId(ctx);
     const user = await ctx.prisma.users.findMany({
       where: {
         AND: [

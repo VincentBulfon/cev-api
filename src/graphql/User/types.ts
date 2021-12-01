@@ -31,6 +31,7 @@ export const signupInput = inputObjectType({
     t.nonNull.string('password');
     t.nonNull.string('phone_number');
     t.nonNull.string('email');
+    t.nullable.string('secondary_email');
     t.nonNull.list.field('children', { type: 'ChildrenCreateInput' });
   },
 });

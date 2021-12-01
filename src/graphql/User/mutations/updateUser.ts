@@ -1,6 +1,6 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { arg, extendType, nonNull } from 'nexus';
-import { getUserEmail } from '../../../ultils/getUserEmail';
+import { getUserId } from '../../../ultils/getUserId';
 import generateHashPassword from '../../../ultils/hashPassword';
 
 export const updateUserForgotPassword = extendType({
@@ -12,7 +12,7 @@ export const updateUserForgotPassword = extendType({
         updateUserInput: nonNull(arg({ type: 'userUpdateInput' })),
       },
       resolve: async (_, { updateUserInput: { password, email } }, ctx) => {
-        const userEmail = getUserEmail(ctx);
+        const userEmail = getUserId(ctx);
         if (!password && !email) {
           throw new Error('No Field to update');
         }

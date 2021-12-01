@@ -1,6 +1,6 @@
 import { verify } from 'jsonwebtoken';
 import { arg, extendType, nonNull } from 'nexus';
-import { Token } from '../../../ultils/getUserEmail';
+import { Token } from '../../../ultils/getUserId';
 
 export const verifyToken = extendType({
   type: 'Mutation',
@@ -11,9 +11,9 @@ export const verifyToken = extendType({
       resolve: (root, { token: { token } }, ctx) => {
         const user = verify(token, process.env.JWT_KEY) as Token;
         if (user) {
-          return { response: true, userEmail: user.userEmail };
+          return { response: true, userId: user.userId };
         } else {
-          return { response: false, userEmail: '' };
+          return { response: false, userId: '' };
         }
       },
     });

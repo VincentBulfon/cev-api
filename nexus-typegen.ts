@@ -1282,6 +1282,7 @@ export interface NexusGenInputs {
     name: string; // String!
     password: string; // String!
     phone_number: string; // String!
+    secondary_email?: string | null; // String
   }
   userUniqueInput: { // input type
     email?: string | null; // String
@@ -1389,7 +1390,7 @@ export interface NexusGenObjects {
   }
   tokenVerificationResponse: { // root type
     response: boolean; // Boolean!
-    userEmail: string; // String!
+    userId: string; // String!
   }
 }
 
@@ -1455,6 +1456,7 @@ export interface NexusGenFieldTypes {
     forgotPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
+    signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
@@ -1521,7 +1523,7 @@ export interface NexusGenFieldTypes {
   }
   tokenVerificationResponse: { // field return type
     response: boolean; // Boolean!
-    userEmail: string; // String!
+    userId: string; // String!
   }
 }
 
@@ -1577,6 +1579,7 @@ export interface NexusGenFieldTypeNames {
     forgotPassword: 'MessagePayload'
     login: 'AuthPayload'
     resetPassword: 'MessagePayload'
+    signup: 'AuthPayload'
     updateOneCancellations: 'Cancellation'
     updateOneChildren: 'Child'
     updateOneCourses: 'Course'
@@ -1643,7 +1646,7 @@ export interface NexusGenFieldTypeNames {
   }
   tokenVerificationResponse: { // field return type name
     response: 'Boolean'
-    userEmail: 'String'
+    userId: 'String'
   }
 }
 
@@ -1702,6 +1705,9 @@ export interface NexusGenArgTypes {
     }
     resetPassword: { // args
       resetPasswordInput: NexusGenInputs['resetPasswordInput']; // resetPasswordInput!
+    }
+    signup: { // args
+      signupInput?: NexusGenInputs['signupInput'] | null; // signupInput
     }
     updateOneCancellations: { // args
       data: NexusGenInputs['CancellationsUpdateInput']; // CancellationsUpdateInput!
