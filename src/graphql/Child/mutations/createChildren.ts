@@ -52,28 +52,11 @@ export const createChildren = extendType({
 
           let returnedData: any = [];
           let promArray: any = [];
-          for (const child of args.childrenList) {
-            // returnedData.push(
-            //   //Need to await for each promise to resolve because if the promises are executed in concurrency (Promises.all()), prisma can't handle correctly the create or connect and throw and error for unique constrain violation one "email" col.
-            //   await ctx.prisma.children.create({
-            //     data: {
-            //       name: child.name,
-            //       first_name: child.first_name,
-            //       birth_date: new Date(child.birth_date),
-            //       tutor: {
-            //         connectOrCreate: {
-            //           where: child.tutor.connectOrCreate.where,
-            //           create: child.tutor.connectOrCreate.create,
-            //         },
-            //       },
-            //     },
-            //   })
-            // );
-            console.log('test');
-
+          for await (const child of args.childrenList) {
             //Stores promise inside and array to be executed in concurrency later in code
-            promArray.push(
-              ctx.prisma.children.create({
+            //promArray.push(
+            returnedData.push(
+              await ctx.prisma.children.create({
                 data: {
                   name: child.name,
                   first_name: child.first_name,
@@ -84,20 +67,18 @@ export const createChildren = extendType({
                       create: child.tutor.connectOrCreate.create,
                     },
                   },
-                  courses: { connect: child.Orders.connect },
+                  courses: { connect: child.courses.connect },
                   Orders: {
-                    createMany: {
-                      data: child.Orders.createMany.data,
-                      skipDuplicates: child.Orders.createMany.skipDuplicates,
-                    },
+                    create: child.Orders.create,
                   },
                 },
               })
             );
-            //Execute all the promises in concurrency to reduce execution time
-            returnedData = await Promise.all(promArray);
-            console.log(returnedData);
+            //);
           }
+
+          //Execute all the promises in concurrency to reduce execution time
+          //returnedData = await Promise.all(promArray);
           return returnedData;
         } catch (error) {
           throw new Error(error.message);
