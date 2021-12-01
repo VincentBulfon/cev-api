@@ -4,7 +4,7 @@
 
 type AuthPayload {
   token: String!
-  userEmail: String!
+  userId: String!
 }
 
 input BoolFieldUpdateOperationsInput {
@@ -157,8 +157,9 @@ type Child {
   id: Int!
   name: String!
   orders: [Order]
+  token: Token
   tutor: User
-  tutor_id: Int!
+  tutor_id: String!
 }
 
 input ChildrenCreateInput {
@@ -222,7 +223,7 @@ input ChildrenScalarWhereInput {
   first_name: StringFilter
   id: IntFilter
   name: StringFilter
-  tutor_id: IntFilter
+  tutor_id: StringFilter
 }
 
 input ChildrenUpdateInput {
@@ -309,7 +310,7 @@ input ChildrenWhereInput {
   id: IntFilter
   name: StringFilter
   tutor: UsersWhereInput
-  tutor_id: IntFilter
+  tutor_id: StringFilter
 }
 
 input ChildrenWhereUniqueInput {
@@ -1511,12 +1512,17 @@ input StringNullableFilter {
   startsWith: String
 }
 
+type Token {
+  token: String!
+  userId: String!
+}
+
 type User {
   children: [Child]
   created_at: Date!
   email: String!
   first_name: String!
-  id: Int!
+  id: String!
   name: String!
   password: String!
   phone_number: String!
@@ -1540,6 +1546,7 @@ input UsersCreateWithoutChildrenInput {
   deleted_at: DateTime
   email: String!
   first_name: String!
+  id: String
   name: String!
   password: String!
   phone_number: String!
@@ -1577,6 +1584,7 @@ input UsersUpdateWithoutChildrenInput {
   deleted_at: NullableDateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
   phone_number: StringFieldUpdateOperationsInput
@@ -1600,7 +1608,7 @@ input UsersWhereInput {
   deleted_at: DateTimeNullableFilter
   email: StringFilter
   first_name: StringFilter
-  id: IntFilter
+  id: StringFilter
   name: StringFilter
   password: StringFilter
   phone_number: StringFilter
@@ -1612,7 +1620,7 @@ input UsersWhereInput {
 
 input UsersWhereUniqueInput {
   email: String
-  id: Int
+  id: String
   resetPasswordToken: String
 }
 

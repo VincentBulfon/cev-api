@@ -19,7 +19,7 @@ export const loginInput = inputObjectType({
 export const AuthPayload = objectType({
   name: 'AuthPayload',
   definition(t) {
-    t.nonNull.string('token'), t.nonNull.string('userEmail');
+    t.nonNull.string('token'), t.nonNull.string('userId');
   },
 });
 

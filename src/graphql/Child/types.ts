@@ -1,4 +1,5 @@
 import { objectType } from 'nexus';
+import generateToken from '../../ultils/tokenUtility';
 
 export const child = objectType({
   name: 'Child',
@@ -7,7 +8,7 @@ export const child = objectType({
     t.nonNull.string('name');
     t.nonNull.string('first_name');
     t.nonNull.date('birth_date');
-    t.nonNull.int('tutor_id');
+    t.nonNull.string('tutor_id');
     t.field('tutor', {
       type: 'User',
       resolve: (root, _, ctx) => {
@@ -32,5 +33,25 @@ export const child = objectType({
         });
       },
     });
+    t.field('token', {
+      type: 'Token',
+      resolve: async (root, _, ctx) => {
+        const { name, id } = await ctx.prisma.users.findUnique({
+          where: { id: root.tutor_id },
+          select: { name: true, id: true },
+        });
+        return {
+          token: generateToken(name),
+          userId: id,
+        };
+      },
+    });
+  },
+});
+
+export const Token = objectType({
+  name: 'Token',
+  definition(t) {
+    t.nonNull.string('token'), t.nonNull.string('userId');
   },
 });

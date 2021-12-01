@@ -203,7 +203,7 @@ export interface NexusGenInputs {
     first_name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    tutor_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    tutor_id?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
   ChildrenUpdateInput: { // input type
     Orders?: NexusGenInputs['OrdersUpdateManyWithoutChildInput'] | null; // OrdersUpdateManyWithoutChildInput
@@ -279,7 +279,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     tutor?: NexusGenInputs['UsersWhereInput'] | null; // UsersWhereInput
-    tutor_id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    tutor_id?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
   ChildrenWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -1196,6 +1196,7 @@ export interface NexusGenInputs {
     deleted_at?: NexusGenScalars['DateTime'] | null; // DateTime
     email: string; // String!
     first_name: string; // String!
+    id?: string | null; // String
     name: string; // String!
     password: string; // String!
     phone_number: string; // String!
@@ -1230,6 +1231,7 @@ export interface NexusGenInputs {
     deleted_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phone_number?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1251,7 +1253,7 @@ export interface NexusGenInputs {
     deleted_at?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     email?: NexusGenInputs['StringFilter'] | null; // StringFilter
     first_name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     password?: NexusGenInputs['StringFilter'] | null; // StringFilter
     phone_number?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -1262,7 +1264,7 @@ export interface NexusGenInputs {
   }
   UsersWhereUniqueInput: { // input type
     email?: string | null; // String
-    id?: number | null; // Int
+    id?: string | null; // String
     resetPasswordToken?: string | null; // String
   }
   loginInput: { // input type
@@ -1316,7 +1318,7 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   AuthPayload: { // root type
     token: string; // String!
-    userEmail: string; // String!
+    userId: string; // String!
   }
   Cancellation: { // root type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1329,7 +1331,7 @@ export interface NexusGenObjects {
     first_name: string; // String!
     id: number; // Int!
     name: string; // String!
-    tutor_id: number; // Int!
+    tutor_id: string; // String!
   }
   Course: { // root type
     day_of_week: number; // Int!
@@ -1370,11 +1372,15 @@ export interface NexusGenObjects {
     price: number; // Int!
   }
   Query: {};
+  Token: { // root type
+    token: string; // String!
+    userId: string; // String!
+  }
   User: { // root type
     created_at: NexusGenScalars['Date']; // Date!
     email: string; // String!
     first_name: string; // String!
-    id: number; // Int!
+    id: string; // String!
     name: string; // String!
     password: string; // String!
     phone_number: string; // String!
@@ -1400,7 +1406,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 export interface NexusGenFieldTypes {
   AuthPayload: { // field return type
     token: string; // String!
-    userEmail: string; // String!
+    userId: string; // String!
   }
   Cancellation: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1415,8 +1421,9 @@ export interface NexusGenFieldTypes {
     id: number; // Int!
     name: string; // String!
     orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
+    token: NexusGenRootTypes['Token'] | null; // Token
     tutor: NexusGenRootTypes['User'] | null; // User
-    tutor_id: number; // Int!
+    tutor_id: string; // String!
   }
   Course: { // field return type
     cancellations: Array<NexusGenRootTypes['Cancellation'] | null> | null; // [Cancellation]
@@ -1497,12 +1504,16 @@ export interface NexusGenFieldTypes {
     prices: NexusGenRootTypes['Price'][]; // [Price!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
+  Token: { // field return type
+    token: string; // String!
+    userId: string; // String!
+  }
   User: { // field return type
     children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
     created_at: NexusGenScalars['Date']; // Date!
     email: string; // String!
     first_name: string; // String!
-    id: number; // Int!
+    id: string; // String!
     name: string; // String!
     password: string; // String!
     phone_number: string; // String!
@@ -1518,7 +1529,7 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   AuthPayload: { // field return type name
     token: 'String'
-    userEmail: 'String'
+    userId: 'String'
   }
   Cancellation: { // field return type name
     created_at: 'Date'
@@ -1533,8 +1544,9 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     name: 'String'
     orders: 'Order'
+    token: 'Token'
     tutor: 'User'
-    tutor_id: 'Int'
+    tutor_id: 'String'
   }
   Course: { // field return type name
     cancellations: 'Cancellation'
@@ -1615,12 +1627,16 @@ export interface NexusGenFieldTypeNames {
     prices: 'Price'
     users: 'User'
   }
+  Token: { // field return type name
+    token: 'String'
+    userId: 'String'
+  }
   User: { // field return type name
     children: 'Child'
     created_at: 'Date'
     email: 'String'
     first_name: 'String'
-    id: 'Int'
+    id: 'String'
     name: 'String'
     password: 'String'
     phone_number: 'String'

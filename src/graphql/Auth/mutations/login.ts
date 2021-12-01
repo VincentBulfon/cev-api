@@ -22,11 +22,11 @@ export const loginMutation = extendType({
         }
         const isPasswordMatch = await compare(password, user.password);
         if (!isPasswordMatch) {
-          throw new Error(`Password not correct ${user.email}`);
+          throw new Error(`Wrong password for ${user.email}`);
         }
         return {
-          token: generateToken(user.email),
-          userEmail: email,
+          token: generateToken(user.id),
+          userId: user.id,
         };
       },
     });

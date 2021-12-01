@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Users {
-  id                 Int        @id @default(autoincrement())
+  id                 String     @id @default(uuid())
   email              String     @unique
   name               String
   password           String
@@ -29,7 +29,7 @@ model Children {
   name       String
   birth_date DateTime  @db.Date
   first_name String
-  tutor_id   Int
+  tutor_id   String
   tutor      Users     @relation(fields: [tutor_id], references: [id])
   courses    Courses[]
   Orders     Orders[]

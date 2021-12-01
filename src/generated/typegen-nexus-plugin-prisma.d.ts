@@ -187,7 +187,7 @@ interface NexusPrismaOutputs {
     upsertOneOptions_set: 'Options_set'
   },
   Users: {
-    id: 'Int'
+    id: 'String'
     email: 'String'
     name: 'String'
     password: 'String'
@@ -206,7 +206,7 @@ interface NexusPrismaOutputs {
     name: 'String'
     birth_date: 'DateTime'
     first_name: 'String'
-    tutor_id: 'Int'
+    tutor_id: 'String'
     tutor: 'Users'
     courses: 'Courses'
     Orders: 'Orders'

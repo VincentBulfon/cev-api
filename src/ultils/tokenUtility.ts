@@ -1,5 +1,5 @@
 import { sign } from 'jsonwebtoken';
-const generateToken = (userEmail: String) => {
+const generateToken = (userEmail: string) => {
   const token = sign(
     {
       userEmail,
