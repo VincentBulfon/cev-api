@@ -1,8 +1,8 @@
 import { sign } from 'jsonwebtoken';
-const generateToken = (userEmail: string) => {
+const generateToken = (userId: string) => {
   const token = sign(
     {
-      userEmail,
+      userId,
     },
     process.env.JWT_KEY,
     {

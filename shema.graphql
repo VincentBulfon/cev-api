@@ -619,7 +619,6 @@ type Mutation {
   forgotPassword(email: String!): MessagePayload!
   login(loginInput: loginInput): AuthPayload!
   resetPassword(resetPasswordInput: resetPasswordInput!): MessagePayload!
-  signup(signupInput: signupInput): AuthPayload!
 
   """update on cancellation"""
   updateOneCancellations(data: CancellationsUpdateInput!, where: CancellationsWhereUniqueInput!): Cancellation

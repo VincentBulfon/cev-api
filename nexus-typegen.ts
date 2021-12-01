@@ -1455,7 +1455,6 @@ export interface NexusGenFieldTypes {
     forgotPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
-    signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
@@ -1578,7 +1577,6 @@ export interface NexusGenFieldTypeNames {
     forgotPassword: 'MessagePayload'
     login: 'AuthPayload'
     resetPassword: 'MessagePayload'
-    signup: 'AuthPayload'
     updateOneCancellations: 'Cancellation'
     updateOneChildren: 'Child'
     updateOneCourses: 'Course'
@@ -1704,9 +1702,6 @@ export interface NexusGenArgTypes {
     }
     resetPassword: { // args
       resetPasswordInput: NexusGenInputs['resetPasswordInput']; // resetPasswordInput!
-    }
-    signup: { // args
-      signupInput?: NexusGenInputs['signupInput'] | null; // signupInput
     }
     updateOneCancellations: { // args
       data: NexusGenInputs['CancellationsUpdateInput']; // CancellationsUpdateInput!

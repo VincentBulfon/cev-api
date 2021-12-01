@@ -22,7 +22,7 @@ export const createUser = extendType({
             email,
             password,
             phone_number,
-            children,
+            secondary_email,
           },
         },
         ctx: Context
@@ -40,38 +40,20 @@ export const createUser = extendType({
 
           const hashPassword = await generateHashPassword(password);
 
-          const user = await ctx.prisma.users
-            .create({
-              data: {
-                email,
-                name,
-                first_name,
-                password: hashPassword,
-                phone_number,
-              },
-            })
-            .then(async user => {
-              let returnedChildren = [];
-              children.map(async child => {
-                await ctx.prisma.children
-                  .create({
-                    data: {
-                      name: child.name,
-                      first_name: child.first_name,
-                      birth_date: new Date(child.birth_date),
-                      tutor: { connect: { email: user.email } },
-                    },
-                  })
-                  .then(res => {
-                    returnedChildren.push(res);
-                  });
-              });
-              console.log(children);
-            });
+          const user = await ctx.prisma.users.create({
+            data: {
+              email,
+              name,
+              first_name,
+              password: hashPassword,
+              phone_number,
+              secondary_email,
+            },
+          });
 
           return {
-            token: generateToken(email),
-            userEmail: email,
+            token: generateToken(user.id),
+            userId: user.id,
           };
         } catch (error) {
           throw new Error(error.message);
