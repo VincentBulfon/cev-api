@@ -1,7 +1,6 @@
 import { Children, Prisma } from '@prisma/client';
-import { GraphQLType } from 'graphql';
 
-import { arg, extendType, list, nonNull, objectType } from 'nexus';
+import { arg, extendType, list, nonNull } from 'nexus';
 import generateToken from '../../../ultils/tokenUtility';
 
 export const createChildren = extendType({
@@ -106,18 +105,6 @@ export const createChildren = extendType({
           throw new Error(error.message);
         }
       },
-    });
-  },
-});
-
-export const createChildrenType = objectType({
-  name: 'createChildrenType',
-  definition(t) {
-    t.list.nonNull.field('child', {
-      type: 'Child',
-    });
-    t.nonNull.field('token', {
-      type: 'Token',
     });
   },
 });

@@ -55,3 +55,15 @@ export const token = objectType({
     t.nonNull.string('token'), t.nonNull.string('userId');
   },
 });
+
+export const createChildrenType = objectType({
+  name: 'createChildrenType',
+  definition(t) {
+    t.list.nonNull.field('child', {
+      type: 'Child',
+    });
+    t.nonNull.field('token', {
+      type: 'Token',
+    });
+  },
+});
