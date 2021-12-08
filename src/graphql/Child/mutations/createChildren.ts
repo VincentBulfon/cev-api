@@ -1,12 +1,14 @@
-import { Prisma } from '@prisma/client';
+import { Children, Prisma } from '@prisma/client';
+import { GraphQLType } from 'graphql';
 
-import { arg, extendType, list, nonNull } from 'nexus';
+import { arg, extendType, list, nonNull, objectType } from 'nexus';
+import generateToken from '../../../ultils/tokenUtility';
 
 export const createChildren = extendType({
   type: 'Mutation',
   definition(t) {
     t.field('createChildren', {
-      type: list('Child'),
+      type: 'createChildrenType',
       args: {
         childrenList: arg({
           type: nonNull(list('ChildrenCreateInput')),
@@ -50,31 +52,51 @@ export const createChildren = extendType({
             throw new Error(errorMessage);
           }
 
-          let returnedData: any = [];
-          let promArray: any = [];
+          let returnedData: {
+            child: Children[];
+            token: { token: string; userId: string };
+          } = {
+            child: [],
+            token: { token: '', userId: '' },
+          };
           for await (const child of args.childrenList) {
             //Stores promise inside and array to be executed in concurrency later in code
             //promArray.push(
-            returnedData.push(
-              await ctx.prisma.children.create({
-                data: {
-                  name: child.name,
-                  first_name: child.first_name,
-                  birth_date: new Date(child.birth_date),
-                  tutor: {
-                    connectOrCreate: {
-                      where: child.tutor.connectOrCreate.where,
-                      create: child.tutor.connectOrCreate.create,
-                    },
-                  },
-                  courses: { connect: child.courses.connect },
-                  Orders: {
-                    create: child.Orders.create,
+            const createdChild = await ctx.prisma.children.create({
+              data: {
+                name: child.name,
+                first_name: child.first_name,
+                birth_date: new Date(child.birth_date),
+                tutor: {
+                  connectOrCreate: {
+                    where: child.tutor.connectOrCreate.where,
+                    create: child.tutor.connectOrCreate.create,
                   },
                 },
-              })
-            );
+                courses: { connect: child.courses.connect },
+                Orders: {
+                  create: child.Orders.create,
+                },
+              },
+            });
+            returnedData.child.push(createdChild);
             //);
+          }
+
+          const userId = await ctx.prisma.users.findUnique({
+            select: { id: true },
+            where: {
+              email: args.childrenList[0].tutor.connectOrCreate.where.email,
+            },
+          });
+
+          returnedData.token = {
+            token: generateToken(userId.id),
+            userId: userId.id,
+          };
+
+          async function createToken() {
+            return;
           }
 
           //Execute all the promises in concurrency to reduce execution time
@@ -84,6 +106,18 @@ export const createChildren = extendType({
           throw new Error(error.message);
         }
       },
+    });
+  },
+});
+
+export const createChildrenType = objectType({
+  name: 'createChildrenType',
+  definition(t) {
+    t.list.nonNull.field('child', {
+      type: 'Child',
+    });
+    t.nonNull.field('token', {
+      type: 'Token',
     });
   },
 });

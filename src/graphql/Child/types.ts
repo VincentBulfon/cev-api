@@ -49,7 +49,7 @@ export const child = objectType({
   },
 });
 
-export const Token = objectType({
+export const token = objectType({
   name: 'Token',
   definition(t) {
     t.nonNull.string('token'), t.nonNull.string('userId');

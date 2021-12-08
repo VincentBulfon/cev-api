@@ -1388,6 +1388,10 @@ export interface NexusGenObjects {
     secondary_email?: string | null; // String
     vertified_at?: NexusGenScalars['Date'] | null; // Date
   }
+  createChildrenType: { // root type
+    child?: NexusGenRootTypes['Child'][] | null; // [Child!]
+    token: NexusGenRootTypes['Token']; // Token!
+  }
   tokenVerificationResponse: { // root type
     response: boolean; // Boolean!
     userId: string; // String!
@@ -1440,7 +1444,7 @@ export interface NexusGenFieldTypes {
     message: string; // String!
   }
   Mutation: { // field return type
-    createChildren: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
+    createChildren: NexusGenRootTypes['createChildrenType'] | null; // createChildrenType
     createOneCancellations: NexusGenRootTypes['Cancellation']; // Cancellation!
     createOneChildren: NexusGenRootTypes['Child']; // Child!
     createOneCourses: NexusGenRootTypes['Course']; // Course!
@@ -1521,6 +1525,10 @@ export interface NexusGenFieldTypes {
     secondary_email: string | null; // String
     vertified_at: NexusGenScalars['Date'] | null; // Date
   }
+  createChildrenType: { // field return type
+    child: NexusGenRootTypes['Child'][] | null; // [Child!]
+    token: NexusGenRootTypes['Token']; // Token!
+  }
   tokenVerificationResponse: { // field return type
     response: boolean; // Boolean!
     userId: string; // String!
@@ -1563,7 +1571,7 @@ export interface NexusGenFieldTypeNames {
     message: 'String'
   }
   Mutation: { // field return type name
-    createChildren: 'Child'
+    createChildren: 'createChildrenType'
     createOneCancellations: 'Cancellation'
     createOneChildren: 'Child'
     createOneCourses: 'Course'
@@ -1643,6 +1651,10 @@ export interface NexusGenFieldTypeNames {
     phone_number: 'String'
     secondary_email: 'String'
     vertified_at: 'Date'
+  }
+  createChildrenType: { // field return type name
+    child: 'Child'
+    token: 'Token'
   }
   tokenVerificationResponse: { // field return type name
     response: 'Boolean'
