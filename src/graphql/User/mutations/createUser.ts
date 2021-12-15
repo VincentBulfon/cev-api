@@ -52,7 +52,7 @@ export const createUser = extendType({
           });
 
           return {
-            token: generateToken(user.id),
+            token: generateToken(user.id, user.role),
             userId: user.id,
           };
         } catch (error) {
