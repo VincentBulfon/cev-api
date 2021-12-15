@@ -59,5 +59,6 @@ export const tokenVerificationResponse = objectType({
   definition(t) {
     t.nonNull.boolean('response');
     t.nonNull.string('userId');
+    t.nonNull.string('userRole');
   },
 });

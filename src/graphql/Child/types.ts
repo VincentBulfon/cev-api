@@ -1,5 +1,6 @@
 import { objectType } from 'nexus';
 import generateToken from '../../ultils/tokenUtility';
+import { RoleEnum } from '../enums';
 
 export const child = objectType({
   name: 'Child',
@@ -36,13 +37,14 @@ export const child = objectType({
     t.field('token', {
       type: 'Token',
       resolve: async (root, _, ctx) => {
-        const { name, id } = await ctx.prisma.users.findUnique({
+        const { name, id, role } = await ctx.prisma.users.findUnique({
           where: { id: root.tutor_id },
-          select: { name: true, id: true },
+          select: { name: true, id: true, role: true },
         });
         return {
-          token: generateToken(name),
+          token: generateToken(name, role),
           userId: id,
+          userRole: RoleEnum,
         };
       },
     });
@@ -52,7 +54,9 @@ export const child = objectType({
 export const token = objectType({
   name: 'Token',
   definition(t) {
-    t.nonNull.string('token'), t.nonNull.string('userId');
+    t.nonNull.string('token'),
+      t.nonNull.string('userId'),
+      t.nonNull.field('userRole', { type: RoleEnum });
   },
 });
 

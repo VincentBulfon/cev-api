@@ -25,8 +25,9 @@ export const loginMutation = extendType({
           throw new Error(`Wrong password for ${user.email}`);
         }
         return {
-          token: generateToken(user.id),
+          token: generateToken(user.id, user.role),
           userId: user.id,
+          userRole: user.role,
         };
       },
     });

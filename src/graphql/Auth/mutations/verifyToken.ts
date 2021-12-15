@@ -11,9 +11,13 @@ export const verifyToken = extendType({
       resolve: (root, { token: { token } }, ctx) => {
         const user = verify(token, process.env.JWT_KEY) as Token;
         if (user) {
-          return { response: true, userId: user.userId };
+          return {
+            response: true,
+            userId: user.userId,
+            userRole: user.userRole,
+          };
         } else {
-          return { response: false, userId: '' };
+          return { response: false, userId: '', userRole: '' };
         }
       },
     });

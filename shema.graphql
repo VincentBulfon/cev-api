@@ -1515,6 +1515,7 @@ input StringNullableFilter {
 type Token {
   token: String!
   userId: String!
+  userRole: RoleEnum!
 }
 
 type User {
@@ -1652,6 +1653,7 @@ input signupInput {
 type tokenVerificationResponse {
   response: Boolean!
   userId: String!
+  userRole: String!
 }
 
 input userUniqueInput {

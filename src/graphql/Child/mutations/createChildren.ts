@@ -1,4 +1,4 @@
-import { Children, Prisma } from '@prisma/client';
+import { Children, Prisma, RoleEnum } from '@prisma/client';
 
 import { arg, extendType, list, nonNull } from 'nexus';
 import generateToken from '../../../ultils/tokenUtility';
@@ -53,10 +53,10 @@ export const createChildren = extendType({
 
           let returnedData: {
             child: Children[];
-            token: { token: string; userId: string };
+            token: { token: string; userId: string; userRole: RoleEnum };
           } = {
             child: [],
-            token: { token: '', userId: '' },
+            token: { token: '', userId: '', userRole: RoleEnum.USER },
           };
           for await (const child of args.childrenList) {
             //Stores promise inside and array to be executed in concurrency later in code
@@ -82,21 +82,18 @@ export const createChildren = extendType({
             //);
           }
 
-          const userId = await ctx.prisma.users.findUnique({
-            select: { id: true },
+          const user = await ctx.prisma.users.findUnique({
+            select: { id: true, role: true },
             where: {
               email: args.childrenList[0].tutor.connectOrCreate.where.email,
             },
           });
 
           returnedData.token = {
-            token: generateToken(userId.id),
-            userId: userId.id,
+            token: generateToken(user.id, user.role),
+            userId: user.id,
+            userRole: user.role,
           };
-
-          async function createToken() {
-            return;
-          }
 
           //Execute all the promises in concurrency to reduce execution time
           //returnedData = await Promise.all(promArray);

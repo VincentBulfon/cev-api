@@ -1376,6 +1376,7 @@ export interface NexusGenObjects {
   Token: { // root type
     token: string; // String!
     userId: string; // String!
+    userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
   User: { // root type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1395,6 +1396,7 @@ export interface NexusGenObjects {
   tokenVerificationResponse: { // root type
     response: boolean; // Boolean!
     userId: string; // String!
+    userRole: string; // String!
   }
 }
 
@@ -1512,6 +1514,7 @@ export interface NexusGenFieldTypes {
   Token: { // field return type
     token: string; // String!
     userId: string; // String!
+    userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
   User: { // field return type
     children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
@@ -1532,6 +1535,7 @@ export interface NexusGenFieldTypes {
   tokenVerificationResponse: { // field return type
     response: boolean; // Boolean!
     userId: string; // String!
+    userRole: string; // String!
   }
 }
 
@@ -1639,6 +1643,7 @@ export interface NexusGenFieldTypeNames {
   Token: { // field return type name
     token: 'String'
     userId: 'String'
+    userRole: 'RoleEnum'
   }
   User: { // field return type name
     children: 'Child'
@@ -1659,6 +1664,7 @@ export interface NexusGenFieldTypeNames {
   tokenVerificationResponse: { // field return type name
     response: 'Boolean'
     userId: 'String'
+    userRole: 'String'
   }
 }
 
