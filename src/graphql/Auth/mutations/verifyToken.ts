@@ -1,3 +1,4 @@
+import { RoleEnum } from '@prisma/client';
 import { verify } from 'jsonwebtoken';
 import { arg, extendType, nonNull } from 'nexus';
 import { Token } from '../../../ultils/getUserId';
@@ -17,7 +18,7 @@ export const verifyToken = extendType({
             userRole: user.userRole,
           };
         } else {
-          return { response: false, userId: '', userRole: '' };
+          return { response: false, userId: '', userRole: RoleEnum.USER };
         }
       },
     });

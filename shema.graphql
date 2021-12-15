@@ -1653,7 +1653,7 @@ input signupInput {
 type tokenVerificationResponse {
   response: Boolean!
   userId: String!
-  userRole: String!
+  userRole: RoleEnum!
 }
 
 input userUniqueInput {
