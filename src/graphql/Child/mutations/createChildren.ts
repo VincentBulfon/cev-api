@@ -44,7 +44,7 @@ export const createChildren = extendType({
 
           //Construct error message
           if (duplicateList.length > 0) {
-            let errorMessage = 'already exist(s)';
+            let errorMessage = '';
             duplicateList.forEach(child => {
               errorMessage = `${child}, ${errorMessage}`;
             });

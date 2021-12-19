@@ -1320,6 +1320,7 @@ export interface NexusGenObjects {
   AuthPayload: { // root type
     token: string; // String!
     userId: string; // String!
+    userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
   Cancellation: { // root type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1414,6 +1415,7 @@ export interface NexusGenFieldTypes {
   AuthPayload: { // field return type
     token: string; // String!
     userId: string; // String!
+    userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
   Cancellation: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
@@ -1543,6 +1545,7 @@ export interface NexusGenFieldTypeNames {
   AuthPayload: { // field return type name
     token: 'String'
     userId: 'String'
+    userRole: 'RoleEnum'
   }
   Cancellation: { // field return type name
     created_at: 'Date'

@@ -5,6 +5,7 @@
 type AuthPayload {
   token: String!
   userId: String!
+  userRole: RoleEnum!
 }
 
 input BoolFieldUpdateOperationsInput {

@@ -1,6 +1,5 @@
 import { extendType, inputObjectType, objectType } from 'nexus';
 import { getUserId } from '../../ultils/getUserId';
-import { RoleEnum } from '@prisma/client';
 
 export const messagePayload = objectType({
   name: 'MessagePayload',
@@ -17,10 +16,14 @@ export const loginInput = inputObjectType({
   },
 });
 
-export const AuthPayload = objectType({
+export const authPayload = objectType({
   name: 'AuthPayload',
   definition(t) {
-    t.nonNull.string('token'), t.nonNull.string('userId');
+    t.nonNull.string('token');
+    t.nonNull.string('userId');
+    t.nonNull.field('userRole', {
+      type: 'RoleEnum',
+    });
   },
 });
 
@@ -60,7 +63,6 @@ export const tokenVerificationResponse = objectType({
   definition(t) {
     t.nonNull.boolean('response');
     t.nonNull.string('userId');
-    t.nonNull.string('userRole');
     t.nonNull.field('userRole', {
       type: 'RoleEnum',
     });
