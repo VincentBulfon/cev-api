@@ -54,6 +54,7 @@ export const createUser = extendType({
           return {
             token: generateToken(user.id, user.role),
             userId: user.id,
+            userRole: user.role,
           };
         } catch (error) {
           throw new Error(error.message);

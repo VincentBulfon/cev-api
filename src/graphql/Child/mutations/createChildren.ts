@@ -1,6 +1,7 @@
 import { Children, Prisma, RoleEnum } from '@prisma/client';
 
 import { arg, extendType, list, nonNull } from 'nexus';
+import generateHashPassword from '../../../ultils/hashPassword';
 import generateToken from '../../../ultils/tokenUtility';
 
 export const createChildren = extendType({
@@ -61,6 +62,9 @@ export const createChildren = extendType({
           for await (const child of args.childrenList) {
             //Stores promise inside and array to be executed in concurrency later in code
             //promArray.push(
+            const hashedPassword = await generateHashPassword(
+              child.tutor.connectOrCreate.create.password
+            );
             const createdChild = await ctx.prisma.children.create({
               data: {
                 name: child.name,
@@ -69,7 +73,17 @@ export const createChildren = extendType({
                 tutor: {
                   connectOrCreate: {
                     where: child.tutor.connectOrCreate.where,
-                    create: child.tutor.connectOrCreate.create,
+                    // dcreate: child.tutor.connectOrCreate.create,
+                    create: {
+                      first_name: child.tutor.connectOrCreate.create.first_name,
+                      name: child.tutor.connectOrCreate.create.name,
+                      password: hashedPassword,
+                      email: child.tutor.connectOrCreate.create.email,
+                      secondary_email:
+                        child.tutor.connectOrCreate.create?.secondary_email,
+                      phone_number:
+                        child.tutor.connectOrCreate.create.phone_number,
+                    },
                   },
                 },
                 courses: { connect: child.courses.connect },
