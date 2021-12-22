@@ -52,9 +52,10 @@ export const createUser = extendType({
           });
 
           return {
-            token: generateToken(user.id, user.role),
+            token: generateToken(user.id, user.role, user.first_name),
             userId: user.id,
             userRole: user.role,
+            userName: user.first_name,
           };
         } catch (error) {
           throw new Error(error.message);

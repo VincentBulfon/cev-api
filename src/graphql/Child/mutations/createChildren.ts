@@ -54,10 +54,20 @@ export const createChildren = extendType({
 
           let returnedData: {
             child: Children[];
-            token: { token: string; userId: string; userRole: RoleEnum };
+            token: {
+              token: string;
+              userId: string;
+              userRole: RoleEnum;
+              userFirstName: string;
+            };
           } = {
             child: [],
-            token: { token: '', userId: '', userRole: RoleEnum.USER },
+            token: {
+              token: '',
+              userId: '',
+              userRole: RoleEnum.USER,
+              userFirstName: '',
+            },
           };
           for await (const child of args.childrenList) {
             //Stores promise inside and array to be executed in concurrency later in code
@@ -97,16 +107,17 @@ export const createChildren = extendType({
           }
 
           const user = await ctx.prisma.users.findUnique({
-            select: { id: true, role: true },
+            select: { id: true, role: true, first_name: true },
             where: {
               email: args.childrenList[0].tutor.connectOrCreate.where.email,
             },
           });
 
           returnedData.token = {
-            token: generateToken(user.id, user.role),
+            token: generateToken(user.id, user.role, user.first_name),
             userId: user.id,
             userRole: user.role,
+            userFirstName: user.first_name,
           };
 
           //Execute all the promises in concurrency to reduce execution time

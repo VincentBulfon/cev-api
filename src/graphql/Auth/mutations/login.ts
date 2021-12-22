@@ -21,15 +21,15 @@ export const loginMutation = extendType({
           throw new Error(`L'utilisateur n'existe pas.`);
         }
         const isPasswordMatch = await compare(password, user.password);
-        console.log(user.password);
 
         if (!isPasswordMatch) {
           throw new Error(`L'email et le mot de passe ne correspondent pas.`);
         }
         return {
-          token: generateToken(user.id, user.role),
+          token: generateToken(user.id, user.role, user.first_name),
           userId: user.id,
           userRole: user.role,
+          userFirstName: user.first_name,
         };
       },
     });

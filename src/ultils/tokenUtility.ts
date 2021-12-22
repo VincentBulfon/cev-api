@@ -1,10 +1,15 @@
 import { RoleEnum } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
-const generateToken = (userId: string, userRole: RoleEnum) => {
+const generateToken = (
+  userId: string,
+  userRole: RoleEnum,
+  userFirstName: string
+) => {
   const token = sign(
     {
       userId,
       userRole,
+      userFirstName,
     },
     process.env.JWT_KEY,
     {
