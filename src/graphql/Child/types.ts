@@ -37,14 +37,15 @@ export const child = objectType({
     t.field('token', {
       type: 'Token',
       resolve: async (root, _, ctx) => {
-        const { name, id, role } = await ctx.prisma.users.findUnique({
+        const { first_name, id, role } = await ctx.prisma.users.findUnique({
           where: { id: root.tutor_id },
-          select: { name: true, id: true, role: true },
+          select: { first_name: true, id: true, role: true },
         });
         return {
-          token: generateToken(name, role),
+          token: generateToken(id, role, first_name),
           userId: id,
           userRole: role,
+          userFirstName: name,
         };
       },
     });
