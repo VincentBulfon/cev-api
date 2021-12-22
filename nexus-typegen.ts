@@ -1522,7 +1522,7 @@ export interface NexusGenFieldTypes {
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
   User: { // field return type
-    children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
+    children: Array<NexusGenRootTypes['Child'] | null>; // [Child]!
     created_at: NexusGenScalars['Date']; // Date!
     email: string; // String!
     first_name: string; // String!
