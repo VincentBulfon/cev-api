@@ -45,7 +45,7 @@ export const child = objectType({
           token: generateToken(id, role, first_name),
           userId: id,
           userRole: role,
-          userFirstName: name,
+          userFirstName: first_name,
         };
       },
     });

@@ -1396,6 +1396,7 @@ export interface NexusGenObjects {
   }
   tokenVerificationResponse: { // root type
     response: boolean; // Boolean!
+    userFirstName: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
@@ -1536,6 +1537,7 @@ export interface NexusGenFieldTypes {
   }
   tokenVerificationResponse: { // field return type
     response: boolean; // Boolean!
+    userFirstName: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
@@ -1666,6 +1668,7 @@ export interface NexusGenFieldTypeNames {
   }
   tokenVerificationResponse: { // field return type name
     response: 'Boolean'
+    userFirstName: 'String'
     userId: 'String'
     userRole: 'RoleEnum'
   }

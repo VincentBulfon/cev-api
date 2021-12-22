@@ -16,9 +16,15 @@ export const verifyToken = extendType({
             response: true,
             userId: user.userId,
             userRole: user.userRole,
+            userFirstName: user.userFirstName,
           };
         } else {
-          return { response: false, userId: '', userRole: RoleEnum.USER };
+          return {
+            response: false,
+            userId: '',
+            userRole: RoleEnum.USER,
+            userFirstName: '',
+          };
         }
       },
     });

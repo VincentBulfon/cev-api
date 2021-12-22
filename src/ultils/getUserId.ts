@@ -5,6 +5,7 @@ import { Context } from '../context';
 export interface Token {
   userId: string;
   userRole: RoleEnum;
+  userFirstName: string;
 }
 export const getUserId = (context: Context) => {
   const authTokenWithBarer = context.request.request.headers.authorization;
