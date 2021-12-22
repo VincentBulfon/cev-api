@@ -1319,6 +1319,7 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   AuthPayload: { // root type
     token: string; // String!
+    userFirstName: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
@@ -1415,6 +1416,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 export interface NexusGenFieldTypes {
   AuthPayload: { // field return type
     token: string; // String!
+    userFirstName: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
@@ -1546,6 +1548,7 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   AuthPayload: { // field return type name
     token: 'String'
+    userFirstName: 'String'
     userId: 'String'
     userRole: 'RoleEnum'
   }

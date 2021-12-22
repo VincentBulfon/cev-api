@@ -4,6 +4,7 @@
 
 type AuthPayload {
   token: String!
+  userFirstName: String!
   userId: String!
   userRole: RoleEnum!
 }

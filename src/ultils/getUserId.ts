@@ -12,6 +12,6 @@ export const getUserId = (context: Context) => {
   if (authTokenWithBarer) {
     const token = authTokenWithBarer.split(' ')[1];
     const user = verify(token, process.env.JWT_KEY) as Token;
-    return user && user.userId && user.userRole;
+    return user && user.userId && user.userRole && user.userFirstName;
   }
 };

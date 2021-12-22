@@ -24,6 +24,7 @@ export const authPayload = objectType({
     t.nonNull.field('userRole', {
       type: 'RoleEnum',
     });
+    t.nonNull.string('userFirstName');
   },
 });
 
@@ -67,5 +68,6 @@ export const tokenVerificationResponse = objectType({
     t.nonNull.field('userRole', {
       type: 'RoleEnum',
     });
+    t.nonNull.string('userFirstName');
   },
 });
