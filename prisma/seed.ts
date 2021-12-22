@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import generateHashPassword from '../src/ultils/hashPassword';
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -17,7 +19,7 @@ async function main() {
         email: 'vincent@prisma.io',
         name: 'Bulfon',
         first_name: 'Vincent',
-        password: 'root',
+        password: await generateHashPassword('root'),
         role: 'ADMIN',
         phone_number: '0456576787',
       },
@@ -25,7 +27,7 @@ async function main() {
         email: 'pierre@gmail.io',
         name: 'Loma',
         first_name: 'Pierre',
-        password: 'root',
+        password: await generateHashPassword('root'),
         role: 'MONITOR',
         phone_number: '0456986789',
       },
@@ -33,7 +35,7 @@ async function main() {
         email: 'alex@prisma.io',
         name: 'Herlot',
         first_name: 'Alex',
-        password: 'root',
+        password: await generateHashPassword('root'),
         role: 'USER',
         phone_number: '0456576780',
       },
@@ -41,7 +43,7 @@ async function main() {
         email: 'alice@prisma.io',
         name: 'Koopers',
         first_name: 'Alice',
-        password: 'root',
+        password: await generateHashPassword('root'),
         role: 'USER',
         phone_number: '044586825',
       },
