@@ -68,6 +68,5 @@ export const tokenVerificationResponse = objectType({
     t.nonNull.field('userRole', {
       type: 'RoleEnum',
     });
-    t.nonNull.string('userFirstName');
   },
 });
