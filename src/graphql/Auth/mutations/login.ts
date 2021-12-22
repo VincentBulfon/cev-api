@@ -18,7 +18,7 @@ export const loginMutation = extendType({
         });
 
         if (!user) {
-          throw new Error(`L'utilisateur n'existe pas.`);
+          throw new Error(`L'email et le mot de passe ne correspondent pas.`);
         }
         const isPasswordMatch = await compare(password, user.password);
 
