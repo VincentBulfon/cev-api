@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import { extendType, objectType } from 'nexus';
 import generateToken from '../../ultils/tokenUtility';
 import { RoleEnum } from '../enums';
 
@@ -49,6 +49,20 @@ export const child = objectType({
         };
       },
     });
+  },
+});
+
+export const ChildrenType = objectType({
+  name: 'children',
+  definition(t) {
+    t.list.field('child', { type: 'Child' });
+  },
+});
+
+export const updateChildrenResponse = objectType({
+  name: 'UpdateChildrenResponse',
+  definition(t) {
+    t.list.field('child', { type: 'Child' });
   },
 });
 

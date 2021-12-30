@@ -557,6 +557,12 @@ input EnumStatusEnumFilter {
   notIn: [StatusEnum!]
 }
 
+input InputUpdateChildrenType {
+  course: ChildrenCreateOrConnectWithoutOrdersInput!
+  id: Int!
+  order: ChildrenCreateOrConnectWithoutCoursesInput!
+}
+
 input IntFieldUpdateOperationsInput {
   decrement: Int
   divide: Int
@@ -622,6 +628,7 @@ type Mutation {
   login(loginInput: loginInput): AuthPayload!
   resetPassword(resetPasswordInput: resetPasswordInput!): MessagePayload!
   signup(signupInput: signupInput): AuthPayload!
+  updateChildren(childrenList: [InputUpdateChildrenType]!): [updatedChildrenType]
 
   """update on cancellation"""
   updateOneCancellations(data: CancellationsUpdateInput!, where: CancellationsWhereUniqueInput!): Cancellation
@@ -1520,6 +1527,10 @@ type Token {
   userRole: RoleEnum!
 }
 
+type UpdateChildrenResponse {
+  child: [Child]
+}
+
 type User {
   children: [Child]!
   created_at: Date!
@@ -1627,6 +1638,10 @@ input UsersWhereUniqueInput {
   resetPasswordToken: String
 }
 
+type children {
+  child: [Child]
+}
+
 type createChildrenType {
   child: [Child!]
   token: Token!
@@ -1657,6 +1672,10 @@ type tokenVerificationResponse {
   userFirstName: String!
   userId: String!
   userRole: RoleEnum!
+}
+
+type updatedChildrenType {
+  children: [Child!]
 }
 
 input userUniqueInput {
