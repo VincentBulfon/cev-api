@@ -1423,13 +1423,13 @@ export interface NexusGenFieldTypes {
   }
   Child: { // field return type
     birth_date: NexusGenScalars['Date']; // Date!
-    courses: Array<NexusGenRootTypes['Course'] | null> | null; // [Course]
+    courses: NexusGenRootTypes['Course'][] | null; // [Course!]
     first_name: string; // String!
     id: number; // Int!
     name: string; // String!
     orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     token: NexusGenRootTypes['Token'] | null; // Token
-    tutor: NexusGenRootTypes['User'] | null; // User
+    tutor: NexusGenRootTypes['User']; // User!
     tutor_id: string; // String!
   }
   Course: { // field return type

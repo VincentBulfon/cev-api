@@ -10,7 +10,7 @@ export const child = objectType({
     t.nonNull.string('first_name');
     t.nonNull.date('birth_date');
     t.nonNull.string('tutor_id');
-    t.field('tutor', {
+    t.nonNull.field('tutor', {
       type: 'User',
       resolve: (root, _, ctx) => {
         return ctx.prisma.users.findUnique({
@@ -18,7 +18,7 @@ export const child = objectType({
         });
       },
     });
-    t.list.field('courses', {
+    t.list.nonNull.field('courses', {
       type: 'Course',
       resolve: (root, _, ctx) => {
         return ctx.prisma.courses.findMany({

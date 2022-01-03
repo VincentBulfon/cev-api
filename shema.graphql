@@ -154,13 +154,13 @@ input CancellationsWhereUniqueInput {
 
 type Child {
   birth_date: Date!
-  courses: [Course]
+  courses: [Course!]
   first_name: String!
   id: Int!
   name: String!
   orders: [Order]
   token: Token
-  tutor: User
+  tutor: User!
   tutor_id: String!
 }
 
