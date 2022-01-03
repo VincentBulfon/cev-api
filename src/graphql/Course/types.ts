@@ -19,7 +19,7 @@ export const course = objectType({
       type: 'Child',
       resolve: (root, args, ctx) => {
         return ctx.prisma.children.findMany({
-          where: { courses: { some: { id: { equals: root.id } } } },
+          where: { courses: { every: { id: { equals: root.id } } } },
         });
       },
     });
