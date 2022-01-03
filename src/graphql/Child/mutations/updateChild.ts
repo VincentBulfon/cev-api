@@ -1,68 +1,85 @@
-import { Children, Prisma } from '@prisma/client';
-import {
-  arg,
-  extendType,
-  inputObjectType,
-  list,
-  nonNull,
-  objectType,
-} from 'nexus';
+// import { Children, Orders, Prisma } from '@prisma/client';
+// import {
+//   arg,
+//   extendType,
+//   inputObjectType,
+//   list,
+//   nonNull,
+//   objectType,
+//   unionType,
+// } from 'nexus';
+// import { order } from '../../Orders';
 
-export const updateChild = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.crud.updateOneChildren({ type: 'Child', description: 'Update on child' });
-  },
-});
+// export const updateChild = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.crud.updateOneChildren({ type: 'Child', description: 'Update on child' });
+//   },
+// });
 
-export const updateChildren = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.list.field('updateChildren', {
-      type: 'updatedChildrenType',
-      args: {
-        childrenList: arg({
-          type: nonNull(list('InputUpdateChildrenType')),
-        }),
-      },
-      async resolve(root, args, ctx) {
-        let updatedChildren = [];
-        for await (const child of args.childrenList) {
-          const updatedChild = await ctx.prisma.children.update({
-            data: {
-              courses: { connect: child.course.where },
-              Orders: { create: child.order.create },
-            },
-            where: { id: child.id },
-          });
-          updatedChildren.push(updatedChild);
-        }
-        console.log(updatedChildren);
+// export const updateChildren = extendType({
+//   type: 'Mutation',
+//   definition(t) {
+//     t.field('updateChildren', {
+//       type: 'UpdateChildrenResponse',
+//       args: {
+//         childrenList: arg({
+//           type: nonNull(list('InputUpdateChildrenType')),
+//         }),
+//       },
+//       async resolve(root, args, ctx) {
+//         try {
+//           let updatedChildren: { children: Children[] } = { children: [] };
+//           let orders = [];
+//           for await (const child of args.childrenList) {
+//             const createdOrder = await ctx.prisma.orders.create({
+//               data: {
+//                 child: { connect: { id: child.id } },
+//                 options_set: {
+//                   createMany: {
+//                     data: child.order.options_set.createMany.data,
+//                     skipDuplicates: true,
+//                   },
+//                 },
+//                 sport_voucher: child.order.sport_voucher,
+//               },
+//             });
 
-        return updatedChildren;
-      },
-    });
-  },
-});
+//             orders.push(createdOrder);
+//             const upChild = await ctx.prisma.children.update({
+//               where: { id: child.id },
+//               data: { courses: { connect: { id: child.course.where.id } } },
+//             });
+//             updatedChildren.children.push(upChild);
+//           }
+//           console.log(updatedChildren);
+//           return updatedChildren;
+//         } catch (error) {
+//           throw new Error(error.message);
+//         }
+//       },
+//     });
+//   },
+// });
 
-export const updateChildrenInputType = inputObjectType({
-  name: 'InputUpdateChildrenType',
-  definition(t) {
-    t.nonNull.field('order', {
-      type: 'ChildrenCreateOrConnectWithoutCoursesInput',
-    });
-    t.nonNull.field('course', {
-      type: 'ChildrenCreateOrConnectWithoutOrdersInput',
-    });
-    t.nonNull.int('id');
-  },
-});
+// export const updateChildrenInputType = inputObjectType({
+//   name: 'InputUpdateChildrenType',
+//   definition(t) {
+//     t.nonNull.field('order', {
+//       type: 'OrdersCreateInput',
+//     });
+//     t.nonNull.field('course', {
+//       type: 'CoursesCreateOrConnectWithoutCancellationsInput',
+//     });
+//     t.nonNull.int('id');
+//   },
+// });
 
-export const updatedChildren = objectType({
-  name: 'updatedChildrenType',
-  definition(t) {
-    t.list.nonNull.field('children', {
-      type: 'Child',
-    });
-  },
-});
+// export const updateChildrenResponse = objectType({
+//   name: 'UpdateChildrenResponse',
+//   definition(t) {
+//     t.nonNull.list.field('children', {
+//       type: 'Child',
+//     });
+//   },
+// });

@@ -228,15 +228,6 @@ input ChildrenScalarWhereInput {
   tutor_id: StringFilter
 }
 
-input ChildrenUpdateInput {
-  Orders: OrdersUpdateManyWithoutChildInput
-  birth_date: DateTimeFieldUpdateOperationsInput
-  courses: CoursesUpdateManyWithoutChildrenInput
-  first_name: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  tutor: UsersUpdateOneRequiredWithoutChildrenInput
-}
-
 input ChildrenUpdateManyMutationInput {
   birth_date: DateTimeFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
@@ -557,12 +548,6 @@ input EnumStatusEnumFilter {
   notIn: [StatusEnum!]
 }
 
-input InputUpdateChildrenType {
-  course: ChildrenCreateOrConnectWithoutOrdersInput!
-  id: Int!
-  order: ChildrenCreateOrConnectWithoutCoursesInput!
-}
-
 input IntFieldUpdateOperationsInput {
   decrement: Int
   divide: Int
@@ -628,13 +613,9 @@ type Mutation {
   login(loginInput: loginInput): AuthPayload!
   resetPassword(resetPasswordInput: resetPasswordInput!): MessagePayload!
   signup(signupInput: signupInput): AuthPayload!
-  updateChildren(childrenList: [InputUpdateChildrenType]!): [updatedChildrenType]
 
   """update on cancellation"""
   updateOneCancellations(data: CancellationsUpdateInput!, where: CancellationsWhereUniqueInput!): Cancellation
-
-  """Update on child"""
-  updateOneChildren(data: ChildrenUpdateInput!, where: ChildrenWhereUniqueInput!): Child
 
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
@@ -1129,11 +1110,11 @@ input Options_setWhereUniqueInput {
 
 type Order {
   cancelled_at: Date
-  child: Child
+  child: Child!
   child_id: Int!
   created_at: Date!
   id: Int!
-  option_set: [OptionSet]
+  option_set: [OptionSet!]
   sport_voucher: Boolean!
 }
 
@@ -1527,10 +1508,6 @@ type Token {
   userRole: RoleEnum!
 }
 
-type UpdateChildrenResponse {
-  child: [Child]
-}
-
 type User {
   children: [Child]!
   created_at: Date!
@@ -1672,10 +1649,6 @@ type tokenVerificationResponse {
   userFirstName: String!
   userId: String!
   userRole: RoleEnum!
-}
-
-type updatedChildrenType {
-  children: [Child!]
 }
 
 input userUniqueInput {

@@ -205,14 +205,6 @@ export interface NexusGenInputs {
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     tutor_id?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
-  ChildrenUpdateInput: { // input type
-    Orders?: NexusGenInputs['OrdersUpdateManyWithoutChildInput'] | null; // OrdersUpdateManyWithoutChildInput
-    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    courses?: NexusGenInputs['CoursesUpdateManyWithoutChildrenInput'] | null; // CoursesUpdateManyWithoutChildrenInput
-    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
-  }
   ChildrenUpdateManyMutationInput: { // input type
     birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -474,11 +466,6 @@ export interface NexusGenInputs {
     in?: NexusGenEnums['StatusEnum'][] | null; // [StatusEnum!]
     not?: NexusGenInputs['NestedEnumStatusEnumFilter'] | null; // NestedEnumStatusEnumFilter
     notIn?: NexusGenEnums['StatusEnum'][] | null; // [StatusEnum!]
-  }
-  InputUpdateChildrenType: { // input type
-    course: NexusGenInputs['ChildrenCreateOrConnectWithoutOrdersInput']; // ChildrenCreateOrConnectWithoutOrdersInput!
-    id: number; // Int!
-    order: NexusGenInputs['ChildrenCreateOrConnectWithoutCoursesInput']; // ChildrenCreateOrConnectWithoutCoursesInput!
   }
   IntFieldUpdateOperationsInput: { // input type
     decrement?: number | null; // Int
@@ -1385,9 +1372,6 @@ export interface NexusGenObjects {
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
   }
-  UpdateChildrenResponse: { // root type
-    child?: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
-  }
   User: { // root type
     created_at: NexusGenScalars['Date']; // Date!
     email: string; // String!
@@ -1411,9 +1395,6 @@ export interface NexusGenObjects {
     userFirstName: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
-  }
-  updatedChildrenType: { // root type
-    children?: NexusGenRootTypes['Child'][] | null; // [Child!]
   }
 }
 
@@ -1482,9 +1463,7 @@ export interface NexusGenFieldTypes {
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
-    updateChildren: Array<NexusGenRootTypes['updatedChildrenType'] | null> | null; // [updatedChildrenType]
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
-    updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
     updateUser: NexusGenRootTypes['User']; // User!
     verifyToken: NexusGenRootTypes['tokenVerificationResponse']; // tokenVerificationResponse!
@@ -1508,11 +1487,11 @@ export interface NexusGenFieldTypes {
   }
   Order: { // field return type
     cancelled_at: NexusGenScalars['Date'] | null; // Date
-    child: NexusGenRootTypes['Child'] | null; // Child
+    child: NexusGenRootTypes['Child']; // Child!
     child_id: number; // Int!
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
-    option_set: Array<NexusGenRootTypes['OptionSet'] | null> | null; // [OptionSet]
+    option_set: NexusGenRootTypes['OptionSet'][] | null; // [OptionSet!]
     sport_voucher: boolean; // Boolean!
   }
   Price: { // field return type
@@ -1535,9 +1514,6 @@ export interface NexusGenFieldTypes {
     token: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
-  }
-  UpdateChildrenResponse: { // field return type
-    child: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
   }
   User: { // field return type
     children: Array<NexusGenRootTypes['Child'] | null>; // [Child]!
@@ -1563,9 +1539,6 @@ export interface NexusGenFieldTypes {
     userFirstName: string; // String!
     userId: string; // String!
     userRole: NexusGenEnums['RoleEnum']; // RoleEnum!
-  }
-  updatedChildrenType: { // field return type
-    children: NexusGenRootTypes['Child'][] | null; // [Child!]
   }
 }
 
@@ -1624,9 +1597,7 @@ export interface NexusGenFieldTypeNames {
     login: 'AuthPayload'
     resetPassword: 'MessagePayload'
     signup: 'AuthPayload'
-    updateChildren: 'updatedChildrenType'
     updateOneCancellations: 'Cancellation'
-    updateOneChildren: 'Child'
     updateOneCourses: 'Course'
     updateUser: 'User'
     verifyToken: 'tokenVerificationResponse'
@@ -1678,9 +1649,6 @@ export interface NexusGenFieldTypeNames {
     userId: 'String'
     userRole: 'RoleEnum'
   }
-  UpdateChildrenResponse: { // field return type name
-    child: 'Child'
-  }
   User: { // field return type name
     children: 'Child'
     created_at: 'Date'
@@ -1705,9 +1673,6 @@ export interface NexusGenFieldTypeNames {
     userFirstName: 'String'
     userId: 'String'
     userRole: 'RoleEnum'
-  }
-  updatedChildrenType: { // field return type name
-    children: 'Child'
   }
 }
 
@@ -1770,16 +1735,9 @@ export interface NexusGenArgTypes {
     signup: { // args
       signupInput?: NexusGenInputs['signupInput'] | null; // signupInput
     }
-    updateChildren: { // args
-      childrenList: Array<NexusGenInputs['InputUpdateChildrenType'] | null>; // [InputUpdateChildrenType]!
-    }
     updateOneCancellations: { // args
       data: NexusGenInputs['CancellationsUpdateInput']; // CancellationsUpdateInput!
       where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
-    }
-    updateOneChildren: { // args
-      data: NexusGenInputs['ChildrenUpdateInput']; // ChildrenUpdateInput!
-      where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
     }
     updateOneCourses: { // args
       data: NexusGenInputs['CoursesUpdateInput']; // CoursesUpdateInput!

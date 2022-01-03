@@ -59,13 +59,6 @@ export const ChildrenType = objectType({
   },
 });
 
-export const updateChildrenResponse = objectType({
-  name: 'UpdateChildrenResponse',
-  definition(t) {
-    t.list.field('child', { type: 'Child' });
-  },
-});
-
 export const token = objectType({
   name: 'Token',
   definition(t) {

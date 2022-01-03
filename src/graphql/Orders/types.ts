@@ -8,7 +8,7 @@ export const order = objectType({
     t.date('cancelled_at');
     t.nonNull.int('child_id');
     t.nonNull.boolean('sport_voucher');
-    t.list.field('option_set', {
+    t.list.nonNull.field('option_set', {
       type: 'OptionSet',
       resolve: (root, _, ctx) => {
         return ctx.prisma.options_set.findMany({
@@ -16,7 +16,7 @@ export const order = objectType({
         });
       },
     });
-    t.field('child', {
+    t.nonNull.field('child', {
       type: 'Child',
       resolve: (root, _, ctx) => {
         return ctx.prisma.children.findFirst({
