@@ -228,6 +228,15 @@ input ChildrenScalarWhereInput {
   tutor_id: StringFilter
 }
 
+input ChildrenUpdateInput {
+  Orders: OrdersUpdateManyWithoutChildInput
+  birth_date: DateTimeFieldUpdateOperationsInput
+  courses: CoursesUpdateManyWithoutChildrenInput
+  first_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  tutor: UsersUpdateOneRequiredWithoutChildrenInput
+}
+
 input ChildrenUpdateManyMutationInput {
   birth_date: DateTimeFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
@@ -616,6 +625,9 @@ type Mutation {
 
   """update on cancellation"""
   updateOneCancellations(data: CancellationsUpdateInput!, where: CancellationsWhereUniqueInput!): Cancellation
+
+  """update one child"""
+  updateOneChildren(data: ChildrenUpdateInput!, where: ChildrenWhereUniqueInput!): Child
 
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course

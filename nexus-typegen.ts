@@ -205,6 +205,14 @@ export interface NexusGenInputs {
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     tutor_id?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
+  ChildrenUpdateInput: { // input type
+    Orders?: NexusGenInputs['OrdersUpdateManyWithoutChildInput'] | null; // OrdersUpdateManyWithoutChildInput
+    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    courses?: NexusGenInputs['CoursesUpdateManyWithoutChildrenInput'] | null; // CoursesUpdateManyWithoutChildrenInput
+    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
+  }
   ChildrenUpdateManyMutationInput: { // input type
     birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1464,6 +1472,7 @@ export interface NexusGenFieldTypes {
     resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
+    updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
     updateUser: NexusGenRootTypes['User']; // User!
     verifyToken: NexusGenRootTypes['tokenVerificationResponse']; // tokenVerificationResponse!
@@ -1598,6 +1607,7 @@ export interface NexusGenFieldTypeNames {
     resetPassword: 'MessagePayload'
     signup: 'AuthPayload'
     updateOneCancellations: 'Cancellation'
+    updateOneChildren: 'Child'
     updateOneCourses: 'Course'
     updateUser: 'User'
     verifyToken: 'tokenVerificationResponse'
@@ -1738,6 +1748,10 @@ export interface NexusGenArgTypes {
     updateOneCancellations: { // args
       data: NexusGenInputs['CancellationsUpdateInput']; // CancellationsUpdateInput!
       where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
+    }
+    updateOneChildren: { // args
+      data: NexusGenInputs['ChildrenUpdateInput']; // ChildrenUpdateInput!
+      where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
     }
     updateOneCourses: { // args
       data: NexusGenInputs['CoursesUpdateInput']; // CoursesUpdateInput!
