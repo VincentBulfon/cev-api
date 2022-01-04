@@ -1,4 +1,4 @@
-import { inputObjectType, objectType } from 'nexus';
+import { inputObjectType, nonNull, objectType } from 'nexus';
 
 export const user = objectType({
   name: 'User',
@@ -13,7 +13,7 @@ export const user = objectType({
     t.date('vertified_at');
     t.nonNull.date('created_at');
     t.list.field('children', {
-      type: 'Child',
+      type: nonNull('Child'),
       resolve: (root, _, ctx) => {
         return ctx.prisma.children.findMany({
           where: { tutor_id: root.id },

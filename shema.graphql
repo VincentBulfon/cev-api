@@ -1509,7 +1509,7 @@ type Token {
 }
 
 type User {
-  children: [Child]
+  children: [Child!]
   created_at: Date!
   email: String!
   first_name: String!
