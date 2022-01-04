@@ -12,7 +12,7 @@ export const user = objectType({
     t.string('secondary_email');
     t.date('vertified_at');
     t.nonNull.date('created_at');
-    t.nonNull.list.field('children', {
+    t.list.field('children', {
       type: 'Child',
       resolve: (root, _, ctx) => {
         return ctx.prisma.children.findMany({
