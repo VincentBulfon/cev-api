@@ -1490,7 +1490,7 @@ export interface NexusGenFieldTypes {
     updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
     updateUser: NexusGenRootTypes['User']; // User!
-    user: NexusGenRootTypes['User']; // User!
+    updateUserData: NexusGenRootTypes['User']; // User!
     verifyToken: NexusGenRootTypes['tokenVerificationResponse']; // tokenVerificationResponse!
   }
   Option: { // field return type
@@ -1626,7 +1626,7 @@ export interface NexusGenFieldTypeNames {
     updateOneChildren: 'Child'
     updateOneCourses: 'Course'
     updateUser: 'User'
-    user: 'User'
+    updateUserData: 'User'
     verifyToken: 'tokenVerificationResponse'
   }
   Option: { // field return type name
@@ -1777,7 +1777,7 @@ export interface NexusGenArgTypes {
     updateUser: { // args
       updateUserInput: NexusGenInputs['userUpdateInput']; // userUpdateInput!
     }
-    user: { // args
+    updateUserData: { // args
       updateUserData: NexusGenInputs['updateUserInput']; // updateUserInput!
     }
     verifyToken: { // args

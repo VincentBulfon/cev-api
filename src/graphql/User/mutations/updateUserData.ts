@@ -1,47 +1,48 @@
 import { ApolloError } from 'apollo-server';
 import { arg, extendType, nonNull } from 'nexus';
 import generateHashPassword from '../../../ultils/hashPassword';
+import { currentUser } from '../../Auth';
 
 export const updateUserData = extendType({
   type: 'Mutation',
   definition(t) {
-    t.nonNull.field('user', {
+    t.nonNull.field('updateUserData', {
       type: 'User',
       args: { updateUserData: nonNull(arg({ type: 'updateUserInput' })) },
       async resolve(root, args, ctx) {
         try {
-          const {
-            email,
-            first_name,
-            name,
-            password,
-            secondary_email,
-            phone_number,
-          } = args.updateUserData.newUserData;
+          const newData = args.updateUserData.newUserData;
           const id = args.updateUserData.whereUserInput.id;
           //check if the user already exists or not
           const isUserExist = await ctx.prisma.users.findUnique({
-            where: { email },
+            where: { email: newData.email },
           });
-          //returns an error if the user already exists
+          const currentUser = await ctx.prisma.users.findUnique({
+            where: { id: id },
+          });
+
           if (isUserExist) {
-            throw new ApolloError(
-              'Email is already associated with another user',
-              'BAD_USER_INPUT'
-            );
+            newData.email = currentUser.email;
           }
 
-          const hashPassword = await generateHashPassword(password);
+          let hashPassword: string;
+
+          if (newData.password == '') {
+            hashPassword = currentUser.password;
+          } else {
+            hashPassword = await generateHashPassword(newData.password);
+          }
 
           const user = await ctx.prisma.users.update({
             where: { id: id },
             data: {
-              email,
-              name,
-              first_name,
+              email: newData.email || currentUser.email,
+              name: newData.name || currentUser.name,
+              first_name: newData.first_name || currentUser.first_name,
               password: hashPassword,
-              phone_number,
-              secondary_email,
+              phone_number: newData.phone_number || currentUser.phone_number,
+              secondary_email:
+                newData.secondary_email || currentUser.secondary_email,
             },
           });
           return user;
