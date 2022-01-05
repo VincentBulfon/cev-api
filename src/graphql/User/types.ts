@@ -36,6 +36,34 @@ export const signupInput = inputObjectType({
   },
 });
 
+export const updateUserDataInput = inputObjectType({
+  name: 'updateUserInput',
+  description: 'Input needed to update a user data',
+  definition(t) {
+    t.nonNull.field('newUserData', { type: 'newUserData' });
+    t.nonNull.field('whereUserInput', { type: 'userId' });
+  },
+});
+
+export const userId = inputObjectType({
+  name: 'userId',
+  definition(t) {
+    t.string('id');
+  },
+});
+
+export const newUserData = inputObjectType({
+  name: 'newUserData',
+  definition(t) {
+    t.nonNull.string('name');
+    t.nonNull.string('first_name');
+    t.nonNull.string('password');
+    t.nonNull.string('phone_number');
+    t.nonNull.string('email');
+    t.nullable.string('secondary_email');
+  },
+});
+
 export const UserUniqueInput = inputObjectType({
   name: 'userUniqueInput',
   definition(t) {

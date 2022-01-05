@@ -173,18 +173,6 @@ input ChildrenCreateInput {
   tutor: UsersCreateNestedOneWithoutChildrenInput!
 }
 
-input ChildrenCreateManyTutorInput {
-  birth_date: DateTime!
-  first_name: String!
-  id: Int
-  name: String!
-}
-
-input ChildrenCreateManyTutorInputEnvelope {
-  data: [ChildrenCreateManyTutorInput!]
-  skipDuplicates: Boolean
-}
-
 input ChildrenCreateNestedManyWithoutCoursesInput {
   connect: [ChildrenWhereUniqueInput!]
   connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
@@ -207,11 +195,6 @@ input ChildrenCreateOrConnectWithoutOrdersInput {
   where: ChildrenWhereUniqueInput!
 }
 
-input ChildrenCreateOrConnectWithoutTutorInput {
-  create: ChildrenCreateWithoutTutorInput!
-  where: ChildrenWhereUniqueInput!
-}
-
 input ChildrenCreateWithoutCoursesInput {
   Orders: OrdersCreateNestedManyWithoutChildInput
   birth_date: DateTime!
@@ -226,14 +209,6 @@ input ChildrenCreateWithoutOrdersInput {
   first_name: String!
   name: String!
   tutor: UsersCreateNestedOneWithoutChildrenInput!
-}
-
-input ChildrenCreateWithoutTutorInput {
-  Orders: OrdersCreateNestedManyWithoutChildInput
-  birth_date: DateTime!
-  courses: CoursesCreateNestedManyWithoutChildrenInput
-  first_name: String!
-  name: String!
 }
 
 input ChildrenListRelationFilter {
@@ -273,11 +248,6 @@ input ChildrenUpdateManyWithWhereWithoutCoursesInput {
   where: ChildrenScalarWhereInput!
 }
 
-input ChildrenUpdateManyWithWhereWithoutTutorInput {
-  data: ChildrenUpdateManyMutationInput!
-  where: ChildrenScalarWhereInput!
-}
-
 input ChildrenUpdateManyWithoutCoursesInput {
   connect: [ChildrenWhereUniqueInput!]
   connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
@@ -291,20 +261,6 @@ input ChildrenUpdateManyWithoutCoursesInput {
   upsert: [ChildrenUpsertWithWhereUniqueWithoutCoursesInput!]
 }
 
-input ChildrenUpdateManyWithoutTutorInput {
-  connect: [ChildrenWhereUniqueInput!]
-  connectOrCreate: [ChildrenCreateOrConnectWithoutTutorInput!]
-  create: [ChildrenCreateWithoutTutorInput!]
-  createMany: ChildrenCreateManyTutorInputEnvelope
-  delete: [ChildrenWhereUniqueInput!]
-  deleteMany: [ChildrenScalarWhereInput!]
-  disconnect: [ChildrenWhereUniqueInput!]
-  set: [ChildrenWhereUniqueInput!]
-  update: [ChildrenUpdateWithWhereUniqueWithoutTutorInput!]
-  updateMany: [ChildrenUpdateManyWithWhereWithoutTutorInput!]
-  upsert: [ChildrenUpsertWithWhereUniqueWithoutTutorInput!]
-}
-
 input ChildrenUpdateOneRequiredWithoutOrdersInput {
   connect: ChildrenWhereUniqueInput
   connectOrCreate: ChildrenCreateOrConnectWithoutOrdersInput
@@ -315,11 +271,6 @@ input ChildrenUpdateOneRequiredWithoutOrdersInput {
 
 input ChildrenUpdateWithWhereUniqueWithoutCoursesInput {
   data: ChildrenUpdateWithoutCoursesInput!
-  where: ChildrenWhereUniqueInput!
-}
-
-input ChildrenUpdateWithWhereUniqueWithoutTutorInput {
-  data: ChildrenUpdateWithoutTutorInput!
   where: ChildrenWhereUniqueInput!
 }
 
@@ -339,23 +290,9 @@ input ChildrenUpdateWithoutOrdersInput {
   tutor: UsersUpdateOneRequiredWithoutChildrenInput
 }
 
-input ChildrenUpdateWithoutTutorInput {
-  Orders: OrdersUpdateManyWithoutChildInput
-  birth_date: DateTimeFieldUpdateOperationsInput
-  courses: CoursesUpdateManyWithoutChildrenInput
-  first_name: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
 input ChildrenUpsertWithWhereUniqueWithoutCoursesInput {
   create: ChildrenCreateWithoutCoursesInput!
   update: ChildrenUpdateWithoutCoursesInput!
-  where: ChildrenWhereUniqueInput!
-}
-
-input ChildrenUpsertWithWhereUniqueWithoutTutorInput {
-  create: ChildrenCreateWithoutTutorInput!
-  update: ChildrenUpdateWithoutTutorInput!
   where: ChildrenWhereUniqueInput!
 }
 
@@ -694,10 +631,8 @@ type Mutation {
 
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
-
-  """Update any of the user data"""
-  updateOneUsers(data: UsersUpdateInput!, where: UsersWhereUniqueInput!): User
   updateUser(updateUserInput: userUpdateInput!): User!
+  user(updateUserData: updateUserInput!): User!
   verifyToken(token: verifyTokenInput!): tokenVerificationResponse!
 }
 
@@ -1640,22 +1575,6 @@ input UsersOrderByInput {
   verfifed_at: SortOrder
 }
 
-input UsersUpdateInput {
-  children: ChildrenUpdateManyWithoutTutorInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  deleted_at: NullableDateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  first_name: StringFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  phone_number: StringFieldUpdateOperationsInput
-  resetPasswordToken: NullableStringFieldUpdateOperationsInput
-  role: EnumRoleEnumFieldUpdateOperationsInput
-  secondary_email: NullableStringFieldUpdateOperationsInput
-  verfifed_at: NullableDateTimeFieldUpdateOperationsInput
-}
-
 input UsersUpdateOneRequiredWithoutChildrenInput {
   connect: UsersWhereUniqueInput
   connectOrCreate: UsersCreateOrConnectWithoutChildrenInput
@@ -1723,6 +1642,15 @@ input loginInput {
   password: String!
 }
 
+input newUserData {
+  email: String!
+  first_name: String!
+  name: String!
+  password: String!
+  phone_number: String!
+  secondary_email: String
+}
+
 input resetPasswordInput {
   newPassword: String!
   resetPasswordToken: String!
@@ -1743,6 +1671,16 @@ type tokenVerificationResponse {
   userFirstName: String!
   userId: String!
   userRole: RoleEnum!
+}
+
+"""Input needed to update a user data"""
+input updateUserInput {
+  newUserData: newUserData!
+  whereUserInput: userId!
+}
+
+input userId {
+  id: String
 }
 
 input userUniqueInput {
