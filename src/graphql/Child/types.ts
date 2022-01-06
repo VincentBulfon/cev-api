@@ -1,4 +1,4 @@
-import { extendType, inputObjectType, objectType } from 'nexus';
+import { extendType, inputObjectType, nonNull, objectType } from 'nexus';
 import generateToken from '../../ultils/tokenUtility';
 import { RoleEnum } from '../enums';
 

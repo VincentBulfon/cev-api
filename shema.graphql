@@ -381,6 +381,14 @@ input ChildrenOnCourseWhereUniqueInput {
   courseId_childrenId: ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput
 }
 
+input ChildrenOrderByInput {
+  birth_date: SortOrder
+  first_name: SortOrder
+  id: SortOrder
+  name: SortOrder
+  tutor_id: SortOrder
+}
+
 input ChildrenUpdateInput {
   ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutChildrenInput
   Orders: OrdersUpdateManyWithoutChildInput
@@ -1539,7 +1547,7 @@ input PricesWhereUniqueInput {
 type Query {
   """get cancellations"""
   cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!
-  children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int): [Child!]!
+  children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int, orderBy: [ChildrenOrderByInput!], where: ChildrenWhereInput): [Child!]!
   courses(after: CoursesWhereUniqueInput, before: CoursesWhereUniqueInput, first: Int, last: Int, orderBy: [CoursesOrderByInput!], where: CoursesWhereInput): [Course!]!
   currentUser: User!
 

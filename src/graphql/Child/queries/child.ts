@@ -5,6 +5,8 @@ export const ChildrenQuery = extendType({
   definition(t) {
     t.crud.children({
       type: 'Child',
+      ordering: true,
+      filtering: true,
     });
   },
 });

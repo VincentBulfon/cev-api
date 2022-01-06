@@ -332,6 +332,13 @@ export interface NexusGenInputs {
   ChildrenOnCourseWhereUniqueInput: { // input type
     courseId_childrenId?: NexusGenInputs['ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput'] | null; // ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput
   }
+  ChildrenOrderByInput: { // input type
+    birth_date?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    first_name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    tutor_id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   ChildrenUpdateInput: { // input type
     ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutChildrenInput'] | null; // ChildrenOnCourseUpdateManyWithoutChildrenInput
     Orders?: NexusGenInputs['OrdersUpdateManyWithoutChildInput'] | null; // OrdersUpdateManyWithoutChildInput
@@ -1875,6 +1882,8 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['ChildrenOrderByInput'][] | null; // [ChildrenOrderByInput!]
+      where?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
     }
     courses: { // args
       after?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
