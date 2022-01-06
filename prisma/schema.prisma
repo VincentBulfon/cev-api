@@ -25,14 +25,15 @@ model Users {
 }
 
 model Children {
-  id         Int       @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   name       String
-  birth_date DateTime  @db.Date
+  birth_date DateTime @db.Date
   first_name String
   tutor_id   String
-  tutor      Users     @relation(fields: [tutor_id], references: [id])
-  courses    Courses[]
-  Orders     Orders[]
+  tutor      Users    @relation(fields: [tutor_id], references: [id])
+
+  Orders           Orders[]
+  ChildrenOnCourse ChildrenOnCourse[]
 }
 
 model Courses {
@@ -42,7 +43,18 @@ model Courses {
   start_time    DateTime        @db.Time(6)
   day_of_week   Int             @db.SmallInt
   cancellations Cancellations[]
-  children      Children[]
+
+  ChildrenOnCourse ChildrenOnCourse[]
+}
+
+model ChildrenOnCourse {
+  children        Children  @relation(fields: [childrenId], references: [id])
+  childrenId      Int
+  course          Courses   @relation(fields: [courseId], references: [id])
+  courseId        Int
+  inscriptionDate DateTime? @default(now())
+
+  @@id([courseId, childrenId])
 }
 
 model Cancellations {
