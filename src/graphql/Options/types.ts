@@ -8,7 +8,6 @@ export const option = objectType({
     // t.nonNull.field("name_cust", {
     //   type: "OptionEnum",
     // });
-    t.string('name');
     t.nonNull.date('created_at');
     t.nonNull.field('price', {
       type: 'Price',

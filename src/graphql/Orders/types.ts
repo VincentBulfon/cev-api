@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import { nonNull, objectType } from 'nexus';
 
 export const order = objectType({
   name: 'Order',
@@ -9,10 +9,13 @@ export const order = objectType({
     t.nonNull.int('child_id');
     t.nonNull.boolean('sport_voucher');
     t.list.nonNull.field('option_set', {
-      type: 'OptionSet',
+      type: nonNull('OptionSet'),
       resolve: (root, _, ctx) => {
         return ctx.prisma.options_set.findMany({
           where: { order_id: { equals: root.id } },
+          orderBy: {
+            option_id: 'asc',
+          },
         });
       },
     });

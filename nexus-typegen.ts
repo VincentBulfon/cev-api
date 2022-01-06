@@ -151,32 +151,32 @@ export interface NexusGenInputs {
     id?: number | null; // Int
   }
   ChildrenCreateInput: { // input type
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseCreateNestedManyWithoutChildrenInput'] | null; // ChildrenOnCourseCreateNestedManyWithoutChildrenInput
     Orders?: NexusGenInputs['OrdersCreateNestedManyWithoutChildInput'] | null; // OrdersCreateNestedManyWithoutChildInput
     birth_date: NexusGenScalars['DateTime']; // DateTime!
-    courses?: NexusGenInputs['CoursesCreateNestedManyWithoutChildrenInput'] | null; // CoursesCreateNestedManyWithoutChildrenInput
     first_name: string; // String!
     name: string; // String!
     tutor: NexusGenInputs['UsersCreateNestedOneWithoutChildrenInput']; // UsersCreateNestedOneWithoutChildrenInput!
   }
-  ChildrenCreateNestedManyWithoutCoursesInput: { // input type
-    connect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutCoursesInput'][] | null; // [ChildrenCreateOrConnectWithoutCoursesInput!]
-    create?: NexusGenInputs['ChildrenCreateWithoutCoursesInput'][] | null; // [ChildrenCreateWithoutCoursesInput!]
+  ChildrenCreateNestedOneWithoutChildrenOnCourseInput: { // input type
+    connect?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutChildrenOnCourseInput'] | null; // ChildrenCreateOrConnectWithoutChildrenOnCourseInput
+    create?: NexusGenInputs['ChildrenCreateWithoutChildrenOnCourseInput'] | null; // ChildrenCreateWithoutChildrenOnCourseInput
   }
   ChildrenCreateNestedOneWithoutOrdersInput: { // input type
     connect?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
     connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutOrdersInput'] | null; // ChildrenCreateOrConnectWithoutOrdersInput
     create?: NexusGenInputs['ChildrenCreateWithoutOrdersInput'] | null; // ChildrenCreateWithoutOrdersInput
   }
-  ChildrenCreateOrConnectWithoutCoursesInput: { // input type
-    create: NexusGenInputs['ChildrenCreateWithoutCoursesInput']; // ChildrenCreateWithoutCoursesInput!
+  ChildrenCreateOrConnectWithoutChildrenOnCourseInput: { // input type
+    create: NexusGenInputs['ChildrenCreateWithoutChildrenOnCourseInput']; // ChildrenCreateWithoutChildrenOnCourseInput!
     where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
   }
   ChildrenCreateOrConnectWithoutOrdersInput: { // input type
     create: NexusGenInputs['ChildrenCreateWithoutOrdersInput']; // ChildrenCreateWithoutOrdersInput!
     where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
   }
-  ChildrenCreateWithoutCoursesInput: { // input type
+  ChildrenCreateWithoutChildrenOnCourseInput: { // input type
     Orders?: NexusGenInputs['OrdersCreateNestedManyWithoutChildInput'] | null; // OrdersCreateNestedManyWithoutChildInput
     birth_date: NexusGenScalars['DateTime']; // DateTime!
     first_name: string; // String!
@@ -184,8 +184,8 @@ export interface NexusGenInputs {
     tutor: NexusGenInputs['UsersCreateNestedOneWithoutChildrenInput']; // UsersCreateNestedOneWithoutChildrenInput!
   }
   ChildrenCreateWithoutOrdersInput: { // input type
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseCreateNestedManyWithoutChildrenInput'] | null; // ChildrenOnCourseCreateNestedManyWithoutChildrenInput
     birth_date: NexusGenScalars['DateTime']; // DateTime!
-    courses?: NexusGenInputs['CoursesCreateNestedManyWithoutChildrenInput'] | null; // CoursesCreateNestedManyWithoutChildrenInput
     first_name: string; // String!
     name: string; // String!
     tutor: NexusGenInputs['UsersCreateNestedOneWithoutChildrenInput']; // UsersCreateNestedOneWithoutChildrenInput!
@@ -195,44 +195,157 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
     some?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
   }
-  ChildrenScalarWhereInput: { // input type
-    AND?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
-    NOT?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
-    OR?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
-    birth_date?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    first_name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    tutor_id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput: { // input type
+    childrenId: number; // Int!
+    courseId: number; // Int!
+  }
+  ChildrenOnCourseCreateManyChildrenInput: { // input type
+    courseId: number; // Int!
+    inscriptionDate?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChildrenOnCourseCreateManyChildrenInputEnvelope: { // input type
+    data?: NexusGenInputs['ChildrenOnCourseCreateManyChildrenInput'][] | null; // [ChildrenOnCourseCreateManyChildrenInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ChildrenOnCourseCreateManyCourseInput: { // input type
+    childrenId: number; // Int!
+    inscriptionDate?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChildrenOnCourseCreateManyCourseInputEnvelope: { // input type
+    data?: NexusGenInputs['ChildrenOnCourseCreateManyCourseInput'][] | null; // [ChildrenOnCourseCreateManyCourseInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ChildrenOnCourseCreateNestedManyWithoutChildrenInput: { // input type
+    connect?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenOnCourseCreateOrConnectWithoutChildrenInput'][] | null; // [ChildrenOnCourseCreateOrConnectWithoutChildrenInput!]
+    create?: NexusGenInputs['ChildrenOnCourseCreateWithoutChildrenInput'][] | null; // [ChildrenOnCourseCreateWithoutChildrenInput!]
+    createMany?: NexusGenInputs['ChildrenOnCourseCreateManyChildrenInputEnvelope'] | null; // ChildrenOnCourseCreateManyChildrenInputEnvelope
+  }
+  ChildrenOnCourseCreateNestedManyWithoutCourseInput: { // input type
+    connect?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenOnCourseCreateOrConnectWithoutCourseInput'][] | null; // [ChildrenOnCourseCreateOrConnectWithoutCourseInput!]
+    create?: NexusGenInputs['ChildrenOnCourseCreateWithoutCourseInput'][] | null; // [ChildrenOnCourseCreateWithoutCourseInput!]
+    createMany?: NexusGenInputs['ChildrenOnCourseCreateManyCourseInputEnvelope'] | null; // ChildrenOnCourseCreateManyCourseInputEnvelope
+  }
+  ChildrenOnCourseCreateOrConnectWithoutChildrenInput: { // input type
+    create: NexusGenInputs['ChildrenOnCourseCreateWithoutChildrenInput']; // ChildrenOnCourseCreateWithoutChildrenInput!
+    where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+  }
+  ChildrenOnCourseCreateOrConnectWithoutCourseInput: { // input type
+    create: NexusGenInputs['ChildrenOnCourseCreateWithoutCourseInput']; // ChildrenOnCourseCreateWithoutCourseInput!
+    where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+  }
+  ChildrenOnCourseCreateWithoutChildrenInput: { // input type
+    course: NexusGenInputs['CoursesCreateNestedOneWithoutChildrenOnCourseInput']; // CoursesCreateNestedOneWithoutChildrenOnCourseInput!
+    inscriptionDate?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChildrenOnCourseCreateWithoutCourseInput: { // input type
+    children: NexusGenInputs['ChildrenCreateNestedOneWithoutChildrenOnCourseInput']; // ChildrenCreateNestedOneWithoutChildrenOnCourseInput!
+    inscriptionDate?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChildrenOnCourseListRelationFilter: { // input type
+    every?: NexusGenInputs['ChildrenOnCourseWhereInput'] | null; // ChildrenOnCourseWhereInput
+    none?: NexusGenInputs['ChildrenOnCourseWhereInput'] | null; // ChildrenOnCourseWhereInput
+    some?: NexusGenInputs['ChildrenOnCourseWhereInput'] | null; // ChildrenOnCourseWhereInput
+  }
+  ChildrenOnCourseScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
+    NOT?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
+    OR?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
+    childrenId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    courseId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    inscriptionDate?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+  }
+  ChildrenOnCourseUpdateManyMutationInput: { // input type
+    inscriptionDate?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  ChildrenOnCourseUpdateManyWithWhereWithoutChildrenInput: { // input type
+    data: NexusGenInputs['ChildrenOnCourseUpdateManyMutationInput']; // ChildrenOnCourseUpdateManyMutationInput!
+    where: NexusGenInputs['ChildrenOnCourseScalarWhereInput']; // ChildrenOnCourseScalarWhereInput!
+  }
+  ChildrenOnCourseUpdateManyWithWhereWithoutCourseInput: { // input type
+    data: NexusGenInputs['ChildrenOnCourseUpdateManyMutationInput']; // ChildrenOnCourseUpdateManyMutationInput!
+    where: NexusGenInputs['ChildrenOnCourseScalarWhereInput']; // ChildrenOnCourseScalarWhereInput!
+  }
+  ChildrenOnCourseUpdateManyWithoutChildrenInput: { // input type
+    connect?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenOnCourseCreateOrConnectWithoutChildrenInput'][] | null; // [ChildrenOnCourseCreateOrConnectWithoutChildrenInput!]
+    create?: NexusGenInputs['ChildrenOnCourseCreateWithoutChildrenInput'][] | null; // [ChildrenOnCourseCreateWithoutChildrenInput!]
+    createMany?: NexusGenInputs['ChildrenOnCourseCreateManyChildrenInputEnvelope'] | null; // ChildrenOnCourseCreateManyChildrenInputEnvelope
+    delete?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
+    disconnect?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    set?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    update?: NexusGenInputs['ChildrenOnCourseUpdateWithWhereUniqueWithoutChildrenInput'][] | null; // [ChildrenOnCourseUpdateWithWhereUniqueWithoutChildrenInput!]
+    updateMany?: NexusGenInputs['ChildrenOnCourseUpdateManyWithWhereWithoutChildrenInput'][] | null; // [ChildrenOnCourseUpdateManyWithWhereWithoutChildrenInput!]
+    upsert?: NexusGenInputs['ChildrenOnCourseUpsertWithWhereUniqueWithoutChildrenInput'][] | null; // [ChildrenOnCourseUpsertWithWhereUniqueWithoutChildrenInput!]
+  }
+  ChildrenOnCourseUpdateManyWithoutCourseInput: { // input type
+    connect?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['ChildrenOnCourseCreateOrConnectWithoutCourseInput'][] | null; // [ChildrenOnCourseCreateOrConnectWithoutCourseInput!]
+    create?: NexusGenInputs['ChildrenOnCourseCreateWithoutCourseInput'][] | null; // [ChildrenOnCourseCreateWithoutCourseInput!]
+    createMany?: NexusGenInputs['ChildrenOnCourseCreateManyCourseInputEnvelope'] | null; // ChildrenOnCourseCreateManyCourseInputEnvelope
+    delete?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
+    disconnect?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    set?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'][] | null; // [ChildrenOnCourseWhereUniqueInput!]
+    update?: NexusGenInputs['ChildrenOnCourseUpdateWithWhereUniqueWithoutCourseInput'][] | null; // [ChildrenOnCourseUpdateWithWhereUniqueWithoutCourseInput!]
+    updateMany?: NexusGenInputs['ChildrenOnCourseUpdateManyWithWhereWithoutCourseInput'][] | null; // [ChildrenOnCourseUpdateManyWithWhereWithoutCourseInput!]
+    upsert?: NexusGenInputs['ChildrenOnCourseUpsertWithWhereUniqueWithoutCourseInput'][] | null; // [ChildrenOnCourseUpsertWithWhereUniqueWithoutCourseInput!]
+  }
+  ChildrenOnCourseUpdateWithWhereUniqueWithoutChildrenInput: { // input type
+    data: NexusGenInputs['ChildrenOnCourseUpdateWithoutChildrenInput']; // ChildrenOnCourseUpdateWithoutChildrenInput!
+    where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+  }
+  ChildrenOnCourseUpdateWithWhereUniqueWithoutCourseInput: { // input type
+    data: NexusGenInputs['ChildrenOnCourseUpdateWithoutCourseInput']; // ChildrenOnCourseUpdateWithoutCourseInput!
+    where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+  }
+  ChildrenOnCourseUpdateWithoutChildrenInput: { // input type
+    course?: NexusGenInputs['CoursesUpdateOneRequiredWithoutChildrenOnCourseInput'] | null; // CoursesUpdateOneRequiredWithoutChildrenOnCourseInput
+    inscriptionDate?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  ChildrenOnCourseUpdateWithoutCourseInput: { // input type
+    children?: NexusGenInputs['ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput'] | null; // ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput
+    inscriptionDate?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
+  ChildrenOnCourseUpsertWithWhereUniqueWithoutChildrenInput: { // input type
+    create: NexusGenInputs['ChildrenOnCourseCreateWithoutChildrenInput']; // ChildrenOnCourseCreateWithoutChildrenInput!
+    update: NexusGenInputs['ChildrenOnCourseUpdateWithoutChildrenInput']; // ChildrenOnCourseUpdateWithoutChildrenInput!
+    where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+  }
+  ChildrenOnCourseUpsertWithWhereUniqueWithoutCourseInput: { // input type
+    create: NexusGenInputs['ChildrenOnCourseCreateWithoutCourseInput']; // ChildrenOnCourseCreateWithoutCourseInput!
+    update: NexusGenInputs['ChildrenOnCourseUpdateWithoutCourseInput']; // ChildrenOnCourseUpdateWithoutCourseInput!
+    where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+  }
+  ChildrenOnCourseWhereInput: { // input type
+    AND?: NexusGenInputs['ChildrenOnCourseWhereInput'][] | null; // [ChildrenOnCourseWhereInput!]
+    NOT?: NexusGenInputs['ChildrenOnCourseWhereInput'][] | null; // [ChildrenOnCourseWhereInput!]
+    OR?: NexusGenInputs['ChildrenOnCourseWhereInput'][] | null; // [ChildrenOnCourseWhereInput!]
+    children?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
+    childrenId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    course?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
+    courseId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    inscriptionDate?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+  }
+  ChildrenOnCourseWhereUniqueInput: { // input type
+    courseId_childrenId?: NexusGenInputs['ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput'] | null; // ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput
   }
   ChildrenUpdateInput: { // input type
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutChildrenInput'] | null; // ChildrenOnCourseUpdateManyWithoutChildrenInput
     Orders?: NexusGenInputs['OrdersUpdateManyWithoutChildInput'] | null; // OrdersUpdateManyWithoutChildInput
     birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    courses?: NexusGenInputs['CoursesUpdateManyWithoutChildrenInput'] | null; // CoursesUpdateManyWithoutChildrenInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
   }
-  ChildrenUpdateManyMutationInput: { // input type
-    birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-  }
-  ChildrenUpdateManyWithWhereWithoutCoursesInput: { // input type
-    data: NexusGenInputs['ChildrenUpdateManyMutationInput']; // ChildrenUpdateManyMutationInput!
-    where: NexusGenInputs['ChildrenScalarWhereInput']; // ChildrenScalarWhereInput!
-  }
-  ChildrenUpdateManyWithoutCoursesInput: { // input type
-    connect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutCoursesInput'][] | null; // [ChildrenCreateOrConnectWithoutCoursesInput!]
-    create?: NexusGenInputs['ChildrenCreateWithoutCoursesInput'][] | null; // [ChildrenCreateWithoutCoursesInput!]
-    delete?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['ChildrenScalarWhereInput'][] | null; // [ChildrenScalarWhereInput!]
-    disconnect?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
-    set?: NexusGenInputs['ChildrenWhereUniqueInput'][] | null; // [ChildrenWhereUniqueInput!]
-    update?: NexusGenInputs['ChildrenUpdateWithWhereUniqueWithoutCoursesInput'][] | null; // [ChildrenUpdateWithWhereUniqueWithoutCoursesInput!]
-    updateMany?: NexusGenInputs['ChildrenUpdateManyWithWhereWithoutCoursesInput'][] | null; // [ChildrenUpdateManyWithWhereWithoutCoursesInput!]
-    upsert?: NexusGenInputs['ChildrenUpsertWithWhereUniqueWithoutCoursesInput'][] | null; // [ChildrenUpsertWithWhereUniqueWithoutCoursesInput!]
+  ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput: { // input type
+    connect?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChildrenCreateOrConnectWithoutChildrenOnCourseInput'] | null; // ChildrenCreateOrConnectWithoutChildrenOnCourseInput
+    create?: NexusGenInputs['ChildrenCreateWithoutChildrenOnCourseInput'] | null; // ChildrenCreateWithoutChildrenOnCourseInput
+    update?: NexusGenInputs['ChildrenUpdateWithoutChildrenOnCourseInput'] | null; // ChildrenUpdateWithoutChildrenOnCourseInput
+    upsert?: NexusGenInputs['ChildrenUpsertWithoutChildrenOnCourseInput'] | null; // ChildrenUpsertWithoutChildrenOnCourseInput
   }
   ChildrenUpdateOneRequiredWithoutOrdersInput: { // input type
     connect?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput
@@ -241,11 +354,7 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['ChildrenUpdateWithoutOrdersInput'] | null; // ChildrenUpdateWithoutOrdersInput
     upsert?: NexusGenInputs['ChildrenUpsertWithoutOrdersInput'] | null; // ChildrenUpsertWithoutOrdersInput
   }
-  ChildrenUpdateWithWhereUniqueWithoutCoursesInput: { // input type
-    data: NexusGenInputs['ChildrenUpdateWithoutCoursesInput']; // ChildrenUpdateWithoutCoursesInput!
-    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
-  }
-  ChildrenUpdateWithoutCoursesInput: { // input type
+  ChildrenUpdateWithoutChildrenOnCourseInput: { // input type
     Orders?: NexusGenInputs['OrdersUpdateManyWithoutChildInput'] | null; // OrdersUpdateManyWithoutChildInput
     birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -253,16 +362,15 @@ export interface NexusGenInputs {
     tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
   }
   ChildrenUpdateWithoutOrdersInput: { // input type
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutChildrenInput'] | null; // ChildrenOnCourseUpdateManyWithoutChildrenInput
     birth_date?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    courses?: NexusGenInputs['CoursesUpdateManyWithoutChildrenInput'] | null; // CoursesUpdateManyWithoutChildrenInput
     first_name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     tutor?: NexusGenInputs['UsersUpdateOneRequiredWithoutChildrenInput'] | null; // UsersUpdateOneRequiredWithoutChildrenInput
   }
-  ChildrenUpsertWithWhereUniqueWithoutCoursesInput: { // input type
-    create: NexusGenInputs['ChildrenCreateWithoutCoursesInput']; // ChildrenCreateWithoutCoursesInput!
-    update: NexusGenInputs['ChildrenUpdateWithoutCoursesInput']; // ChildrenUpdateWithoutCoursesInput!
-    where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
+  ChildrenUpsertWithoutChildrenOnCourseInput: { // input type
+    create: NexusGenInputs['ChildrenCreateWithoutChildrenOnCourseInput']; // ChildrenCreateWithoutChildrenOnCourseInput!
+    update: NexusGenInputs['ChildrenUpdateWithoutChildrenOnCourseInput']; // ChildrenUpdateWithoutChildrenOnCourseInput!
   }
   ChildrenUpsertWithoutOrdersInput: { // input type
     create: NexusGenInputs['ChildrenCreateWithoutOrdersInput']; // ChildrenCreateWithoutOrdersInput!
@@ -270,11 +378,11 @@ export interface NexusGenInputs {
   }
   ChildrenWhereInput: { // input type
     AND?: NexusGenInputs['ChildrenWhereInput'][] | null; // [ChildrenWhereInput!]
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseListRelationFilter'] | null; // ChildrenOnCourseListRelationFilter
     NOT?: NexusGenInputs['ChildrenWhereInput'][] | null; // [ChildrenWhereInput!]
     OR?: NexusGenInputs['ChildrenWhereInput'][] | null; // [ChildrenWhereInput!]
     Orders?: NexusGenInputs['OrdersListRelationFilter'] | null; // OrdersListRelationFilter
     birth_date?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    courses?: NexusGenInputs['CoursesListRelationFilter'] | null; // CoursesListRelationFilter
     first_name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -285,49 +393,44 @@ export interface NexusGenInputs {
     id?: number | null; // Int
   }
   CoursesCreateInput: { // input type
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseCreateNestedManyWithoutCourseInput'] | null; // ChildrenOnCourseCreateNestedManyWithoutCourseInput
     cancellations?: NexusGenInputs['CancellationsCreateNestedManyWithoutCourseInput'] | null; // CancellationsCreateNestedManyWithoutCourseInput
-    children?: NexusGenInputs['ChildrenCreateNestedManyWithoutCoursesInput'] | null; // ChildrenCreateNestedManyWithoutCoursesInput
     day_of_week: number; // Int!
     end_time: NexusGenScalars['DateTime']; // DateTime!
     places: number; // Int!
     start_time: NexusGenScalars['DateTime']; // DateTime!
-  }
-  CoursesCreateNestedManyWithoutChildrenInput: { // input type
-    connect?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutChildrenInput'][] | null; // [CoursesCreateOrConnectWithoutChildrenInput!]
-    create?: NexusGenInputs['CoursesCreateWithoutChildrenInput'][] | null; // [CoursesCreateWithoutChildrenInput!]
   }
   CoursesCreateNestedOneWithoutCancellationsInput: { // input type
     connect?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
     connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutCancellationsInput'] | null; // CoursesCreateOrConnectWithoutCancellationsInput
     create?: NexusGenInputs['CoursesCreateWithoutCancellationsInput'] | null; // CoursesCreateWithoutCancellationsInput
   }
+  CoursesCreateNestedOneWithoutChildrenOnCourseInput: { // input type
+    connect?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutChildrenOnCourseInput'] | null; // CoursesCreateOrConnectWithoutChildrenOnCourseInput
+    create?: NexusGenInputs['CoursesCreateWithoutChildrenOnCourseInput'] | null; // CoursesCreateWithoutChildrenOnCourseInput
+  }
   CoursesCreateOrConnectWithoutCancellationsInput: { // input type
     create: NexusGenInputs['CoursesCreateWithoutCancellationsInput']; // CoursesCreateWithoutCancellationsInput!
     where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
   }
-  CoursesCreateOrConnectWithoutChildrenInput: { // input type
-    create: NexusGenInputs['CoursesCreateWithoutChildrenInput']; // CoursesCreateWithoutChildrenInput!
+  CoursesCreateOrConnectWithoutChildrenOnCourseInput: { // input type
+    create: NexusGenInputs['CoursesCreateWithoutChildrenOnCourseInput']; // CoursesCreateWithoutChildrenOnCourseInput!
     where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
   }
   CoursesCreateWithoutCancellationsInput: { // input type
-    children?: NexusGenInputs['ChildrenCreateNestedManyWithoutCoursesInput'] | null; // ChildrenCreateNestedManyWithoutCoursesInput
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseCreateNestedManyWithoutCourseInput'] | null; // ChildrenOnCourseCreateNestedManyWithoutCourseInput
     day_of_week: number; // Int!
     end_time: NexusGenScalars['DateTime']; // DateTime!
     places: number; // Int!
     start_time: NexusGenScalars['DateTime']; // DateTime!
   }
-  CoursesCreateWithoutChildrenInput: { // input type
+  CoursesCreateWithoutChildrenOnCourseInput: { // input type
     cancellations?: NexusGenInputs['CancellationsCreateNestedManyWithoutCourseInput'] | null; // CancellationsCreateNestedManyWithoutCourseInput
     day_of_week: number; // Int!
     end_time: NexusGenScalars['DateTime']; // DateTime!
     places: number; // Int!
     start_time: NexusGenScalars['DateTime']; // DateTime!
-  }
-  CoursesListRelationFilter: { // input type
-    every?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
-    none?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
-    some?: NexusGenInputs['CoursesWhereInput'] | null; // CoursesWhereInput
   }
   CoursesOrderByInput: { // input type
     day_of_week?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -336,45 +439,13 @@ export interface NexusGenInputs {
     places?: NexusGenEnums['SortOrder'] | null; // SortOrder
     start_time?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
-  CoursesScalarWhereInput: { // input type
-    AND?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
-    NOT?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
-    OR?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
-    day_of_week?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    end_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    places?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    start_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
-  }
   CoursesUpdateInput: { // input type
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutCourseInput'] | null; // ChildrenOnCourseUpdateManyWithoutCourseInput
     cancellations?: NexusGenInputs['CancellationsUpdateManyWithoutCourseInput'] | null; // CancellationsUpdateManyWithoutCourseInput
-    children?: NexusGenInputs['ChildrenUpdateManyWithoutCoursesInput'] | null; // ChildrenUpdateManyWithoutCoursesInput
     day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  CoursesUpdateManyMutationInput: { // input type
-    day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-    places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
-  }
-  CoursesUpdateManyWithWhereWithoutChildrenInput: { // input type
-    data: NexusGenInputs['CoursesUpdateManyMutationInput']; // CoursesUpdateManyMutationInput!
-    where: NexusGenInputs['CoursesScalarWhereInput']; // CoursesScalarWhereInput!
-  }
-  CoursesUpdateManyWithoutChildrenInput: { // input type
-    connect?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
-    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutChildrenInput'][] | null; // [CoursesCreateOrConnectWithoutChildrenInput!]
-    create?: NexusGenInputs['CoursesCreateWithoutChildrenInput'][] | null; // [CoursesCreateWithoutChildrenInput!]
-    delete?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['CoursesScalarWhereInput'][] | null; // [CoursesScalarWhereInput!]
-    disconnect?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
-    set?: NexusGenInputs['CoursesWhereUniqueInput'][] | null; // [CoursesWhereUniqueInput!]
-    update?: NexusGenInputs['CoursesUpdateWithWhereUniqueWithoutChildrenInput'][] | null; // [CoursesUpdateWithWhereUniqueWithoutChildrenInput!]
-    updateMany?: NexusGenInputs['CoursesUpdateManyWithWhereWithoutChildrenInput'][] | null; // [CoursesUpdateManyWithWhereWithoutChildrenInput!]
-    upsert?: NexusGenInputs['CoursesUpsertWithWhereUniqueWithoutChildrenInput'][] | null; // [CoursesUpsertWithWhereUniqueWithoutChildrenInput!]
   }
   CoursesUpdateOneRequiredWithoutCancellationsInput: { // input type
     connect?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
@@ -383,39 +454,41 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['CoursesUpdateWithoutCancellationsInput'] | null; // CoursesUpdateWithoutCancellationsInput
     upsert?: NexusGenInputs['CoursesUpsertWithoutCancellationsInput'] | null; // CoursesUpsertWithoutCancellationsInput
   }
-  CoursesUpdateWithWhereUniqueWithoutChildrenInput: { // input type
-    data: NexusGenInputs['CoursesUpdateWithoutChildrenInput']; // CoursesUpdateWithoutChildrenInput!
-    where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+  CoursesUpdateOneRequiredWithoutChildrenOnCourseInput: { // input type
+    connect?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CoursesCreateOrConnectWithoutChildrenOnCourseInput'] | null; // CoursesCreateOrConnectWithoutChildrenOnCourseInput
+    create?: NexusGenInputs['CoursesCreateWithoutChildrenOnCourseInput'] | null; // CoursesCreateWithoutChildrenOnCourseInput
+    update?: NexusGenInputs['CoursesUpdateWithoutChildrenOnCourseInput'] | null; // CoursesUpdateWithoutChildrenOnCourseInput
+    upsert?: NexusGenInputs['CoursesUpsertWithoutChildrenOnCourseInput'] | null; // CoursesUpsertWithoutChildrenOnCourseInput
   }
   CoursesUpdateWithoutCancellationsInput: { // input type
-    children?: NexusGenInputs['ChildrenUpdateManyWithoutCoursesInput'] | null; // ChildrenUpdateManyWithoutCoursesInput
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutCourseInput'] | null; // ChildrenOnCourseUpdateManyWithoutCourseInput
     day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  CoursesUpdateWithoutChildrenInput: { // input type
+  CoursesUpdateWithoutChildrenOnCourseInput: { // input type
     cancellations?: NexusGenInputs['CancellationsUpdateManyWithoutCourseInput'] | null; // CancellationsUpdateManyWithoutCourseInput
     day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     start_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
-  CoursesUpsertWithWhereUniqueWithoutChildrenInput: { // input type
-    create: NexusGenInputs['CoursesCreateWithoutChildrenInput']; // CoursesCreateWithoutChildrenInput!
-    update: NexusGenInputs['CoursesUpdateWithoutChildrenInput']; // CoursesUpdateWithoutChildrenInput!
-    where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
-  }
   CoursesUpsertWithoutCancellationsInput: { // input type
     create: NexusGenInputs['CoursesCreateWithoutCancellationsInput']; // CoursesCreateWithoutCancellationsInput!
     update: NexusGenInputs['CoursesUpdateWithoutCancellationsInput']; // CoursesUpdateWithoutCancellationsInput!
   }
+  CoursesUpsertWithoutChildrenOnCourseInput: { // input type
+    create: NexusGenInputs['CoursesCreateWithoutChildrenOnCourseInput']; // CoursesCreateWithoutChildrenOnCourseInput!
+    update: NexusGenInputs['CoursesUpdateWithoutChildrenOnCourseInput']; // CoursesUpdateWithoutChildrenOnCourseInput!
+  }
   CoursesWhereInput: { // input type
     AND?: NexusGenInputs['CoursesWhereInput'][] | null; // [CoursesWhereInput!]
+    ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseListRelationFilter'] | null; // ChildrenOnCourseListRelationFilter
     NOT?: NexusGenInputs['CoursesWhereInput'][] | null; // [CoursesWhereInput!]
     OR?: NexusGenInputs['CoursesWhereInput'][] | null; // [CoursesWhereInput!]
     cancellations?: NexusGenInputs['CancellationsListRelationFilter'] | null; // CancellationsListRelationFilter
-    children?: NexusGenInputs['ChildrenListRelationFilter'] | null; // ChildrenListRelationFilter
     day_of_week?: NexusGenInputs['IntFilter'] | null; // IntFilter
     end_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -1365,7 +1438,7 @@ export interface NexusGenObjects {
   Option: { // root type
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
-    name?: string | null; // String
+    name: NexusGenEnums['NameEnum']; // NameEnum!
   }
   OptionSet: { // root type
     cancelled_at?: NexusGenScalars['Date'] | null; // Date
@@ -1450,6 +1523,7 @@ export interface NexusGenFieldTypes {
     first_name: string; // String!
     id: number; // Int!
     name: string; // String!
+    order: NexusGenRootTypes['Order'] | null; // Order
     orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     token: NexusGenRootTypes['Token'] | null; // Token
     tutor: NexusGenRootTypes['User']; // User!
@@ -1457,7 +1531,7 @@ export interface NexusGenFieldTypes {
   }
   Course: { // field return type
     cancellations: Array<NexusGenRootTypes['Cancellation'] | null> | null; // [Cancellation]
-    children: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
+    children: NexusGenRootTypes['Child'][] | null; // [Child!]
     day_of_week: number; // Int!
     end_time: NexusGenScalars['Date']; // Date!
     id: number; // Int!
@@ -1496,7 +1570,7 @@ export interface NexusGenFieldTypes {
   Option: { // field return type
     created_at: NexusGenScalars['Date']; // Date!
     id: number; // Int!
-    name: string | null; // String
+    name: NexusGenEnums['NameEnum']; // NameEnum!
     price: NexusGenRootTypes['Price']; // Price!
   }
   OptionSet: { // field return type
@@ -1532,6 +1606,7 @@ export interface NexusGenFieldTypes {
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     currentUser: NexusGenRootTypes['User']; // User!
     options: NexusGenRootTypes['Option'][]; // [Option!]!
+    orders: NexusGenRootTypes['Order'][]; // [Order!]!
     prices: NexusGenRootTypes['Price'][]; // [Price!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
@@ -1586,6 +1661,7 @@ export interface NexusGenFieldTypeNames {
     first_name: 'String'
     id: 'Int'
     name: 'String'
+    order: 'Order'
     orders: 'Order'
     token: 'Token'
     tutor: 'User'
@@ -1632,7 +1708,7 @@ export interface NexusGenFieldTypeNames {
   Option: { // field return type name
     created_at: 'Date'
     id: 'Int'
-    name: 'String'
+    name: 'NameEnum'
     price: 'Price'
   }
   OptionSet: { // field return type name
@@ -1668,6 +1744,7 @@ export interface NexusGenFieldTypeNames {
     courses: 'Course'
     currentUser: 'User'
     options: 'Option'
+    orders: 'Order'
     prices: 'Price'
     users: 'User'
   }
@@ -1813,6 +1890,12 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
       where?: NexusGenInputs['OptionsWhereInput'] | null; // OptionsWhereInput
+    }
+    orders: { // args
+      after?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
+      before?: NexusGenInputs['OrdersWhereUniqueInput'] | null; // OrdersWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
     prices: { // args
       after?: NexusGenInputs['PricesWhereUniqueInput'] | null; // PricesWhereUniqueInput

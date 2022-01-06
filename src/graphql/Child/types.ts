@@ -1,4 +1,4 @@
-import { extendType, objectType } from 'nexus';
+import { extendType, inputObjectType, objectType } from 'nexus';
 import generateToken from '../../ultils/tokenUtility';
 import { RoleEnum } from '../enums';
 
@@ -22,7 +22,18 @@ export const child = objectType({
       type: 'Course',
       resolve: (root, _, ctx) => {
         return ctx.prisma.courses.findMany({
-          where: { children: { some: { id: root.id } } },
+          where: {
+            ChildrenOnCourse: { some: { childrenId: { equals: root.id } } },
+          },
+        });
+      },
+    });
+    t.field('order', {
+      type: 'Order',
+      resolve: (root, args, ctx) => {
+        return ctx.prisma.orders.findFirst({
+          where: { child_id: root.id },
+          orderBy: { created_at: 'desc' },
         });
       },
     });

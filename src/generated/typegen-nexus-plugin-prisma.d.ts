@@ -17,6 +17,7 @@ interface PrismaModels {
   Users: Prisma.Users
   Children: Prisma.Children
   Courses: Prisma.Courses
+  ChildrenOnCourse: Prisma.ChildrenOnCourse
   Cancellations: Prisma.Cancellations
   Options: Prisma.Options
   Prices: Prisma.Prices
@@ -32,12 +33,16 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'email' | 'name' | 'password' | 'role' | 'deleted_at' | 'first_name' | 'phone_number' | 'secondary_email' | 'resetPasswordToken' | 'verfifed_at' | 'created_at'
     }
     children: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'Orders' | 'ChildrenOnCourse'
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
     }
     courses: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'ChildrenOnCourse'
       ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week'
+    }
+    childrenOnCourses: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'children' | 'childrenId' | 'course' | 'courseId' | 'inscriptionDate'
+      ordering: 'childrenId' | 'courseId' | 'inscriptionDate'
     }
     cancellations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at' | 'course'
@@ -62,18 +67,18 @@ interface NexusPrismaInputs {
   },
   Users: {
     children: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'Orders' | 'ChildrenOnCourse'
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
     }
   }
   Children: {
-    courses: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'children'
-      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week'
-    }
     Orders: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id' | 'child' | 'options_set'
       ordering: 'id' | 'cancelled_at' | 'created_at' | 'sport_voucher' | 'child_id'
+    }
+    ChildrenOnCourse: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'children' | 'childrenId' | 'course' | 'courseId' | 'inscriptionDate'
+      ordering: 'childrenId' | 'courseId' | 'inscriptionDate'
     }
   }
   Courses: {
@@ -81,10 +86,13 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at' | 'course'
       ordering: 'id' | 'date' | 'course_id' | 'created_at' | 'deleted_at'
     }
-    children: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id' | 'tutor' | 'courses' | 'Orders'
-      ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
+    ChildrenOnCourse: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'children' | 'childrenId' | 'course' | 'courseId' | 'inscriptionDate'
+      ordering: 'childrenId' | 'courseId' | 'inscriptionDate'
     }
+  }
+  ChildrenOnCourse: {
+
   }
   Cancellations: {
 
@@ -125,6 +133,8 @@ interface NexusPrismaOutputs {
     children: 'Children'
     courses: 'Courses'
     courses: 'Courses'
+    childrenOnCourse: 'ChildrenOnCourse'
+    childrenOnCourses: 'ChildrenOnCourse'
     cancellations: 'Cancellations'
     cancellations: 'Cancellations'
     options: 'Options'
@@ -155,6 +165,12 @@ interface NexusPrismaOutputs {
     deleteOneCourses: 'Courses'
     deleteManyCourses: 'AffectedRowsOutput'
     upsertOneCourses: 'Courses'
+    createOneChildrenOnCourse: 'ChildrenOnCourse'
+    updateOneChildrenOnCourse: 'ChildrenOnCourse'
+    updateManyChildrenOnCourse: 'AffectedRowsOutput'
+    deleteOneChildrenOnCourse: 'ChildrenOnCourse'
+    deleteManyChildrenOnCourse: 'AffectedRowsOutput'
+    upsertOneChildrenOnCourse: 'ChildrenOnCourse'
     createOneCancellations: 'Cancellations'
     updateOneCancellations: 'Cancellations'
     updateManyCancellations: 'AffectedRowsOutput'
@@ -208,8 +224,8 @@ interface NexusPrismaOutputs {
     first_name: 'String'
     tutor_id: 'String'
     tutor: 'Users'
-    courses: 'Courses'
     Orders: 'Orders'
+    ChildrenOnCourse: 'ChildrenOnCourse'
   }
   Courses: {
     id: 'Int'
@@ -218,7 +234,14 @@ interface NexusPrismaOutputs {
     start_time: 'DateTime'
     day_of_week: 'Int'
     cancellations: 'Cancellations'
+    ChildrenOnCourse: 'ChildrenOnCourse'
+  }
+  ChildrenOnCourse: {
     children: 'Children'
+    childrenId: 'Int'
+    course: 'Courses'
+    courseId: 'Int'
+    inscriptionDate: 'DateTime'
   }
   Cancellations: {
     id: 'Int'
@@ -271,6 +294,7 @@ interface NexusPrismaMethods {
   Users: Typegen.NexusPrismaFields<'Users'>
   Children: Typegen.NexusPrismaFields<'Children'>
   Courses: Typegen.NexusPrismaFields<'Courses'>
+  ChildrenOnCourse: Typegen.NexusPrismaFields<'ChildrenOnCourse'>
   Cancellations: Typegen.NexusPrismaFields<'Cancellations'>
   Options: Typegen.NexusPrismaFields<'Options'>
   Prices: Typegen.NexusPrismaFields<'Prices'>

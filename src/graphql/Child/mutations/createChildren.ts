@@ -96,10 +96,18 @@ export const createChildren = extendType({
                     },
                   },
                 },
-                courses: { connect: child.courses.connect },
                 Orders: {
                   create: child.Orders.create,
                 },
+              },
+            });
+
+            const relatedCourse = await ctx.prisma.childrenOnCourse.create({
+              data: {
+                childrenId: createdChild.id,
+                courseId:
+                  child.ChildrenOnCourse.connect[0].childrenId_courseId
+                    .courseId,
               },
             });
             returnedData.child.push(createdChild);

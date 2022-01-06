@@ -158,6 +158,7 @@ type Child {
   first_name: String!
   id: Int!
   name: String!
+  order: Order
   orders: [Order]
   token: Token
   tutor: User!
@@ -165,18 +166,18 @@ type Child {
 }
 
 input ChildrenCreateInput {
+  ChildrenOnCourse: ChildrenOnCourseCreateNestedManyWithoutChildrenInput
   Orders: OrdersCreateNestedManyWithoutChildInput
   birth_date: DateTime!
-  courses: CoursesCreateNestedManyWithoutChildrenInput
   first_name: String!
   name: String!
   tutor: UsersCreateNestedOneWithoutChildrenInput!
 }
 
-input ChildrenCreateNestedManyWithoutCoursesInput {
-  connect: [ChildrenWhereUniqueInput!]
-  connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
-  create: [ChildrenCreateWithoutCoursesInput!]
+input ChildrenCreateNestedOneWithoutChildrenOnCourseInput {
+  connect: ChildrenWhereUniqueInput
+  connectOrCreate: ChildrenCreateOrConnectWithoutChildrenOnCourseInput
+  create: ChildrenCreateWithoutChildrenOnCourseInput
 }
 
 input ChildrenCreateNestedOneWithoutOrdersInput {
@@ -185,8 +186,8 @@ input ChildrenCreateNestedOneWithoutOrdersInput {
   create: ChildrenCreateWithoutOrdersInput
 }
 
-input ChildrenCreateOrConnectWithoutCoursesInput {
-  create: ChildrenCreateWithoutCoursesInput!
+input ChildrenCreateOrConnectWithoutChildrenOnCourseInput {
+  create: ChildrenCreateWithoutChildrenOnCourseInput!
   where: ChildrenWhereUniqueInput!
 }
 
@@ -195,7 +196,7 @@ input ChildrenCreateOrConnectWithoutOrdersInput {
   where: ChildrenWhereUniqueInput!
 }
 
-input ChildrenCreateWithoutCoursesInput {
+input ChildrenCreateWithoutChildrenOnCourseInput {
   Orders: OrdersCreateNestedManyWithoutChildInput
   birth_date: DateTime!
   first_name: String!
@@ -204,8 +205,8 @@ input ChildrenCreateWithoutCoursesInput {
 }
 
 input ChildrenCreateWithoutOrdersInput {
+  ChildrenOnCourse: ChildrenOnCourseCreateNestedManyWithoutChildrenInput
   birth_date: DateTime!
-  courses: CoursesCreateNestedManyWithoutChildrenInput
   first_name: String!
   name: String!
   tutor: UsersCreateNestedOneWithoutChildrenInput!
@@ -217,48 +218,184 @@ input ChildrenListRelationFilter {
   some: ChildrenWhereInput
 }
 
-input ChildrenScalarWhereInput {
-  AND: [ChildrenScalarWhereInput!]
-  NOT: [ChildrenScalarWhereInput!]
-  OR: [ChildrenScalarWhereInput!]
-  birth_date: DateTimeFilter
-  first_name: StringFilter
-  id: IntFilter
-  name: StringFilter
-  tutor_id: StringFilter
+input ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput {
+  childrenId: Int!
+  courseId: Int!
+}
+
+input ChildrenOnCourseCreateManyChildrenInput {
+  courseId: Int!
+  inscriptionDate: DateTime
+}
+
+input ChildrenOnCourseCreateManyChildrenInputEnvelope {
+  data: [ChildrenOnCourseCreateManyChildrenInput!]
+  skipDuplicates: Boolean
+}
+
+input ChildrenOnCourseCreateManyCourseInput {
+  childrenId: Int!
+  inscriptionDate: DateTime
+}
+
+input ChildrenOnCourseCreateManyCourseInputEnvelope {
+  data: [ChildrenOnCourseCreateManyCourseInput!]
+  skipDuplicates: Boolean
+}
+
+input ChildrenOnCourseCreateNestedManyWithoutChildrenInput {
+  connect: [ChildrenOnCourseWhereUniqueInput!]
+  connectOrCreate: [ChildrenOnCourseCreateOrConnectWithoutChildrenInput!]
+  create: [ChildrenOnCourseCreateWithoutChildrenInput!]
+  createMany: ChildrenOnCourseCreateManyChildrenInputEnvelope
+}
+
+input ChildrenOnCourseCreateNestedManyWithoutCourseInput {
+  connect: [ChildrenOnCourseWhereUniqueInput!]
+  connectOrCreate: [ChildrenOnCourseCreateOrConnectWithoutCourseInput!]
+  create: [ChildrenOnCourseCreateWithoutCourseInput!]
+  createMany: ChildrenOnCourseCreateManyCourseInputEnvelope
+}
+
+input ChildrenOnCourseCreateOrConnectWithoutChildrenInput {
+  create: ChildrenOnCourseCreateWithoutChildrenInput!
+  where: ChildrenOnCourseWhereUniqueInput!
+}
+
+input ChildrenOnCourseCreateOrConnectWithoutCourseInput {
+  create: ChildrenOnCourseCreateWithoutCourseInput!
+  where: ChildrenOnCourseWhereUniqueInput!
+}
+
+input ChildrenOnCourseCreateWithoutChildrenInput {
+  course: CoursesCreateNestedOneWithoutChildrenOnCourseInput!
+  inscriptionDate: DateTime
+}
+
+input ChildrenOnCourseCreateWithoutCourseInput {
+  children: ChildrenCreateNestedOneWithoutChildrenOnCourseInput!
+  inscriptionDate: DateTime
+}
+
+input ChildrenOnCourseListRelationFilter {
+  every: ChildrenOnCourseWhereInput
+  none: ChildrenOnCourseWhereInput
+  some: ChildrenOnCourseWhereInput
+}
+
+input ChildrenOnCourseScalarWhereInput {
+  AND: [ChildrenOnCourseScalarWhereInput!]
+  NOT: [ChildrenOnCourseScalarWhereInput!]
+  OR: [ChildrenOnCourseScalarWhereInput!]
+  childrenId: IntFilter
+  courseId: IntFilter
+  inscriptionDate: DateTimeNullableFilter
+}
+
+input ChildrenOnCourseUpdateManyMutationInput {
+  inscriptionDate: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input ChildrenOnCourseUpdateManyWithWhereWithoutChildrenInput {
+  data: ChildrenOnCourseUpdateManyMutationInput!
+  where: ChildrenOnCourseScalarWhereInput!
+}
+
+input ChildrenOnCourseUpdateManyWithWhereWithoutCourseInput {
+  data: ChildrenOnCourseUpdateManyMutationInput!
+  where: ChildrenOnCourseScalarWhereInput!
+}
+
+input ChildrenOnCourseUpdateManyWithoutChildrenInput {
+  connect: [ChildrenOnCourseWhereUniqueInput!]
+  connectOrCreate: [ChildrenOnCourseCreateOrConnectWithoutChildrenInput!]
+  create: [ChildrenOnCourseCreateWithoutChildrenInput!]
+  createMany: ChildrenOnCourseCreateManyChildrenInputEnvelope
+  delete: [ChildrenOnCourseWhereUniqueInput!]
+  deleteMany: [ChildrenOnCourseScalarWhereInput!]
+  disconnect: [ChildrenOnCourseWhereUniqueInput!]
+  set: [ChildrenOnCourseWhereUniqueInput!]
+  update: [ChildrenOnCourseUpdateWithWhereUniqueWithoutChildrenInput!]
+  updateMany: [ChildrenOnCourseUpdateManyWithWhereWithoutChildrenInput!]
+  upsert: [ChildrenOnCourseUpsertWithWhereUniqueWithoutChildrenInput!]
+}
+
+input ChildrenOnCourseUpdateManyWithoutCourseInput {
+  connect: [ChildrenOnCourseWhereUniqueInput!]
+  connectOrCreate: [ChildrenOnCourseCreateOrConnectWithoutCourseInput!]
+  create: [ChildrenOnCourseCreateWithoutCourseInput!]
+  createMany: ChildrenOnCourseCreateManyCourseInputEnvelope
+  delete: [ChildrenOnCourseWhereUniqueInput!]
+  deleteMany: [ChildrenOnCourseScalarWhereInput!]
+  disconnect: [ChildrenOnCourseWhereUniqueInput!]
+  set: [ChildrenOnCourseWhereUniqueInput!]
+  update: [ChildrenOnCourseUpdateWithWhereUniqueWithoutCourseInput!]
+  updateMany: [ChildrenOnCourseUpdateManyWithWhereWithoutCourseInput!]
+  upsert: [ChildrenOnCourseUpsertWithWhereUniqueWithoutCourseInput!]
+}
+
+input ChildrenOnCourseUpdateWithWhereUniqueWithoutChildrenInput {
+  data: ChildrenOnCourseUpdateWithoutChildrenInput!
+  where: ChildrenOnCourseWhereUniqueInput!
+}
+
+input ChildrenOnCourseUpdateWithWhereUniqueWithoutCourseInput {
+  data: ChildrenOnCourseUpdateWithoutCourseInput!
+  where: ChildrenOnCourseWhereUniqueInput!
+}
+
+input ChildrenOnCourseUpdateWithoutChildrenInput {
+  course: CoursesUpdateOneRequiredWithoutChildrenOnCourseInput
+  inscriptionDate: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input ChildrenOnCourseUpdateWithoutCourseInput {
+  children: ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput
+  inscriptionDate: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input ChildrenOnCourseUpsertWithWhereUniqueWithoutChildrenInput {
+  create: ChildrenOnCourseCreateWithoutChildrenInput!
+  update: ChildrenOnCourseUpdateWithoutChildrenInput!
+  where: ChildrenOnCourseWhereUniqueInput!
+}
+
+input ChildrenOnCourseUpsertWithWhereUniqueWithoutCourseInput {
+  create: ChildrenOnCourseCreateWithoutCourseInput!
+  update: ChildrenOnCourseUpdateWithoutCourseInput!
+  where: ChildrenOnCourseWhereUniqueInput!
+}
+
+input ChildrenOnCourseWhereInput {
+  AND: [ChildrenOnCourseWhereInput!]
+  NOT: [ChildrenOnCourseWhereInput!]
+  OR: [ChildrenOnCourseWhereInput!]
+  children: ChildrenWhereInput
+  childrenId: IntFilter
+  course: CoursesWhereInput
+  courseId: IntFilter
+  inscriptionDate: DateTimeNullableFilter
+}
+
+input ChildrenOnCourseWhereUniqueInput {
+  courseId_childrenId: ChildrenOnCourseCourseIdChildrenIdCompoundUniqueInput
 }
 
 input ChildrenUpdateInput {
+  ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutChildrenInput
   Orders: OrdersUpdateManyWithoutChildInput
   birth_date: DateTimeFieldUpdateOperationsInput
-  courses: CoursesUpdateManyWithoutChildrenInput
   first_name: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   tutor: UsersUpdateOneRequiredWithoutChildrenInput
 }
 
-input ChildrenUpdateManyMutationInput {
-  birth_date: DateTimeFieldUpdateOperationsInput
-  first_name: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input ChildrenUpdateManyWithWhereWithoutCoursesInput {
-  data: ChildrenUpdateManyMutationInput!
-  where: ChildrenScalarWhereInput!
-}
-
-input ChildrenUpdateManyWithoutCoursesInput {
-  connect: [ChildrenWhereUniqueInput!]
-  connectOrCreate: [ChildrenCreateOrConnectWithoutCoursesInput!]
-  create: [ChildrenCreateWithoutCoursesInput!]
-  delete: [ChildrenWhereUniqueInput!]
-  deleteMany: [ChildrenScalarWhereInput!]
-  disconnect: [ChildrenWhereUniqueInput!]
-  set: [ChildrenWhereUniqueInput!]
-  update: [ChildrenUpdateWithWhereUniqueWithoutCoursesInput!]
-  updateMany: [ChildrenUpdateManyWithWhereWithoutCoursesInput!]
-  upsert: [ChildrenUpsertWithWhereUniqueWithoutCoursesInput!]
+input ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput {
+  connect: ChildrenWhereUniqueInput
+  connectOrCreate: ChildrenCreateOrConnectWithoutChildrenOnCourseInput
+  create: ChildrenCreateWithoutChildrenOnCourseInput
+  update: ChildrenUpdateWithoutChildrenOnCourseInput
+  upsert: ChildrenUpsertWithoutChildrenOnCourseInput
 }
 
 input ChildrenUpdateOneRequiredWithoutOrdersInput {
@@ -269,12 +406,7 @@ input ChildrenUpdateOneRequiredWithoutOrdersInput {
   upsert: ChildrenUpsertWithoutOrdersInput
 }
 
-input ChildrenUpdateWithWhereUniqueWithoutCoursesInput {
-  data: ChildrenUpdateWithoutCoursesInput!
-  where: ChildrenWhereUniqueInput!
-}
-
-input ChildrenUpdateWithoutCoursesInput {
+input ChildrenUpdateWithoutChildrenOnCourseInput {
   Orders: OrdersUpdateManyWithoutChildInput
   birth_date: DateTimeFieldUpdateOperationsInput
   first_name: StringFieldUpdateOperationsInput
@@ -283,17 +415,16 @@ input ChildrenUpdateWithoutCoursesInput {
 }
 
 input ChildrenUpdateWithoutOrdersInput {
+  ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutChildrenInput
   birth_date: DateTimeFieldUpdateOperationsInput
-  courses: CoursesUpdateManyWithoutChildrenInput
   first_name: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   tutor: UsersUpdateOneRequiredWithoutChildrenInput
 }
 
-input ChildrenUpsertWithWhereUniqueWithoutCoursesInput {
-  create: ChildrenCreateWithoutCoursesInput!
-  update: ChildrenUpdateWithoutCoursesInput!
-  where: ChildrenWhereUniqueInput!
+input ChildrenUpsertWithoutChildrenOnCourseInput {
+  create: ChildrenCreateWithoutChildrenOnCourseInput!
+  update: ChildrenUpdateWithoutChildrenOnCourseInput!
 }
 
 input ChildrenUpsertWithoutOrdersInput {
@@ -303,11 +434,11 @@ input ChildrenUpsertWithoutOrdersInput {
 
 input ChildrenWhereInput {
   AND: [ChildrenWhereInput!]
+  ChildrenOnCourse: ChildrenOnCourseListRelationFilter
   NOT: [ChildrenWhereInput!]
   OR: [ChildrenWhereInput!]
   Orders: OrdersListRelationFilter
   birth_date: DateTimeFilter
-  courses: CoursesListRelationFilter
   first_name: StringFilter
   id: IntFilter
   name: StringFilter
@@ -321,7 +452,7 @@ input ChildrenWhereUniqueInput {
 
 type Course {
   cancellations(firstDate: DateTime, secondDate: DateTime): [Cancellation]
-  children: [Child]
+  children: [Child!]
   day_of_week: Int!
   end_time: Date!
   id: Int!
@@ -331,18 +462,12 @@ type Course {
 }
 
 input CoursesCreateInput {
+  ChildrenOnCourse: ChildrenOnCourseCreateNestedManyWithoutCourseInput
   cancellations: CancellationsCreateNestedManyWithoutCourseInput
-  children: ChildrenCreateNestedManyWithoutCoursesInput
   day_of_week: Int!
   end_time: DateTime!
   places: Int!
   start_time: DateTime!
-}
-
-input CoursesCreateNestedManyWithoutChildrenInput {
-  connect: [CoursesWhereUniqueInput!]
-  connectOrCreate: [CoursesCreateOrConnectWithoutChildrenInput!]
-  create: [CoursesCreateWithoutChildrenInput!]
 }
 
 input CoursesCreateNestedOneWithoutCancellationsInput {
@@ -351,36 +476,36 @@ input CoursesCreateNestedOneWithoutCancellationsInput {
   create: CoursesCreateWithoutCancellationsInput
 }
 
+input CoursesCreateNestedOneWithoutChildrenOnCourseInput {
+  connect: CoursesWhereUniqueInput
+  connectOrCreate: CoursesCreateOrConnectWithoutChildrenOnCourseInput
+  create: CoursesCreateWithoutChildrenOnCourseInput
+}
+
 input CoursesCreateOrConnectWithoutCancellationsInput {
   create: CoursesCreateWithoutCancellationsInput!
   where: CoursesWhereUniqueInput!
 }
 
-input CoursesCreateOrConnectWithoutChildrenInput {
-  create: CoursesCreateWithoutChildrenInput!
+input CoursesCreateOrConnectWithoutChildrenOnCourseInput {
+  create: CoursesCreateWithoutChildrenOnCourseInput!
   where: CoursesWhereUniqueInput!
 }
 
 input CoursesCreateWithoutCancellationsInput {
-  children: ChildrenCreateNestedManyWithoutCoursesInput
+  ChildrenOnCourse: ChildrenOnCourseCreateNestedManyWithoutCourseInput
   day_of_week: Int!
   end_time: DateTime!
   places: Int!
   start_time: DateTime!
 }
 
-input CoursesCreateWithoutChildrenInput {
+input CoursesCreateWithoutChildrenOnCourseInput {
   cancellations: CancellationsCreateNestedManyWithoutCourseInput
   day_of_week: Int!
   end_time: DateTime!
   places: Int!
   start_time: DateTime!
-}
-
-input CoursesListRelationFilter {
-  every: CoursesWhereInput
-  none: CoursesWhereInput
-  some: CoursesWhereInput
 }
 
 input CoursesOrderByInput {
@@ -391,49 +516,13 @@ input CoursesOrderByInput {
   start_time: SortOrder
 }
 
-input CoursesScalarWhereInput {
-  AND: [CoursesScalarWhereInput!]
-  NOT: [CoursesScalarWhereInput!]
-  OR: [CoursesScalarWhereInput!]
-  day_of_week: IntFilter
-  end_time: DateTimeFilter
-  id: IntFilter
-  places: IntFilter
-  start_time: DateTimeFilter
-}
-
 input CoursesUpdateInput {
+  ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutCourseInput
   cancellations: CancellationsUpdateManyWithoutCourseInput
-  children: ChildrenUpdateManyWithoutCoursesInput
   day_of_week: IntFieldUpdateOperationsInput
   end_time: DateTimeFieldUpdateOperationsInput
   places: IntFieldUpdateOperationsInput
   start_time: DateTimeFieldUpdateOperationsInput
-}
-
-input CoursesUpdateManyMutationInput {
-  day_of_week: IntFieldUpdateOperationsInput
-  end_time: DateTimeFieldUpdateOperationsInput
-  places: IntFieldUpdateOperationsInput
-  start_time: DateTimeFieldUpdateOperationsInput
-}
-
-input CoursesUpdateManyWithWhereWithoutChildrenInput {
-  data: CoursesUpdateManyMutationInput!
-  where: CoursesScalarWhereInput!
-}
-
-input CoursesUpdateManyWithoutChildrenInput {
-  connect: [CoursesWhereUniqueInput!]
-  connectOrCreate: [CoursesCreateOrConnectWithoutChildrenInput!]
-  create: [CoursesCreateWithoutChildrenInput!]
-  delete: [CoursesWhereUniqueInput!]
-  deleteMany: [CoursesScalarWhereInput!]
-  disconnect: [CoursesWhereUniqueInput!]
-  set: [CoursesWhereUniqueInput!]
-  update: [CoursesUpdateWithWhereUniqueWithoutChildrenInput!]
-  updateMany: [CoursesUpdateManyWithWhereWithoutChildrenInput!]
-  upsert: [CoursesUpsertWithWhereUniqueWithoutChildrenInput!]
 }
 
 input CoursesUpdateOneRequiredWithoutCancellationsInput {
@@ -444,20 +533,23 @@ input CoursesUpdateOneRequiredWithoutCancellationsInput {
   upsert: CoursesUpsertWithoutCancellationsInput
 }
 
-input CoursesUpdateWithWhereUniqueWithoutChildrenInput {
-  data: CoursesUpdateWithoutChildrenInput!
-  where: CoursesWhereUniqueInput!
+input CoursesUpdateOneRequiredWithoutChildrenOnCourseInput {
+  connect: CoursesWhereUniqueInput
+  connectOrCreate: CoursesCreateOrConnectWithoutChildrenOnCourseInput
+  create: CoursesCreateWithoutChildrenOnCourseInput
+  update: CoursesUpdateWithoutChildrenOnCourseInput
+  upsert: CoursesUpsertWithoutChildrenOnCourseInput
 }
 
 input CoursesUpdateWithoutCancellationsInput {
-  children: ChildrenUpdateManyWithoutCoursesInput
+  ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutCourseInput
   day_of_week: IntFieldUpdateOperationsInput
   end_time: DateTimeFieldUpdateOperationsInput
   places: IntFieldUpdateOperationsInput
   start_time: DateTimeFieldUpdateOperationsInput
 }
 
-input CoursesUpdateWithoutChildrenInput {
+input CoursesUpdateWithoutChildrenOnCourseInput {
   cancellations: CancellationsUpdateManyWithoutCourseInput
   day_of_week: IntFieldUpdateOperationsInput
   end_time: DateTimeFieldUpdateOperationsInput
@@ -465,23 +557,22 @@ input CoursesUpdateWithoutChildrenInput {
   start_time: DateTimeFieldUpdateOperationsInput
 }
 
-input CoursesUpsertWithWhereUniqueWithoutChildrenInput {
-  create: CoursesCreateWithoutChildrenInput!
-  update: CoursesUpdateWithoutChildrenInput!
-  where: CoursesWhereUniqueInput!
-}
-
 input CoursesUpsertWithoutCancellationsInput {
   create: CoursesCreateWithoutCancellationsInput!
   update: CoursesUpdateWithoutCancellationsInput!
 }
 
+input CoursesUpsertWithoutChildrenOnCourseInput {
+  create: CoursesCreateWithoutChildrenOnCourseInput!
+  update: CoursesUpdateWithoutChildrenOnCourseInput!
+}
+
 input CoursesWhereInput {
   AND: [CoursesWhereInput!]
+  ChildrenOnCourse: ChildrenOnCourseListRelationFilter
   NOT: [CoursesWhereInput!]
   OR: [CoursesWhereInput!]
   cancellations: CancellationsListRelationFilter
-  children: ChildrenListRelationFilter
   day_of_week: IntFilter
   end_time: DateTimeFilter
   id: IntFilter
@@ -740,7 +831,7 @@ input NullableStringFieldUpdateOperationsInput {
 type Option {
   created_at: Date!
   id: Int!
-  name: String
+  name: NameEnum!
   price: Price!
 }
 
@@ -1454,6 +1545,9 @@ type Query {
 
   """get options"""
   options(after: OptionsWhereUniqueInput, before: OptionsWhereUniqueInput, first: Int, last: Int, where: OptionsWhereInput): [Option!]!
+
+  """get one order"""
+  orders(after: OrdersWhereUniqueInput, before: OrdersWhereUniqueInput, first: Int, last: Int): [Order!]!
   prices(after: PricesWhereUniqueInput, before: PricesWhereUniqueInput, first: Int, last: Int, orderBy: [PricesOrderByInput!], where: PricesWhereInput): [Price!]!
   users(after: UsersWhereUniqueInput, before: UsersWhereUniqueInput, first: Int, last: Int, orderBy: [UsersOrderByInput!], where: UsersWhereInput): [User!]!
 }

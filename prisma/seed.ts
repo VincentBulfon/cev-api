@@ -7,6 +7,7 @@ async function main() {
   await prisma.options_set.deleteMany();
   await prisma.prices.deleteMany();
   await prisma.orders.deleteMany();
+  await prisma.childrenOnCourse.deleteMany();
   await prisma.children.deleteMany();
   await prisma.options.deleteMany();
   await prisma.users.deleteMany();
@@ -73,6 +74,56 @@ async function main() {
               first_name: 'Bobby',
               birth_date: new Date(2011, 5, 2),
             },
+            {
+              name: 'Aalbate',
+              first_name: 'Thierry',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Delcao',
+              first_name: 'Terrance',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Fratelli',
+              first_name: 'Bernardo',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'La roche',
+              first_name: 'Maxime',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Roche',
+              first_name: 'Francoise',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Calbot',
+              first_name: 'Axel',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Witeker',
+              first_name: 'Fanny',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Liegeois',
+              first_name: 'Geatant',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Mazi',
+              first_name: 'Bernard',
+              birth_date: new Date(2011, 5, 2),
+            },
+            {
+              name: 'Zalman',
+              first_name: 'Lucie',
+              birth_date: new Date(2011, 5, 2),
+            },
           ],
         },
       },
@@ -136,9 +187,11 @@ async function main() {
     await prisma.children.update({
       where: { id: child.id },
       data: {
-        courses: {
-          connect: {
-            id: selectedCourse[index].id,
+        ChildrenOnCourse: {
+          create: {
+            courseId:
+              selectedCourse[Math.ceil(Math.random() * selectedCourse.length)]
+                .id,
           },
         },
       },

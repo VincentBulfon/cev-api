@@ -1,4 +1,4 @@
-import { arg, list, objectType } from 'nexus';
+import { arg, list, nonNull, objectType } from 'nexus';
 
 export const course = objectType({
   name: 'Course',
@@ -10,16 +10,18 @@ export const course = objectType({
     t.nonNull.int('occupation', {
       async resolve(root, _args, ctx) {
         const occupation = await ctx.prisma.children.count({
-          where: { courses: { some: { id: root.id } } },
+          where: { ChildrenOnCourse: { some: { courseId: root.id } } },
         });
         return occupation;
       },
     });
     t.list.field('children', {
-      type: 'Child',
-      resolve: (root, args, ctx) => {
+      type: nonNull('Child'),
+      resolve: (root, _args, ctx) => {
         return ctx.prisma.children.findMany({
-          where: { courses: { every: { id: { equals: root.id } } } },
+          where: {
+            ChildrenOnCourse: { some: { courseId: root.id } },
+          },
         });
       },
     });
