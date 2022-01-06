@@ -106,7 +106,7 @@ export const createChildren = extendType({
               data: {
                 childrenId: createdChild.id,
                 courseId:
-                  child.ChildrenOnCourse.connect[0].childrenId_courseId
+                  child.ChildrenOnCourse.connect[0].courseId_childrenId
                     .courseId,
               },
             });
