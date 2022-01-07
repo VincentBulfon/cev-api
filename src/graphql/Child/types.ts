@@ -19,7 +19,7 @@ export const child = objectType({
       },
     });
     t.list.nonNull.field('courses', {
-      type: 'Course',
+      type: nonNull('Course'),
       resolve: (root, _, ctx) => {
         return ctx.prisma.courses.findMany({
           where: {
