@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import { nonNull, objectType } from 'nexus';
 
 export const option_set = objectType({
   name: 'OptionSet',
@@ -13,7 +13,7 @@ export const option_set = objectType({
     t.nonNull.int('price_id');
     t.nonNull.int('order_id');
     t.field('options', {
-      type: 'Option',
+      type: nonNull('Option'),
       resolve: (root, _, ctx) => {
         return ctx.prisma.options.findUnique({
           where: { id: root.option_id },

@@ -7,3 +7,4 @@ export * from './Prices';
 export * from './Orders';
 export * from './OptionsSet';
 export * from './Auth';
+export * from './ChildrenOnCourse';

@@ -248,6 +248,11 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['ChildrenOnCourseWhereInput'] | null; // ChildrenOnCourseWhereInput
     some?: NexusGenInputs['ChildrenOnCourseWhereInput'] | null; // ChildrenOnCourseWhereInput
   }
+  ChildrenOnCourseOrderByInput: { // input type
+    childrenId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    courseId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inscriptionDate?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   ChildrenOnCourseScalarWhereInput: { // input type
     AND?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
     NOT?: NexusGenInputs['ChildrenOnCourseScalarWhereInput'][] | null; // [ChildrenOnCourseScalarWhereInput!]
@@ -1431,6 +1436,9 @@ export interface NexusGenObjects {
     name: string; // String!
     tutor_id: string; // String!
   }
+  ChildrenOnCourses: { // root type
+    inscriptionDate: NexusGenScalars['Date']; // Date!
+  }
   Course: { // root type
     day_of_week: number; // Int!
     end_time: NexusGenScalars['Date']; // Date!
@@ -1493,6 +1501,9 @@ export interface NexusGenObjects {
     child?: NexusGenRootTypes['Child'][] | null; // [Child!]
     token: NexusGenRootTypes['Token']; // Token!
   }
+  currentCourseType: { // root type
+    course?: NexusGenRootTypes['Course'] | null; // Course
+  }
   tokenVerificationResponse: { // root type
     response: boolean; // Boolean!
     userFirstName: string; // String!
@@ -1527,6 +1538,7 @@ export interface NexusGenFieldTypes {
   Child: { // field return type
     birth_date: NexusGenScalars['Date']; // Date!
     courses: NexusGenRootTypes['Course'][] | null; // [Course!]
+    currentCourse: NexusGenRootTypes['currentCourseType'] | null; // currentCourseType
     first_name: string; // String!
     id: number; // Int!
     name: string; // String!
@@ -1535,6 +1547,9 @@ export interface NexusGenFieldTypes {
     token: NexusGenRootTypes['Token'] | null; // Token
     tutor: NexusGenRootTypes['User']; // User!
     tutor_id: string; // String!
+  }
+  ChildrenOnCourses: { // field return type
+    inscriptionDate: NexusGenScalars['Date']; // Date!
   }
   Course: { // field return type
     cancellations: Array<NexusGenRootTypes['Cancellation'] | null> | null; // [Cancellation]
@@ -1584,7 +1599,7 @@ export interface NexusGenFieldTypes {
     cancelled_at: NexusGenScalars['Date'] | null; // Date
     id: number; // Int!
     option_id: number; // Int!
-    options: NexusGenRootTypes['Option'] | null; // Option
+    options: NexusGenRootTypes['Option']; // Option!
     order_id: number; // Int!
     paid_at: NexusGenScalars['Date'] | null; // Date
     price: NexusGenRootTypes['Price'] | null; // Price
@@ -1610,6 +1625,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
     children: NexusGenRootTypes['Child'][]; // [Child!]!
+    childrenOnCourses: NexusGenRootTypes['ChildrenOnCourses'][]; // [ChildrenOnCourses!]!
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     currentUser: NexusGenRootTypes['User']; // User!
     options: NexusGenRootTypes['Option'][]; // [Option!]!
@@ -1641,6 +1657,9 @@ export interface NexusGenFieldTypes {
     child: NexusGenRootTypes['Child'][] | null; // [Child!]
     token: NexusGenRootTypes['Token']; // Token!
   }
+  currentCourseType: { // field return type
+    course: NexusGenRootTypes['Course'] | null; // Course
+  }
   tokenVerificationResponse: { // field return type
     response: boolean; // Boolean!
     userFirstName: string; // String!
@@ -1665,6 +1684,7 @@ export interface NexusGenFieldTypeNames {
   Child: { // field return type name
     birth_date: 'Date'
     courses: 'Course'
+    currentCourse: 'currentCourseType'
     first_name: 'String'
     id: 'Int'
     name: 'String'
@@ -1673,6 +1693,9 @@ export interface NexusGenFieldTypeNames {
     token: 'Token'
     tutor: 'User'
     tutor_id: 'String'
+  }
+  ChildrenOnCourses: { // field return type name
+    inscriptionDate: 'Date'
   }
   Course: { // field return type name
     cancellations: 'Cancellation'
@@ -1748,6 +1771,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     cancellations: 'Cancellation'
     children: 'Child'
+    childrenOnCourses: 'ChildrenOnCourses'
     courses: 'Course'
     currentUser: 'User'
     options: 'Option'
@@ -1778,6 +1802,9 @@ export interface NexusGenFieldTypeNames {
   createChildrenType: { // field return type name
     child: 'Child'
     token: 'Token'
+  }
+  currentCourseType: { // field return type name
+    course: 'Course'
   }
   tokenVerificationResponse: { // field return type name
     response: 'Boolean'
@@ -1884,6 +1911,14 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       orderBy?: NexusGenInputs['ChildrenOrderByInput'][] | null; // [ChildrenOrderByInput!]
       where?: NexusGenInputs['ChildrenWhereInput'] | null; // ChildrenWhereInput
+    }
+    childrenOnCourses: { // args
+      after?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'] | null; // ChildrenOnCourseWhereUniqueInput
+      before?: NexusGenInputs['ChildrenOnCourseWhereUniqueInput'] | null; // ChildrenOnCourseWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['ChildrenOnCourseOrderByInput'][] | null; // [ChildrenOnCourseOrderByInput!]
+      where?: NexusGenInputs['ChildrenOnCourseWhereInput'] | null; // ChildrenOnCourseWhereInput
     }
     courses: { // args
       after?: NexusGenInputs['CoursesWhereUniqueInput'] | null; // CoursesWhereUniqueInput

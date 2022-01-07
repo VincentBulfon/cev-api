@@ -28,6 +28,16 @@ export const child = objectType({
         });
       },
     });
+    t.field('currentCourse', {
+      type: 'currentCourseType',
+      resolve: (root, args, ctx) => {
+        return ctx.prisma.childrenOnCourse.findFirst({
+          select: { course: true },
+          where: { childrenId: { equals: root.id } },
+          orderBy: { inscriptionDate: 'desc' },
+        });
+      },
+    });
     t.field('order', {
       type: 'Order',
       resolve: (root, args, ctx) => {
@@ -87,6 +97,15 @@ export const createChildrenType = objectType({
     });
     t.nonNull.field('token', {
       type: 'Token',
+    });
+  },
+});
+
+export const currentCourseType = objectType({
+  name: 'currentCourseType',
+  definition(t) {
+    t.field('course', {
+      type: 'Course',
     });
   },
 });
