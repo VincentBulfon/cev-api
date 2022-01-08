@@ -1352,6 +1352,9 @@ export interface NexusGenInputs {
     id?: string | null; // String
     resetPasswordToken?: string | null; // String
   }
+  courseId: { // input type
+    id: number; // Int!
+  }
   loginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -1578,6 +1581,7 @@ export interface NexusGenFieldTypes {
     deleteOneCourses: NexusGenRootTypes['Course'] | null; // Course
     deleteOneOptions: NexusGenRootTypes['Option'] | null; // Option
     deleteOneUsers: NexusGenRootTypes['User'] | null; // User
+    deletedCourse: NexusGenRootTypes['Course'] | null; // Course
     forgotPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
@@ -1724,6 +1728,7 @@ export interface NexusGenFieldTypeNames {
     deleteOneCourses: 'Course'
     deleteOneOptions: 'Option'
     deleteOneUsers: 'User'
+    deletedCourse: 'Course'
     forgotPassword: 'MessagePayload'
     login: 'AuthPayload'
     resetPassword: 'MessagePayload'
@@ -1860,6 +1865,9 @@ export interface NexusGenArgTypes {
     }
     deleteOneUsers: { // args
       where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
+    }
+    deletedCourse: { // args
+      courseId?: NexusGenInputs['courseId'] | null; // courseId
     }
     forgotPassword: { // args
       email: string; // String!

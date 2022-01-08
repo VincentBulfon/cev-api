@@ -728,6 +728,7 @@ type Mutation {
 
   """delete on user"""
   deleteOneUsers(where: UsersWhereUniqueInput!): User
+  deletedCourse(courseId: courseId): Course
   forgotPassword(email: String!): MessagePayload!
   login(loginInput: loginInput): AuthPayload!
   resetPassword(resetPasswordInput: resetPasswordInput!): MessagePayload!
@@ -1744,6 +1745,10 @@ input UsersWhereUniqueInput {
 
 type children {
   child: [Child]
+}
+
+input courseId {
+  id: Int!
 }
 
 type createChildrenType {
