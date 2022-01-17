@@ -1576,12 +1576,12 @@ export interface NexusGenFieldTypes {
     createOneOptions_set: NexusGenRootTypes['OptionSet']; // OptionSet!
     createOneOrders: NexusGenRootTypes['Order']; // Order!
     createOnePrices: NexusGenRootTypes['Price']; // Price!
+    deleteCourse: NexusGenRootTypes['Course'] | null; // Course
     deleteOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     deleteOneChildren: NexusGenRootTypes['Child'] | null; // Child
     deleteOneCourses: NexusGenRootTypes['Course'] | null; // Course
     deleteOneOptions: NexusGenRootTypes['Option'] | null; // Option
     deleteOneUsers: NexusGenRootTypes['User'] | null; // User
-    deletedCourse: NexusGenRootTypes['Course'] | null; // Course
     forgotPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     resetPassword: NexusGenRootTypes['MessagePayload']; // MessagePayload!
@@ -1723,12 +1723,12 @@ export interface NexusGenFieldTypeNames {
     createOneOptions_set: 'OptionSet'
     createOneOrders: 'Order'
     createOnePrices: 'Price'
+    deleteCourse: 'Course'
     deleteOneCancellations: 'Cancellation'
     deleteOneChildren: 'Child'
     deleteOneCourses: 'Course'
     deleteOneOptions: 'Option'
     deleteOneUsers: 'User'
-    deletedCourse: 'Course'
     forgotPassword: 'MessagePayload'
     login: 'AuthPayload'
     resetPassword: 'MessagePayload'
@@ -1851,6 +1851,9 @@ export interface NexusGenArgTypes {
     createOnePrices: { // args
       data: NexusGenInputs['PricesCreateInput']; // PricesCreateInput!
     }
+    deleteCourse: { // args
+      courseId?: NexusGenInputs['courseId'] | null; // courseId
+    }
     deleteOneCancellations: { // args
       where: NexusGenInputs['CancellationsWhereUniqueInput']; // CancellationsWhereUniqueInput!
     }
@@ -1865,9 +1868,6 @@ export interface NexusGenArgTypes {
     }
     deleteOneUsers: { // args
       where: NexusGenInputs['UsersWhereUniqueInput']; // UsersWhereUniqueInput!
-    }
-    deletedCourse: { // args
-      courseId?: NexusGenInputs['courseId'] | null; // courseId
     }
     forgotPassword: { // args
       email: string; // String!

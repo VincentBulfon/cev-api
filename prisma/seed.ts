@@ -77,17 +77,17 @@ async function main() {
             {
               name: 'Aalbate',
               first_name: 'Thierry',
-              birth_date: new Date(2011, 5, 2),
+              birth_date: new Date(2011, 4, 6),
             },
             {
               name: 'Delcao',
               first_name: 'Terrance',
-              birth_date: new Date(2011, 5, 2),
+              birth_date: new Date(2011, 2, 12),
             },
             {
               name: 'Fratelli',
               first_name: 'Bernardo',
-              birth_date: new Date(2011, 5, 2),
+              birth_date: new Date(2011, 6, 22),
             },
             {
               name: 'La roche',
@@ -205,10 +205,10 @@ async function main() {
         createMany: {
           data: [
             {
-              date: new Date(2021, 9, 24),
+              date: new Date(2022, 1, 24),
             },
             {
-              date: new Date(2021, 9, 17),
+              date: new Date(2022, 1, 17),
               deleted_at: new Date(Date.now()),
             },
           ],
@@ -278,11 +278,7 @@ async function main() {
     }),
   ];
 
-  const childrenSelection = await prisma.users
-    .findUnique({
-      where: { email: 'alex@prisma.io' },
-    })
-    .children();
+  const childrenSelection = await prisma.children.findMany();
   childrenSelection.forEach(async child => {
     await prisma.orders.create({
       data: {

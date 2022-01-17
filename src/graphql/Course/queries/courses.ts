@@ -1,4 +1,4 @@
-import { extendType } from 'nexus';
+import { extendType, nullable } from 'nexus';
 
 export const coursesQuery = extendType({
   type: 'Query',

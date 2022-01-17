@@ -713,6 +713,7 @@ type Mutation {
 
   """create one price"""
   createOnePrices(data: PricesCreateInput!): Price!
+  deleteCourse(courseId: courseId): Course
 
   """delete on cancellations"""
   deleteOneCancellations(where: CancellationsWhereUniqueInput!): Cancellation
@@ -728,7 +729,6 @@ type Mutation {
 
   """delete on user"""
   deleteOneUsers(where: UsersWhereUniqueInput!): User
-  deletedCourse(courseId: courseId): Course
   forgotPassword(email: String!): MessagePayload!
   login(loginInput: loginInput): AuthPayload!
   resetPassword(resetPasswordInput: resetPasswordInput!): MessagePayload!
