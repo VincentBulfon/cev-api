@@ -483,6 +483,7 @@ type Course {
 input CoursesCreateInput {
   ChildrenOnCourse: ChildrenOnCourseCreateNestedManyWithoutCourseInput
   cancellations: CancellationsCreateNestedManyWithoutCourseInput
+  created_at: DateTime
   day_of_week: Int!
   end_time: DateTime!
   places: Int!
@@ -513,6 +514,7 @@ input CoursesCreateOrConnectWithoutChildrenOnCourseInput {
 
 input CoursesCreateWithoutCancellationsInput {
   ChildrenOnCourse: ChildrenOnCourseCreateNestedManyWithoutCourseInput
+  created_at: DateTime
   day_of_week: Int!
   end_time: DateTime!
   places: Int!
@@ -521,6 +523,7 @@ input CoursesCreateWithoutCancellationsInput {
 
 input CoursesCreateWithoutChildrenOnCourseInput {
   cancellations: CancellationsCreateNestedManyWithoutCourseInput
+  created_at: DateTime
   day_of_week: Int!
   end_time: DateTime!
   places: Int!
@@ -528,6 +531,7 @@ input CoursesCreateWithoutChildrenOnCourseInput {
 }
 
 input CoursesOrderByInput {
+  created_at: SortOrder
   day_of_week: SortOrder
   end_time: SortOrder
   id: SortOrder
@@ -538,6 +542,7 @@ input CoursesOrderByInput {
 input CoursesUpdateInput {
   ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutCourseInput
   cancellations: CancellationsUpdateManyWithoutCourseInput
+  created_at: DateTimeFieldUpdateOperationsInput
   day_of_week: IntFieldUpdateOperationsInput
   end_time: DateTimeFieldUpdateOperationsInput
   places: IntFieldUpdateOperationsInput
@@ -562,6 +567,7 @@ input CoursesUpdateOneRequiredWithoutChildrenOnCourseInput {
 
 input CoursesUpdateWithoutCancellationsInput {
   ChildrenOnCourse: ChildrenOnCourseUpdateManyWithoutCourseInput
+  created_at: DateTimeFieldUpdateOperationsInput
   day_of_week: IntFieldUpdateOperationsInput
   end_time: DateTimeFieldUpdateOperationsInput
   places: IntFieldUpdateOperationsInput
@@ -570,6 +576,7 @@ input CoursesUpdateWithoutCancellationsInput {
 
 input CoursesUpdateWithoutChildrenOnCourseInput {
   cancellations: CancellationsUpdateManyWithoutCourseInput
+  created_at: DateTimeFieldUpdateOperationsInput
   day_of_week: IntFieldUpdateOperationsInput
   end_time: DateTimeFieldUpdateOperationsInput
   places: IntFieldUpdateOperationsInput
@@ -592,6 +599,7 @@ input CoursesWhereInput {
   NOT: [CoursesWhereInput!]
   OR: [CoursesWhereInput!]
   cancellations: CancellationsListRelationFilter
+  created_at: DateTimeFilter
   day_of_week: IntFilter
   end_time: DateTimeFilter
   id: IntFilter

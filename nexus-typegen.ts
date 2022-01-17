@@ -407,6 +407,7 @@ export interface NexusGenInputs {
   CoursesCreateInput: { // input type
     ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseCreateNestedManyWithoutCourseInput'] | null; // ChildrenOnCourseCreateNestedManyWithoutCourseInput
     cancellations?: NexusGenInputs['CancellationsCreateNestedManyWithoutCourseInput'] | null; // CancellationsCreateNestedManyWithoutCourseInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     day_of_week: number; // Int!
     end_time: NexusGenScalars['DateTime']; // DateTime!
     places: number; // Int!
@@ -432,6 +433,7 @@ export interface NexusGenInputs {
   }
   CoursesCreateWithoutCancellationsInput: { // input type
     ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseCreateNestedManyWithoutCourseInput'] | null; // ChildrenOnCourseCreateNestedManyWithoutCourseInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     day_of_week: number; // Int!
     end_time: NexusGenScalars['DateTime']; // DateTime!
     places: number; // Int!
@@ -439,12 +441,14 @@ export interface NexusGenInputs {
   }
   CoursesCreateWithoutChildrenOnCourseInput: { // input type
     cancellations?: NexusGenInputs['CancellationsCreateNestedManyWithoutCourseInput'] | null; // CancellationsCreateNestedManyWithoutCourseInput
+    created_at?: NexusGenScalars['DateTime'] | null; // DateTime
     day_of_week: number; // Int!
     end_time: NexusGenScalars['DateTime']; // DateTime!
     places: number; // Int!
     start_time: NexusGenScalars['DateTime']; // DateTime!
   }
   CoursesOrderByInput: { // input type
+    created_at?: NexusGenEnums['SortOrder'] | null; // SortOrder
     day_of_week?: NexusGenEnums['SortOrder'] | null; // SortOrder
     end_time?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -454,6 +458,7 @@ export interface NexusGenInputs {
   CoursesUpdateInput: { // input type
     ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutCourseInput'] | null; // ChildrenOnCourseUpdateManyWithoutCourseInput
     cancellations?: NexusGenInputs['CancellationsUpdateManyWithoutCourseInput'] | null; // CancellationsUpdateManyWithoutCourseInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -475,6 +480,7 @@ export interface NexusGenInputs {
   }
   CoursesUpdateWithoutCancellationsInput: { // input type
     ChildrenOnCourse?: NexusGenInputs['ChildrenOnCourseUpdateManyWithoutCourseInput'] | null; // ChildrenOnCourseUpdateManyWithoutCourseInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -482,6 +488,7 @@ export interface NexusGenInputs {
   }
   CoursesUpdateWithoutChildrenOnCourseInput: { // input type
     cancellations?: NexusGenInputs['CancellationsUpdateManyWithoutCourseInput'] | null; // CancellationsUpdateManyWithoutCourseInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     day_of_week?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     end_time?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     places?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -501,6 +508,7 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['CoursesWhereInput'][] | null; // [CoursesWhereInput!]
     OR?: NexusGenInputs['CoursesWhereInput'][] | null; // [CoursesWhereInput!]
     cancellations?: NexusGenInputs['CancellationsListRelationFilter'] | null; // CancellationsListRelationFilter
+    created_at?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     day_of_week?: NexusGenInputs['IntFilter'] | null; // IntFilter
     end_time?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter

@@ -42,6 +42,7 @@ model Courses {
   end_time      DateTime        @db.Time(6)
   start_time    DateTime        @db.Time(6)
   day_of_week   Int             @db.SmallInt
+  created_at    DateTime        @default(now())
   cancellations Cancellations[]
 
   ChildrenOnCourse ChildrenOnCourse[]

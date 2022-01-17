@@ -37,8 +37,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'birth_date' | 'first_name' | 'tutor_id'
     }
     courses: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'cancellations' | 'ChildrenOnCourse'
-      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'created_at' | 'cancellations' | 'ChildrenOnCourse'
+      ordering: 'id' | 'places' | 'end_time' | 'start_time' | 'day_of_week' | 'created_at'
     }
     childrenOnCourses: {
       filtering: 'AND' | 'OR' | 'NOT' | 'children' | 'childrenId' | 'course' | 'courseId' | 'inscriptionDate'
@@ -233,6 +233,7 @@ interface NexusPrismaOutputs {
     end_time: 'DateTime'
     start_time: 'DateTime'
     day_of_week: 'Int'
+    created_at: 'DateTime'
     cancellations: 'Cancellations'
     ChildrenOnCourse: 'ChildrenOnCourse'
   }
