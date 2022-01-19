@@ -1584,6 +1584,7 @@ export interface NexusGenFieldTypes {
     createOneOptions_set: NexusGenRootTypes['OptionSet']; // OptionSet!
     createOneOrders: NexusGenRootTypes['Order']; // Order!
     createOnePrices: NexusGenRootTypes['Price']; // Price!
+    createUniqueCourse: NexusGenRootTypes['Course'] | null; // Course
     deleteCourse: NexusGenRootTypes['Course'] | null; // Course
     deleteOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     deleteOneChildren: NexusGenRootTypes['Child'] | null; // Child
@@ -1731,6 +1732,7 @@ export interface NexusGenFieldTypeNames {
     createOneOptions_set: 'OptionSet'
     createOneOrders: 'Order'
     createOnePrices: 'Price'
+    createUniqueCourse: 'Course'
     deleteCourse: 'Course'
     deleteOneCancellations: 'Cancellation'
     deleteOneChildren: 'Child'
@@ -1858,6 +1860,9 @@ export interface NexusGenArgTypes {
     }
     createOnePrices: { // args
       data: NexusGenInputs['PricesCreateInput']; // PricesCreateInput!
+    }
+    createUniqueCourse: { // args
+      course: NexusGenInputs['CoursesCreateInput']; // CoursesCreateInput!
     }
     deleteCourse: { // args
       courseId?: NexusGenInputs['courseId'] | null; // courseId

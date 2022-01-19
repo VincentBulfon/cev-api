@@ -149,7 +149,7 @@ async function main() {
       {
         day_of_week: 3,
         places: 16,
-        start_time: new Date('1996-01-02T17:30:00'),
+        start_time: new Date('1996-01-01T17:30:00'),
         end_time: new Date('1996-01-01T18:30:00'),
       },
       {
