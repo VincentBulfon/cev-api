@@ -1275,6 +1275,9 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  UserExistsInput: { // input type
+    email: string; // String!
+  }
   UsersCreateNestedOneWithoutChildrenInput: { // input type
     connect?: NexusGenInputs['UsersWhereUniqueInput'] | null; // UsersWhereUniqueInput
     connectOrCreate?: NexusGenInputs['UsersCreateOrConnectWithoutChildrenInput'] | null; // UsersCreateOrConnectWithoutChildrenInput
@@ -1505,6 +1508,9 @@ export interface NexusGenObjects {
     secondary_email?: string | null; // String
     vertified_at?: NexusGenScalars['Date'] | null; // Date
   }
+  UserExistsObject: { // root type
+    exists: boolean; // Boolean!
+  }
   children: { // root type
     child?: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
   }
@@ -1636,6 +1642,7 @@ export interface NexusGenFieldTypes {
     price: number; // Int!
   }
   Query: { // field return type
+    UserExists: NexusGenRootTypes['UserExistsObject'] | null; // UserExistsObject
     cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
     children: NexusGenRootTypes['Child'][]; // [Child!]!
     childrenOnCourses: NexusGenRootTypes['ChildrenOnCourses'][]; // [ChildrenOnCourses!]!
@@ -1662,6 +1669,9 @@ export interface NexusGenFieldTypes {
     phone_number: string; // String!
     secondary_email: string | null; // String
     vertified_at: NexusGenScalars['Date'] | null; // Date
+  }
+  UserExistsObject: { // field return type
+    exists: boolean; // Boolean!
   }
   children: { // field return type
     child: Array<NexusGenRootTypes['Child'] | null> | null; // [Child]
@@ -1784,6 +1794,7 @@ export interface NexusGenFieldTypeNames {
     price: 'Int'
   }
   Query: { // field return type name
+    UserExists: 'UserExistsObject'
     cancellations: 'Cancellation'
     children: 'Child'
     childrenOnCourses: 'ChildrenOnCourses'
@@ -1810,6 +1821,9 @@ export interface NexusGenFieldTypeNames {
     phone_number: 'String'
     secondary_email: 'String'
     vertified_at: 'Date'
+  }
+  UserExistsObject: { // field return type name
+    exists: 'Boolean'
   }
   children: { // field return type name
     child: 'Child'
@@ -1917,6 +1931,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    UserExists: { // args
+      passedEmail: NexusGenInputs['UserExistsInput']; // UserExistsInput!
+    }
     cancellations: { // args
       after?: NexusGenInputs['CancellationsWhereUniqueInput'] | null; // CancellationsWhereUniqueInput
       before?: NexusGenInputs['CancellationsWhereUniqueInput'] | null; // CancellationsWhereUniqueInput

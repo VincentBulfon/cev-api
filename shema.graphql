@@ -1566,6 +1566,8 @@ input PricesWhereUniqueInput {
 }
 
 type Query {
+  UserExists(passedEmail: UserExistsInput!): UserExistsObject
+
   """get cancellations"""
   cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!
   children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int, orderBy: [ChildrenOrderByInput!], where: ChildrenWhereInput): [Child!]!
@@ -1656,6 +1658,14 @@ type User {
   phone_number: String!
   secondary_email: String
   vertified_at: Date
+}
+
+input UserExistsInput {
+  email: String!
+}
+
+type UserExistsObject {
+  exists: Boolean!
 }
 
 input UsersCreateNestedOneWithoutChildrenInput {
