@@ -23,7 +23,8 @@ export const resetPAssword = extendType({
           if (!resetPasswordToken) {
             throw new Error('No reset link found');
           }
-          verify(resetPasswordToken, process.env.JWT_RESET_PASSWORD);
+
+          verify(resetPasswordToken, process.env.JWT_KEY);
           const user = await ctx.prisma.users.findUnique({
             where: {
               resetPasswordToken,
