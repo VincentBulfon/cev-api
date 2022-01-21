@@ -1566,7 +1566,7 @@ input PricesWhereUniqueInput {
 }
 
 type Query {
-  UserExists(passedEmail: UserExistsInput!): UserExistsObject
+  UserExists(passedEmail: UserExistsInput!): UserExistsObject!
 
   """get cancellations"""
   cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!

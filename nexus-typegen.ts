@@ -1642,7 +1642,7 @@ export interface NexusGenFieldTypes {
     price: number; // Int!
   }
   Query: { // field return type
-    UserExists: NexusGenRootTypes['UserExistsObject'] | null; // UserExistsObject
+    UserExists: NexusGenRootTypes['UserExistsObject']; // UserExistsObject!
     cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
     children: NexusGenRootTypes['Child'][]; // [Child!]!
     childrenOnCourses: NexusGenRootTypes['ChildrenOnCourses'][]; // [ChildrenOnCourses!]!

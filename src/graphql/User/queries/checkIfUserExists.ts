@@ -3,8 +3,8 @@ import { arg, extendType, inputObjectType, nonNull, objectType } from 'nexus';
 export const checkExistingUser = extendType({
   type: 'Query',
   definition(t) {
-    t.field('UserExists', {
-      type: 'UserExistsObject',
+    t.nonNull.field('UserExists', {
+      type: nonNull('UserExistsObject'),
       args: { passedEmail: arg({ type: nonNull('UserExistsInput') }) },
       async resolve(root, args, ctx) {
         const user = ctx.prisma.users.findUnique({
