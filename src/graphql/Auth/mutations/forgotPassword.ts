@@ -45,7 +45,7 @@ export const forgotPassword = extendType({
             html
           );
           return {
-            message: `Un email à été envoyé à ${email}. Suivez les instruction pour réinitialiser votre mot de passe (le lien n'est valide que 10 minutes).`,
+            message: `${email}`,
           };
         } catch (error) {
           throw new Error(error.message);
