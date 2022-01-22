@@ -1644,6 +1644,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     UserExists: NexusGenRootTypes['UserExistsObject']; // UserExistsObject!
     cancellations: NexusGenRootTypes['Cancellation'][]; // [Cancellation!]!
+    checkToken: boolean; // Boolean!
     children: NexusGenRootTypes['Child'][]; // [Child!]!
     childrenOnCourses: NexusGenRootTypes['ChildrenOnCourses'][]; // [ChildrenOnCourses!]!
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
@@ -1796,6 +1797,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     UserExists: 'UserExistsObject'
     cancellations: 'Cancellation'
+    checkToken: 'Boolean'
     children: 'Child'
     childrenOnCourses: 'ChildrenOnCourses'
     courses: 'Course'
@@ -1941,6 +1943,9 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       orderBy?: NexusGenInputs['CancellationsOrderByInput'][] | null; // [CancellationsOrderByInput!]
       where?: NexusGenInputs['CancellationsWhereInput'] | null; // CancellationsWhereInput
+    }
+    checkToken: { // args
+      token?: string | null; // String
     }
     children: { // args
       after?: NexusGenInputs['ChildrenWhereUniqueInput'] | null; // ChildrenWhereUniqueInput

@@ -1570,6 +1570,7 @@ type Query {
 
   """get cancellations"""
   cancellations(after: CancellationsWhereUniqueInput, before: CancellationsWhereUniqueInput, first: Int, last: Int, orderBy: [CancellationsOrderByInput!], where: CancellationsWhereInput): [Cancellation!]!
+  checkToken(token: String): Boolean!
   children(after: ChildrenWhereUniqueInput, before: ChildrenWhereUniqueInput, first: Int, last: Int, orderBy: [ChildrenOrderByInput!], where: ChildrenWhereInput): [Child!]!
   childrenOnCourses(after: ChildrenOnCourseWhereUniqueInput, before: ChildrenOnCourseWhereUniqueInput, first: Int, last: Int, orderBy: [ChildrenOnCourseOrderByInput!], where: ChildrenOnCourseWhereInput): [ChildrenOnCourses!]!
   courses(after: CoursesWhereUniqueInput, before: CoursesWhereUniqueInput, first: Int, last: Int, orderBy: [CoursesOrderByInput!], where: CoursesWhereInput): [Course!]!
