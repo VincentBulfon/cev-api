@@ -294,7 +294,7 @@ async function main() {
                   id: allOptions[0].id,
                 },
               },
-              status: 'UNPAID',
+              status: 'PAID',
             },
             {
               price: {
@@ -305,7 +305,7 @@ async function main() {
                   id: allOptions[1].id,
                 },
               },
-              status: 'PAID',
+              status: 'UNPAID',
             },
             {
               price: {
