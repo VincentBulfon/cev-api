@@ -261,6 +261,11 @@ export interface NexusGenInputs {
     courseId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     inscriptionDate?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
   }
+  ChildrenOnCourseUpdateInput: { // input type
+    children?: NexusGenInputs['ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput'] | null; // ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput
+    course?: NexusGenInputs['CoursesUpdateOneRequiredWithoutChildrenOnCourseInput'] | null; // CoursesUpdateOneRequiredWithoutChildrenOnCourseInput
+    inscriptionDate?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+  }
   ChildrenOnCourseUpdateManyMutationInput: { // input type
     inscriptionDate?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
   }
@@ -1046,6 +1051,13 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     sport_voucher?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
   }
+  OrdersUpdateInput: { // input type
+    cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    child?: NexusGenInputs['ChildrenUpdateOneRequiredWithoutOrdersInput'] | null; // ChildrenUpdateOneRequiredWithoutOrdersInput
+    created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    options_set?: NexusGenInputs['Options_setUpdateManyWithoutOrderInput'] | null; // Options_setUpdateManyWithoutOrderInput
+    sport_voucher?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+  }
   OrdersUpdateManyMutationInput: { // input type
     cancelled_at?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     created_at?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -1274,6 +1286,10 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
+  }
+  UpdateOptionSetInput: { // input type
+    option_set_id: number; // Int!
+    option_set_status: NexusGenEnums['StatusEnum']; // StatusEnum!
   }
   UserExistsInput: { // input type
     email: string; // String!
@@ -1603,7 +1619,10 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     updateOneCancellations: NexusGenRootTypes['Cancellation'] | null; // Cancellation
     updateOneChildren: NexusGenRootTypes['Child'] | null; // Child
+    updateOneChildrenOnCourse: NexusGenRootTypes['ChildrenOnCourses'] | null; // ChildrenOnCourses
     updateOneCourses: NexusGenRootTypes['Course'] | null; // Course
+    updateOneOrders: NexusGenRootTypes['Order'] | null; // Order
+    updateOptionSet: Array<NexusGenRootTypes['OptionSet'] | null> | null; // [OptionSet]
     updateUser: NexusGenRootTypes['User']; // User!
     updateUserData: NexusGenRootTypes['User']; // User!
     verifyToken: NexusGenRootTypes['tokenVerificationResponse']; // tokenVerificationResponse!
@@ -1756,7 +1775,10 @@ export interface NexusGenFieldTypeNames {
     signup: 'AuthPayload'
     updateOneCancellations: 'Cancellation'
     updateOneChildren: 'Child'
+    updateOneChildrenOnCourse: 'ChildrenOnCourses'
     updateOneCourses: 'Course'
+    updateOneOrders: 'Order'
+    updateOptionSet: 'OptionSet'
     updateUser: 'User'
     updateUserData: 'User'
     verifyToken: 'tokenVerificationResponse'
@@ -1918,9 +1940,20 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['ChildrenUpdateInput']; // ChildrenUpdateInput!
       where: NexusGenInputs['ChildrenWhereUniqueInput']; // ChildrenWhereUniqueInput!
     }
+    updateOneChildrenOnCourse: { // args
+      data: NexusGenInputs['ChildrenOnCourseUpdateInput']; // ChildrenOnCourseUpdateInput!
+      where: NexusGenInputs['ChildrenOnCourseWhereUniqueInput']; // ChildrenOnCourseWhereUniqueInput!
+    }
     updateOneCourses: { // args
       data: NexusGenInputs['CoursesUpdateInput']; // CoursesUpdateInput!
       where: NexusGenInputs['CoursesWhereUniqueInput']; // CoursesWhereUniqueInput!
+    }
+    updateOneOrders: { // args
+      data: NexusGenInputs['OrdersUpdateInput']; // OrdersUpdateInput!
+      where: NexusGenInputs['OrdersWhereUniqueInput']; // OrdersWhereUniqueInput!
+    }
+    updateOptionSet: { // args
+      UpdateOptionSet: Array<NexusGenInputs['UpdateOptionSetInput'] | null>; // [UpdateOptionSetInput]!
     }
     updateUser: { // args
       updateUserInput: NexusGenInputs['userUpdateInput']; // userUpdateInput!

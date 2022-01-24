@@ -299,6 +299,12 @@ input ChildrenOnCourseScalarWhereInput {
   inscriptionDate: DateTimeNullableFilter
 }
 
+input ChildrenOnCourseUpdateInput {
+  children: ChildrenUpdateOneRequiredWithoutChildrenOnCourseInput
+  course: CoursesUpdateOneRequiredWithoutChildrenOnCourseInput
+  inscriptionDate: NullableDateTimeFieldUpdateOperationsInput
+}
+
 input ChildrenOnCourseUpdateManyMutationInput {
   inscriptionDate: NullableDateTimeFieldUpdateOperationsInput
 }
@@ -749,8 +755,15 @@ type Mutation {
   """update one child"""
   updateOneChildren(data: ChildrenUpdateInput!, where: ChildrenWhereUniqueInput!): Child
 
+  """update one children course"""
+  updateOneChildrenOnCourse(data: ChildrenOnCourseUpdateInput!, where: ChildrenOnCourseWhereUniqueInput!): ChildrenOnCourses
+
   """update one course"""
   updateOneCourses(data: CoursesUpdateInput!, where: CoursesWhereUniqueInput!): Course
+
+  """update one order"""
+  updateOneOrders(data: OrdersUpdateInput!, where: OrdersWhereUniqueInput!): Order
+  updateOptionSet(UpdateOptionSet: [UpdateOptionSetInput]!): [OptionSet]
   updateUser(updateUserInput: userUpdateInput!): User!
   updateUserData(updateUserData: updateUserInput!): User!
   verifyToken(token: verifyTokenInput!): tokenVerificationResponse!
@@ -1325,6 +1338,14 @@ input OrdersScalarWhereInput {
   sport_voucher: BoolFilter
 }
 
+input OrdersUpdateInput {
+  cancelled_at: NullableDateTimeFieldUpdateOperationsInput
+  child: ChildrenUpdateOneRequiredWithoutOrdersInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  options_set: Options_setUpdateManyWithoutOrderInput
+  sport_voucher: BoolFieldUpdateOperationsInput
+}
+
 input OrdersUpdateManyMutationInput {
   cancelled_at: NullableDateTimeFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
@@ -1646,6 +1667,11 @@ type Token {
   token: String!
   userId: String!
   userRole: RoleEnum!
+}
+
+input UpdateOptionSetInput {
+  option_set_id: Int!
+  option_set_status: StatusEnum!
 }
 
 type User {

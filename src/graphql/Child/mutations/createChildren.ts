@@ -3,6 +3,7 @@ import { Children, Prisma, RoleEnum } from '@prisma/client';
 import { arg, extendType, list, nonNull } from 'nexus';
 import generateHashPassword from '../../../ultils/hashPassword';
 import generateToken from '../../../ultils/tokenUtility';
+import mailService from '../../../ultils/sendEmail';
 
 export const createChildren = extendType({
   type: 'Mutation',
@@ -110,16 +111,24 @@ export const createChildren = extendType({
                     .courseId,
               },
             });
+
             returnedData.child.push(createdChild);
             //);
           }
 
           const user = await ctx.prisma.users.findUnique({
-            select: { id: true, role: true, first_name: true },
+            select: { id: true, role: true, first_name: true, email: true },
             where: {
               email: args.childrenList[0].tutor.connectOrCreate.where.email,
             },
           });
+          const html = mailService.subscriptionSuccessfull();
+          await mailService.sendEmail(
+            process.env.EMAIL_FROM,
+            user.email,
+            `Club d'escalade visétois, inscirption réussie.`,
+            html
+          );
 
           returnedData.token = {
             token: generateToken(user.id, user.role, user.first_name),
