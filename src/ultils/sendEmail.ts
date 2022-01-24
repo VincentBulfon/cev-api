@@ -15,14 +15,14 @@ export default {
     const html = `
     <h1>Utilisez le lien suivant pour reinitialiser votre mot de passe sur le site du club d'escalade de Visé</h1>
     <p>Le lien n'est valide que 10 minutes.</p>
-    <a target="_blank" href="http://localhost:3000/auth/password/reset/${token}">http://localhost:3000/auth/password/reset/${token}</a>
+    <a target="_blank" href="https://cev.vincentbulfon.com/auth/password/reset/${token}">https://cev.vincentbulfon.com/auth/password/reset/${token}</a>
     `;
     return html;
   },
   subscriptionSuccessfull() {
     const html = `<h1>Votre inscirptions sur le site du club d'esclalade Visétois est réussie</h1>
     <p>Vous pouvez dès à présent vous connecter avec vos identifiants.</p>
-    <a target="_blank" href="http://localhost:3000/sign_in</a>
+    <a target="_blank" href="https://cev.vincentbulfon.com/sign_in</a>
     `;
     return html;
   },
