@@ -17,7 +17,23 @@ export const createChildren = extendType({
       },
       async resolve(root, args, ctx) {
         const duplicateList: Array<string> = [];
-
+        let returnedData: {
+          child: Children[];
+          token: {
+            token: string;
+            userId: string;
+            userRole: RoleEnum;
+            userFirstName: string;
+          };
+        } = {
+          child: [],
+          token: {
+            token: '',
+            userId: '',
+            userRole: RoleEnum.USER,
+            userFirstName: '',
+          },
+        };
         try {
           //This is a promise
           const childExists = (child: Prisma.ChildrenCreateInput) => {
@@ -33,16 +49,16 @@ export const createChildren = extendType({
             promises.push(childExists(child as Prisma.ChildrenCreateInput));
           }
 
-          const existingChildren = await Promise.all(promises);
+          // const existingChildren = await Promise.all(promises);
 
-          //If count of a child is greater than 0 that means this child already exists
-          existingChildren.forEach((count, index) => {
-            if (count > 0) {
-              const child = args.childrenList[index];
-              const childName = `${child.name} ${child.first_name}`;
-              duplicateList.push(childName);
-            }
-          });
+          // //If count of a child is greater than 0 that means this child already exists
+          // existingChildren.forEach((count, index) => {
+          //   if (count > 0) {
+          //     const child = args.childrenList[index];
+          //     const childName = `${child.name} ${child.first_name}`;
+          //     duplicateList.push(childName);
+          //   }
+          // });
 
           //Construct error message
           if (duplicateList.length > 0) {
@@ -53,23 +69,6 @@ export const createChildren = extendType({
             throw new Error(errorMessage);
           }
 
-          let returnedData: {
-            child: Children[];
-            token: {
-              token: string;
-              userId: string;
-              userRole: RoleEnum;
-              userFirstName: string;
-            };
-          } = {
-            child: [],
-            token: {
-              token: '',
-              userId: '',
-              userRole: RoleEnum.USER,
-              userFirstName: '',
-            },
-          };
           for await (const child of args.childrenList) {
             //Stores promise inside and array to be executed in concurrency later in code
             //promArray.push(
@@ -122,13 +121,6 @@ export const createChildren = extendType({
               email: args.childrenList[0].tutor.connectOrCreate.where.email,
             },
           });
-          const html = mailService.subscriptionSuccessfull();
-          await mailService.sendEmail(
-            process.env.EMAIL_FROM,
-            user.email,
-            `Club d'escalade visétois, inscirption réussie.`,
-            html
-          );
 
           returnedData.token = {
             token: generateToken(user.id, user.role, user.first_name),
@@ -139,10 +131,20 @@ export const createChildren = extendType({
 
           //Execute all the promises in concurrency to reduce execution time
           //returnedData = await Promise.all(promArray);
-          return returnedData;
         } catch (error) {
+          console.log(error.message);
           throw new Error(error.message);
         }
+
+        const html = mailService.subscriptionSuccessfull();
+        await mailService.sendEmail(
+          process.env.EMAIL_FROM,
+          args.childrenList[0].tutor.connectOrCreate.where.email,
+          `Club d'escalade visétois, inscirption réussie.`,
+          html
+        );
+
+        return returnedData;
       },
     });
   },
