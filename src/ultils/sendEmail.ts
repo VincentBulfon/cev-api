@@ -22,7 +22,7 @@ export default {
   subscriptionSuccessfull() {
     const html = `<h1>Votre inscirptions sur le site du club d'esclalade Visétois est réussie</h1>
     <p>Vous pouvez dès à présent vous connecter avec vos identifiants.</p>
-    <a target="_blank" href="https://cev.vincentbulfon.com/sign_in</a>
+    <a target="_blank" href="https://cev.vincentbulfon.com/sign_in">Aller sur le site</a>
     `;
     return html;
   },
