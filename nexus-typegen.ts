@@ -1288,6 +1288,7 @@ export interface NexusGenInputs {
     startsWith?: string | null; // String
   }
   UpdateOptionSetInput: { // input type
+    childId: number; // Int!
     option_set_id: number; // Int!
     option_set_status: NexusGenEnums['StatusEnum']; // StatusEnum!
   }

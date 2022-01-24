@@ -1,6 +1,7 @@
 import { Options_set } from '.prisma/client';
 import { StatusEnum } from '@prisma/client';
 import { arg, extendType, inputObjectType, list, nonNull } from 'nexus';
+import mailService from '../../../ultils/sendEmail';
 
 export const updateOrders = extendType({
   type: 'Mutation',
@@ -17,7 +18,20 @@ export const updateOneOrder = extendType({
       args: {
         UpdateOptionSet: arg({ type: nonNull(list('UpdateOptionSetInput')) }),
       },
+
       async resolve(root, args, ctx) {
+        const user = await ctx.prisma.users.findFirst({
+          select: { email: true },
+          where: {
+            children: {
+              some: {
+                id: {
+                  equals: args.UpdateOptionSet[0].childId,
+                },
+              },
+            },
+          },
+        });
         const updatedOptionSet: Options_set[] = [];
         let set: {
           option_set_id: number;
@@ -34,8 +48,16 @@ export const updateOneOrder = extendType({
             },
           });
           updatedOptionSet.push(await option_set);
-          console.log(updatedOptionSet);
         }
+        console.log(user.email);
+
+        const html = mailService.paymentUpdated();
+        mailService.sendEmail(
+          process.env.EMAIL_FROM,
+          user.email,
+          'CEV : paiement cotisation',
+          html
+        );
 
         return updatedOptionSet;
       },
@@ -50,5 +72,6 @@ export const updateOrderInput = inputObjectType({
     t.nonNull.field('option_set_status', {
       type: 'StatusEnum',
     });
+    t.nonNull.int('childId');
   },
 });

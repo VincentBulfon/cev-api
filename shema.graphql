@@ -1670,6 +1670,7 @@ type Token {
 }
 
 input UpdateOptionSetInput {
+  childId: Int!
   option_set_id: Int!
   option_set_status: StatusEnum!
 }
