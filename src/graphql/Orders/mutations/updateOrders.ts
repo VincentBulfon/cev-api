@@ -15,12 +15,15 @@ export const updateOneOrder = extendType({
     t.field('updateOptionSet', {
       type: list('OptionSet'),
       args: {
-        UpdateOptionSet: nonNull(list('UpdateOptionSetInput')),
+        UpdateOptionSet: arg({ type: nonNull(list('UpdateOptionSetInput')) }),
       },
       async resolve(root, args, ctx) {
         const updatedOptionSet: Options_set[] = [];
-        
-        args.UpdateOptionSet.map(async set => {
+        let set: {
+          option_set_id: number;
+          option_set_status: StatusEnum;
+        } = null;
+        for await (set of args.UpdateOptionSet) {
           const option_set = ctx.prisma.options_set.update({
             where: { id: set.option_set_id },
             data: {
@@ -32,7 +35,7 @@ export const updateOneOrder = extendType({
           });
           updatedOptionSet.push(await option_set);
           console.log(updatedOptionSet);
-        });
+        }
 
         return updatedOptionSet;
       },
